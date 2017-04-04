@@ -1,0 +1,176 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\app\app.js" />
+    <Content Include="wwwroot\app\controllers\main.controller.js" />
+    <Content Include="wwwroot\app\directives\chartIcon.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByChildKidnapTop5 - Copy.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapTop10 - Copy.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\terroristAttackTypes.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\terroristAttackTypes.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapTop10.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapTop10.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapTop10.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\terroristAttackTypes.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapKilledTop5.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapKilledTop5.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapDurationTop5.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapDurationTop5.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByChildKidnapTop5.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByChildKidnapTop5.html" />
+    <Content Include="wwwroot\app\directives\charts\countriesByChildKidnapTop5.scss" />
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapDurationTop5.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapKilledTop5.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByLongestKidnapDurationTop3.html" />
+    <Content Include="wwwroot\app\directives\charts\countriesByLongestKidnapDurationTop3.scss" />
+    <Content Include="wwwroot\app\directives\charts\countriesBySuicideAttackTop5 - Copy.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\regionsByVehicleAttack.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\regionsByVehicleAttack.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesBySuicideAttackTop5.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\regionsByVehicleAttack.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesBySuicideAttackTop5.html" />
+    <Content Include="wwwroot\app\directives\charts\countriesBySuicideAttackTop5.scss" />
+    <Content Include="wwwroot\app\directives\charts\countriesByVehicleAttackTop3.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByVehicleAttackTop3.html" />
+    <Content Include="wwwroot\app\directives\charts\countriesByVehicleAttackTop3.scss" />
+    <Content Include="wwwroot\app\directives\charts\professionalGroupsByKidnap.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\ageGroupsByKidnap.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\locationsByKidnap.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\locationsByKidnap.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnap.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnap.html" />
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnap.scss" />
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapTop30.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapTop30.html" />
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapTop30.scss" />
+    <Content Include="wwwroot\app\directives\charts\locationsByKidnap.scss" />
+    <Content Include="wwwroot\app\directives\charts\ageGroupsByKidnap.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\ageGroupsByKidnap.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\monthsByKidnap.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\monthsByKidnap.html" />
+    <Content Include="wwwroot\app\directives\charts\monthsByKidnap.scss" />
+    <Content Include="wwwroot\app\directives\charts\professionalGroupsByKidnap.html" />
+    <Content Include="wwwroot\app\directives\charts\professionalGroupsByKidnap.scss" />
+    <Content Include="wwwroot\app\directives\charts\countriesByLongestKidnapDurationTop3.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\regionsByKidnapSimpleVsMultiple.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\regionsByKidnapSimpleVsMultiple.html" />
+    <Content Include="wwwroot\app\directives\charts\regionsByKidnapSimpleVsMultiple.scss" />
+    <Content Include="wwwroot\app\services\charts.helper.js" />
+    <Content Include="wwwroot\app\services\data\data.js" />
+    <Content Include="wwwroot\app\services\data\repo.regions.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\services\data\repo.professionalGroups.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\services\data\repo.ageGroups.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\services\data\repo.months.js" />
+    <Content Include="wwwroot\app\services\data\repo.locations.js" />
+    <Content Include="wwwroot\app\services\data\repo.common.js" />
+    <Content Include="wwwroot\app\services\mainData.service.js" />
+    <Content Include="wwwroot\app\services\common.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\countries.html" />
+    <Content Include="wwwroot\css\charts-common.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\css\charts-bundle.scss" />
+    <Content Include="wwwroot\css\charts\charts.scss" />
+    <Content Include="wwwroot\css\definitions.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\css\main.scss" />
+    <Content Include="wwwroot\js\charts\charts - Copy.bubbledLines.js" />
+    <Content Include="wwwroot\js\charts\charts - Copy.donut.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\js\charts\charts.donut.js" />
+    <Content Include="wwwroot\js\charts\charts.hourglass.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\js\charts\charts.3D.bar.v.js" />
+    <Content Include="wwwroot\js\charts\charts.bagel.js" />
+    <Content Include="wwwroot\js\charts\charts.grid.v.js" />
+    <Content Include="wwwroot\js\charts\charts.levels.v.js" />
+    <Content Include="wwwroot\js\charts\charts.linear.v.js" />
+    <Content Include="wwwroot\js\charts\charts.manager.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\js\charts\charts.base.js" />
+    <Content Include="wwwroot\js\charts\charts.bubbledLines.js" />
+    <Content Include="wwwroot\js\charts\charts.linear.bar.v.js" />
+    <Content Include="wwwroot\js\charts\charts.manager.regions.js" />
+    <Content Include="wwwroot\js\charts\charts.sliced.bar.v.js" />
+    <Content Include="wwwroot\js\charts\chartsDonut.js" />
+    <Content Include="wwwroot\js\string.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <HintPath>..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.2\System.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

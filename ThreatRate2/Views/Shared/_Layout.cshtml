@@ -1,0 +1,129 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
+<html ng-app="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ThreatRate2</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Exo:400,600" rel="stylesheet">
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    <link href="~/lib/reset-css/reset.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
+
+    @Html.Raw(JavaScriptSnippet.FullScript)
+</head>
+<body>
+    
+@*    @Html.Partial("Header")*@
+
+<div class="container body-content">
+    <div class="core">@RenderBody()</div>
+
+    <footer>
+        <div> <a class="logo"></a>
+            <p>
+                ThreatRate is a global risk intelligence company, dedicated to providing the most comprehensive and always updated securi&#173;ty database and analytics. Our clients’ rely on our world class data and cutting edge industry insights to manage the safe deployment of a global workforce, evaluate various security risks, develop a preventive risk strategy and so forth.<br/>
+                Visit us at <a href="http://www.threatrate.com">www.threatrate.com</a>
+            </p>
+            <p class="copy">
+                &copy; ThreatRate, Inc. 2017
+            </p>
+        </div> 
+    </footer>
+</div>
+
+    <script src="~/js/d3.js"></script>
+    <script src="~/js/string.js"></script> 
+
+    <environment names="Development">
+@*        <script src="~/lib/underscore/underscore-min.js"></script>*@
+        <script src="~/lib/lodash/dist/lodash.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/angular/angular.js"></script>
+        <script src="~/lib/angular-resource/angular-resource.js"></script>
+        <script src="~/lib/angular-extend-promises/angular-extend-promises-without-lodash.js"></script>
+        <script src="~/lib/angular-animate/angular-animate.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="~/lib/angular/angular.js"></script>
+        <script src="~/lib/angular-resource/angular-resource.js"></script>
+        <script src="~/lib/angular-extend-promises/angular-extend-promises-without-lodash.js"></script>
+        <script src="~/lib/angular-animate/angular-animate.min.js"></script>
+
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    <script src="~/app/app.js"></script>
+    <script src="~/app/services/mainData.service.js"></script>
+    <script src="~/app/services/data/data.js"></script>
+    <script src="~/app/services/data/repo.common.js"></script>
+    <script src="~/app/services/data/repo.locations.js"></script>
+    <script src="~/app/services/data/repo.months.js"></script>
+    <script src="~/app/services/common.js"></script>
+    <script src="~/app/services/mainData.service.js"></script>
+    <script src="~/app/services/charts.helper.js"></script>
+    <script src="~/app/services/data/repo.ageGroups.js"></script>
+    <script src="~/app/services/data/repo.professionalGroups.js"></script>
+    <script src="~/app/services/data/repo.regions.js"></script>
+    <script src="~/app/controllers/main.controller.js"></script>
+
+
+    <script src="~/js/charts/charts.manager.js"></script> 
+    <script src="~/js/charts/charts.manager.regions.js"></script>
+    <script src="~/js/charts/charts.base.js"></script>
+    <script src="~/js/charts/charts.sliced.bar.v.js"></script>
+    <script src="~/js/charts/charts.bubbledLines.js"></script>
+    <script src="~/js/charts/charts.3D.bar.v.js"></script>
+    <script src="~/js/charts/charts.bagel.js"></script>
+    <script src="~/js/charts/charts.levels.v.js"></script>
+    <script src="~/js/charts/charts.linear.v.js"></script>
+    <script src="~/js/charts/charts.linear.h.js"></script>
+    <script src="~/js/charts/charts.grid.v.js"></script>
+<script src="~/js/charts/charts.hourglass.js"></script>
+    <script src="~/js/charts/charts.donut.js"></script>
+
+    <script src="~/app/directives/chartIcon.directive.js"></script>
+
+    <script src="~/app/directives/charts/countriesByKidnap.directive.js"></script>
+    <script src="~/app/directives/charts/countriesByKidnapTop30.directive.js"></script>
+    <script src="~/app/directives/charts/locationsByKidnap.directive.js"></script>
+    <script src="~/app/directives/charts/monthsByKidnap.directive.js"></script>
+    <script src="~/app/directives/charts/ageGroupsByKidnap.directive.js"></script>
+    <script src="~/app/directives/charts/professionalGroupsByKidnap.directive.js"></script>
+    <script src="~/app/directives/charts/regionsByKidnapSimpleVsMultiple.directive.js"></script>
+    <script src="~/app/directives/charts/countriesByLongestKidnapDurationTop3.directive.js"></script>
+    <script src="~/app/directives/charts/countriesByVehicleAttackTop3.directive.js"></script>
+    <script src="~/app/directives/charts/countriesBySuicideAttackTop5.directive.js"></script>
+    <script src="~/app/directives/charts/countriesByChildKidnapTop5.directive.js"></script>
+<script src="~/app/directives/charts/countriesByForeignersKidnapDurationTop5.directive.js"></script>
+<script src="~/app/directives/charts/countriesByUnrestTop5.directive.js"></script>
+<script src="~/app/directives/charts/regionsByVehicleAttack.directive.js"></script>
+    <script src="~/app/directives/charts/countriesByKidnapKilledTop5.directive.js"></script>
+    <script src="~/app/directives/charts/countriesByForeignersKidnapTop10.directive.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

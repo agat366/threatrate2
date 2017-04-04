@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div ng-controller="MainController as vm">
+    <select ng-options="option.title || option.label for option in vm.charts track by option.id"
+            ng-model="vm.currentChart"></select> <button ng-click="vm.reload()">Reload</button>
+    
+    <h2>{{vm.currentChart.title}}</h2>
+
+    <section class="content">
+        <div>
+            <chart-countries-by-kidnap data="vm.data" ng-if="vm.chartId == 'countriesByKidnap'"></chart-countries-by-kidnap>
+            <chart-countries-by-kidnap-top-30 data="vm.data" ng-if="vm.chartId == 'countriesByKidnapTop30'"></chart-countries-by-kidnap-top-30>
+            <chart-locations-by-kidnap data="vm.data" ng-if="vm.chartId == 'locationsByKidnap'"></chart-locations-by-kidnap>
+            <chart-months-by-kidnap data="vm.data" ng-if="vm.chartId == 'monthsByKidnap'"></chart-months-by-kidnap>
+            <chart-age-groups-by-kidnap data="vm.data" ng-if="vm.chartId == 'ageGroupsByKidnap'"></chart-age-groups-by-kidnap>
+            <chart-professional-groups-by-kidnap data="vm.data" ng-if="vm.chartId == 'professionalGroupsByKidnap'"></chart-professional-groups-by-kidnap>
+            <chart-regions-by-kidnap-simple-vs-multiple data="vm.data" ng-if="vm.chartId == 'regionsByKidnapSimpleVsMultiple'"></chart-regions-by-kidnap-simple-vs-multiple>
+            <chart-countries-by-longest-kidnap-duration-top-3 data="vm.data" ng-if="vm.chartId == 'countriesByLongestKidnapDurationTop3'"></chart-countries-by-longest-kidnap-duration-top-3>
+            <chart-countries-by-vehicle-attack-top-3 data="vm.data" ng-if="vm.chartId == 'countriesByVehicleAttackTop3'"></chart-countries-by-vehicle-attack-top-3>
+            <chart-countries-by-child-kidnap-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByChildKidnapTop5'"></chart-countries-by-child-kidnap-top-5>
+            <chart-countries-by-foreigners-kidnap-duration-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersKidnapDurationTop5'"></chart-countries-by-foreigners-kidnap-duration-top-5>
+            <chart-countries-by-unrest-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByUnrestTop5'"></chart-countries-by-unrest-top-5>
+            <chart-countries-by-kidnap-killed-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByKidnapKilledTop5'"></chart-countries-by-kidnap-killed-top-5>
+            <chart-countries-by-suicide-attack-top-5 data="vm.data" ng-if="vm.chartId == 'countriesBySuicideAttackTop5'"></chart-countries-by-suicide-attack-top-5>
+            <chart-regions-by-vehicle-attack data="vm.data" ng-if="vm.chartId == 'regionsByVehicleAttack'"></chart-regions-by-vehicle-attack>
+            <chart-countries-by-foreigners-kidnap-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersKidnapTop10'"></chart-countries-by-foreigners-kidnap-top-10>
+
+
+            <div ng-if="!!vm.isLoading" class="loading">
+                <div>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

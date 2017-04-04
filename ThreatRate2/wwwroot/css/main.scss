@@ -1,0 +1,55 @@
+﻿@import "definitions.scss";
+@import "charts/charts.scss";
+@import "charts-bundle.scss";
+
+body{
+    font-family: $font-family-default;
+    font-size: $font-size;
+}
+
+.body-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    height: 100vh;
+
+    & > .core {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: auto;
+    }
+
+    & > footer {
+
+    }
+}
+
+
+footer {
+    &>div{
+
+        margin: 20px auto;
+        width: $content-width;
+    
+        .logo {
+            float: left;
+            width: 225px * $content-size-multiplier;
+            height: 40px * $content-size-multiplier;
+            background: url(../images/logo.png) no-repeat;
+            background-size: 100%;
+            margin: 15px 60px 40px 0;
+        }
+
+        p {
+            color: #333;
+            font-size: 13px;
+            line-height: 23px;
+            font-weight: $font-bold;
+
+            &.copy {
+                text-align: right;
+            }
+        }
+    }
+}
+

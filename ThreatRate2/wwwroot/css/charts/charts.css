@@ -1,0 +1,30 @@
+﻿header {
+  border-top: 1px dashed #eee; }
+
+section.content ht2 {
+  width: 1125px;
+  height: 630px;
+  margin: 10px auto; }
+
+section.content .chart {
+  box-sizing: border-box;
+  border-top: 1px solid #b2b2b2;
+  border-bottom: 1px solid #b2b2b2;
+  margin: 20px auto;
+  width: 1125px;
+  height: 630px;
+  overflow: hidden; }
+
+footer {
+  margin: 20px auto; }
+  footer .logo {
+    float: left;
+    width: 225px;
+    height: 40px;
+    background: url(../images/logo.png) no-repeat;
+    background-size: 100%; }
+  footer p {
+    color: #333; }
+    footer p .copy {
+      text-align: right; }
+

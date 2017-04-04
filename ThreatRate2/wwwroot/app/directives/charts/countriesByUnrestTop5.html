@@ -1,0 +1,15 @@
+﻿<div class="chart">
+    <div chart-core class="chart-countries-unrest-top-5">
+        <div class="categories">
+            <label>All</label>
+            <label ng-repeat="c in categories">{{c.title}}</label>
+        </div>
+        <div chart-object-name="{{d.name}}" ng-repeat="d in columns">
+            <div chart-body></div>
+            <div class="axis"></div>
+            <div class="country"></div>
+            <h4>{{d.title}}</h4>
+        </div>
+    </div>
+</div>
+

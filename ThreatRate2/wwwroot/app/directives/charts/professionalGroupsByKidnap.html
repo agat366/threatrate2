@@ -1,0 +1,23 @@
+﻿<div class="chart">
+    <div class="chart-top-bagels clearfix">
+        <h3>Top <span class="mark">5</span> professions</h3>
+        <div>
+            <div class="top-item" ng-repeat="pr in topItems">
+                <label style="color: {{pr.color}}">{{pr.value}}</label>
+                <div class="item-core">
+                    <div chart-body="bagel" data-value="{{pr.value}}" data-color="{{pr.color}}"></div>
+                    <div>
+                        <div chart-body="icon" data-color="{{pr.color}}"></div>
+                        <span>{{pr.title}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div chart-body="levels" class="chart-levels">
+
+    </div>
+    <div ng-if="!!data" class="chart-hint">
+        <p>***Note: Additional 310 Unknown</p>
+    </div>
+</div>

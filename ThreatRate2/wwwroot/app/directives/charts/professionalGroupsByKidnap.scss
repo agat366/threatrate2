@@ -1,0 +1,59 @@
+﻿.chart-top-bagels {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+  
+    h3 {
+        font-size: 28px;
+        text-align: center;
+        margin: 20px 0 50px;
+        text-transform: uppercase;
+
+        .mark {
+            color: $red;
+            background: none;
+        }
+    }
+
+    .top-item {
+        float: left;
+        width: 20%;
+
+        label {
+            display: block;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .item-core {
+            position: relative;
+            height: 190px;
+            text-align: center;
+
+            [chart-body="bagel"] {
+                transform: rotateZ(180deg)
+            }
+
+            & > * {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+
+            [chart-body="icon"] {
+                height: 50px;
+                width: 50px;
+                margin: 60px auto 0px;
+            }
+            span{
+                font-size: 11px;
+            }
+        }
+    }
+}
+
+.chart-levels{
+    margin-top: 20px;
+    height: 220px;
+}

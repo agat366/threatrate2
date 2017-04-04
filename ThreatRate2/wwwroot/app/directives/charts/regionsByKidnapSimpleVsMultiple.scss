@@ -1,0 +1,54 @@
+﻿.chart-region-kidnapping-single-multiple {
+    & > * {
+        float: left;
+        height: 550px;
+    }
+
+    & > .sep {
+        width: 3px;
+        height: 550px;
+
+        &:before {
+            content: ' ';
+            display: block;
+            width: 3px;
+            height: 500px;
+            margin-top: 25px;
+            background: $gray;
+        }
+    }
+
+    & > div {
+        width: 49%;
+    }
+
+    h3 {
+        margin: 20px auto 15px;
+        text-align: center;
+
+        label {
+            vertical-align: top;
+            display: inline-block;
+            width: 13px;
+            height: 42px;
+            margin: 0 3px 0 0;
+            position: relative;
+            top: -8px;
+        }
+    }
+
+    [chart-body="map"]{
+        height: 270px;
+        width: 90%;
+        margin: 10px auto;
+    }
+    [chart-body="data"]{
+        height: 235px;
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    .value-title text{
+        font-size: 20px;
+    }
+}

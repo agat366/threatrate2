@@ -1,0 +1,121 @@
+﻿.chart-grid-ranked-30 {
+
+    & > div {
+        float: left;
+        width: 470px;
+        margin-left: 40px;
+        margin-right: 40px;
+        margin-top: 55px;
+
+        &:last-child {
+            border-right: none;
+        }
+
+        & > div {
+            padding: 0 0;
+            line-height: 23px;
+
+            & > * {
+                float: left;
+                padding: 5px;
+                font-size: 17px;
+            }
+
+            &:nth-child(odd) {
+                background: $gray-light;
+            }
+
+            .flag {
+                width: 10%;
+                padding: 0;
+
+                span {
+                    width: 30px;
+                    height: 30px;
+                    display: block;
+                    margin: 1px auto;
+                    background: no-repeat center;
+                    background-size: 100%;
+
+                    &.flag-afg {
+                        background-image: url(../images/charts/flags/med/Afghanistan.png);
+                    }
+
+                    &.flag-alg {
+                        background-image: url(../images/charts/flags/med/Algeria.png);
+                    }
+
+                    &.flag-syr {
+                        background-image: url(../images/charts/flags/med/Syria.png);
+                    }
+                }
+            }
+
+            label {
+                width: 25%;
+                display: block;
+                text-align: left;
+                padding-right: 3px;
+                font-weight: $font-bold;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .value {
+                width: 12%;
+                text-align: center;
+                border-left: 2px solid $gray;
+                padding-left: 1px;
+                padding-right: 1px;
+            }
+
+            .level {
+                width: 53%;
+                text-align: center;
+
+                & > span {
+                    margin: 0 4.5px;
+                    vertical-align: middle;
+                    line-height: 12px;
+
+                    @for $i from 0 through 12 {
+                        &:nth-child(#{$i}) .active {
+                            transition-delay: .01s * $i;
+                        }
+                    }
+                }
+
+                span {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 8px;
+                    display: inline-block;
+                    background: $gray;
+                    overflow: hidden;
+
+                    &.active {
+                        background: $red;
+                        vertical-align: top;
+                        transition: all .3s cubic-bezier(0, .75, .25, 1);
+                        position: relative;
+                        left: 0;
+
+
+                        &.ng-enter {
+                            left: -35px;
+                        }
+
+                        &.ng-enter-active {
+                            left: 0;
+                        }
+
+                        &.ng-leave {
+                            transition: none !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

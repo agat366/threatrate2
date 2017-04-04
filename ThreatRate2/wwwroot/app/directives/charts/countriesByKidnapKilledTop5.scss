@@ -1,0 +1,23 @@
+﻿.chart-kidnap-victims-top-5
+{
+    &>*{
+        float: left;
+        width: 190px;
+        margin: 40px 20px;
+        height: 400px;
+
+        &:first-child{
+            margin-left: 3px;
+        }
+        &:last-child{
+            margin-right: 3px;
+        }
+    }
+
+    .value-title text{
+        font-size: 22px;
+    }
+    .legend-title text{
+        font-size: 20px;
+    }
+}

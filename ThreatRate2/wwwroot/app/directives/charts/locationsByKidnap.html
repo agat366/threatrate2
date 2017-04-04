@@ -1,0 +1,26 @@
+﻿<div class="chart">
+    <div ng-if="!!data" chart-core class="chart-kidnap-by-location">
+        <div class="left-side">
+            <div class="left-bracket"></div>
+        </div>
+        <div class="chart-body" chart-body>
+            
+        </div>
+        <div class="right-side">
+            <div class="left-bracket"></div>
+            <div class="data">
+                <h3>Total number<br/>of people kidnapped</h3>
+                <span class="icon"></span>
+                <p>{{total}}</p>
+            </div>
+            <div class="right-bracket"></div>
+        </div>
+        
+    </div>
+    <div ng-if="!!data" class="chart-period">
+        <div class="progress-line"></div>
+        <label></label>
+        <span class="value">1 year</span>
+        <label></label>
+    </div>
+</div>

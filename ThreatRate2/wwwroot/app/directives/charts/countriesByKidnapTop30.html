@@ -1,0 +1,16 @@
+﻿<div class="chart">
+    <div chart-core class="chart-grid-ranked-30">
+        <div ng-repeat="column in columns">
+            <div ng-repeat="item in column.items" class="clearfix">
+                <div class="flag"><span class="flag-{{item.name}}"></span></div>
+                <label>{{item.title}}</label>
+                <div class="level">
+                    <span ng-repeat="level in item.levels">
+                        <span class="active" ng-if="level.active && isLoaded"></span>
+                    </span>
+                </div>
+                <div class="value">{{item.value}}</div>
+            </div>
+        </div>
+    </div>
+</div>

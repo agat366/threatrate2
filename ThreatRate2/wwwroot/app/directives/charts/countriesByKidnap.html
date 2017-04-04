@@ -1,0 +1,15 @@
+﻿<div class="chart">
+    <div chart-core class="chart-grid-ranked">
+        <div ng-repeat="column in columns">
+            <div ng-repeat="item in column.items" class="clearfix">
+                <label>{{item.title || '-'}}</label>
+                <div class="level">
+                    <span ng-repeat="level in item.levels">
+                        <span class="active" ng-if="level.active"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

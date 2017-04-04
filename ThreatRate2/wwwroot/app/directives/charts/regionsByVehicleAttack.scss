@@ -1,0 +1,29 @@
+﻿.chart-countries-by-suicide-attack {
+    & > * {
+        width: 16.66%;
+        float: left;
+        height: 200px;
+
+        @for $i from 2 through 6 {
+            &:nth-child(#{$i}) {
+                margin-top: 45px * $i;
+            }
+        }
+
+    }
+
+    .value-title {
+        fill: $red;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .legend-title {
+        fill: #333;
+        font-weight: normal;
+        font-size: 18px;
+        text-align: center;
+        text-transform:capitalize;
+        margin-top: 20px;
+    }
+}

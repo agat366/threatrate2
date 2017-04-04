@@ -1,0 +1,43 @@
+﻿.chart-countries-unrest-top-5 {
+    padding: 25px 0;
+    &>*{
+        float: left;
+        width: 16.66%;
+        height: 550px;
+        border-right: 1px solid $gray;
+        padding: 0 10px;
+        &:last-child{
+            border-right: none;
+        }
+    }
+
+    .categories{
+        label{
+            width: 140px;
+            font-weight: 700;
+            display: block;
+            border: 2px solid #ececec;
+            padding: 3px 4px;
+            margin: 9.8px 3px;
+            text-align: right;
+            border-radius: 10px;
+            &:first-child{
+                margin-top: 0;
+            }
+        }
+        border-right: none;
+    }
+
+    [chart-body]{
+        height: 350px;
+    }
+
+    .country{
+        height: 80px;
+        margin: 25px 0;
+    }
+    h4{
+        text-align: center;
+        font-size: 14px;
+    }
+}

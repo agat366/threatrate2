@@ -1,0 +1,59 @@
+﻿.chart-grid-ranked {
+
+    & > div {
+        float: left;
+        width: 16.66%;
+        border-right: 2px solid $gray;
+
+        &:last-child {
+            border-right: none;
+        }
+
+        & > div {
+            padding: 3.5px 0;
+            line-height: 12px;
+
+            &:nth-child(odd) {
+                background: $gray-light;
+            }
+
+            label {
+                width: 60%;
+                display: block;
+                text-align: right;
+                float: left;
+                padding-right: 3px;
+                font-size: 11px;
+                font-weight: $font-bold;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .level {
+                width: 40%;
+                text-align: center;
+                float: left;
+
+                & > span {
+                    margin: 0 1.5px;
+                    vertical-align: middle;
+                    line-height: 12px;
+                }
+
+                span {
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 8px;
+                    display: inline-block;
+                    background: $gray;
+
+                    &.active {
+                        background: $red;
+                        vertical-align: top;
+                    }
+                }
+            }
+        }
+    }
+}

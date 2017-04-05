@@ -15,7 +15,7 @@
                 ChartsManager.renderImage(element[0],
                     attributes.iconName,
                     attributes.iconColor,
-                    isNaN(scale) ? -1 : scale);
+                    isNaN(scale) ? -1 : scale, true);
             }
 
             var directive = {

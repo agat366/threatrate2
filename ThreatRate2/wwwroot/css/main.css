@@ -551,6 +551,136 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 16px;
   text-transform: capitalize; }
 
+.chart-grid-grouped-10 > div {
+  float: left;
+  width: 470px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 0; }
+  .chart-grid-grouped-10 > div:last-child {
+    border-right: none; }
+  .chart-grid-grouped-10 > div > div {
+    padding: 0 0;
+    line-height: 23px; }
+    .chart-grid-grouped-10 > div > div > * > * {
+      float: left;
+      padding: 5px;
+      font-size: 17px; }
+    .chart-grid-grouped-10 > div > div .flag {
+      width: 10%;
+      padding: 0; }
+      .chart-grid-grouped-10 > div > div .flag span {
+        width: 30px;
+        height: 30px;
+        display: block;
+        margin: 1px auto;
+        background: no-repeat center;
+        background-size: 100%; }
+        .chart-grid-grouped-10 > div > div .flag span.flag-afg {
+          background-image: url(../images/charts/flags/med/Afghanistan.png); }
+        .chart-grid-grouped-10 > div > div .flag span.flag-alg {
+          background-image: url(../images/charts/flags/med/Algeria.png); }
+        .chart-grid-grouped-10 > div > div .flag span.flag-syr {
+          background-image: url(../images/charts/flags/med/Syria.png); }
+    .chart-grid-grouped-10 > div > div label {
+      width: 20%;
+      display: block;
+      text-align: left;
+      padding-right: 3px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+    .chart-grid-grouped-10 > div > div .value {
+      width: 12%;
+      text-align: center;
+      border-left: 2px solid #dcdcdc;
+      padding-left: 1px;
+      padding-right: 1px; }
+    .chart-grid-grouped-10 > div > div .level {
+      width: 58%;
+      text-align: center; }
+      .chart-grid-grouped-10 > div > div .level > span {
+        margin: 0 4.5px;
+        vertical-align: middle;
+        line-height: 12px; }
+        .chart-grid-grouped-10 > div > div .level > span:nth-child(0) .active {
+          transition-delay: 0s; }
+        .chart-grid-grouped-10 > div > div .level > span:nth-child(1) .active {
+          transition-delay: 0.01s; }
+        .chart-grid-grouped-10 > div > div .level > span:nth-child(2) .active {
+          transition-delay: 0.02s; }
+        .chart-grid-grouped-10 > div > div .level > span:nth-child(3) .active {
+          transition-delay: 0.03s; }
+        .chart-grid-grouped-10 > div > div .level > span:nth-child(4) .active {
+          transition-delay: 0.04s; }
+        .chart-grid-grouped-10 > div > div .level > span:nth-child(5) .active {
+          transition-delay: 0.05s; }
+        .chart-grid-grouped-10 > div > div .level > span:nth-child(6) .active {
+          transition-delay: 0.06s; }
+        .chart-grid-grouped-10 > div > div .level > span:nth-child(7) .active {
+          transition-delay: 0.07s; }
+        .chart-grid-grouped-10 > div > div .level > span:nth-child(8) .active {
+          transition-delay: 0.08s; }
+        .chart-grid-grouped-10 > div > div .level > span:nth-child(9) .active {
+          transition-delay: 0.09s; }
+        .chart-grid-grouped-10 > div > div .level > span:nth-child(10) .active {
+          transition-delay: 0.1s; }
+        .chart-grid-grouped-10 > div > div .level > span:nth-child(11) .active {
+          transition-delay: 0.11s; }
+        .chart-grid-grouped-10 > div > div .level > span:nth-child(12) .active {
+          transition-delay: 0.12s; }
+      .chart-grid-grouped-10 > div > div .level span {
+        width: 10px;
+        height: 10px;
+        border-radius: 8px;
+        display: inline-block;
+        background: #dcdcdc;
+        overflow: hidden; }
+        .chart-grid-grouped-10 > div > div .level span.active {
+          background: #e1482c;
+          vertical-align: top;
+          transition: all 0.3s cubic-bezier(0, 0.75, 0.25, 1);
+          position: relative;
+          left: 0; }
+          .chart-grid-grouped-10 > div > div .level span.active.ng-enter {
+            left: -35px; }
+          .chart-grid-grouped-10 > div > div .level span.active.ng-enter-active {
+            left: 0; }
+          .chart-grid-grouped-10 > div > div .level span.active.ng-leave {
+            transition: none !important; }
+  .chart-grid-grouped-10 > div .group-header {
+    border-bottom: 2px solid #dcdcdc; }
+    .chart-grid-grouped-10 > div .group-header .value {
+      font-weight: 700; }
+  .chart-grid-grouped-10 > div .group-list {
+    background: #f8f8f8; }
+    .chart-grid-grouped-10 > div .group-list > * {
+      float: none;
+      border-bottom: 1px dashed #dcdcdc;
+      padding: 0; }
+      .chart-grid-grouped-10 > div .group-list > * > * {
+        float: left;
+        padding: 2px 5px; }
+    .chart-grid-grouped-10 > div .group-list .location {
+      height: 27px; }
+    .chart-grid-grouped-10 > div .group-list label {
+      width: 53%;
+      text-transform: uppercase;
+      font-weight: normal;
+      font-size: 16px; }
+    .chart-grid-grouped-10 > div .group-list [chart-icon] {
+      width: 120px;
+      height: 70px;
+      margin: 0 auto 0;
+      float: none; }
+    .chart-grid-grouped-10 > div .group-list .image {
+      float: left;
+      background: #f8f8f8;
+      padding: 5px;
+      width: 35%;
+      height: 80px; }
+
 body {
   font-family: "Exo", sans-serif;
   font-size: 12px; }

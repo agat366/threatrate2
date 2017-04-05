@@ -45,12 +45,12 @@
                     var frameContainer = { w: chartsContainer[0].offsetWidth, h: chartsContainer[0].offsetHeight };
                     _.each(data, function (d, i) {
 
-                        d.color = i < colors.length ? colors[i] : colors[colors.length - 1],
-                            d.icon = {
+                        d.color = i < colors.length ? colors[i] : colors[colors.length - 1];
+                        d.icon = {
 //                            name: 'attacks.' + d.name,
-                                name: 'threattypes.' + d.name,
-                                color: d.color
-                            };
+                            name: 'threattypes.' + d.name,
+                            color: d.color
+                        };
 
 
                         var dx = frameContainer.w / data.length;

@@ -1,0 +1,29 @@
+﻿<div class="chart">
+    <div chart-core class="chart-grid-grouped-10">
+        <div ng-repeat="column in columns">
+            <div ng-repeat="item in column.items" class="clearfix country-group">
+                <div class="group-header clearfix">
+                    <div class="flag"><span class="flag-{{titleByName(item.name)}}"
+                                            style="background-image: url(/images/charts/flags/med/{{titleByName(item.name)}}.png)"></span>
+                    </div>
+                    <label>{{item.title}}</label>
+                    <div class="level">
+                        <span ng-repeat="level in item.levels">
+                            <span class="active" ng-if="level.active && isLoaded"></span>
+                        </span>
+                    </div>
+                    <div class="value" style="color: {{item.color}}">{{item.value}}</div>
+                </div>
+                <div class="group-list">
+                    <div class="image">
+                        <div chart-icon icon-name="countries.{{item.name}}" icon-color="{{item.color}}"></div>
+                    </div>
+                    <div class="location" ng-repeat="loc in item.locations">
+                        <label>{{loc.title}}</label>
+                        <span class="value">{{loc.value}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

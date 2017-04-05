@@ -139,10 +139,17 @@
             }*/,
             {
                 id: 'terroristAttackTypes',
-                default: true,
                 title: 'FREQUENCY OF TERRORIST ATTACK TYPES // 2016',
                 service: function () {
                     return dataService.terroristAttackTypes({from: null, to: null});
+                }
+            },
+            {
+                id: 'countriesByKidnapWithLocationsTop10',
+                default: true,
+                title: 'COUNTRIES MOST KIDNAPPED AT FURTHER ANALYZED BY GEO-LOCATION',
+                service: function () {
+                    return dataService.countriesByKidnapWithLocations({top: 10, from: null, to: null});
                 }
             }
         ];

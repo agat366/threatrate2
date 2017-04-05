@@ -4,8 +4,8 @@
 
     angular.module('tr').directive('chartCountriesByKidnapTop30',
     [
-        'common', 'config', 'chartsHelper', '$timeout',
-        function (common, config, chartsHelper, $timeout) {
+        'common', 'config', 'chartsHelper', '$timeout', 'repo.common',
+        function (common, config, chartsHelper, $timeout, countriesRepo) {
 
             var defaults = {
                 columns: 2,
@@ -13,8 +13,21 @@
                 levelPoints: 12
             };
 
+            var countries;
+
             function link(scope, element, attributes) {
 
+                countries = countriesRepo.allCountries();
+
+                scope.titleByName = function(name) {
+                    var country = _.find(countries,
+                        function(c) {
+                            return c[0] == name;
+                        });
+                    if (country) {
+                        return country[1];
+                    }
+                };
 
                 scope.$watch('data',
                     function() {

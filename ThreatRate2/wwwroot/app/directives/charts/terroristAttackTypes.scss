@@ -1,1 +1,12 @@
-﻿
+﻿.chart-threat-types {
+    .value-title text {
+        //fill: $red;
+        font-size: 18px;
+    }
+
+    .legend-title text {
+        font-weight: normal;
+        font-size: 16px;
+        text-transform: capitalize;
+    }
+}

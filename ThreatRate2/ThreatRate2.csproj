@@ -103,6 +103,10 @@
     <Content Include="wwwroot\app\directives\charts\regionsByKidnapSimpleVsMultiple.scss" />
     <Content Include="wwwroot\app\services\charts.helper.js" />
     <Content Include="wwwroot\app\services\data\data.js" />
+    <Content Include="wwwroot\app\services\data\repo - Copy.regions.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\services\data\repo.attacks.js" />
     <Content Include="wwwroot\app\services\data\repo.regions.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

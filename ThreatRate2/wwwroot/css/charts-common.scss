@@ -76,6 +76,10 @@
 .chart-common{
     height: 550px;
     margin-bottom: 15px;
+
+    svg{
+        overflow: visible!important;
+    }
 }
 .chart-bubbled-lines{
     .legend-title{

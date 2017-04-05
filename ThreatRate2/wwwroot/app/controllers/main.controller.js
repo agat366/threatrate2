@@ -124,7 +124,6 @@
             },
             {
                 id: 'countriesByForeignersKidnapTop10',
-                default: true,
                 title: 'List of 10 countries with highest kidnapping of foreigners // jan-oct 2016',
                 service: function () {
                     return dataService.countriesByForeignersKidnap({top: 10, from: null, to: null});
@@ -139,11 +138,11 @@
                 }
             }*/,
             {
-                id: 'countriesByForeignersKidnapTop10',
+                id: 'terroristAttackTypes',
                 default: true,
-                title: 'List of 10 countries with highest kidnapping of foreigners // jan-oct 2016',
+                title: 'FREQUENCY OF TERRORIST ATTACK TYPES // 2016',
                 service: function () {
-                    return dataService.countriesByForeignersKidnap({top: 10, from: null, to: null});
+                    return dataService.terroristAttackTypes({from: null, to: null});
                 }
             }
         ];

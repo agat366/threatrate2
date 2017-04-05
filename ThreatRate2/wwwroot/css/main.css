@@ -144,6 +144,8 @@ h1, h2, h3, h4, h5, h6 {
 .chart-common {
   height: 550px;
   margin-bottom: 15px; }
+  .chart-common svg {
+    overflow: visible !important; }
 
 .chart-bubbled-lines .legend-title rect, .chart-bubbled-lines .legend-title path {
   fill: #dcdcdc !important; }
@@ -540,6 +542,14 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   text-transform: capitalize;
   margin-top: 20px; }
+
+.chart-threat-types .value-title text {
+  font-size: 18px; }
+
+.chart-threat-types .legend-title text {
+  font-weight: normal;
+  font-size: 16px;
+  text-transform: capitalize; }
 
 body {
   font-family: "Exo", sans-serif;

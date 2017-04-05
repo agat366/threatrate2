@@ -797,6 +797,10 @@
                     return result;
                 }
 
+                function allCountries() {
+                    return titles;
+                }
+
                 function countriesByKidnapDuration(params) {
                     return countriesByKidnap(params);
                 }
@@ -896,6 +900,8 @@
 //                    def.resolve({ data: dataRequest || 'ok' });
 //                    return def.promise;
 
+
+                this.allCountries = allCountries;
 
                 this.countriesByKidnap = countriesByKidnap;
                 this.countriesByKidnapDuration = countriesByKidnapDuration;

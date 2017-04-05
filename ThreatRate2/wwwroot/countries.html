@@ -1,0 +1,841 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+<script src="lib/jquery/dist/jquery.js"></script>
+<script src="js/charts/charts.manager.js"></script>
+<script src="js/d3.js"></script>
+
+<script src="js/string.js">
+</script>
+<style>
+    path {
+        stroke-width: .5;
+        stroke: #ccc;
+    }
+</style>
+<script>
+    $(function() {
+        ChartsManager.renderImage($('div')[0], 'countries', null, 2);
+
+        $('path').mouseover(function() {
+            var el = $(this);
+            el.css('stroke', 'red');
+        });
+
+        $('path').mouseout(function() {
+            var el = $(this);
+            el.css('stroke', '#aaa');
+        });
+
+        $('path').click(function() {
+            var el = $(this);
+            var value = prompt('"d" - delete; "id" - country; "-" - not detected:', el.attr('country-code'));
+            if (value) {
+                if (value === 'd') {
+                    el.remove();
+                } else if (isNaN(parseInt(value))) {
+                    el.attr('country-code', value);
+                    el.css('fill', 'red');
+                } else {
+                    el.attr('country-code', value);
+                    el.css('fill', 'green');
+                }
+            }
+        });
+
+        $('button').click(generate);
+
+        function generate() {
+            $('textarea').val($('svg')[0].outerHTML);
+        }
+    });
+
+    window.onbeforeunload = function () {
+        return 'Are you sure you want to leave?';
+    };
+</script>
+<div style="height: 800px;">
+    
+</div>
+    
+<button>Generate</button><br/>
+<textarea style="width: 85%; height: 400px; "></textarea>
+</body>
+
+<script>
+    var countries = [
+        [
+            3,
+            "Afghanistan"
+        ],
+        [
+            14,
+            "Albania"
+        ],
+        [
+            17,
+            "Algeria"
+        ],
+        [
+            204,
+            "Andorra"
+        ],
+        [
+            18,
+            "Angola"
+        ],
+        [
+            19,
+            "Argentina"
+        ],
+        [
+            20,
+            "Armenia"
+        ],
+        [
+            21,
+            "Australia"
+        ],
+        [
+            22,
+            "Austria"
+        ],
+        [
+            132,
+            "Azerbaijan"
+        ],
+        [
+            24,
+            "Bahamas"
+        ],
+        [
+            25,
+            "Bahrain"
+        ],
+        [
+            8,
+            "Bangladesh"
+        ],
+        [
+            27,
+            "Barbados"
+        ],
+        [
+            130,
+            "Belarus"
+        ],
+        [
+            28,
+            "Belgium"
+        ],
+        [
+            145,
+            "Belize"
+        ],
+        [
+            7,
+            "Benin"
+        ],
+        [
+            31,
+            "Bhutan"
+        ],
+        [
+            70,
+            "Bolivia"
+        ],
+        [
+            33,
+            "Bosnia and Herzegovina"
+        ],
+        [
+            34,
+            "Botswana"
+        ],
+        [
+            35,
+            "Brazil"
+        ],
+        [
+            36,
+            "Brunei"
+        ],
+        [
+            37,
+            "Bulgaria"
+        ],
+        [
+            38,
+            "Burkina Faso"
+        ],
+        [
+            39,
+            "Burundi"
+        ],
+        [
+            81,
+            "Cambodia"
+        ],
+        [
+            108,
+            "Cameroon"
+        ],
+        [
+            93,
+            "Canada"
+        ],
+        [
+            172,
+            "Cape Verde"
+        ],
+        [
+            109,
+            "Central African Republic"
+        ],
+        [
+            94,
+            "Chad"
+        ],
+        [
+            78,
+            "Chile"
+        ],
+        [
+            46,
+            "China"
+        ],
+        [
+            56,
+            "Colombia"
+        ],
+        [
+            175,
+            "Comoros"
+        ],
+        [
+            118,
+            "Costa Rica"
+        ],
+        [
+            142,
+            "Croatia"
+        ],
+        [
+            176,
+            "Cuba"
+        ],
+        [
+            127,
+            "Cyprus"
+        ],
+        [
+            101,
+            "Czech Republic"
+        ],
+        [
+            74,
+            "Democratic Republic of Congo"
+        ],
+        [
+            116,
+            "Denmark"
+        ],
+        [
+            174,
+            "Djibouti"
+        ],
+        [
+            177,
+            "Dominica"
+        ],
+        [
+            71,
+            "Dominican Republic"
+        ],
+        [
+            57,
+            "Ecuador"
+        ],
+        [
+            87,
+            "Egypt"
+        ],
+        [
+            102,
+            "El Salvador"
+        ],
+        [
+            165,
+            "Equatorial Guinea"
+        ],
+        [
+            120,
+            "Eritrea"
+        ],
+        [
+            117,
+            "Estonia"
+        ],
+        [
+            110,
+            "Ethiopia"
+        ],
+        [
+            115,
+            "Fiji"
+        ],
+        [
+            146,
+            "Finland"
+        ],
+        [
+            136,
+            "France"
+        ],
+        [
+            6,
+            "Gabon"
+        ],
+        [
+            139,
+            "Gambia"
+        ],
+        [
+            73,
+            "Georgia"
+        ],
+        [
+            129,
+            "Germany"
+        ],
+        [
+            80,
+            "Ghana"
+        ],
+        [
+            65,
+            "Greece"
+        ],
+        [
+            195,
+            "Grenada"
+        ],
+        [
+            5,
+            "Guatemala"
+        ],
+        [
+            126,
+            "Guinea"
+        ],
+        [
+            186,
+            "Guinea Bissau"
+        ],
+        [
+            106,
+            "Guyana"
+        ],
+        [
+            58,
+            "Haiti"
+        ],
+        [
+            72,
+            "Honduras"
+        ],
+        [
+            196,
+            "Hungary"
+        ],
+        [
+            197,
+            "Iceland"
+        ],
+        [
+            47,
+            "India"
+        ],
+        [
+            63,
+            "Indonesia"
+        ],
+        [
+            68,
+            "Iran"
+        ],
+        [
+            54,
+            "Iraq"
+        ],
+        [
+            91,
+            "Ireland"
+        ],
+        [
+            12,
+            "Israel"
+        ],
+        [
+            52,
+            "Italy"
+        ],
+        [
+            167,
+            "Ivory Coast"
+        ],
+        [
+            59,
+            "Jamaica"
+        ],
+        [
+            99,
+            "Japan"
+        ],
+        [
+            164,
+            "Jordan"
+        ],
+        [
+            143,
+            "Kazakhstan"
+        ],
+        [
+            96,
+            "Kenya"
+        ],
+        [
+            157,
+            "Kosovo"
+        ],
+        [
+            148,
+            "Kuwait"
+        ],
+        [
+            124,
+            "Kyrgyzstan"
+        ],
+        [
+            86,
+            "Laos"
+        ],
+        [
+            134,
+            "Latvia"
+        ],
+        [
+            84,
+            "Lebanon"
+        ],
+        [
+            187,
+            "Lesotho"
+        ],
+        [
+            151,
+            "Liberia"
+        ],
+        [
+            16,
+            "Libya"
+        ],
+        [
+            198,
+            "Liechenstein"
+        ],
+        [
+            154,
+            "Lithuania"
+        ],
+        [
+            2,
+            "Luxembourg"
+        ],
+        [
+            138,
+            "Macedonia"
+        ],
+        [
+            160,
+            "Madagascar"
+        ],
+        [
+            173,
+            "Malawi"
+        ],
+        [
+            64,
+            "Malaysia"
+        ],
+        [
+            147,
+            "Maldives"
+        ],
+        [
+            90,
+            "Mali"
+        ],
+        [
+            199,
+            "Malta"
+        ],
+        [
+            1,
+            "Mauritania"
+        ],
+        [
+            188,
+            "Mauritius"
+        ],
+        [
+            40,
+            "Mexico"
+        ],
+        [
+            200,
+            "Moldova"
+        ],
+        [
+            201,
+            "Monaco"
+        ],
+        [
+            182,
+            "Mongolia"
+        ],
+        [
+            202,
+            "Montenegro"
+        ],
+        [
+            41,
+            "Morocco"
+        ],
+        [
+            149,
+            "Mozambique"
+        ],
+        [
+            181,
+            "Myanmar"
+        ],
+        [
+            159,
+            "Namibia"
+        ],
+        [
+            190,
+            "Nauru"
+        ],
+        [
+            76,
+            "Nepal"
+        ],
+        [
+            66,
+            "Netherlands"
+        ],
+        [
+            48,
+            "New Zealand"
+        ],
+        [
+            85,
+            "Nicaragua"
+        ],
+        [
+            123,
+            "Niger"
+        ],
+        [
+            42,
+            "Nigeria"
+        ],
+        [
+            162,
+            "North Korea"
+        ],
+        [
+            100,
+            "Norway"
+        ],
+        [
+            150,
+            "Oman"
+        ],
+        [
+            49,
+            "Pakistan"
+        ],
+        [
+            191,
+            "Palau"
+        ],
+        [
+            205,
+            "Palestinian Territories"
+        ],
+        [
+            107,
+            "Panama"
+        ],
+        [
+            104,
+            "Papua New Guinea"
+        ],
+        [
+            88,
+            "Paraguay"
+        ],
+        [
+            4,
+            "Peru"
+        ],
+        [
+            50,
+            "Philippines"
+        ],
+        [
+            97,
+            "Poland"
+        ],
+        [
+            113,
+            "Portugal"
+        ],
+        [
+            133,
+            "Qatar"
+        ],
+        [
+            82,
+            "Republic of the Congo"
+        ],
+        [
+            183,
+            "Romania"
+        ],
+        [
+            62,
+            "Russia"
+        ],
+        [
+            114,
+            "Rwanda"
+        ],
+        [
+            193,
+            "Samoa"
+        ],
+        [
+            180,
+            "Sao Tome and Principe"
+        ],
+        [
+            121,
+            "Saudi Arabia"
+        ],
+        [
+            163,
+            "Senegal"
+        ],
+        [
+            11,
+            "Serbia"
+        ],
+        [
+            156,
+            "Seychelles"
+        ],
+        [
+            140,
+            "Sierra Leone"
+        ],
+        [
+            92,
+            "Singapore"
+        ],
+        [
+            128,
+            "Slovakia"
+        ],
+        [
+            203,
+            "Slovenia"
+        ],
+        [
+            185,
+            "Solomon Islands"
+        ],
+        [
+            43,
+            "Somalia"
+        ],
+        [
+            44,
+            "South Africa"
+        ],
+        [
+            112,
+            "South Korea"
+        ],
+        [
+            168,
+            "South Sudan"
+        ],
+        [
+            67,
+            "Spain"
+        ],
+        [
+            51,
+            "Sri Lanka"
+        ],
+        [
+            45,
+            "Sudan"
+        ],
+        [
+            79,
+            "Suriname"
+        ],
+        [
+            166,
+            "Swaziland"
+        ],
+        [
+            89,
+            "Sweden"
+        ],
+        [
+            83,
+            "Switzerland"
+        ],
+        [
+            137,
+            "Syria"
+        ],
+        [
+            77,
+            "Taiwan"
+        ],
+        [
+            131,
+            "Tajikistan"
+        ],
+        [
+            152,
+            "Tanzania"
+        ],
+        [
+            95,
+            "Thailand"
+        ],
+        [
+            178,
+            "Timor Leste"
+        ],
+        [
+            153,
+            "Togo"
+        ],
+        [
+            192,
+            "Tonga"
+        ],
+        [
+            61,
+            "Trinidad and Tobago"
+        ],
+        [
+            111,
+            "Tunisia"
+        ],
+        [
+            53,
+            "Turkey"
+        ],
+        [
+            171,
+            "Turkmenistan"
+        ],
+        [
+            194,
+            "Tuvalu"
+        ],
+        [
+            75,
+            "Uganda"
+        ],
+        [
+            125,
+            "Ukraine"
+        ],
+        [
+            105,
+            "United Arab Emirates"
+        ],
+        [
+            144,
+            "United Kingdom"
+        ],
+        [
+            55,
+            "United States"
+        ],
+        [
+            122,
+            "Uruguay"
+        ],
+        [
+            135,
+            "Uzbekistan"
+        ],
+        [
+            169,
+            "Vanuatu"
+        ],
+        [
+            170,
+            "Vatican"
+        ],
+        [
+            60,
+            "Venezuela"
+        ],
+        [
+            119,
+            "Vietnam"
+        ],
+        [
+            184,
+            "Western Sahara"
+        ],
+        [
+            69,
+            "Yemen"
+        ],
+        [
+            103,
+            "Zambia"
+        ],
+        [
+            161,
+            "Zimbabwe"
+        ]
+    ];
+    var output = '';
+    for (var i = 0; i < countries.length; i++) {
+        var c = countries[i];
+        output += c[0] + '\t' + c[1] + '\n';
+    }
+    $('textarea').val(output);
+</script>
+
+</html>

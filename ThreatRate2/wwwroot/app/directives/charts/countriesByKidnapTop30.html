@@ -2,7 +2,8 @@
     <div chart-core class="chart-grid-ranked-30">
         <div ng-repeat="column in columns">
             <div ng-repeat="item in column.items" class="clearfix">
-                <div class="flag"><span class="flag-{{item.name}}"></span></div>
+                <div class="flag"><span class="flag-{{titleByName(item.name)}}"
+                                        style="background-image: url(/images/charts/flags/med/{{titleByName(item.name)}}.png)"></span></div>
                 <label>{{item.title}}</label>
                 <div class="level">
                     <span ng-repeat="level in item.levels">

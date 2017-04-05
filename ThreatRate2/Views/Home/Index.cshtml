@@ -25,6 +25,8 @@
             <chart-countries-by-suicide-attack-top-5 data="vm.data" ng-if="vm.chartId == 'countriesBySuicideAttackTop5'"></chart-countries-by-suicide-attack-top-5>
             <chart-regions-by-vehicle-attack data="vm.data" ng-if="vm.chartId == 'regionsByVehicleAttack'"></chart-regions-by-vehicle-attack>
             <chart-countries-by-foreigners-kidnap-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersKidnapTop10'"></chart-countries-by-foreigners-kidnap-top-10>
+            
+            <chart-terrorist-attack-types data="vm.data" ng-if="vm.chartId == 'terroristAttackTypes'"></chart-terrorist-attack-types>
 
 
             <div ng-if="!!vm.isLoading" class="loading">

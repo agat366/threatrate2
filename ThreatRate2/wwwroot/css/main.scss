@@ -23,7 +23,9 @@ body{
 
     }
 }
-
+.ng-cloak{
+    visibility: hidden;
+}
 
 footer {
     &>div{

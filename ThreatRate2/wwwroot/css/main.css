@@ -695,6 +695,9 @@ body {
     flex-shrink: 1;
     flex-basis: auto; }
 
+.ng-cloak {
+  visibility: hidden; }
+
 footer > div {
   margin: 20px auto;
   width: 1125px; }

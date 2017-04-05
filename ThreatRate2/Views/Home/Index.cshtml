@@ -5,7 +5,7 @@
     <select ng-options="option.title || option.label for option in vm.charts track by option.id"
             ng-model="vm.currentChart"></select> <button ng-click="vm.reload()">Reload</button>
     
-    <h2>{{vm.currentChart.title}}</h2>
+    <h2 class="ng-cloak">{{vm.currentChart.title}}</h2>
 
     <section class="content">
         <div>

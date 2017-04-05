@@ -29,6 +29,7 @@ function chartBubbledLines(settings) {
                     dotMargin: 1,
                     title: {
                         height: 60,
+                        useRoundBorders: true,
                         dy: 0,
                         strokeColor: '#333'
                     },
@@ -48,6 +49,9 @@ function chartBubbledLines(settings) {
                         width: 2
                     },
                     height: 40
+                },
+                animation: {
+                    delay: 0
                 }
             };
 
@@ -141,23 +145,23 @@ function chartBubbledLines(settings) {
                     .attr('transform', self.formatTranslate(0, barHeight
                     + _opts.bars.margin.top + _opts.bars.margin.bottom));
 
-                if (i === 0) {
+                if (i === 0 && _opts.bars.title.useRoundBorders) {
                     legend.append('path')
                         .attr('d', String.format('M{0},{1} A{0},{0}, 0, 1, 1, {0} 0 L{2} 0 L{2} {1} z',
                             _opts.bars.title.height / 2, _opts.bars.title.height, dx))
-                        .style({ fill: '#eee' });
-                } else if (i === self.data.length - 1) {
+                        .style({ fill: d.legendColor || '#eee' });
+                } else if (i === self.data.length - 1 && _opts.bars.title.useRoundBorders) {
                     legend.append('path')
                         .attr('d', String.format('M{3},0 A{0},{0}, 0, 1, 1, {3} {1} L0 {1} L0 0 z',
                             _opts.bars.title.height / 2, _opts.bars.title.height, dx, dx - _opts.bars.title.height / 2))
-                        .style({ fill: '#eee' });
+                        .style({ fill: d.legendColor || '#eee' });
                 } else {
                     legend.append('rect')
                         .attr('x', 0)
                         .attr('y', 0)
                         .attr('width', dx)
                         .attr('height', _opts.bars.title.height)
-                        .style('fill', '#eee');                    
+                        .style('fill', d.legendColor || '#eee');                    
                 }
 
                 if (i > 0) {
@@ -179,6 +183,7 @@ function chartBubbledLines(settings) {
                         'text-anchor': 'middle',
                         'dominant-baseline': 'central'
                     })
+                    .style('fill', d.textColor || null)
                     .text(d.title);
 
                 var box = lbl.node().getBBox();
@@ -370,7 +375,7 @@ function chartBubbledLines(settings) {
                     g.transition()
                         .ease('exp-out')
                         .duration(barDuration)
-                        .delay(i * barRowsDelay + i0 * barsDelay)
+                        .delay(i * barRowsDelay + i0 * barsDelay + _opts.animation.delay)
                         .attr('r', _opts.bars.dotRadius);
                 });
 
@@ -381,7 +386,7 @@ function chartBubbledLines(settings) {
                 valueCore.transition()
                     .ease('cubic-out')
                     .duration(barDuration * 1.2)
-                    .delay(i0 * barsDelay)
+                    .delay(i0 * barsDelay + _opts.animation.delay)
                     .attr('transform', self.formatTranslate(dx, 0))
                     .style('opacity', 1);
             });

@@ -146,10 +146,17 @@
             },
             {
                 id: 'countriesByKidnapWithLocationsTop10',
-                default: true,
                 title: 'COUNTRIES MOST KIDNAPPED AT FURTHER ANALYZED BY GEO-LOCATION',
                 service: function () {
                     return dataService.countriesByKidnapWithLocations({top: 10, from: null, to: null});
+                }
+            },
+            {
+                id: 'monthsByYears5',
+                default: true,
+                title: 'FIVE YEAR VIEW ON “NOVEMBER”',
+                service: function () {
+                    return dataService.monthsByYears({from: null, to: null});
                 }
             }
         ];

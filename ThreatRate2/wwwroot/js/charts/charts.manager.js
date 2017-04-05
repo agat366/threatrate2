@@ -101,6 +101,7 @@
 //            frontColor: '#b00000',
             secondaryBackColor: '#bcbebd',
             backColor: '#e5e5e5',
+            blueColor: '#b7d6e5',
             transparentColor: '#fff',
             darkColor: '#333'
         }

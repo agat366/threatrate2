@@ -84,7 +84,7 @@
 .chart-bubbled-lines{
     .legend-title{
         rect, path{
-            fill: $gray!important;
+            fill: $gray;
         }
         text{
             fill: #000;
@@ -92,7 +92,7 @@
 
         &.marked{
             rect, path{
-                fill: $red!important;
+                fill: $red;
             }
             text{
                 fill: #fff;

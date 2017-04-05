@@ -12,16 +12,19 @@
     <Content Include="wwwroot\app\app.js" />
     <Content Include="wwwroot\app\controllers\main.controller.js" />
     <Content Include="wwwroot\app\directives\chartIcon.directive.js" />
-    <Content Include="wwwroot\app\directives\charts\countriesByChildKidnapTop5 - Copy.directive.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapTop10 - Copy.directive.js" />
-    <Content Include="wwwroot\app\directives\charts\countriesByKidnapTop30 - Copy.directive.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapWithLocationsTop10.html" />
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapWithLocationsTop10.scss" />
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapWithLocationsTop10.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\monthsByYears5.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\monthsByKidnap - Copy.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\monthsByYears5.html" />
+    <Content Include="wwwroot\app\directives\charts\monthsByYears5.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="wwwroot\app\directives\charts\terroristAttackTypes.html">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -57,9 +60,6 @@
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapKilledTop5.directive.js" />
     <Content Include="wwwroot\app\directives\charts\countriesByLongestKidnapDurationTop3.html" />
     <Content Include="wwwroot\app\directives\charts\countriesByLongestKidnapDurationTop3.scss" />
-    <Content Include="wwwroot\app\directives\charts\countriesBySuicideAttackTop5 - Copy.directive.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="wwwroot\app\directives\charts\regionsByVehicleAttack.html">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -109,9 +109,6 @@
     <Content Include="wwwroot\app\directives\charts\regionsByKidnapSimpleVsMultiple.scss" />
     <Content Include="wwwroot\app\services\charts.helper.js" />
     <Content Include="wwwroot\app\services\data\data.js" />
-    <Content Include="wwwroot\app\services\data\repo - Copy.regions.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="wwwroot\app\services\data\repo.attacks.js" />
     <Content Include="wwwroot\app\services\data\repo.regions.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -139,10 +136,6 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="wwwroot\css\main.scss" />
-    <Content Include="wwwroot\js\charts\charts - Copy.bubbledLines.js" />
-    <Content Include="wwwroot\js\charts\charts - Copy.donut.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="wwwroot\js\charts\charts.donut.js" />
     <Content Include="wwwroot\js\charts\charts.hourglass.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

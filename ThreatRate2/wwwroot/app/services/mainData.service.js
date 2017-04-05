@@ -60,6 +60,30 @@
                     return repoMonths.monthsByKidnap(params);
                 }
 
+                function monthsByYears(params) {
+
+                    var promises = [];
+                    promises.push(repoMonths.monthsByKidnap({year: 2016}));
+                    promises.push(repoMonths.monthsByKidnap({year: 2015}));
+                    promises.push(repoMonths.monthsByKidnap({year: 2014}));
+                    promises.push(repoMonths.monthsByKidnap({year: 2013}));
+                    promises.push(repoMonths.monthsByKidnap({year: 2012}));
+
+                    var def = $q.defer();
+                    $q.all(promises).then(function(data) {
+                        var result = [];
+                        result.push({ year: 2016, data: data[0] });
+                        result.push({ year: 2015, data: data[1] });
+                        result.push({ year: 2014, data: data[2] });
+                        result.push({ year: 2013, data: data[3] });
+                        result.push({ year: 2012, data: data[4] });
+
+                        def.resolve(result);
+                    });
+
+                    return def.promise;
+                }
+
                 function ageGroupsByKidnap(params) {
                     return repoAgeGroups.ageGroupsByKidnap(params);
                 }
@@ -87,12 +111,17 @@
                     countriesByForeignersKidnap: countriesByForeignersKidnap,
                     countriesByKidnapWithLocations: countriesByKidnapWithLocations,
                     countriesByKidnapKilled: countriesByKidnapKilled,
+
                     regionsByVehicleAttack: regionsByVehicleAttack,
+                    regionsByKidnapSimpleVsMultiple: regionsByKidnapSimpleVsMultiple,
+
                     locationsByKidnap: locationsByKidnap,
+
                     monthsByKidnap: monthsByKidnap,
+                    monthsByYears: monthsByYears,
+
                     ageGroupsByKidnap: ageGroupsByKidnap,
                     professionalGroupsByKidnap: professionalGroupsByKidnap,
-                    regionsByKidnapSimpleVsMultiple: regionsByKidnapSimpleVsMultiple,
 
                     terroristAttackTypes: terroristAttackTypes
                 }

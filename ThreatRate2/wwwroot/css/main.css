@@ -148,13 +148,13 @@ h1, h2, h3, h4, h5, h6 {
     overflow: visible !important; }
 
 .chart-bubbled-lines .legend-title rect, .chart-bubbled-lines .legend-title path {
-  fill: #dcdcdc !important; }
+  fill: #dcdcdc; }
 
 .chart-bubbled-lines .legend-title text {
   fill: #000; }
 
 .chart-bubbled-lines .legend-title.marked rect, .chart-bubbled-lines .legend-title.marked path {
-  fill: #e1482c !important; }
+  fill: #e1482c; }
 
 .chart-bubbled-lines .legend-title.marked text {
   fill: #fff; }
@@ -680,6 +680,17 @@ h1, h2, h3, h4, h5, h6 {
       padding: 5px;
       width: 35%;
       height: 80px; }
+
+.chart-month-by-year-5 .legend-title text {
+  font-size: 14px;
+  font-weight: 700;
+  dominant-baseline: central; }
+
+.chart-month-by-year-5 .legend2-title text {
+  font-size: 24px;
+  dominant-baseline: central;
+  text-anchor: middle;
+  text-transform: uppercase; }
 
 body {
   font-family: "Exo", sans-serif;

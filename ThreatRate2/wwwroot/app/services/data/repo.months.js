@@ -49,6 +49,7 @@
                                 var rnd = Math.random();
                                 return {
                                     value: Math.round(rnd * 200),
+                                    id: n,
                                     name: it.name,
                                     title: it.title // to move into directive
                                 }

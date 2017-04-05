@@ -77,7 +77,7 @@ function chartBase(itemToInherit) {
         var group = addGroupWrapper ? container.append('g') : container;
 
         text = text || '';
-        var textGroups = text.split(separator);
+        var textGroups = (text + '').split(separator);
         var total = textGroups.length;
 
         if (total === 0) {

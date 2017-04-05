@@ -34,15 +34,19 @@
                     var chartsContainer = element.find('[chart-body]');
                     chartsContainer.html('');
 
-                    
+                    var total = _.reduce(_.map(data, function (el) { return el.value; }),
+                        function (memo, num) { return memo + num; }, 0);
+
                     for (var i = 0; i < data.length; i++) {
                         var d = data[i];
                         d.valueTitle = d.value;
+                        d.value2 = (Math.round(d.value / total * 1000) / 10) + '%';
                         d.color = i < colors.length ? colors[i] : colors[colors.length - 1],
                         d.icon = {
                             name: 'countries.' + d.name,
                             scale: { width: 50, height: 50 }
-                        };
+                            };
+                        d.titleColor = d.color;
 
                     }
 //                    var maxValue = _.max(_.map(data, function (el) { return el.value; }));
@@ -65,9 +69,10 @@
 //                                maxValue: maxValue,
                                 maxValueRangeMultiplier: 1.3,
                                 icon: {
-                                    name: 'signs.child',
+                                    name: 'signs.foreigner',
                                     height: 45,
-                                    dx: -5,
+                                    dx: 0,
+                                    dy: 3,
                                     scale: 1.15
                                 },
                                 title: {
@@ -81,6 +86,9 @@
 
                                     height: 170
                                 }
+                            },
+                            animation: {
+                                barDelay: 20
                             }
                         };
                         var ch = new chartGridVertical({

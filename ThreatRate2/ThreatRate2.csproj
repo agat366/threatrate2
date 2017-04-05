@@ -12,9 +12,19 @@
     <Content Include="wwwroot\app\app.js" />
     <Content Include="wwwroot\app\controllers\main.controller.js" />
     <Content Include="wwwroot\app\directives\chartIcon.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapByGender.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapByGender.html" />
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapByGender.scss" />
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapWithLocationsTop10.html" />
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapWithLocationsTop10.scss" />
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapWithLocationsTop10.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\locationsByKidnap - Copy.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\locationsByKidnap - Copy.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\locationsByKidnap - Copy.scss" />
     <Content Include="wwwroot\app\directives\charts\monthsByYears5.directive.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

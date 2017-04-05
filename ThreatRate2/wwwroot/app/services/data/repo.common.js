@@ -830,6 +830,11 @@
                     return countriesByKidnap(params);
                 }
 
+                function countriesByKidnapByGender(params) {
+                    // todo: countries by custom filters
+                    return countriesByKidnap(params);
+                }
+
                 function countriesByUnrest(params) {
                     // todo: countries by custom filters
                     return countriesByKidnap(params);
@@ -915,6 +920,7 @@
                 this.countriesByForeignersKidnapDuration = countriesByForeignersKidnapDuration;
                 this.countriesByForeignersKidnap = countriesByForeignersKidnap;
                 this.countriesByKidnapWithLocations = countriesByKidnapWithLocations;
+                this.countriesByKidnapByGender = countriesByKidnapByGender;
                 this.countriesByUnrest = countriesByUnrest;
                 this.countriesBySuicideAttack = countriesBySuicideAttack;
                 this.countriesByKidnapKilled = countriesByKidnapKilled;

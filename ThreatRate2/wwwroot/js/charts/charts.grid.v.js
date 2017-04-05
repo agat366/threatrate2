@@ -54,6 +54,9 @@ function chartGridVertical(settings) {
 
                         height: 20
                     }
+                },
+                animation: {
+                    barDelay: 100
                 }
             };
 
@@ -175,7 +178,7 @@ function chartGridVertical(settings) {
                 point.append('circle').attr({
                     cx: 0, cy: 0,
                     r: _opts.bars.dotRadius + 2,
-                    fill: d.color || _opts.bars.dotColor,
+                    fill: d.pointColor || _opts.bars.dotColor,
                     stroke: '#fff',
                     'stroke-width': 2
                 });
@@ -188,7 +191,20 @@ function chartGridVertical(settings) {
                     .text(d.value).attr({
                         'text-anchor': 'middle',
                         'dominant-baseline': 'central'
-                    });
+                    })
+                    .style('fill', d.titleColor || null);
+
+                if (d.value2) {
+                    var title2 = barIn.append('g')
+                        .attr('transform', self.formatTranslate(0, 40))
+                        .attr('class', 'value2-title');
+                    title2.append('text')
+                        .text(d.value2).attr({
+                            'text-anchor': 'middle',
+                            'dominant-baseline': 'central'
+                        })
+                        .style('fill', d.title2Color || ChartsManager.defaults.darkColor);
+                }
 
                 if(_opts.bars.icon) {
                     var iconValue = barIn.append('g')
@@ -264,7 +280,7 @@ function chartGridVertical(settings) {
 
     function animateChanges(callback) {
 
-        var barsDelay = 25 * 4;
+        var barsDelay = _opts.animation.barDelay;
         var barRowsDelay = 8;
         var barDuration = 400;
 

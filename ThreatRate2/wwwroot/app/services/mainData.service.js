@@ -44,6 +44,10 @@
                     return repo.countriesByKidnapWithLocations(params);
                 }
 
+                function countriesByKidnapByGender(params) {
+                    return repo.countriesByKidnapByGender(params);
+                }
+
                 function countriesByKidnapKilled(params) {
                     return repo.countriesByKidnapKilled(params);
                 }
@@ -110,6 +114,7 @@
                     countriesBySuicideAttack: countriesBySuicideAttack,
                     countriesByForeignersKidnap: countriesByForeignersKidnap,
                     countriesByKidnapWithLocations: countriesByKidnapWithLocations,
+                    countriesByKidnapByGender: countriesByKidnapByGender,
                     countriesByKidnapKilled: countriesByKidnapKilled,
 
                     regionsByVehicleAttack: regionsByVehicleAttack,

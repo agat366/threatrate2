@@ -1,0 +1,34 @@
+﻿<div class="chart">
+    <div ng-if="!!data" chart-core class="chart-countries-by-kidnap-by-gender">
+        <div class="left-side">
+            <div class="left-bracket"></div>
+        </div>
+        <div class="chart-body" chart-body>
+            
+        </div>
+        <div class="right-side">
+            <div class="left-bracket"></div>
+            <div class="data">
+                <h3><label class="male">{{totalMales}}</label><span class="sep"></span><label class="female">{{totalFemales}}</label>
+                </h3>
+                <h4>Events</h4>
+                <div class="icons">
+                    <div chart-icon icon-name="signs.male" icon-color="#84c0ff"></div>
+                    <div chart-icon icon-name="signs.female" icon-color="#ff9ed3"></div>
+                </div>
+                <div class="legend">
+                    <div class="male"></div>
+                    <div class="female"></div>
+                </div>
+            </div>
+            <div class="right-bracket"></div>
+        </div>
+        
+    </div>
+    <div ng-if="!!data" class="chart-period">
+        <div class="progress-line"></div>
+        <label></label>
+        <span class="value">1 year</span>
+        <label></label>
+    </div>
+</div>

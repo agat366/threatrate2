@@ -28,10 +28,14 @@ function chartSlicedBarVertical(settings) {
                 },
                 bars: {
                     title: {
+                        isVertical: false,
                         height: 75,
                         dx: 10,
                         dy: 0
                     },
+                    colors: [
+                        manager.defaults.backColor, manager.defaults.frontColor
+                    ],
                     backColor: manager.defaults.backColor,
                     color: manager.defaults.frontColor,
                     backLinesGap: 1,
@@ -61,7 +65,7 @@ function chartSlicedBarVertical(settings) {
             };
 
             d.bars.maxValue = null;
-//            d.bars.maxValueRangeMultiplier = 1.05;
+            d.bars.maxValueRangeMultiplier = 1;
 
             return d;
         }
@@ -93,7 +97,10 @@ function chartSlicedBarVertical(settings) {
         _.each(self.data, function (el) {
             self.isArray(el.value) ? d.push.apply(d, el.value) : d.push(el.value);
         });
-        self.maxValue = d3.max(d);
+        d = _.map(d, function(d0) {
+                return d0 && d0.value !== undefined ? d0.value : d0;
+        });
+        self.maxValue = d3.max(d) * _opts.bars.maxValueRangeMultiplier;
         if (_opts.bars.maxValue && _opts.bars.maxValue > self.maxValue) {
             self.maxValue = _opts.bars.maxValue;
         }
@@ -118,9 +125,10 @@ function chartSlicedBarVertical(settings) {
                 var g = d3.select(this)
                     .attr('data-eltype', 'bars');
 
-                var h = self.yScale(d.value);
-
                 var dx = self.w / self.data.length;
+
+                var values = self.isArray(d.value) ? d.value : [d];
+
 
                 var item = g.append('g')
                     .attr('transform', String.format('translate({0}, {1})', i * dx, _opts.bars.margin.top));
@@ -137,7 +145,8 @@ function chartSlicedBarVertical(settings) {
                     h: self.h - _opts.legend.height
                 };
                 barFrame.inner = {
-                    w: barFrame.w - _opts.bars.margin.left - _opts.bars.margin.right,
+                    w: (barFrame.w - _opts.bars.margin.left - _opts.bars.margin.right)
+                    / values.length,
                     h: barFrame.h - _opts.bars.margin.top - _opts.bars.margin.bottom
                 };
 
@@ -145,50 +154,105 @@ function chartSlicedBarVertical(settings) {
 
                 // legend (titles within grey boxes) title
                 var legend = item.append('g')
-                    .attr('class', 'legend-title')
+                    .attr('transform', self.formatTranslate(0, barFrame.h));
+                var legend2 = item.append('g')
                     .attr('transform', self.formatTranslate(0, barFrame.h));
 
                 if (d.icon) {
-                    var icon = self.translate(legend.append('g'), barFrame.w / 2, (_opts.legend.height - _opts.legend.title.height) / 2);
+                    var icon = self.translate(legend.append('g'),
+                        barFrame.w / 2 + (d.icon.dx || 0),
+                        (_opts.legend.height - _opts.legend.title.height) / 2 + (d.icon.dy || 0));
                     if (typeof d.icon === 'string') {
-                        manager.renderPath(icon, d.icon, _opts.legend.icon.color);
+                        manager.renderImage(icon, d.icon, _opts.legend.icon.color);
                     } else {
-                        manager.renderPath(icon, d.icon.name, d.icon.color || _opts.legend.icon.color, _opts.legend.icon.scale, _opts.legend.icon.dx, _opts.legend.icon.dy);
+                        manager.renderImage(icon,
+                            d.icon,
+                            _opts.legend.icon.color,
+                            _opts.legend.icon.scale,
+                            d.icon.toCenter);
                     }
-                }
-
-                var legendTitle = self.translate(self.appendTextMultiline(legend.append('g'), d.title, null),
+                } 
+                var legendTitle = legend.append('g')
+                    .attr('class', 'legend-title');
+                var legendTitleText = self.translate(self.appendTextMultiline(legendTitle, d.title, null),
                     dx/2, _opts.legend.height - _opts.legend.title.height);
 
+                var legendTitle2 = legend2.append('g')
+                    .attr('class', 'legend2-title');
+                var legendTitle2Text = self.translate(self.appendTextMultiline(legendTitle2, d.title2, null),
+                    dx/2, _opts.legend.height - 10);// _opts.legend.title.height);
 
-               // bar
+                // background
                 var bar = item.append('g');
-                self.translate(bar, _opts.bars.margin.left, _opts.bars.margin.top);
-                var barBackground = bar.append('g');
-                barBackground.append('rect')
-                    .attr({
-                        width: barFrame.inner.w, height: barFrame.inner.h,
-                        fill: 'url(#diagonalHatch)'// _opts.bars.backColor
-                    });
+                    var barBackground = bar.append('g');
+                    barBackground.append('rect')
+                        .attr({
+                            width: barFrame.inner.w * values.length, height: barFrame.inner.h,
+                            fill: 'url(#diagonalHatch)'// _opts.bars.backColor
+                        });
+                    self.translate(bar, _opts.bars.margin.left, _opts.bars.margin.top);
 
-                // bar body
-                var barBody = bar.append('g');
-                barBody.append('rect')
-                    .attr({ width: barFrame.inner.w, height: h, fill: _opts.bars.color });
-                self.translate(barBody, 0, barFrame.inner.h - h);
+                _.each(values, function(v, k){
 
-                var barValue = bar.append('g')
-                    .attr('class', 'value-title');
-                barValue.append('text')
-                    .text(d.valueTitle);
-                self.translate(barValue, barFrame.inner.w/2, barFrame.inner.h - h + _opts.bars.title.dy);
+                    var h = self.yScale(v.value);
 
-                if (_opts.bars.topIcon) {
-                    var topIcon = manager.renderPath(barValue, _opts.bars.topIcon);
+                    // bar
+                    // bar body
+                    var barBody = bar.append('g');
+                    barBody.append('rect')
+                        .attr({
+                            width: barFrame.inner.w, height: h,
+                            fill: v.color || (values.length > 1 ?  _opts.bars.colors[k] : _opts.bars.color)
+                        });
+                    self.translate(barBody, barFrame.inner.w * k, barFrame.inner.h - h);
+
+                    var barValue = bar.append('g')
+                        .attr('class', 'value-title');
+
+                    var barValueText = barValue.append('text')
+                        .text(v.valueTitle);
+                    var noTopIcon = !_opts.bars.topIcon;
+                    if (_opts.bars.title.isVertical) {
+                        self.translate(barValue, barFrame.inner.w * (k + .5),
+                            barFrame.inner.h - h + _opts.bars.title.dy - (noTopIcon ? 24 : 0));           
+                        barValueText.style('text-anchor', 'start');
+                        barValueText.style('transform', String.format('rotateZ(-90deg)'));
+                    } else {
+                        self.translate(barValue, barFrame.inner.w / 2,
+                            barFrame.inner.h - h + _opts.bars.title.dy - (noTopIcon ? 24 : 0));           
+                    }
+
+                    if (_opts.bars.topIcon) {
+                        var topIcon = manager.renderPath(barValue, _opts.bars.topIcon);
 //                    topIcon.attr('transform', self.formatTranslate(0, _opts.bars.topIcon.dy));
-                }
+                    } else {
+                        var pointer = barValue
+                            .append('g')
+//                            .attr('transform', self.formatTranslate(barFrame.inner.w * (k + .5),
+//                            barFrame.inner.h - h + _opts.bars.title.dy))           
+                            .append('g')
+                            .attr('legend-pointer', '')
+                            .attr('transform', self.formatTranslate(0, 8));
+                        pointer.append('line').attr({
+                            x1: -10,
+                            x2: 10,
+                            y1: 0,
+                            y2: 0,
+                            stroke: ChartsManager.defaults.darkColor,
+                            'stroke-width': 2
+                        });
+                        pointer.append('line').attr({
+                            x1: 0,
+                            x2: 0,
+                            y1: 0,
+                            y2: 26,
+                            stroke: ChartsManager.defaults.darkColor,
+                            'stroke-width': 2
+                        });
+                    }
 
-
+                    
+                });
             });
     }
 

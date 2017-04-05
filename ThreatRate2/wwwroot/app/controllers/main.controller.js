@@ -153,10 +153,17 @@
             },
             {
                 id: 'monthsByYears5',
-                default: true,
                 title: 'FIVE YEAR VIEW ON “NOVEMBER”',
                 service: function () {
                     return dataService.monthsByYears({from: null, to: null});
+                }
+            },
+            {
+                id: 'countriesByKidnapByGender',
+                default: true,
+                title: 'Countries most kidnapped at by gender// June 2010 - March 2017',
+                service: function () {
+                    return dataService.countriesByKidnapByGender({top: 11, from: null, to: null});
                 }
             }
         ];

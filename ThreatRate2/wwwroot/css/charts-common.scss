@@ -73,28 +73,30 @@
         font-size: 18px;
     }
 }
-.chart-common{
+.chart-common {
     height: 550px;
     margin-bottom: 15px;
 
-    svg{
-        overflow: visible!important;
+    svg {
+        overflow: visible !important;
     }
 }
-.chart-bubbled-lines{
-    .legend-title{
-        rect, path{
+.chart-bubbled-lines {
+    .legend-title {
+        rect, path {
             fill: $gray;
         }
-        text{
+
+        text {
             fill: #000;
         }
 
-        &.marked{
-            rect, path{
+        &.marked {
+            rect, path {
                 fill: $red;
             }
-            text{
+
+            text {
                 fill: #fff;
             }
         }

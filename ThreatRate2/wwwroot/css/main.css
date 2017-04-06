@@ -154,10 +154,10 @@ h1, h2, h3, h4, h5, h6 {
   fill: #000; }
 
 .chart-bubbled-lines .legend-title.marked rect, .chart-bubbled-lines .legend-title.marked path {
-  fill: #e1482c; }
+  fill: #e1482c !important; }
 
 .chart-bubbled-lines .legend-title.marked text {
-  fill: #fff; }
+  fill: #fff !important; }
 
 .chart-common-grid .value-title text {
   font-size: 16px; }

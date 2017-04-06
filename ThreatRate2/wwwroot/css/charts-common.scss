@@ -93,11 +93,11 @@
 
         &.marked {
             rect, path {
-                fill: $red;
+                fill: $red!important;
             }
 
             text {
-                fill: #fff;
+                fill: #fff!important;
             }
         }
     }

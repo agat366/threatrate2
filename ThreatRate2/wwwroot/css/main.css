@@ -944,6 +944,102 @@ h1, h2, h3, h4, h5, h6 {
         .chart-kidnap-results .secondary > * > *:last-child {
           border-right: none; }
 
+.chart-region-duration-single-multiple > * {
+  float: left;
+  height: 550px; }
+
+.chart-region-duration-single-multiple > .sep {
+  width: 3px;
+  height: 520px; }
+  .chart-region-duration-single-multiple > .sep:before {
+    content: ' ';
+    display: block;
+    width: 3px;
+    height: 520px;
+    margin-top: 25px;
+    background: #dcdcdc; }
+
+.chart-region-duration-single-multiple > div {
+  width: 49%; }
+  .chart-region-duration-single-multiple > div:first-child {
+    padding-left: 0;
+    padding-right: 30px; }
+  .chart-region-duration-single-multiple > div:last-child {
+    padding-left: 30px;
+    padding-right: 0; }
+
+.chart-region-duration-single-multiple h3 {
+  margin: 20px auto 15px;
+  text-align: center; }
+  .chart-region-duration-single-multiple h3 label {
+    vertical-align: top;
+    display: inline-block;
+    width: 13px;
+    height: 42px;
+    margin: 0 3px 0 0;
+    position: relative;
+    top: -8px; }
+
+.chart-region-duration-single-multiple .grid {
+  position: relative;
+  height: 290px; }
+  .chart-region-duration-single-multiple .grid [chart-body="data"] {
+    height: 240px;
+    width: 220px;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: 48px; }
+  .chart-region-duration-single-multiple .grid.multi [chart-body="data"] {
+    right: auto;
+    left: 0; }
+  .chart-region-duration-single-multiple .grid.multi .ransom > * {
+    float: right; }
+
+.chart-region-duration-single-multiple .column {
+  float: left;
+  width: 73%;
+  font-size: 16px; }
+  .chart-region-duration-single-multiple .column:first-child {
+    border-right: 2px dashed #333; }
+  .chart-region-duration-single-multiple .column.duration {
+    width: 27%;
+    text-align: center; }
+  .chart-region-duration-single-multiple .column .ransom > * {
+    display: block;
+    width: 175px;
+    white-space: nowrap;
+    text-align: center; }
+  .chart-region-duration-single-multiple .column strong {
+    font-weight: 700; }
+  .chart-region-duration-single-multiple .column .header {
+    text-align: center;
+    border-bottom-color: #333;
+    height: 42px; }
+    .chart-region-duration-single-multiple .column .header > * {
+      height: 42px; }
+    .chart-region-duration-single-multiple .column .header [chart-icon] {
+      display: inline-block;
+      width: 40px;
+      height: 36px; }
+      .chart-region-duration-single-multiple .column .header [chart-icon].funds {
+        height: 40px; }
+  .chart-region-duration-single-multiple .column > * {
+    height: 34px;
+    line-height: 34px;
+    border-bottom: 2px dashed #f4f4f4; }
+
+.chart-region-duration-single-multiple [chart-body="map"] {
+  height: 210px;
+  width: 80%;
+  margin: 10px auto; }
+
+.chart-region-duration-single-multiple svg .bar-title {
+  text-anchor: end; }
+
+.chart-region-duration-single-multiple .value-title text {
+  font-size: 20px; }
+
 body {
   font-family: "Exo", sans-serif;
   font-size: 12px; }

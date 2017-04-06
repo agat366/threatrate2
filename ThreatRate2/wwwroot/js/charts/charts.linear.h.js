@@ -18,6 +18,7 @@ function chartBoxLinearHorizontal(settings) {
             var d = {
                 meta: {},
                 layout: {
+                    rightDirection: true,
                     bars: {
                         title: {
                             width: 100
@@ -101,19 +102,24 @@ function chartBoxLinearHorizontal(settings) {
 
             var st = _opts.layout;
             // vertical stroke
-        if(st.bars.separator.visible !== false)
-            self._c.append('path')
+        if(st.bars.separator.visible !== false) {
+            var xSeparator = _opts.layout.rightDirection
+                ? st.bars.title.width + st.bars.separator.width / 2
+                : self.w - st.bars.title.width - st.bars.separator.width / 2;
+            self._c
+//                .append('g')
+//                .attr('chart-separator', '')
+                .append('path')
                 .attr('d', String.format('M{0},{1} L{0},{2}', 
-                    st.bars.title.width + st.bars.separator.width / 2,
-                    st.bars.bar.height / 2 + st.bars.bar.margin.top,
-                    st.bars.bar.height / 2 + (st.bars.bar.margin.top) * self.data.length
-                    + ((st.bars.bar.height + st.bars.bar.margin.bottom) * (self.data.length - 1)))
-                    )
+                        xSeparator,
+                        st.bars.bar.height / 2 + st.bars.bar.margin.top,
+                        st.bars.bar.height / 2 + (st.bars.bar.margin.top) * self.data.length
+                        + ((st.bars.bar.height + st.bars.bar.margin.bottom) * (self.data.length - 1)))
+                )
                 .attr('stroke-dasharray', '3,2')
                 .style({ stroke: '#ccc', 'stroke-width': 2 });
-
-
-            var charts = self._c.selectAll('g').data(self.data)
+        }
+        var charts = self._c.selectAll('g').data(self.data)
             .enter().append('g')
             .each(function(d, i) {
 
@@ -128,26 +134,41 @@ function chartBoxLinearHorizontal(settings) {
                 var data = d.value;
 
                 var dx = st.bars.title.width;
+                var positionWithDx = function(width) {
+                    return _opts.layout.rightDirection ? dx : self.w - (width || 0) - dx;
+                };
+
                 // title
-                g0.append('text')
+                g0.append('g')
+                    .attr('chart-title', '')
+                    .attr('transform', self.formatTranslate(positionWithDx(), st.bars.bar.height / 2))
+                    .append('text')
                     .attr('class', 'bar-title')
-                    .attr('text-anchor', 'end')
+                    .style('text-anchor', _opts.layout.rightDirection ? 'end' : 'start')
                     .attr('dominant-baseline', 'central')
-                    .attr('transform', self.formatTranslate(dx, st.bars.bar.height / 2))
                     .text(d.title);
 
                 // the dot/separator
+                dx += st.bars.separator.width / 2;
                 g0.append('circle')
                     .attr('r', st.bars.separator.radius)
-                    .attr('cx', dx + st.bars.separator.width / 2)
+                    .attr('cx', positionWithDx())
                     .attr('cy', st.bars.bar.height / 2)
                     .style({ fill: d.color, stroke: self.isWhite(d.color) ? '#ccc' : '' });
-                dx += st.bars.separator.width;
+                dx += st.bars.separator.width / 2;
 
                 // the bar
                 var bar = g0.append('g')
+                    .attr('chart-bar', '')
                     .attr('clip-path', String.format('url(#{0})', _opts.meta.maskId))
-                    .attr('transform', self.formatTranslate(dx, 0));
+                    .attr('transform', self.formatTranslate(positionWithDx(st.bars.bar.width), 0))
+                    .append('g');
+                if (_opts.layout.rightDirection === false) {
+                    bar.attr({
+                            transform: String.format('rotate(180, {0}, {1})', st.bars.bar.width / 2, st.bars.bar.height / 2)
+                        }
+                    );
+                }
 
                 bar.append('rect')
                     .attr('width', st.bars.bar.width)
@@ -177,23 +198,35 @@ function chartBoxLinearHorizontal(settings) {
                     dx += st.bars.bar.width;
 
                 // value 1
-                g0.append('text')
-                    .attr('text-anchor', 'middle')
-                    .attr('dominant-baseline', 'central')
-                    .attr('transform', self.formatTranslate(dx + st.bars.value.width / 2, st.bars.bar.height / 2))
-                    .text(d.valueTitle || d.value);
+                    if (st.bars.value.width){
+                        dx += st.bars.value.width;
 
-                dx += st.bars.value.width;
+                        g0.append('g')
+                            .attr('chart-value-1')
+                            .append('text')
+                            .attr('text-anchor', 'middle')
+                            .attr('dominant-baseline', 'central')
+                            .attr('transform', self.formatTranslate(positionWithDx(), st.bars.bar.height / 2))
+                            .text(d.valueTitle || d.value);
 
+                        dx += st.bars.value.width;
+                        
+                    }
                 // value 2
-                g0.append('text')
-                    .attr('text-anchor', 'middle')
-                    .attr('dominant-baseline', 'central')
-                    .attr('transform', self.formatTranslate(dx + st.bars.value2.width / 2, st.bars.bar.height / 2))
-                    .text(d.value2);
+                    if (st.bars.value2.width) {
+                        dx += st.bars.value2.width / 2;
+                        g0.append('g')
+                            .attr('chart-value-2')
+                            .append('text')
+                            .attr('text-anchor', 'middle')
+                            .attr('dominant-baseline', 'central')
+                            .attr('transform', self.formatTranslate(positionWithDx(), st.bars.bar.height / 2))
+                            .text(d.value2);
 
-                dx += st.bars.value2.width;
-            });
+                        dx += st.bars.value2.width / 2;
+                        
+                    }
+                });
 
         _charts = charts;
     }

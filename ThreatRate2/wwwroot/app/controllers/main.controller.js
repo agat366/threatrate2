@@ -195,10 +195,17 @@
             },
             {
                 id: 'kidnapResults',
-                default: true,
                 title: 'KIDNAP RESULTS - KILLED, RELEASED, ESCAPED, RESCUED',
                 service: function () {
                     return dataService.kidnapResults({from: null, to: null});
+                }
+            },
+            {
+                id: 'regionsByKidnapDurationSimpleVsMultiple',
+                default: true,
+                title: 'REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION FOR SINGLE AND MULTIPLE KIDNAPPING',
+                service: function () {
+                    return dataService.regionsByKidnapDurationSimpleVsMultiple({from: null, to: null});
                 }
             }
         ];

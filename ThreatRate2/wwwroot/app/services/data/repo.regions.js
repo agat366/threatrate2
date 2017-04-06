@@ -59,11 +59,22 @@
                                     title: it.title, // to move into directive
                                     single: Math.round(Math.random() * 150),
                                     multi: Math.round(Math.random() * 50),
+                                    duration: Math.round(Math.random() * 50),
                                     duration_range: {
                                         from: Math.round(Math.random() * 10),
                                         to: Math.round(Math.random() * 50)
                                     }, // to move into directive
                                     ransom_range: {
+                                        from: Math.round(Math.random() * 2),
+                                        to: Math.round(Math.random() * 15)
+                                    },
+
+                                    multi_duration: Math.round(Math.random() * 50),
+                                    multi_duration_range: {
+                                        from: Math.round(Math.random() * 10),
+                                        to: Math.round(Math.random() * 50)
+                                    }, // to move into directive
+                                    multi_ransom_range: {
                                         from: Math.round(Math.random() * 2),
                                         to: Math.round(Math.random() * 15)
                                     }

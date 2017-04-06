@@ -108,6 +108,10 @@
                     return repoRegions.regionsByKidnapSimpleVsMultiple(params);
                 }
 
+                function regionsByKidnapDurationSimpleVsMultiple(params) {
+                    return repoRegions.regionsByKidnapSimpleVsMultiple(params);
+                }
+
                 function terroristAttackTypes(params) {
                     return repoAttacks.terroristAttackTypes(params);
                 }
@@ -131,6 +135,7 @@
 
                     regionsByVehicleAttack: regionsByVehicleAttack,
                     regionsByKidnapSimpleVsMultiple: regionsByKidnapSimpleVsMultiple,
+                    regionsByKidnapDurationSimpleVsMultiple: regionsByKidnapDurationSimpleVsMultiple,
 
                     locationsByKidnap: locationsByKidnap,
                     locationsByKidnapByGender: locationsByKidnapByGender,

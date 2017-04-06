@@ -1,0 +1,146 @@
+﻿.chart-region-duration-single-multiple {
+    & > * {
+        float: left;
+        height: 550px;
+    }
+
+    & > .sep {
+        width: 3px;
+        height: 520px;
+
+        &:before {
+            content: ' ';
+            display: block;
+            width: 3px;
+            height: 520px;
+            margin-top: 25px;
+            background: $gray;
+        }
+    }
+
+    & > div {
+        width: 49%;
+
+        &:first-child {
+            padding-left: 0;
+            padding-right: 30px;
+        }
+
+        &:last-child {
+            padding-left: 30px;
+            padding-right: 0;
+        }
+    }
+
+    h3 {
+        margin: 20px auto 15px;
+        text-align: center;
+
+        label {
+            vertical-align: top;
+            display: inline-block;
+            width: 13px;
+            height: 42px;
+            margin: 0 3px 0 0;
+            position: relative;
+            top: -8px;
+        }
+    }
+
+    .grid {
+        position: relative;
+        height: 290px;
+
+        [chart-body="data"] {
+            height: 240px;
+            width: 220px;
+            margin: 0 auto;
+            position: absolute;
+            right: 0;
+            top: 48px;
+
+        }
+        &.multi{
+            [chart-body="data"] {
+                right: auto;
+                left: 0;
+
+            }
+            .ransom>*{
+                float: right;
+            }
+        }
+    }
+
+    .column {
+        float: left;
+        width: 73%;
+        font-size: 16px;
+
+        &:first-child {
+            border-right: 2px dashed $dark;
+        }
+
+        &.duration {
+            width: 27%;
+            text-align: center;
+        }
+
+        .ransom {
+            > * {
+                display: block;
+                width: 175px;
+                white-space: nowrap;
+                text-align: center;
+            }
+        }
+
+        strong {
+            font-weight: $font-bold;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom-color: $dark;
+            height: 42px;
+
+            >*{
+                height: 42px;
+            }
+            [chart-icon] {
+                display: inline-block;
+                width: 40px;
+                height: 36px;
+                &.funds{
+                    height: 40px;
+                }
+            }
+        }
+
+        & > * {
+            height: 34px;
+            line-height: 34px;
+            border-bottom: 2px dashed $gray-light;
+
+            & > * {
+            }
+        }
+    }
+
+    [chart-body="map"] {
+        height: 210px;
+        width: 80%;
+        margin: 10px auto;
+    }
+
+
+    svg {
+        .bar-title {
+            text-anchor: end;
+        }
+    }
+
+    .value-title text {
+        font-size: 20px;
+    }
+}

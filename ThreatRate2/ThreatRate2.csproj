@@ -52,6 +52,13 @@
     <Content Include="wwwroot\app\directives\charts\monthsByYears5.scss">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Include="wwwroot\app\directives\charts\regionsByKidnapDurationSimpleVsMultiple.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\regionsByKidnapDurationSimpleVsMultiple.html" />
+    <Content Include="wwwroot\app\directives\charts\regionsByKidnapDurationSimpleVsMultiple.scss" />
+    <Content Include="wwwroot\app\directives\charts\regionsByKidnapSimpleVsMultiple - Copy.html" />
+    <Content Include="wwwroot\app\directives\charts\regionsByKidnapSimpleVsMultiple - Copy.scss" />
     <Content Include="wwwroot\app\directives\charts\terroristAttackTypes.html">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

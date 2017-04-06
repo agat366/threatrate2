@@ -1,0 +1,64 @@
+﻿<div class="chart chart-region-duration-single-multiple">
+    <div>
+        <h3>
+            <label chart-icon icon-name="signs.person" icon-color="#000"></label>
+            Single kidnappings
+        </h3>
+        <div chart-body="map"></div>
+        <div class="grid">
+            <div class="duration column">
+                <div class="header">
+                    <label chart-icon icon-name="signs.hourglass" icon-color="#000"></label>
+
+                </div>
+                <div ng-repeat="r in regionsSingle">
+                    <strong>{{r.duration_range.from}}-{{r.duration_range.to}}</strong> 
+                </div>
+            </div>
+            <div class="column">
+                <div class="header ransom">
+                    <span><label class="funds" chart-icon icon-name="signs.funds" icon-color="#000"></label></span>
+                </div>
+                <div class="data" ng-repeat="r in regionsSingle">
+                    <div class="ransom">
+                        <span><strong>{{r.ransom_range.from}}K-{{r.ransom_range.to}}K USD</strong></span>
+                    </div>
+                </div>
+            </div>
+            <div chart-body="data"></div>
+        </div>
+
+    </div>
+    <span class="sep"></span>
+    <div>
+        <h3>
+            <label chart-icon icon-name="signs.person" icon-color="#000"></label>
+            <label chart-icon icon-name="signs.person" icon-color="#000"></label>
+            Multiple kidnappings
+        </h3>
+        <div chart-body="map"></div>
+        <div class="grid multi">
+            <div class="column">
+                <div class="header ransom">
+                    <span><label class="funds" chart-icon icon-name="signs.funds" icon-color="#000"></label></span>
+                </div>
+                <div class="data" ng-repeat="r in regionsMulti">
+                    <div class="ransom">
+                          <span><strong>{{r.ransom_range.from}}K-{{r.ransom_range.to}}K USD</strong> </span>
+                    </div>
+                </div>
+            </div>
+            <div class="duration column">
+                <div class="header">
+                    <label chart-icon icon-name="signs.hourglass" icon-color="#000"></label>
+                </div>
+                <div ng-repeat="r in regionsMulti">
+                    <strong>{{r.duration_range.from}}-{{r.duration_range.to}}</strong> 
+                </div>
+            </div>
+            <div chart-body="data"></div>
+        </div>
+    </div>
+
+   
+</div>

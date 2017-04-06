@@ -17,19 +17,11 @@
     </Content>
     <Content Include="wwwroot\app\directives\charts\ageGroupsByKidnapDurationGrid.html" />
     <Content Include="wwwroot\app\directives\charts\ageGroupsByKidnapDurationGrid.scss" />
-    <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationGridTop10 - Copy.html">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationGridTop10 - Copy.scss">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationGridTop10.directive.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationGridTop10.html" />
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationGridTop10.scss" />
-    <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationTop10 - Copy.html" />
-    <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationTop10 - Copy.scss" />
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationTop10.directive.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

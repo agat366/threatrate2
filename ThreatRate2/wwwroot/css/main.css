@@ -891,6 +891,59 @@ h1, h2, h3, h4, h5, h6 {
       .chart-age-groups-kidnap-duration-ransom-grid > * [chart-body="age-group"] .value-title {
         display: none; }
 
+.chart-kidnap-results {
+  padding-top: 15px; }
+  .chart-kidnap-results .main {
+    width: 330px;
+    float: left;
+    height: 500px;
+    border-right: 2px dashed #dcdcdc; }
+    .chart-kidnap-results .main [chart-body] {
+      height: 400px;
+      width: 90%;
+      margin: 0 auto; }
+    .chart-kidnap-results .main text.title {
+      font-size: 18px; }
+    .chart-kidnap-results .main h3 {
+      margin-top: 30px;
+      margin-bottom: 30px; }
+  .chart-kidnap-results h3 {
+    font-size: 32px;
+    margin-top: 15px;
+    margin-bottom: 20px; }
+  .chart-kidnap-results text.title {
+    text-transform: uppercase; }
+    .chart-kidnap-results text.title.start {
+      text-anchor: start; }
+    .chart-kidnap-results text.title.end {
+      text-anchor: end; }
+  .chart-kidnap-results .secondary {
+    width: 790px;
+    float: left;
+    height: 550px; }
+    .chart-kidnap-results .secondary [chart-body] {
+      height: 170px;
+      width: 80%;
+      margin: 0 auto; }
+    .chart-kidnap-results .secondary text.title {
+      font-size: 12px; }
+    .chart-kidnap-results .secondary > * {
+      height: 250px;
+      border-bottom: 2px dashed #dcdcdc; }
+      .chart-kidnap-results .secondary > * h3 {
+        margin-top: 20px; }
+      .chart-kidnap-results .secondary > *:first-child h3 {
+        margin-top: 0px; }
+      .chart-kidnap-results .secondary > *:last-child {
+        border-bottom: none; }
+      .chart-kidnap-results .secondary > * > * {
+        border-right: 2px dashed #dcdcdc;
+        float: left;
+        width: 50%;
+        height: 245px; }
+        .chart-kidnap-results .secondary > * > *:last-child {
+          border-right: none; }
+
 body {
   font-family: "Exo", sans-serif;
   font-size: 12px; }

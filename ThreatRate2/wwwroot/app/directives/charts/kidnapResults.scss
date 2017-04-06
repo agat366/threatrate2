@@ -1,0 +1,77 @@
+﻿.chart-kidnap-results {
+    padding-top: 15px;
+
+    .main {
+        width: 330px;
+        float: left;
+        height: 500px;
+        border-right: 2px dashed $gray;
+
+        [chart-body]{
+            height: 400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        text.title{
+            font-size: 18px;
+        }
+        h3{
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+    }
+
+    h3{
+        font-size: 32px;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+    text.title{
+        text-transform: uppercase;
+        &.start{
+            text-anchor: start;
+        }
+        &.end{
+            text-anchor: end;
+        }
+    }
+    .secondary {
+        width: 790px;
+        float: left;
+        height: 550px;
+
+        [chart-body]{
+            height: 170px;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+
+        text.title{
+            font-size: 12px;
+        }
+        & > * {
+
+            h3{
+                margin-top: 20px;
+            }
+            &:first-child h3{
+                margin-top: 0px;
+            }
+            height: 250px;
+            border-bottom: 2px dashed $gray;
+            &:last-child{
+                border-bottom: none;
+            }
+            & > * {
+                border-right: 2px dashed $gray;
+                float: left;
+                width: 50%;
+                height: 245px;
+                &:last-child{
+                    border-right: none;
+                }
+            }
+        }
+    }
+}

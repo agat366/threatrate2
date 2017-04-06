@@ -188,10 +188,17 @@
             },
             {
                 id: 'ageGroupsByKidnapDurationGrid',
-                default: true,
                 title: 'KIDNAP DURATION AND RANSOM AMOUNT CORRELATION WITH AGE',
                 service: function () {
                     return dataService.ageGroupsByKidnapDuration({from: null, to: null});
+                }
+            },
+            {
+                id: 'kidnapResults',
+                default: true,
+                title: 'KIDNAP RESULTS - KILLED, RELEASED, ESCAPED, RESCUED',
+                service: function () {
+                    return dataService.kidnapResults({from: null, to: null});
                 }
             }
         ];

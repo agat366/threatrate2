@@ -5,8 +5,8 @@
         .module('tr')
         .service(serviceId,
         [
-            '$q', 'repo.common', 'repo.locations', 'repo.months', 'repo.ageGroups', 'repo.professionalGroups', 'repo.regions', 'repo.attacks',
-            function ($q, repo, repoLocations, repoMonths, repoAgeGroups, repoProfessionalGroups, repoRegions, repoAttacks) {
+            '$q', 'repo.common', 'repo.locations', 'repo.months', 'repo.ageGroups', 'repo.professionalGroups', 'repo.regions', 'repo.attacks', 'repo.kidnap',
+            function ($q, repo, repoLocations, repoMonths, repoAgeGroups, repoProfessionalGroups, repoRegions, repoAttacks, repoKidnap) {
 
                 function countriesByKidnap(params) {
                     return repo.countriesByKidnap(params);
@@ -112,6 +112,10 @@
                     return repoAttacks.terroristAttackTypes(params);
                 }
 
+                function kidnapResults(params) {
+                    return repoKidnap.kidnapResults(params);
+                }
+
                 return {
                     countriesByKidnap: countriesByKidnap,
                     countriesByKidnapDuration: countriesByKidnapDuration,
@@ -139,7 +143,9 @@
 
                     professionalGroupsByKidnap: professionalGroupsByKidnap,
 
-                    terroristAttackTypes: terroristAttackTypes
+                    terroristAttackTypes: terroristAttackTypes,
+                    
+                    kidnapResults: kidnapResults
                 }
             }
         ]);

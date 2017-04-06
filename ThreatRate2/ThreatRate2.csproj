@@ -12,6 +12,11 @@
     <Content Include="wwwroot\app\app.js" />
     <Content Include="wwwroot\app\controllers\main.controller.js" />
     <Content Include="wwwroot\app\directives\chartIcon.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\kidnapResults.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\kidnapResults.html" />
+    <Content Include="wwwroot\app\directives\charts\kidnapResults.scss" />
     <Content Include="wwwroot\app\directives\charts\ageGroupsByKidnapDurationGrid.directive.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -131,6 +136,9 @@
     <Content Include="wwwroot\app\directives\charts\regionsByKidnapSimpleVsMultiple.scss" />
     <Content Include="wwwroot\app\services\charts.helper.js" />
     <Content Include="wwwroot\app\services\data\data.js" />
+    <Content Include="wwwroot\app\services\data\repo.kidnap.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="wwwroot\app\services\data\repo.attacks.js" />
     <Content Include="wwwroot\app\services\data\repo.regions.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -175,7 +183,7 @@
     <Content Include="wwwroot\js\charts\charts.linear.bar.v.js" />
     <Content Include="wwwroot\js\charts\charts.manager.regions.js" />
     <Content Include="wwwroot\js\charts\charts.sliced.bar.v.js" />
-    <Content Include="wwwroot\js\charts\chartsDonut.js" />
+    <Content Include="wwwroot\js\charts\charts.donut-v1.js" />
     <Content Include="wwwroot\js\string.js" />
   </ItemGroup>
   <ItemGroup>

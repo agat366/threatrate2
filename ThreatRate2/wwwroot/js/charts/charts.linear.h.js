@@ -202,7 +202,7 @@ function chartBoxLinearHorizontal(settings) {
                         dx += st.bars.value.width;
 
                         g0.append('g')
-                            .attr('chart-value-1')
+                            .attr('chart-value-1', '')
                             .append('text')
                             .attr('text-anchor', 'middle')
                             .attr('dominant-baseline', 'central')
@@ -216,7 +216,7 @@ function chartBoxLinearHorizontal(settings) {
                     if (st.bars.value2.width) {
                         dx += st.bars.value2.width / 2;
                         g0.append('g')
-                            .attr('chart-value-2')
+                            .attr('chart-value-2', '')
                             .append('text')
                             .attr('text-anchor', 'middle')
                             .attr('dominant-baseline', 'central')

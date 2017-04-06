@@ -12,13 +12,6 @@
     <Content Include="wwwroot\app\app.js" />
     <Content Include="wwwroot\app\controllers\main.controller.js" />
     <Content Include="wwwroot\app\directives\chartIcon.directive.js" />
-    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapTop10 - Copy.directive.js" />
-    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapTop10 - Copy.html">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapTop10 - Copy.scss">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop10.directive.js" />
     <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop10.html" />
     <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop10.scss" />
@@ -67,8 +60,6 @@
     </Content>
     <Content Include="wwwroot\app\directives\charts\regionsByKidnapDurationSimpleVsMultiple.html" />
     <Content Include="wwwroot\app\directives\charts\regionsByKidnapDurationSimpleVsMultiple.scss" />
-    <Content Include="wwwroot\app\directives\charts\regionsByKidnapSimpleVsMultiple - Copy.html" />
-    <Content Include="wwwroot\app\directives\charts\regionsByKidnapSimpleVsMultiple - Copy.scss" />
     <Content Include="wwwroot\app\directives\charts\terroristAttackTypes.html">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

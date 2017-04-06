@@ -787,8 +787,11 @@ h1, h2, h3, h4, h5, h6 {
     .chart-countries-kidnap-duration-ransom .comparer [chart-body] {
       height: 300px; }
     .chart-countries-kidnap-duration-ransom .comparer [chart-icon] {
-      height: 100px; }
+      margin: 0 auto;
+      width: 80px;
+      height: 80px; }
     .chart-countries-kidnap-duration-ransom .comparer h4 {
+      margin-top: 8px;
       text-align: center;
       font-size: 18px;
       color: #e1482c; }
@@ -813,6 +816,48 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 14px; }
   .chart-countries-kidnap-duration-ransom .chart-titles text {
     font-size: 13px; }
+
+.chart-countries-kidnap-duration-ransom-grid {
+  padding-top: 15px; }
+  .chart-countries-kidnap-duration-ransom-grid > * {
+    height: 180px;
+    border-bottom: 2px dashed #dcdcdc; }
+    .chart-countries-kidnap-duration-ransom-grid > *:last-child {
+      border-bottom: none; }
+    .chart-countries-kidnap-duration-ransom-grid > * > * {
+      height: 180px;
+      width: 9.091%;
+      float: left;
+      border-right: 2px dashed #dcdcdc;
+      text-align: center; }
+    .chart-countries-kidnap-duration-ransom-grid > * h4 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-top: 60px; }
+    .chart-countries-kidnap-duration-ransom-grid > * h5 {
+      font-size: 14px;
+      margin: 20px auto 12px; }
+    .chart-countries-kidnap-duration-ransom-grid > * p {
+      font-size: 22px;
+      text-transform: uppercase;
+      margin-top: 4px; }
+    .chart-countries-kidnap-duration-ransom-grid > * .icon > * {
+      width: 90%;
+      height: 120px;
+      margin: 20px auto 0; }
+    .chart-countries-kidnap-duration-ransom-grid > * .funds > * {
+      margin-top: 25px; }
+    .chart-countries-kidnap-duration-ransom-grid > * .country {
+      width: 80%;
+      height: 80px;
+      margin: 12px auto; }
+    .chart-countries-kidnap-duration-ransom-grid > * .flag {
+      width: 40px;
+      height: 40px;
+      display: block;
+      margin: 1px auto;
+      background: no-repeat center;
+      background-size: 100%; }
 
 body {
   font-family: "Exo", sans-serif;

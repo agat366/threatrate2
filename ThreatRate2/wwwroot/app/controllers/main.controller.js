@@ -174,10 +174,17 @@
             },
             {
                 id: 'countriesByKidnapDurationTop10',
-                default: true,
                 title: 'Countries by kidnap duration and ransom',
                 service: function () {
                     return dataService.countriesByKidnapDuration({top: 11, from: null, to: null});
+                }
+            },
+            {
+                id: 'countriesByKidnapDurationGridTop10',
+                default: true,
+                title: 'KIDNAP DURATION AND RANSOM FOR THE TOP 10 COUNTRIES',
+                service: function () {
+                    return dataService.countriesByKidnapDuration({top: 10, from: null, to: null});
                 }
             }
         ];

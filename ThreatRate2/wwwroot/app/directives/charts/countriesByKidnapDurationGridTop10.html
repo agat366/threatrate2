@@ -1,0 +1,27 @@
+﻿<div class="chart">
+    <div chart-body class="chart-common chart-common-grid chart-countries-kidnap-duration-ransom-grid">
+        <div class="duration">
+            <div class="icon"><div chart-icon icon-name="signs.hourglass" icon-color="#000"></div></div>
+            <div ng-repeat="c in countries">
+                <h4>{{c.duration}}</h4>
+                <p>days</p>
+            </div>
+        </div>
+        <div class="ransom">
+            <div class="icon funds"><div chart-icon icon-name="signs.funds" icon-color="#000"></div></div>
+            <div ng-repeat="c in countries">
+                <h4>${{c.ransom}}K</h4>
+                <p>USD</p>
+            </div>
+        </div>
+        <div class="countries">
+            <div></div>
+            <div ng-repeat="c in countries">
+                <div class="country" chart-icon icon-name="countries.{{c.name}}" icon-color="#eee"></div>
+                <h5>{{c.title}}</h5>
+                <div class="flag" style="background-image: url(/images/charts/flags/med/{{c.title}}.png)"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

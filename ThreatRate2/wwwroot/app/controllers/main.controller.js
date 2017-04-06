@@ -160,10 +160,24 @@
             },
             {
                 id: 'countriesByKidnapByGender',
-                default: true,
                 title: 'Countries most kidnapped at by gender// June 2010 - March 2017',
                 service: function () {
                     return dataService.countriesByKidnapByGender({top: 11, from: null, to: null});
+                }
+            },
+            {
+                id: 'locationsByKidnapByGender',
+                title: 'IS THERE A DIFFERENCE WHERE WOMEN GET KIDNAPPED FROM VERSUS MAN',
+                service: function () {
+                    return dataService.locationsByKidnapByGender({top: 11, from: null, to: null});
+                }
+            },
+            {
+                id: 'countriesByKidnapDurationTop10',
+                default: true,
+                title: 'Countries by kidnap duration and ransom',
+                service: function () {
+                    return dataService.countriesByKidnapDuration({top: 11, from: null, to: null});
                 }
             }
         ];

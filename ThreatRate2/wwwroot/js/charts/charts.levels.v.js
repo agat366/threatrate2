@@ -29,7 +29,13 @@ function chartLevelsVertical(settings) {
                         height: 40
                     },
                     legend: {
-                        height: 100 
+                        height: 100,
+                        icon: {
+                            color: ChartsManager.defaults.backColor,
+                            scale: { width: 40, height: 40 },
+                            dx: 1,
+                            dy: 1
+                        }
                     },
                     margin: {
                         top: 0,
@@ -129,8 +135,12 @@ function chartLevelsVertical(settings) {
 
                 if (d.icon) {
                     var iconGroup = legend.append('g');
-                    ChartsManager.renderPath(iconGroup, d.icon);
-                    self.translate(iconGroup, dx / 2, (_opts.bars.legend.height - 30) / 2);
+                    ChartsManager.renderImage(iconGroup, d.icon,
+                        _opts.bars.legend.icon.color,
+                        _opts.bars.legend.icon.scale,
+                        d.icon.toCenter);
+                    self.translate(iconGroup, dx / 2 + (d.icon.dx || _opts.bars.legend.icon.dx),
+                        (_opts.bars.legend.height - 30) / 2 + (d.icon.dy || _opts.bars.legend.icon.dy));
                 }
 
 

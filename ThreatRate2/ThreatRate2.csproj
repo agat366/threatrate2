@@ -12,6 +12,27 @@
     <Content Include="wwwroot\app\app.js" />
     <Content Include="wwwroot\app\controllers\main.controller.js" />
     <Content Include="wwwroot\app\directives\chartIcon.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationTop10.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationTop10.html" />
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationTop10.scss" />
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationTop11.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationTop11.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapByGender - Copy.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\locationsByKidnapByGender.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\locationsByKidnapByGender.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\locationsByKidnapByGender.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapByGender.directive.js" />
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapByGender.html" />
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapByGender.scss" />

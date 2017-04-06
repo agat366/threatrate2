@@ -1,0 +1,26 @@
+﻿<div class="chart">
+    <div chart-body class="chart-common chart-common-grid chart-countries-kidnap-duration-ransom">
+        <div class="comparer">
+            <div class="">
+                <div  chart-body="comparer"></div>
+                <div chart-icon icon-name="{{top.iconName}}" icon-color="{{top.iconColor}}"></div>
+                <h4>{{top.title}}</h4>
+            </div>
+        </div>
+        <div class="others">
+            <div class="ransom">
+                <h3 style="color: {{c.color}}" ng-repeat="c in countries">${{c.ransom}}M</h3>
+            </div>
+            
+            <div chart-body="duration" class="duration"></div>
+            <div class="sep"></div>
+            <div chart-body="graphs" class="graphs"></div>
+        </div>
+    </div>
+    <div ng-if="!!data" style="clear: both;" class="chart-period">
+        <div class="progress-line"></div>
+        <label></label>
+        <span class="value">1 year</span>
+        <label></label>
+    </div>
+</div>

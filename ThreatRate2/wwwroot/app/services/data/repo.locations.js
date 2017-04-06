@@ -34,6 +34,10 @@
                     return result;
                 }
 
+                function locationsByKidnapByGender(params) {
+                    return locationsByKidnap(params);
+                }
+
                 function locationsByKidnap(params) {
                     params = params || {};
 
@@ -65,6 +69,7 @@
 
 
                 this.locationsByKidnap = locationsByKidnap;
+                this.locationsByKidnapByGender = locationsByKidnapByGender;
             }
         ]);
 }());

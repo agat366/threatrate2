@@ -65,16 +65,18 @@
                     border-radius: 2px;
                     height: 31px;
                     vertical-align: top;
-                    background: #949494;
+                    background: #dcdcdc;
                     margin: 0 4px;
                     position: relative;
                     top: -5px;
                 }
             }
-            h4{
+
+            h4 {
                 font-size: 36px;
                 text-transform: uppercase;
             }
+
             .male {
                 color: #84c0ff
             }
@@ -85,6 +87,7 @@
 
             .legend {
                 display: none;
+
                 & > * {
                     display: inline-block;
                     width: 30px;

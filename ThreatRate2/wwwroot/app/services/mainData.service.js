@@ -60,6 +60,10 @@
                     return repoLocations.locationsByKidnap(params);
                 }
 
+                function locationsByKidnapByGender(params) {
+                    return repoLocations.locationsByKidnapByGender(params);
+                }
+
                 function monthsByKidnap(params) {
                     return repoMonths.monthsByKidnap(params);
                 }
@@ -121,6 +125,7 @@
                     regionsByKidnapSimpleVsMultiple: regionsByKidnapSimpleVsMultiple,
 
                     locationsByKidnap: locationsByKidnap,
+                    locationsByKidnapByGender: locationsByKidnapByGender,
 
                     monthsByKidnap: monthsByKidnap,
                     monthsByYears: monthsByYears,

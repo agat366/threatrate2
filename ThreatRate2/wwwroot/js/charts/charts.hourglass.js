@@ -37,6 +37,7 @@ function chartHourglass(settings) {
                         dy: 0
                     },
                     legend: {
+                        isVisible: true,
                         icon: {
                             height: 0
                         },
@@ -157,7 +158,7 @@ function chartHourglass(settings) {
 
                 var frame = {
                     w: dx,
-                    h: self.h - _opts.bars.legend.height - _opts.bars.legend.icon.height
+                    h: self.h - _opts.bars.legend.height - (_opts.bars.legend.icon ? _opts.bars.legend.icon.height || 0 : 0)
                 };
                 frame.inner = {
                     w: frame.w - _opts.bars.margin.left - _opts.bars.margin.right,
@@ -215,7 +216,7 @@ function chartHourglass(settings) {
                 }
                 // titles
                 var title = barIn.append('g')
-                    .attr('transform', self.formatTranslate(0, 60))
+                    .attr('transform', self.formatTranslate(0, 60 + _opts.bars.title.dy))
                     .attr('class', 'value-title');
                 title.append('text')
                     .text(d.value).attr({
@@ -225,7 +226,7 @@ function chartHourglass(settings) {
                     });
 
                 var title2 = barIn.append('g')
-                    .attr('transform', self.formatTranslate(0, 95))
+                    .attr('transform', self.formatTranslate(0, 95 + _opts.bars.title2.dy))
                     .attr('class', 'value-title2');
                 title2.append('text')
                     .text(d.valueTitle).attr({
@@ -234,29 +235,31 @@ function chartHourglass(settings) {
                     });
 
                 // legend (titles within grey boxes) title
-                var legend = item.append('g')
-                    .attr('class', 'legend-title')
-                    .attr('transform', self.formatTranslate(0, frame.h));
+                if (_opts.bars.legend.isVisible !== false) {
+                    var legend = item.append('g')
+                        .attr('class', 'legend-title')
+                        .attr('transform', self.formatTranslate(0, frame.h));
 
-                if (d.icon) {
-                    var iconLegend = legend.append('g')
-                        .attr('transform', self.formatTranslate(0, 0));
-                    ChartsManager.renderImage(iconLegend,
-                        d.icon.name,
-                        d.icon.color || ChartsManager.defaults.secondaryBackColor,
-                        { height: _opts.bars.legend.icon.height, width: dx, dy: _opts.bars.legend.icon.dy || 0 },
-                    true);
+                    if (d.icon) {
+                        var iconLegend = legend.append('g')
+                            .attr('transform', self.formatTranslate(0, 0));
+                        ChartsManager.renderImage(iconLegend,
+                            d.icon.name,
+                            d.icon.color || ChartsManager.defaults.secondaryBackColor,
+                            { height: _opts.bars.legend.icon.height, width: dx, dy: _opts.bars.legend.icon.dy || 0 },
+                            true);
+                    }
+                    var legendValue = legend.append('g')
+                        .attr('transform', self.formatTranslate(dx / 2,
+                            (_opts.bars.legend.icon ? _opts.bars.legend.icon.height : 0)
+                            + (_opts.bars.legend.height / 2)
+                            + _opts.bars.legend.dy));
+                    legendValue.append('text')
+                        .text(d.title).attr({
+                            'text-anchor': 'middle',
+                            'dominant-baseline': 'central'
+                        });
                 }
-                var legendValue = legend.append('g')
-                    .attr('transform', self.formatTranslate(dx / 2,
-                        (_opts.bars.legend.icon ? _opts.bars.legend.icon.height : 0)
-                        + (_opts.bars.legend.height / 2)
-                        + _opts.bars.legend.dy));
-                legendValue.append('text')
-                    .text(d.title).attr({
-                        'text-anchor': 'middle',
-                        'dominant-baseline': 'central'
-                    });
 
                 /// grid
                 if (i === 0) {

@@ -1,0 +1,63 @@
+﻿.chart-countries-kidnap-duration-ransom {
+    padding: 0px 0;
+
+    .comparer {
+        float: left;
+        width: 175px;
+        height: 550px;
+        border-right: 2px dashed $gray-light;
+        & > * {
+            margin-top: 40px;
+            width: 175px;
+            height: 450px;
+        }
+        [chart-body]{
+            height: 300px;
+        }
+        [chart-icon]{
+            height: 100px;
+        }
+        h4{
+            text-align: center;
+            font-size: 18px;
+            color: $red;
+        }
+    }
+
+    .others {
+        width: 950px;
+        float: left;
+
+        .duration{
+
+        }
+        .sep {
+            margin-top: 10px;
+            border-top: 2px dashed $gray-light;
+        }
+
+        .ransom {
+            & > * {
+                float: left;
+                width: 10%;
+                height: 70px;
+                line-height: 70px;
+            }
+                height: 70px;
+        }
+
+        .graphs {
+            height: 225px;
+        }
+    }
+
+    .value-title text {
+        font-size: 24px;
+    }
+    .value-title2 text {
+        font-size: 14px;
+    }
+    .chart-titles text {
+        font-size: 13px;
+    }
+}

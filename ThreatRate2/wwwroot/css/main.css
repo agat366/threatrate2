@@ -740,7 +740,7 @@ h1, h2, h3, h4, h5, h6 {
         border-radius: 2px;
         height: 31px;
         vertical-align: top;
-        background: #949494;
+        background: #dcdcdc;
         margin: 0 4px;
         position: relative;
         top: -5px; }
@@ -772,6 +772,47 @@ h1, h2, h3, h4, h5, h6 {
   .chart-countries-by-kidnap-by-gender .chart-body {
     width: 900px;
     height: 500px; }
+
+.chart-countries-kidnap-duration-ransom {
+  padding: 0px 0; }
+  .chart-countries-kidnap-duration-ransom .comparer {
+    float: left;
+    width: 175px;
+    height: 550px;
+    border-right: 2px dashed #f4f4f4; }
+    .chart-countries-kidnap-duration-ransom .comparer > * {
+      margin-top: 40px;
+      width: 175px;
+      height: 450px; }
+    .chart-countries-kidnap-duration-ransom .comparer [chart-body] {
+      height: 300px; }
+    .chart-countries-kidnap-duration-ransom .comparer [chart-icon] {
+      height: 100px; }
+    .chart-countries-kidnap-duration-ransom .comparer h4 {
+      text-align: center;
+      font-size: 18px;
+      color: #e1482c; }
+  .chart-countries-kidnap-duration-ransom .others {
+    width: 950px;
+    float: left; }
+    .chart-countries-kidnap-duration-ransom .others .sep {
+      margin-top: 10px;
+      border-top: 2px dashed #f4f4f4; }
+    .chart-countries-kidnap-duration-ransom .others .ransom {
+      height: 70px; }
+      .chart-countries-kidnap-duration-ransom .others .ransom > * {
+        float: left;
+        width: 10%;
+        height: 70px;
+        line-height: 70px; }
+    .chart-countries-kidnap-duration-ransom .others .graphs {
+      height: 225px; }
+  .chart-countries-kidnap-duration-ransom .value-title text {
+    font-size: 24px; }
+  .chart-countries-kidnap-duration-ransom .value-title2 text {
+    font-size: 14px; }
+  .chart-countries-kidnap-duration-ransom .chart-titles text {
+    font-size: 13px; }
 
 body {
   font-family: "Exo", sans-serif;

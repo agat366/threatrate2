@@ -2,7 +2,7 @@
     'use strict';
 
 
-    angular.module('tr').directive('chartCountriesByKidnapByGender',
+    angular.module('tr').directive('chartLocationsByKidnapByGender',
     [
         'common', 'config', 'chartsHelper',
         function (common, config, chartsHelper) {
@@ -43,11 +43,11 @@
                                         }
                                     ],
                                     icon: {
-                                        name: 'countries.' + d.name,
+                                        name: 'locations.' + (d.name === 'other' ? 'common' : d.name),
                                         scale: { width: 50, height: 50 },
                                         position: 0,
-                                        dy: -25,
-                                        dx: -25,
+                                        dy: -20,
+                                        dx: -20,
                                         toCenter: true
                                     },
                                     title: d.title,
@@ -78,10 +78,10 @@
                             legend: {
                                 height: 100,
                                 icon: {
-                                    color: ChartsManager.defaults.secondaryBackColor,
+                                    color: ChartsManager.defaults.darkColor,
                                     scale: {
-                                        width: 50,
-                                        height: 50
+                                        width: 40,
+                                        height: 40
                                     }
                                 },
                                 title: {
@@ -104,7 +104,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/countriesByKidnapByGender.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + '/locationsByKidnapByGender.html'
             };
 
             return directive;

@@ -1,0 +1,57 @@
+﻿.chart-age-groups-kidnap-duration-ransom-grid {
+    padding-top: 15px;
+
+    & > * {
+        height: 80px;
+        border-bottom: 2px dashed $gray;
+
+        &:last-child {
+            border-bottom: none;
+            height: 330px;
+
+            & > * {
+                height: 330px;
+            }
+        }
+
+        & > * {
+            height: 80px;
+            width: 14.285%;
+            float: left;
+            border-right: 2px dashed $gray;
+            text-align: center;
+
+            &:last-child {
+            }
+        }
+
+        h4 {
+            font-size: 20px;
+            font-weight: $font-bold;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .icon > * {
+            width: 90%;
+            height: 60px;
+            margin: 5px auto 0;
+        }
+
+        .funds > * {
+            //margin-top: 25px;
+        }
+
+        [chart-body="age-group"]{
+            height: 330px;
+            .value-title{
+                display: none;
+            }
+
+        }
+    }
+}

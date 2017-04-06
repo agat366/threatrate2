@@ -12,6 +12,17 @@
     <Content Include="wwwroot\app\app.js" />
     <Content Include="wwwroot\app\controllers\main.controller.js" />
     <Content Include="wwwroot\app\directives\chartIcon.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\ageGroupsByKidnapDurationGrid.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\ageGroupsByKidnapDurationGrid.html" />
+    <Content Include="wwwroot\app\directives\charts\ageGroupsByKidnapDurationGrid.scss" />
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationGridTop10 - Copy.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationGridTop10 - Copy.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="wwwroot\app\directives\charts\countriesByKidnapDurationGridTop10.directive.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

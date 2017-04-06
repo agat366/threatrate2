@@ -30,12 +30,16 @@
                     return result;
                 }
 
+                function ageGroupsByKidnapDuration(params) {
+                    return ageGroupsByKidnap(params);
+                }
+
                 function ageGroupsByKidnap(params) {
                     params = params || {};
 
                     var def = $q.defer();
 
-                    context.get('monthsByKidnap', params)
+                    context.get('ageGropsByKidnap', params)
                         .then(function (result) {
                             def.resolve(result);
                         }).catch(function () {
@@ -67,6 +71,7 @@
 
 
                 this.ageGroupsByKidnap = ageGroupsByKidnap;
+                this.ageGroupsByKidnapDuration = ageGroupsByKidnapDuration;
             }
         ]);
 }());

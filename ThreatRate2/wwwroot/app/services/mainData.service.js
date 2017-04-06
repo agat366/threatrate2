@@ -96,6 +96,10 @@
                     return repoAgeGroups.ageGroupsByKidnap(params);
                 }
 
+                function ageGroupsByKidnapDuration(params) {
+                    return repoAgeGroups.ageGroupsByKidnapDuration(params);
+                }
+
                 function professionalGroupsByKidnap(params) {
                     return repoProfessionalGroups.professionalGroupsByKidnap(params);
                 }
@@ -131,6 +135,8 @@
                     monthsByYears: monthsByYears,
 
                     ageGroupsByKidnap: ageGroupsByKidnap,
+                    ageGroupsByKidnapDuration: ageGroupsByKidnapDuration,
+
                     professionalGroupsByKidnap: professionalGroupsByKidnap,
 
                     terroristAttackTypes: terroristAttackTypes

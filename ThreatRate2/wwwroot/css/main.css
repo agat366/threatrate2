@@ -859,6 +859,38 @@ h1, h2, h3, h4, h5, h6 {
       background: no-repeat center;
       background-size: 100%; }
 
+.chart-age-groups-kidnap-duration-ransom-grid {
+  padding-top: 15px; }
+  .chart-age-groups-kidnap-duration-ransom-grid > * {
+    height: 80px;
+    border-bottom: 2px dashed #dcdcdc; }
+    .chart-age-groups-kidnap-duration-ransom-grid > *:last-child {
+      border-bottom: none;
+      height: 330px; }
+      .chart-age-groups-kidnap-duration-ransom-grid > *:last-child > * {
+        height: 330px; }
+    .chart-age-groups-kidnap-duration-ransom-grid > * > * {
+      height: 80px;
+      width: 14.285%;
+      float: left;
+      border-right: 2px dashed #dcdcdc;
+      text-align: center; }
+    .chart-age-groups-kidnap-duration-ransom-grid > * h4 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 20px; }
+    .chart-age-groups-kidnap-duration-ransom-grid > * p {
+      font-size: 12px;
+      margin-top: 4px; }
+    .chart-age-groups-kidnap-duration-ransom-grid > * .icon > * {
+      width: 90%;
+      height: 60px;
+      margin: 5px auto 0; }
+    .chart-age-groups-kidnap-duration-ransom-grid > * [chart-body="age-group"] {
+      height: 330px; }
+      .chart-age-groups-kidnap-duration-ransom-grid > * [chart-body="age-group"] .value-title {
+        display: none; }
+
 body {
   font-family: "Exo", sans-serif;
   font-size: 12px; }

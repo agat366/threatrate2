@@ -181,10 +181,17 @@
             },
             {
                 id: 'countriesByKidnapDurationGridTop10',
-                default: true,
                 title: 'KIDNAP DURATION AND RANSOM FOR THE TOP 10 COUNTRIES',
                 service: function () {
                     return dataService.countriesByKidnapDuration({top: 10, from: null, to: null});
+                }
+            },
+            {
+                id: 'ageGroupsByKidnapDurationGrid',
+                default: true,
+                title: 'KIDNAP DURATION AND RANSOM AMOUNT CORRELATION WITH AGE',
+                service: function () {
+                    return dataService.ageGroupsByKidnapDuration({from: null, to: null});
                 }
             }
         ];

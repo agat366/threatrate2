@@ -1,0 +1,32 @@
+﻿<div class="chart">
+    <div chart-body class="chart-common chart-common-grid chart-age-groups-kidnap-duration-ransom-grid">
+        <div class="duration">
+            <div class="icon funds"><div chart-icon icon-name="signs.funds" icon-color="#000"></div></div>
+            <div ng-repeat="c in groups">
+                <h4>{{c.ransom_range.from}}K-{{c.ransom_range.to}}K USD</h4>
+                <p>Ransom Range</p>
+            </div>
+        </div>
+        <div class="ransom">
+            <div class="icon"><div chart-icon icon-name="signs.hourglass" icon-color="#000"></div></div>
+            <div ng-repeat="c in groups">
+                <h4>{{c.duration_range.from}}-{{c.duration_range.to}}</h4>
+                <p>Day range</p>
+            </div>
+        </div>
+        <div class="ransom">
+            <div class="icon calendar"><div chart-icon icon-name="signs.calendar" icon-color="#000"></div></div>
+            <div ng-repeat="c in groups">
+                <h4>{{c.value}}</h4>
+                <p>Events</p>
+            </div>
+        </div>
+        <div class="countries">
+            <div></div>
+            <div ng-repeat="c in groups">
+                <div chart-body="age-group"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -202,10 +202,21 @@
             },
             {
                 id: 'regionsByKidnapDurationSimpleVsMultiple',
-                default: true,
                 title: 'REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION FOR SINGLE AND MULTIPLE KIDNAPPING',
                 service: function () {
                     return dataService.regionsByKidnapDurationSimpleVsMultiple({from: null, to: null});
+                }
+            }
+
+
+
+            ,
+            {
+                id: 'countriesByForeignersVsLocalsKidnapTop10',
+                default: true,
+                title: 'REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION FOR SINGLE AND MULTIPLE KIDNAPPING',
+                service: function () {
+                    return dataService.countriesByForeignersVsLocalsKidnap({ top: 10, from: null, to: null});
                 }
             }
         ];

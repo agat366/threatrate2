@@ -1040,6 +1040,54 @@ h1, h2, h3, h4, h5, h6 {
 .chart-region-duration-single-multiple .value-title text {
   font-size: 20px; }
 
+.chart-locals-foreigners-kidnap-10 {
+  padding-left: 100px; }
+  .chart-locals-foreigners-kidnap-10 > * {
+    height: 220px;
+    position: relative; }
+    .chart-locals-foreigners-kidnap-10 > * h3 {
+      position: absolute;
+      transform: rotateZ(-90deg);
+      text-transform: uppercase;
+      transform-origin: 62px 132px; }
+    .chart-locals-foreigners-kidnap-10 > *.period {
+      height: 1px;
+      border-top: 2px dashed #333;
+      clear: both; }
+      .chart-locals-foreigners-kidnap-10 > *.period > * {
+        display: block;
+        position: relative;
+        width: 85px;
+        left: -100px;
+        padding: 5px;
+        border: 2px solid #e1482c;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+        top: -16px; }
+    .chart-locals-foreigners-kidnap-10 > * .core {
+      height: 292px; }
+      .chart-locals-foreigners-kidnap-10 > * .core [chart-body] {
+        height: 255px; }
+      .chart-locals-foreigners-kidnap-10 > * .core .list {
+        height: 37px;
+        background: #f4f4f4; }
+        .chart-locals-foreigners-kidnap-10 > * .core .list > * {
+          height: 37px;
+          float: left;
+          width: 10%;
+          line-height: 37px;
+          font-weight: 700;
+          font-size: 14px;
+          text-align: center;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden; }
+  .chart-locals-foreigners-kidnap-10 .value-title text {
+    font-size: 20px; }
+  .chart-locals-foreigners-kidnap-10 .value2-title text {
+    font-size: 16px; }
+
 body {
   font-family: "Exo", sans-serif;
   font-size: 12px; }

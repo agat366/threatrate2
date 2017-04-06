@@ -1,0 +1,68 @@
+﻿.chart-locals-foreigners-kidnap-10 {
+    padding-left: 100px;
+
+    > * {
+        height: 220px;
+        position: relative;
+
+        h3 {
+            position: absolute;
+            transform: rotateZ(-90deg);
+            text-transform: uppercase;
+            transform-origin: 62px 132px;
+        }
+
+        &.period {
+            height: 1px;
+            border-top: 2px dashed $dark;
+            clear: both;
+
+            > * {
+                display: block;
+                position: relative;
+                width: 85px;
+                left: -100px;
+                padding: 5px;
+                border: 2px solid $red;
+                font-size: 16px;
+                font-weight: $font-bold;
+                text-align: center;
+                top: -16px;
+            }
+        }
+
+        .core {
+            height: 255px + 37px;
+
+            [chart-body] {
+                height: 255px;
+            }
+
+            .list {
+                height: 37px;
+                background: $gray-light;
+
+                > * {
+                    height: 37px;
+                    float: left;
+                    width: 10%;
+                    line-height: 37px;
+                    font-weight: $font-bold;
+                    font-size: 14px;
+                    text-align: center;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+
+    .value-title text {
+        font-size: 20px;
+    }
+
+    .value2-title text {
+        font-size: 16px;
+    }
+}

@@ -99,30 +99,35 @@
                                     };
                                 });
 
-                        var options = {
+                            var options = {
+                            bars: {
+                                maxValue: i === 0 ? maxValueSingle : maxValueMulti,
+                                maxValueRangeMultiplier: 1
+  
+                            },
                             layout: { // todo: custom charts. needs to be changed to move bars out of layout
                                 rightDirection: i === 0 ? false : true,
                                 bars: {
-                                title: {
-                                    width: 50,
-                                },
-                                bar: {
-                                    width: 140,
-                                    height: 22,
-                                    margin: {
-                                        left: 12,
-                                        right: 12
+                                    title: {
+                                        width: 50,
                                     },
-                                    background: ChartsManager.defaults.backColor
+                                    bar: {
+                                        width: 140,
+                                        height: 22,
+                                        margin: {
+                                            left: 12,
+                                            right: 12
+                                        },
+                                        background: ChartsManager.defaults.backColor
 
+                                    },
+                                    value: {
+                                        width: 0
+                                    },
+                                    value2: {
+                                        width: 0
+                                    }
                                 },
-                                value: {
-                                    width: 0
-                                },
-                                value2: {
-                                    width: 0
-                                }
-                            },
                             
                         }/*
                             layout: {

@@ -19,6 +19,7 @@ function chartGridVertical(settings) {
             var d = {
                 layout: {
                     rows: {
+                        dy: 0,
                         count: 7,
                         border: {
                             width: 1,
@@ -53,6 +54,12 @@ function chartGridVertical(settings) {
                         }  */
 
                         height: 20
+                    },
+                    value: {
+                        dy: 0
+                    },
+                    value2: {
+                        dy: 0
                     }
                 },
                 animation: {
@@ -120,7 +127,7 @@ function chartGridVertical(settings) {
             left: _opts.layout.padding.left
         }
         var horizonatlGrid = self._gr.append('g');
-        self.translate(horizonatlGrid, chartFrame.left, chartFrame.top);
+        self.translate(horizonatlGrid, chartFrame.left, chartFrame.top + _opts.layout.rows.dy);
         for (var j = 0; j <= _opts.layout.rows.count; j++) {
             var y = j * (chartFrame.h - _opts.bars.legend.height) / _opts.layout.rows.count;
             var line = horizonatlGrid.append('line')
@@ -185,21 +192,21 @@ function chartGridVertical(settings) {
 
 
                 var title = barIn.append('g')
-                    .attr('transform', self.formatTranslate(0, 20))
+                    .attr('transform', self.formatTranslate(0, 20 + (_opts.bars.value.dy || 0)))
                     .attr('class', 'value-title');
                 title.append('text')
-                    .text(d.value).attr({
+                    .text(d.valueTitle || d.value).attr({
                         'text-anchor': 'middle',
                         'dominant-baseline': 'central'
                     })
                     .style('fill', d.titleColor || null);
 
-                if (d.value2) {
+                if (d.value2 || d.value2Title) {
                     var title2 = barIn.append('g')
-                        .attr('transform', self.formatTranslate(0, 40))
+                        .attr('transform', self.formatTranslate(0, 40 + (_opts.bars.value2.dy || 0)))
                         .attr('class', 'value2-title');
                     title2.append('text')
-                        .text(d.value2).attr({
+                        .text(d.value2Title || d.value2).attr({
                             'text-anchor': 'middle',
                             'dominant-baseline': 'central'
                         })
@@ -231,49 +238,53 @@ function chartGridVertical(settings) {
                         { height: _opts.bars.legend.icon.height, width: dx, dy: _opts.bars.legend.icon.dy || 0 },
                     true);
                 }
-                var legendValue = legend.append('g')
-                    .attr('transform', self.formatTranslate(dx / 2,
-                        (_opts.bars.legend.icon ? _opts.bars.legend.icon.height : 0)
-                        + (_opts.bars.legend.height - (_opts.bars.legend.icon ? _opts.bars.legend.icon.height : 0)) / 2));
-                legendValue.append('text')
-                    .text(d.title).attr({
-                        'text-anchor': 'middle',
-                        'dominant-baseline': 'central'
-                    });
-
-                // vertical separators
-                var verticalGrid = self._gr.append('g');
-                self.translate(verticalGrid, chartFrame.left, chartFrame.top);
-                var drawLine = function(j) {
-                    var x = dx * j;
-                    var line = verticalGrid.append('line')
-                        .attr({
-                            x1: x,
-                            x2: x,
-                            y1: 0,
-                            y2: frame.h,
-                            stroke: _opts.layout.columns.border.color,
-                            'stroke-width': _opts.layout.rows.border.width
+                if(_opts.legend && _opts.legend.height) {
+                    var legendValue = legend.append('g')
+                        .attr('transform', self.formatTranslate(dx / 2,
+                            (_opts.bars.legend.icon ? _opts.bars.legend.icon.height : 0)
+                            + (_opts.bars.legend.height - (_opts.bars.legend.icon ? _opts.bars.legend.icon.height : 0)) / 2));
+                    legendValue.append('text')
+                        .text(d.title).attr({
+                            'text-anchor': 'middle',
+                            'dominant-baseline': 'central'
                         });
-
-                    if (i > 0 && i < self.data.length && _opts.layout.columns.border.bottomPiece) {
-                        verticalGrid.append('line')
+                    
+                }
+                if(_opts.layout.columns) {
+                    // vertical separators
+                    var verticalGrid = self._gr.append('g');
+                    self.translate(verticalGrid, chartFrame.left, chartFrame.top);
+                    var drawLine = function(j) {
+                        var x = dx * j;
+                        var line = verticalGrid.append('line')
                             .attr({
                                 x1: x,
                                 x2: x,
-                                y1: frame.h + _opts.layout.columns.border.bottomPiece.dy || 0,
-                                y2: frame.h + (_opts.layout.columns.border.bottomPiece.dy || 0)
-                                    + _opts.layout.columns.border.bottomPiece.height,
+                                y1: 0,
+                                y2: frame.h,
                                 stroke: _opts.layout.columns.border.color,
                                 'stroke-width': _opts.layout.rows.border.width
                             });
-                    }
-                };
-//                if (i === 0) {
-//                    drawLine(-1);
-//                }
-                if (i < self.data.length && i > 0) {
-                    drawLine(i);
+
+                        if (i > 0 && i < self.data.length && _opts.layout.columns.border.bottomPiece) {
+                            verticalGrid.append('line')
+                                .attr({
+                                    x1: x,
+                                    x2: x,
+                                    y1: frame.h + _opts.layout.columns.border.bottomPiece.dy || 0,
+                                    y2: frame.h + (_opts.layout.columns.border.bottomPiece.dy || 0)
+                                        + _opts.layout.columns.border.bottomPiece.height,
+                                    stroke: _opts.layout.columns.border.color,
+                                    'stroke-width': _opts.layout.rows.border.width
+                                });
+                        }
+                    };
+    //                if (i === 0) {
+    //                    drawLine(-1);
+    //                }
+                    if (i < self.data.length && i > 0) {
+                        drawLine(i);
+                    }                    
                 }
             });
     }

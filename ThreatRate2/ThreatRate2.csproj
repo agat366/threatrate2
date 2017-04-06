@@ -12,6 +12,16 @@
     <Content Include="wwwroot\app\app.js" />
     <Content Include="wwwroot\app\controllers\main.controller.js" />
     <Content Include="wwwroot\app\directives\chartIcon.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapTop10 - Copy.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapTop10 - Copy.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersKidnapTop10 - Copy.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop10.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop10.html" />
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop10.scss" />
     <Content Include="wwwroot\app\directives\charts\kidnapResults.directive.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

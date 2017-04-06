@@ -78,6 +78,8 @@
                     scope.top = dataPreparedTop[0];
                     scope.top.iconName = 'countries.' + scope.top.name;
                     scope.top.iconColor = ChartsManager.defaults.backColor;
+                    scope.top.duration = top.duration;
+                    scope.top.color = scope.top.color;
 
                     var icon = $('.comparer [chart-icon]');
                     icon.html('');

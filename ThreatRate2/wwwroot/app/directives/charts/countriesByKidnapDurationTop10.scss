@@ -15,9 +15,12 @@
             height: 300px;
         }
         [chart-icon]{
-            height: 100px;
+            margin: 0 auto;
+            width: 80px;
+            height: 80px;
         }
         h4{
+            margin-top: 8px;
             text-align: center;
             font-size: 18px;
             color: $red;

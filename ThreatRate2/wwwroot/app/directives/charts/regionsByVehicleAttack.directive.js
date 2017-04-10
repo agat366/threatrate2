@@ -127,7 +127,7 @@
                                 y: 0,
                                 width: frame.w,
                                 height: frame.h,
-                                fill: ChartsManager.defaults.backColor
+                                fill: ChartsManager.defaults.darkColor
                             });
 
                         var bar = fill.append('rect')
@@ -156,15 +156,15 @@
                         // transitions
                         var barsDelay = 25 * 0;
                         var barRowsDelay = 8;
-                        var barDuration = 200;
+                        var barDuration = 1000;
 
                         var h = d.value / maxValue * barHeight;
                         bar.transition()
                             .remove();
                         bar.transition()
                             .ease('cubic-out')
-                            .duration(barDuration * 1.2 + (data.length - i) * 240)
-                            .delay(i * barsDelay)
+                            .duration(barDuration * 2.5 + (data.length - i) * 240 * 0)
+                            .delay(i * barsDelay * 0)
                             .attr('transform', String.format('translate({0}, {1})', 0, -h))
                             .attr('fill', d.color);
 
@@ -172,9 +172,14 @@
                             .remove();
                         background.transition()
                             .ease('linear')
-                            .duration(barDuration * 1.2 + (data.length - i) * 240)
-                            .delay(i * barsDelay)
-                            .style('opacity', 1);
+                            .duration(barDuration * .3)
+                            .delay(0)
+                            .style('opacity', .9)
+                        .transition()
+                            .ease('quad-out')
+                            .duration(barDuration * 1.5)
+                            .delay(barDuration * .3)
+                            .style('opacity', .15);
 
                     });
                 }

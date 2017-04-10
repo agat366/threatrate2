@@ -97,15 +97,17 @@
 //                                    .attr('d', d3.select(m).attr('d'))
 //                                    .attr('transform-origin', 'center')
                                     .attr('transform', String.format('translate({0}, {1}), scale(1)',
-                                        -clipBox.x + (frame.w - clipBox.width) / 2,
-                                        -clipBox.y + (frame.h - clipBox.height) / 2));
+                                        -clipBox.x + (frame.w - clipBox.width) / 2 * 0,
+                                        -clipBox.y + (frame.h - clipBox.height) / 2 * 0));
                             });
 
                         maskContainer
-                                    .attr('transform-origin', 'center')
+//                                    .attr('transform-origin', 'center')
 //                            .attr('transform', String.format('translate({0}, {1}), scale({2})',
-                            .attr('transform', String.format('translate(0,0), scale({2})',
-                                -clipBox.x, -clipBox.y, scale));
+                            .attr('transform', String.format('translate({0},{1}), scale({2})',
+                                (frame.w - clipBox.width * scale) / 2 * 1,
+                                (frame.h - clipBox.height * scale) / 2 * 1,
+                                scale));
 
                         var barHeight = clipBox.height * scale;
                         var g = svg.append('g');

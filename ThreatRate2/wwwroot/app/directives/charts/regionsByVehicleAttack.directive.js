@@ -49,7 +49,7 @@
                         var cont = $('<div></div>').appendTo(chartsContainer);
 
                         var frame = { w: cont[0].offsetWidth, h: cont[0].offsetHeight };
-                        var maskOut = ChartsManager.renderImage(cont, d.icon.name, null, -1);
+                        var maskOut = ChartsManager.renderImage(cont, d.icon.name, null, 1);
                         var svg = d3.select($(maskOut[0]).parent('svg')[0]);
                         var clipPathName = 'region.' + d.name + '.mask';
                         var maskContainer = svg.append('defs').append('clipPath')
@@ -57,33 +57,57 @@
 
                         var mask = $(maskOut[0]).find('path');
                         var translateContainer = $(mask[0]).parents('[translate-container]');
-                        var translate = d3.transform(translateContainer.attr('transform')).translate;
-                        var scale = d3.transform($(mask[0]).parents('[scale-container]').attr('transform')).scale;
+//                        var translate = d3.transform(translateContainer.attr('transform')).translate;
+//                        var scale = d3.transform($(mask[0]).parents('[scale-container]').attr('transform')).scale;
                         var box = d3.select(translateContainer[0]).node().getBBox();
+//                        var box = maskOut.node().getBBox();
 
-                        var maskFrame = {
-                            x: translate[0],
-                            y: translate[1],
-                            width: box.width,
-                            height: box.height
-                        }; 
+//                        var maskFrame = {
+//                            x: translate[0],
+//                            y: translate[1],
+//                            width: box.width,
+//                            height: box.height
+//                        }; 
                         _.each(mask,
                             function(m) {
                                 maskContainer.append('path')
                                     .attr('d', d3.select(m).attr('d'))
-                                    .attr('transform-origin', 'center')
-                                    .attr('transform', String.format('translate({0}, {1}), scale({2}, {3})',
-                                        -box.x * scale[0],
-                                        -box.y * scale[1],
-                                        scale[0], scale[1]));
-//                                var maskBox = maskContainer
+//                                    .attr('transform-origin', 'center')
+//                                    .attr('transform', String.format('translate({0}, {1}), scale(1)',
+//                                        -clipBox.x,
+//                                        -clipBox.y,
+//                                        scale[0], scale[1]));
                             });
                         maskOut.remove();
-                        var clipBox = maskContainer.node().getBBox();
-                        maskContainer
-                            .attr('transform', String.format('translate({0}, {1})', (frame.w - clipBox.width) / 2, (frame.h - clipBox.height) / 2));
+                        var clipBox = box;
+                    try
+                        {
+//                            maskContainer.node().getBBox();
+                            
+                        }catch (ex){}
+                        console.log(clipBox);
 
-                        
+                        var scaleX = frame.w / clipBox.width;
+                        var scaleY = frame.w / clipBox.height;
+                        var scale = scaleY > scaleX ? scaleX : scaleY;
+
+                        _.each(mask,
+                            function(m) {
+                                maskContainer.selectAll('path')
+//                                    .attr('d', d3.select(m).attr('d'))
+//                                    .attr('transform-origin', 'center')
+                                    .attr('transform', String.format('translate({0}, {1}), scale(1)',
+                                        -clipBox.x + (frame.w - clipBox.width) / 2,
+                                        -clipBox.y + (frame.h - clipBox.height) / 2));
+                            });
+
+                        maskContainer
+                                    .attr('transform-origin', 'center')
+//                            .attr('transform', String.format('translate({0}, {1}), scale({2})',
+                            .attr('transform', String.format('translate(0,0), scale({2})',
+                                -clipBox.x, -clipBox.y, scale));
+
+                        var barHeight = clipBox.height * scale;
                         var g = svg.append('g');
 
                         var background = g.append('g')
@@ -93,7 +117,7 @@
                             .attr('clip-path', String.format('url(#{0})', clipPathName))
                             .append('g')
                             .attr('transform', String.format('translate({0}, {1})',
-                                0, (frame.h - clipBox.height) / 2 + clipBox.height));
+                                0, (frame.h - barHeight) / 2 + barHeight));
 
                         background.append('rect')
                             .attr({
@@ -132,7 +156,7 @@
                         var barRowsDelay = 8;
                         var barDuration = 200;
 
-                        var h = d.value / maxValue * clipBox.height;
+                        var h = d.value / maxValue * barHeight;
                         bar.transition()
                             .remove();
                         bar.transition()

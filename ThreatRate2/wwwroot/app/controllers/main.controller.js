@@ -62,6 +62,7 @@
             {
                 id: 'regionsByKidnapSimpleVsMultiple',
                 title: '07 - SINGLE VERSUS MULTIPLE KIDNAPPING ACTIVITY // 2015',
+                default: true,
                 service: function () {
                     return dataService.regionsByKidnapSimpleVsMultiple({from: null, to: null});
                 }
@@ -131,7 +132,6 @@
             },
             {
                 id: 'countriesByRansomTop5',
-                default: true,
                 title: '17 - Top 5 Countries with highest average ransom amount // jan-oct 2016',
                 service: function () {
                     return dataService.countriesByRansom({top: 5, from: null, to: null});

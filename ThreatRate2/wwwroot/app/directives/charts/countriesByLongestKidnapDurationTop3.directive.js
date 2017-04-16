@@ -47,22 +47,37 @@
                             ChartsManager.defaults.frontColor,
                             { width: 250, height: 250, position: 0 }, true);
 
-                        ChartsManager.renderImage(g,
+                        var clock = g.append('g')
+                            .attr('transform', 'translate(0, 30)');
+
+                        clock.append('circle')
+                            .attr({
+                                r: 23,
+                                fill: ChartsManager.defaults.frontColor
+                            });
+
+                        ChartsManager.renderImage(clock,
                             ChartsManager.paths.signs.clock, '#fff',
-                            { width: 40, height: 40, position: 0, dy: 30 }, true);
+                            { width: 40, height: 40, position: 0, dy: 0 }, true);
 
                         g.append('g')
                             .attr('class', 'value-title')
                             .attr('transform', 'translate(0, -30)')
                             .append('text')
                             .text(data[i].value + ' days')
-                            .attr({ stroke: ChartsManager.defaults.frontColor, 'stroke-width' : 6 });
+                            .attr({ stroke: ChartsManager.defaults.frontColor, 'stroke-width' : 8 });
                         g.append('g')
                             .attr('class', 'value-title')
                             .attr('transform', 'translate(0, -30)')
                             .append('text')
                             .text(data[i].value + ' days');
                             
+                        g.append('g')
+                            .attr('class', 'legend-title')
+                            .attr('transform', 'translate(0, 0)')
+                            .append('text')
+                            .text(data[i].title)
+                            .attr({ stroke: ChartsManager.defaults.frontColor, 'stroke-width': 6 });
                         g.append('g')
                             .attr('class', 'legend-title')
                             .attr('transform', 'translate(0, 0)')

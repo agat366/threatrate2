@@ -73,6 +73,10 @@
 
                     var genericData = [single, multi];
 
+                    var barsDelay = 100;
+                    var barRowsDelay = 8;
+                    var barDuration = 700;
+
                     _.each(maps, function (map, i) {
                         var regions = _.map(genericData[i],
                             function(r) {
@@ -83,7 +87,48 @@
                                     title: r.title
                                 };
                             });
-                        ChartsManager.renderImage(map, regions, null, -1);
+
+                        var orderedRegions = _.sortBy(regions, 'value');
+                        _.each(orderedRegions, function (r, i) {
+                            r.__order = i;
+                        });
+
+                        var regionContainer = ChartsManager.renderImage(map, regions, null, -1);
+                        var icons = regionContainer.selectAll('[svg-icon]')[0];
+                        _.each(icons, function (ic, j) {
+                            var cont = d3.select(ic);
+                            var regionName = cont.attr('svg-icon');
+                            var region = _.find(regions, { name: regionName });
+                            var paths = cont.selectAll('path')[0];
+
+                            _.each(paths, function (path, k) {
+                                path = d3.select(path);
+                                var finalFill = path.attr('fill');
+                                if (finalFill) {
+                                    path.style('opacity', 1);
+                                    path.attr('fill', '#fff');
+
+                                    path.transition()
+                                        .remove();
+                                    path.transition()
+                                        .ease('quad-out')
+                                        .duration(500)
+                                        .delay(barsDelay)
+                                        .attr('fill', ChartsManager.defaults.darkColor)
+                                        .style('opacity', .85)
+                                        ;
+
+                                    path.transition()
+                                        .ease('quad-out')
+                                        .duration(barDuration * 1.25)
+                                        .delay(region.__order * barsDelay * 1.25 * 0 + 550)
+                                        .attr('fill', finalFill)
+                                        .style('opacity', 1)
+                                        ;
+
+                                }
+                            });
+                        });
                     });
 
 

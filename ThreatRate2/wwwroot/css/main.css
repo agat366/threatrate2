@@ -308,8 +308,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .chart-kidnap-by-location {
   height: 550px; }
-  .chart-kidnap-by-location text {
-    dominant-baseline: central; }
   .chart-kidnap-by-location > * {
     float: left; }
   .chart-kidnap-by-location .left-bracket {
@@ -685,19 +683,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .chart-month-by-year-5 .legend-title text {
   font-size: 14px;
-  font-weight: 700;
-  dominant-baseline: central; }
+  font-weight: 700; }
 
 .chart-month-by-year-5 .legend2-title text {
   font-size: 24px;
-  dominant-baseline: central;
   text-anchor: middle;
   text-transform: uppercase; }
 
 .chart-countries-by-kidnap-by-gender {
   height: 550px; }
-  .chart-countries-by-kidnap-by-gender text {
-    dominant-baseline: central; }
   .chart-countries-by-kidnap-by-gender .value-title text {
     font-size: 20px;
     font-weight: normal; }

@@ -377,8 +377,8 @@ function chartGridVertical(settings) {
                 pointCircle.transition()
                     .remove();
                 pointCircle.transition()
-                    .ease('ease-out')
-                    .duration(barDuration * 1.8)
+                    .ease('quad-out')
+                    .duration(barDuration * 2.3)
                     .delay(barsDelay)
                     .attr('r', _opts.bars.pointMaskRadius)
                     .style('opacity', 0);
@@ -388,8 +388,8 @@ function chartGridVertical(settings) {
         valueMask.transition()
             .remove();
         valueMask.transition()
-            .ease('ease-out')
-            .duration(barDuration * 1.8)
+            .ease('quad-out')
+            .duration(barDuration * 2.3)
             .delay(barsDelay)
             .attr('r', _opts.bars.pointMaskRadius);
 

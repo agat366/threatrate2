@@ -19,7 +19,7 @@
         }
 
         var result = container.append('g');
-
+        result.attr('svg-icon', iconName);
         render(result, iconName, color, scale, dx, dy);
 
         return result;

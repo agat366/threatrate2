@@ -1,0 +1,29 @@
+﻿.chart-countries-ransom-top-5 {
+    margin-top: 30px;
+
+    > div {
+        width: 20%;
+        padding: 0 25px;
+        height: 600px;
+        float: left;
+
+        > div {
+            background: url(../images/charts/lib/background.dollar.svg) no-repeat;
+            background-size: 125px 189px;
+            background-position: 40px 100.5px;
+            height: 600px;
+        }
+    }
+
+    .value-title text {
+        font-size: 38px;
+    }
+
+    .value-title2 text {
+        font-size: 20px;
+    }
+
+    .legend-title text {
+        font-size: 18px;
+    }
+}

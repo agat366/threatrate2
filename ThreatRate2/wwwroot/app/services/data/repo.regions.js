@@ -37,6 +37,10 @@
                     return regionsByKidnap(params);
                 }
 
+                function regionsByKidnapDuration(params) {
+                    return regionsByKidnap(params);
+                }
+
                 function regionsByVehicleAttack(params) {
                     return regionsByKidnap(params);
                 }
@@ -95,6 +99,7 @@
                 this.regionsByKidnap = regionsByKidnap;
                 this.regionsByVehicleEvent = regionsByVehicleEvent;
                 this.regionsByKidnapSimpleVsMultiple = regionsByKidnapSimpleVsMultiple;
+                this.regionsByKidnapDuration = regionsByKidnapDuration;
                 this.regionsByVehicleAttack = regionsByVehicleAttack;
             }
         ]);

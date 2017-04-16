@@ -62,6 +62,7 @@
                                 }
                             },
                             bars: {
+                                pointMaskRadius: 110,
 //                                maxValue: maxValue,
                                 maxValueRangeMultiplier: 1.3,
                                 icon: {

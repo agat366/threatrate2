@@ -111,6 +111,69 @@
                                 options: options
                             });
 
+                            // lines with arrows
+                            var gArrows = d3.select(chartsContainer[i]).selectAll('svg').append('g');
+                            var w = chartsContainer[i].offsetWidth;
+                            var h = chartsContainer[i].offsetHeight;
+                            var dx = w / it.data.length;
+
+                            var arrowsBarHeight = 110;
+                            var arrowsBarBasicHeight = 10;
+                            var arrowsBarPadding = 5;
+
+                            var isBottomUp = i === 0;
+                            var barsDelay = 25;
+                            var barDuration = 400;
+
+                            for (var j = 0; j < it.data.length; j++) {
+                                var d = it.data[j];
+                                var value = isBottomUp ? d.value : (maxValue - d.value);
+                                var valueHeight = value / maxValue * arrowsBarHeight + arrowsBarBasicHeight;
+
+                                var g = gArrows.append('g')
+                                    .attr('transform', String.format('translate({0}, {1})',
+                                        dx * (.5 + j), isBottomUp ? h - arrowsBarPadding : arrowsBarPadding));
+
+                                var arrow = g.append('g')
+                                    .attr('transform', String.format('translate({0}, {1})', 0, 0))
+                                    .style('opacity', 0);
+
+                                arrow.append('polygon')
+                                    .attr('points', '3.703,4.389 1.852,3.603 0,4.389 1.852,0')
+                                    .attr('fill', d.color)
+                                    .attr('transform', String.format('translate(-3.65, -3.65) scale(2) {0}', isBottomUp ? '' : 'rotate(180, 1.825, 1.825)'));
+
+                                var line = g.append('line')
+                                    .attr({
+                                         x1: 0,
+                                         x2: 0,
+                                         y1: 0,
+                                         y2: 0,
+                                         stroke: d.color,
+                                         'stroke-width': 2
+                                    })
+                                    .style('opacity', 0);
+
+
+                                arrow.transition()
+                                    .remove();
+                                arrow.transition()
+                                    .ease('cubic-out')
+                                    .duration(barDuration * 1.8)
+                                    .delay(j * barsDelay)
+                                    .attr('transform', String.format('translate({0}, {1})', 0, isBottomUp ? -valueHeight : valueHeight))
+                                    .style('opacity', 1);
+
+                                line.transition()
+                                    .remove();
+                                line.transition()
+                                    .ease('cubic-out')
+                                    .duration(barDuration * 1.8)
+                                    .delay(j * barsDelay)
+                                    .attr('y1', isBottomUp ? -valueHeight : valueHeight)
+                                    .style('opacity', 1);
+                            }
+
                         });
                     
                     

@@ -112,6 +112,7 @@
                 person2: 'signs.person2',
                 child: 'signs.child',
                 suicide: 'signs.suicide',
+                location: 'signs.location',
                 hourglass: 'signs.hourglass',
                 caledar: 'signs.calendar',
                 funds: 'signs.funds',
@@ -642,6 +643,17 @@
                 g.append('path')
                     .attr('d', 'M18.953,36.122c-0.187-1.34-0.373-2.68-0.575-4.135c-0.666,0-1.387,0-2.508,0c1.036,1.574,1.933,2.939,2.83,4.305C18.784,36.235,18.869,36.178,18.953,36.122z')
                     .attr('fill', color || '#e64633');
+                break;
+
+            case 'signs.location':
+                w = 34.741;
+                h = 45.177;
+
+                // placeholder
+
+                g.append('path')
+                    .attr('d', 'M2.673,22.588C-4.143,10.115,2.543,0,17.417,0c14.876,0,21.446,10.115,14.632,22.588C25.22,35.063,18.675,45.177,17.417,45.177C16.164,45.177,9.499,35.063,2.673,22.588z')
+                    .attr('fill', color || '#af1f23');
                 break;
 
             case 'signs.person':

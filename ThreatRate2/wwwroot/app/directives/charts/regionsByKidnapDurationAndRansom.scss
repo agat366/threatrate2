@@ -1,0 +1,22 @@
+﻿.chart-region-duration-and-ransom {
+    padding: 40px 20px !important;
+
+    [chart-body] {
+        height: 550px;
+        background: url(../images/charts/lib/background.regions.dotted.svg) no-repeat center;
+        background-size: 1000px 400px;
+    }
+
+    svg .legend-title text {
+        font-size: 20px;
+        fill: #333;
+    }
+    svg .legend-title2 text {
+        text-transform: capitalize;
+    }
+
+    svg .value-title text {
+        fill: #fff;
+        font-size: 20px;
+    }
+}

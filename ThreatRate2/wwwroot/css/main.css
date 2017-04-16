@@ -1088,6 +1088,40 @@ h1, h2, h3, h4, h5, h6 {
   .chart-locals-foreigners-kidnap-10 .value2-title text {
     font-size: 16px; }
 
+.chart-region-duration-and-ransom {
+  padding: 40px 20px !important; }
+  .chart-region-duration-and-ransom [chart-body] {
+    height: 550px;
+    background: url(../images/charts/lib/background.regions.dotted.svg) no-repeat center;
+    background-size: 1000px 400px; }
+  .chart-region-duration-and-ransom svg .legend-title text {
+    font-size: 20px;
+    fill: #333; }
+  .chart-region-duration-and-ransom svg .legend-title2 text {
+    text-transform: capitalize; }
+  .chart-region-duration-and-ransom svg .value-title text {
+    fill: #fff;
+    font-size: 20px; }
+
+.chart-countries-ransom-top-5 {
+  margin-top: 30px; }
+  .chart-countries-ransom-top-5 > div {
+    width: 20%;
+    padding: 0 25px;
+    height: 600px;
+    float: left; }
+    .chart-countries-ransom-top-5 > div > div {
+      background: url(../images/charts/lib/background.dollar.svg) no-repeat;
+      background-size: 125px 189px;
+      background-position: 40px 100.5px;
+      height: 600px; }
+  .chart-countries-ransom-top-5 .value-title text {
+    font-size: 38px; }
+  .chart-countries-ransom-top-5 .value-title2 text {
+    font-size: 20px; }
+  .chart-countries-ransom-top-5 .legend-title text {
+    font-size: 18px; }
+
 body {
   font-family: "Exo", sans-serif;
   font-size: 12px; }

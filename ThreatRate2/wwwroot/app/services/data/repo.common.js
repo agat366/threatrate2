@@ -824,6 +824,10 @@
                     // todo: countries by custom filters
                     return countriesByKidnap(params);
                 }
+                function countriesByRansom(params) {
+                    // todo: countries by custom filters
+                    return countriesByKidnap(params);
+                }
                 function countriesByLocalsKidnap(params) {
                     // todo: countries by custom filters
                     return countriesByKidnap(params);
@@ -866,8 +870,14 @@
                             var top = params.top || 200;
                             var result = renderList(top, function (n) {
                                 var rnd = Math.random();
-                                var id = Math.round(Math.random() * 190);
-                                var title = _.find(titles, function (c) { return c[0] === id; });
+                                var id;
+                                var title;
+                                do {
+                                    id = Math.round(Math.random() * 190);
+                                    title = _.find(titles, function(c) { return c[0] === id; });
+                                }
+                                while (!title);
+
                                 if (title) {
                                     title = title[1];
                                 } else {
@@ -923,6 +933,7 @@
                 this.countriesByChildKidnap = countriesByChildKidnap;
                 this.countriesByForeignersKidnapDuration = countriesByForeignersKidnapDuration;
                 this.countriesByForeignersKidnap = countriesByForeignersKidnap;
+                this.countriesByRansom = countriesByRansom;
                 this.countriesByLocalsKidnap = countriesByLocalsKidnap;
                 this.countriesByKidnapWithLocations = countriesByKidnapWithLocations;
                 this.countriesByKidnapByGender = countriesByKidnapByGender;

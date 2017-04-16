@@ -38,6 +38,7 @@ function chartGridVertical(settings) {
                     }
                 },
                 bars: {
+                    pointMaskRadius: 60,
                     dotRadius: 5.5,
                     dotColor: ChartsManager.defaults.frontColor,
                     dotOuterColor: ChartsManager.defaults.secondaryBackColor,
@@ -64,6 +65,9 @@ function chartGridVertical(settings) {
                 },
                 animation: {
                     barDelay: 100
+                },
+                meta: {
+                    maskId: self.name + '-point-value-mask'
                 }
             };
 
@@ -116,6 +120,19 @@ function chartGridVertical(settings) {
             .domain([0, yMax])
             .range([0, barsHeight]);
             //.range([0, self.h - _opts.axis.x.text.height]);
+
+        var clipPath = self._svg.append('defs')
+            .append('clipPath')
+            .attr('id', _opts.meta.maskId);
+
+        clipPath.append('circle')
+            .attr('value-mask', '')
+            .attr({
+                cx: 0,
+                cy: 0,
+                r: 0
+            });
+
     }
 
     function bindData() {
@@ -172,9 +189,12 @@ function chartGridVertical(settings) {
                     .attr('transform', self.formatTranslate(dx / 2, frame.h));
                 var barIn = bar.append('g')
                     .attr('bar-body', '')
-                    .style('opacity', 0);
+                    .style('opacity', 1);
 
-                var point = barIn.append('g');
+                var barPoint = barIn.append('g')
+                    .attr('clip-path', String.format('url(#{0})', _opts.meta.maskId));
+
+                var point = barPoint.append('g');
                 point.append('circle').attr({
                     cx: 0, cy: 0,
                     r: _opts.bars.dotRadius + 2,
@@ -190,8 +210,21 @@ function chartGridVertical(settings) {
                     'stroke-width': 2
                 });
 
+                var pointCircle = barIn.append('g')
+                    .append('circle')
+                    .attr('point-circle', '')
+                    .attr({
+                        r: 0,
+                        stroke: ChartsManager.defaults.frontColor,
+                        fill: 'none'
+                    })
+                    .style('opacity', 1);
 
-                var title = barIn.append('g')
+                var titles = barIn.append('g')
+                    .attr('bar-titles', '')
+                    .style('opacity', 0);
+
+                var title = titles.append('g')
                     .attr('transform', self.formatTranslate(0, 20 + (_opts.bars.value.dy || 0)))
                     .attr('class', 'value-title');
                 title.append('text')
@@ -202,7 +235,7 @@ function chartGridVertical(settings) {
                     .style('fill', d.titleColor || null);
 
                 if (d.value2 || d.value2Title) {
-                    var title2 = barIn.append('g')
+                    var title2 = titles.append('g')
                         .attr('transform', self.formatTranslate(0, 40 + (_opts.bars.value2.dy || 0)))
                         .attr('class', 'value2-title');
                     title2.append('text')
@@ -214,7 +247,7 @@ function chartGridVertical(settings) {
                 }
 
                 if(_opts.bars.icon) {
-                    var iconValue = barIn.append('g')
+                    var iconValue = barPoint.append('g')
                         .attr('transform', self.formatTranslate(0, -_opts.bars.icon.height));
                     ChartsManager.renderPath(iconValue,
                         _opts.bars.icon.name,
@@ -238,7 +271,7 @@ function chartGridVertical(settings) {
                         { height: _opts.bars.legend.icon.height, width: dx, dy: _opts.bars.legend.icon.dy || 0 },
                     true);
                 }
-                if(_opts.legend && _opts.legend.height) {
+                if(_opts.bars.legend && _opts.bars.legend.height) {
                     var legendValue = legend.append('g')
                         .attr('transform', self.formatTranslate(dx / 2,
                             (_opts.bars.legend.icon ? _opts.bars.legend.icon.height : 0)
@@ -306,16 +339,26 @@ function chartGridVertical(settings) {
                 var h = self.yScale(d.value);
                 
                 var barIn = g0.selectAll('[bar-body]');
-                self.translate(barIn, -30, -h);
+                self.translate(barIn, 0, -h);
+//                self.translate(barIn, -30, -h);
 
 //                var dy = d3.transform(barIn.attr('transform')).translate[1];
-                barIn.transition()
+//                barIn.transition()
+//                    .remove();
+//                barIn.transition()
+//                    .ease('cubic-out')
+//                    .duration(barDuration * 1.2)
+//                    .delay(i0 * barsDelay)
+//                    .attr('transform', self.formatTranslate(0, -h))
+//                    .style('opacity', 1);
+
+                var barTitles = self._svg.selectAll('[bar-titles]');
+                barTitles.transition()
                     .remove();
-                barIn.transition()
+                barTitles.transition()
                     .ease('cubic-out')
                     .duration(barDuration * 1.2)
-                    .delay(i0 * barsDelay)
-                    .attr('transform', self.formatTranslate(0, -h))
+                    .delay(barsDelay * i0)
                     .style('opacity', 1);
 
 
@@ -329,7 +372,27 @@ function chartGridVertical(settings) {
                     .duration(barDuration * 1.2)
                     .delay(i0 * barsDelay)
                     .style('opacity', 1);
-            });
+
+                var pointCircle = g0.selectAll('[point-circle]');
+                pointCircle.transition()
+                    .remove();
+                pointCircle.transition()
+                    .ease('ease-out')
+                    .duration(barDuration * 1.8)
+                    .delay(barsDelay)
+                    .attr('r', _opts.bars.pointMaskRadius)
+                    .style('opacity', 0);
+                    });
+
+        var valueMask = self._svg.selectAll('[value-mask]');
+        valueMask.transition()
+            .remove();
+        valueMask.transition()
+            .ease('ease-out')
+            .duration(barDuration * 1.8)
+            .delay(barsDelay)
+            .attr('r', _opts.bars.pointMaskRadius);
+
     }
 
     prepareContainer();

@@ -40,6 +40,10 @@
                     return repo.countriesByForeignersKidnap(params);
                 }
 
+                function countriesByRansom(params) {
+                    return repo.countriesByRansom(params);
+                }
+
                 function countriesByForeignersVsLocalsKidnap(params) {
                     return $q.all([
                             repo.countriesByForeignersKidnap(params),
@@ -121,6 +125,10 @@
                     return repoRegions.regionsByKidnapSimpleVsMultiple(params);
                 }
 
+                function regionsByKidnapDuration(params) {
+                    return repoRegions.regionsByKidnapDuration(params);
+                }
+
                 function regionsByKidnapDurationSimpleVsMultiple(params) {
                     return repoRegions.regionsByKidnapSimpleVsMultiple(params);
                 }
@@ -142,6 +150,7 @@
                     countriesByUnrest: countriesByUnrest,
                     countriesBySuicideAttack: countriesBySuicideAttack,
                     countriesByForeignersKidnap: countriesByForeignersKidnap,
+                    countriesByRansom: countriesByRansom,
                     countriesByForeignersVsLocalsKidnap: countriesByForeignersVsLocalsKidnap,
                     countriesByKidnapWithLocations: countriesByKidnapWithLocations,
                     countriesByKidnapByGender: countriesByKidnapByGender,
@@ -149,6 +158,7 @@
 
                     regionsByVehicleAttack: regionsByVehicleAttack,
                     regionsByKidnapSimpleVsMultiple: regionsByKidnapSimpleVsMultiple,
+                    regionsByKidnapDuration: regionsByKidnapDuration,
                     regionsByKidnapDurationSimpleVsMultiple: regionsByKidnapDurationSimpleVsMultiple,
 
                     locationsByKidnap: locationsByKidnap,

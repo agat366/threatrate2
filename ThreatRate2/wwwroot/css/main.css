@@ -308,6 +308,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .chart-kidnap-by-location {
   height: 550px; }
+  .chart-kidnap-by-location .legend-title text {
+    fill: #333; }
   .chart-kidnap-by-location > * {
     float: left; }
   .chart-kidnap-by-location .left-bracket {
@@ -335,11 +337,11 @@ h1, h2, h3, h4, h5, h6 {
       display: block;
       width: 78px;
       height: 130px;
-      margin: 0 auto 60px;
+      margin: 0 auto 52px;
       background: url(../images/charts/signs.crowd.svg) no-repeat center;
       background-size: 100%; }
     .chart-kidnap-by-location .right-side .data p {
-      font-size: 42px;
+      font-size: 48px;
       text-align: center; }
   .chart-kidnap-by-location .chart-body {
     width: 900px;
@@ -442,7 +444,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .chart-countries-by-vehicle-attack .value-title text {
   fill: #e1482c;
-  font-size: 24px; }
+  font-size: 24px;
+  font-weight: bold; }
 
 .chart-countries-by-vehicle-attack .legend-title text {
   fill: #fff;
@@ -742,9 +745,9 @@ h1, h2, h3, h4, h5, h6 {
       font-size: 36px;
       text-transform: uppercase; }
     .chart-countries-by-kidnap-by-gender .right-side .data .male {
-      color: #84c0ff; }
+      color: #b02819; }
     .chart-countries-by-kidnap-by-gender .right-side .data .female {
-      color: #ff9ed3; }
+      color: #bbd6e4; }
     .chart-countries-by-kidnap-by-gender .right-side .data .legend {
       display: none; }
       .chart-countries-by-kidnap-by-gender .right-side .data .legend > * {

@@ -175,7 +175,7 @@ function chartSlicedBarVertical(settings) {
                 var legendTitle = legend.append('g')
                     .attr('class', 'legend-title');
                 var legendTitleText = self.translate(self.appendTextMultiline(legendTitle, d.title, null),
-                    dx/2, _opts.legend.height - _opts.legend.title.height);
+                    dx/2, _opts.legend.height - _opts.legend.title.height + (_opts.legend.title.dy || 0));
 
                 var legendTitle2 = legend2.append('g')
                     .attr('class', 'legend2-title');
@@ -187,7 +187,8 @@ function chartSlicedBarVertical(settings) {
                     var barBackground = bar.append('g');
                     barBackground.append('rect')
                         .attr({
-                            width: barFrame.inner.w * values.length, height: barFrame.inner.h,
+                            width: barFrame.inner.w * values.length,
+                            height: barFrame.inner.h,
                             fill: 'url(#diagonalHatch)'// _opts.bars.backColor
                         });
                     self.translate(bar, _opts.bars.margin.left, _opts.bars.margin.top);
@@ -198,33 +199,43 @@ function chartSlicedBarVertical(settings) {
 
                     // bar
                     // bar body
-                    var barBody = bar.append('g');
+                    var barBodyOut = bar.append('g');
+                    self.translate(barBodyOut, barFrame.inner.w * k, barFrame.inner.h);
+                    var barBody = barBodyOut.append('g')
+                        .attr('chart-bar', '');
                     barBody.append('rect')
                         .attr({
-                            width: barFrame.inner.w, height: h,
+                            width: barFrame.inner.w,
+                            height: /*h*/ 0,
                             fill: v.color || (values.length > 1 ?  _opts.bars.colors[k] : _opts.bars.color)
                         });
-                    self.translate(barBody, barFrame.inner.w * k, barFrame.inner.h - h);
+                    self.translate(barBody, 0, 0);
 
-                    var barValue = bar.append('g')
+                    var noTopIcon = !_opts.bars.topIcon;
+
+                    var barValueOut = bar.append('g');
+                    self.translate(barValueOut, barFrame.inner.w * (k + .5),
+                        barFrame.inner.h - (noTopIcon ? 24 : 0)); 
+
+                    var barValue = barValueOut.append('g')
                         .attr('class', 'value-title');
 
                     var barValueText = barValue.append('text')
                         .text(v.valueTitle);
-                    var noTopIcon = !_opts.bars.topIcon;
+
                     if (_opts.bars.title.isVertical) {
-                        self.translate(barValue, barFrame.inner.w * (k + .5),
-                            barFrame.inner.h - h + _opts.bars.title.dy - (noTopIcon ? 24 : 0));           
+//                        self.translate(barValue, 0, -h);         
                         barValueText.style('text-anchor', 'start');
-                        barValueText.style('transform', String.format('rotateZ(-90deg)'));
+                        barValueText.attr('transform', 'rotate(-90, 0, 0) '
+                            + self.formatTranslate(-(_opts.bars.title.dy || 0), _opts.bars.title.dx || 0));
                     } else {
-                        self.translate(barValue, barFrame.inner.w / 2,
-                            barFrame.inner.h - h + _opts.bars.title.dy - (noTopIcon ? 24 : 0));           
+                        barValueText.attr('transform', self.formatTranslate(_opts.bars.title.dx || 0, _opts.bars.title.dy || 0));
                     }
+
 
                     if (_opts.bars.topIcon) {
                         var topIcon = manager.renderPath(barValue, _opts.bars.topIcon);
-//                    topIcon.attr('transform', self.formatTranslate(0, _opts.bars.topIcon.dy));
+//                        topIcon.attr('transform', self.formatTranslate(0, _opts.bars.topIcon.dy));
                     } else {
                         var pointer = barValue
                             .append('g')
@@ -232,7 +243,7 @@ function chartSlicedBarVertical(settings) {
 //                            barFrame.inner.h - h + _opts.bars.title.dy))           
                             .append('g')
                             .attr('legend-pointer', '')
-                            .attr('transform', self.formatTranslate(0, 8));
+                            .attr('transform', self.formatTranslate(0, -2));
                         pointer.append('line').attr({
                             x1: -10,
                             x2: 10,
@@ -257,7 +268,7 @@ function chartSlicedBarVertical(settings) {
     }
 
     function animateChanges(callback) {
-        return;
+
         var barsDelay = 25;
         var barRowsDelay = 8;
         var barDuration = 400;
@@ -269,31 +280,45 @@ function chartSlicedBarVertical(settings) {
                     return;
                 }
                 var g0 = d3.select(this);
-                var data = d.value;
+                var values = self.isArray(d.value) ? d.value : [d];
 
-                var dotsLine = g0.selectAll('.dots-container>g');
-                _.each(dotsLine[0], function(ln, i) {
-                    var g = d3.select(ln).selectAll('circle');
+                var bars = g0.selectAll('[chart-bar]');
+                var titles = g0.selectAll('.value-title');
 
-                    g.transition()
+                _.each(values, function(v, i) {
+                    var h = self.yScale(v.value);
+
+                    var bar = d3.select(bars[0][i]);
+                    bar.transition()
                         .remove();
-                    g.transition()
-                        .ease('exp-out')
+                    bar.transition()
+                        .ease('cubic-out')
                         .duration(barDuration)
-                        .delay(i * barRowsDelay + i0 * barsDelay)
-                        .attr('r', _opts.bars.dotRadius);
-                });
+                        .delay(i0 * barsDelay)
+                        .attr('transform', self.formatTranslate(0, -h));
 
-                var valueCore = g0.selectAll('.value-core');
-                var dx = d3.transform(valueCore.attr('transform')).translate[0];
-                valueCore.transition()
-                    .remove();
-                valueCore.transition()
-                    .ease('cubic-out')
-                    .duration(barDuration * 1.2)
-                    .delay(i0 * barsDelay)
-                    .attr('transform', self.formatTranslate(dx, 0))
-                    .style('opacity', 1);
+                    var rect = bar.selectAll('rect');
+                    rect.transition()
+                        .remove();
+                    rect.transition()
+                        .ease('cubic-out')
+                        .duration(barDuration)
+                        .delay(i0 * barsDelay)
+                        .attr('height', h);
+
+                    var title = d3.select(titles[0][i]);
+                    self.translate(title, 0, -h - 15);
+                    title.style('opacity', 0);
+
+                    title.transition()
+                        .remove();
+                    title.transition()
+                        .ease('cubic-out')
+                        .duration(barDuration * 1.75)
+                        .delay((i0 + 2) * barsDelay)
+                        .style('opacity', 1)
+                        .attr('transform', self.formatTranslate(0, -h));
+                });
             });
     }
 

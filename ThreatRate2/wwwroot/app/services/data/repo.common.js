@@ -156,11 +156,11 @@
                     [
                         56,
                         "Colombia"
-                    ],
+                    ]/*,
                     [
                         175,
                         "Comoros"
-                    ],
+                    ]*/,
                     [
                         118,
                         "Costa Rica"
@@ -576,11 +576,11 @@
                     [
                         193,
                         "Samoa"
-                    ],
+                    ]/*,
                     [
                         180,
                         "Sao Tome and Principe"
-                    ],
+                    ]*/,
                     [
                         121,
                         "Saudi Arabia"
@@ -592,11 +592,11 @@
                     [
                         11,
                         "Serbia"
-                    ],
+                    ]/*,
                     [
                         156,
                         "Seychelles"
-                    ],
+                    ]*/,
                     [
                         140,
                         "Sierra Leone"
@@ -798,7 +798,7 @@
                 }
 
                 function allCountries() {
-                    return titles;
+                    return angular.copy(titles);
                 }
 
                 function countriesByKidnapDuration(params) {

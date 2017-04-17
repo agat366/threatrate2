@@ -32,7 +32,8 @@
                         chartData.valueTitle = chartData.value;
                         chartData.icon = {
                             name: 'locations.' + (chartData.name === 'other' ? 'common' : chartData.name),
-                            scale: 1.45
+                            scale: 1.45,
+                            color: ChartsManager.defaults.darkColor
                         };
 
                     }
@@ -42,10 +43,11 @@
                                 width: 58,
                                 maxValue: _.max(_.map(data, function (el) { return el.value; })) * 1.23, // to have space for the top icon and title
                                 title: {
-                                    dy: -10
+                                    dy: -10,
+                                    dx: 0
                                 },
                                 topIcon: {
-                                    dy: -40
+                                    dy: -50
                                 },
                                 margin: {
                                     right: 16,
@@ -55,7 +57,8 @@
                             legend: {
                                 height: 100,
                                 title: {
-                                    height: 30
+                                    height: 30,
+                                    color: ChartsManager.defaults.darkColor
                                 },
                                 icon: {
                                     scale: 1.4,

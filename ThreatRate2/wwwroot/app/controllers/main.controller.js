@@ -62,7 +62,6 @@
             {
                 id: 'regionsByKidnapSimpleVsMultiple',
                 title: '07 - SINGLE VERSUS MULTIPLE KIDNAPPING ACTIVITY // 2015',
-                default: true,
                 service: function () {
                     return dataService.regionsByKidnapSimpleVsMultiple({from: null, to: null});
                 }
@@ -161,6 +160,7 @@
             {
                 id: 'countriesByKidnapByGender',
                 title: '21 - Countries most kidnapped at by gender// June 2010 - March 2017',
+                default: true,
                 service: function () {
                     return dataService.countriesByKidnapByGender({top: 11, from: null, to: null});
                 }

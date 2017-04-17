@@ -5,7 +5,7 @@
 
     initialize();
 
-    service.renderPath = function (container, iconNameOrIconObject, color, scale, dx, dy) {
+    service.renderPath = function (container, iconNameOrIconObject, color, scale, dx, dy, toCenter) {
         var iconName;
         if (typeof iconNameOrIconObject === 'object') {
             color = iconNameOrIconObject.color || color;
@@ -20,7 +20,7 @@
 
         var result = container.append('g');
         result.attr('svg-icon', iconName);
-        render(result, iconName, color, scale, dx, dy);
+        render(result, iconName, color, scale, dx, dy, toCenter);
 
         return result;
     };
@@ -31,7 +31,7 @@
         var svg, frame;
         var transform = [];
         var customBounds = false;
-        if (typeof scale === 'object') {
+        if (scale && typeof scale === 'object') {
             frame = scale;
             customBounds = true;
             scale = -1;
@@ -45,7 +45,9 @@
             svg = d3.select(container).append('svg');
             frame = frame || { width: container.offsetWidth, height: container.offsetHeight };
             svg.attr(frame);
-            transform.push(String.format('translate({0},{1})', frame.width / 2 + (frame.dx || 0), frame.height / 2 + (frame.dy || 0)));
+            if (toCenter !== false) {
+                transform.push(String.format('translate({0},{1})', frame.width / 2 + (frame.dx || 0), frame.height / 2 + (frame.dy || 0)));
+            }
         }
 
 
@@ -58,11 +60,11 @@
         if (iconNameOrObjectOrArray instanceof Array) {
             _.each(iconNameOrObjectOrArray,
                 function(iconParams) {
-                    service.renderPath(gScale, iconParams, color, scale === -1 ? null : scale);
+                    service.renderPath(gScale, iconParams, color, scale === -1 ? null : scale, null, null, toCenter);
                 });
 
         } else {
-            service.renderPath(gScale, iconNameOrObjectOrArray, color, scale === -1 ? null : scale);
+            service.renderPath(gScale, iconNameOrObjectOrArray, color, scale === -1 ? null : scale, null, null, toCenter);
         }
 
         if (scale === -1) {
@@ -136,7 +138,7 @@
         }
     }
 
-    function render(container, pathName, color, scale, dx, dy) {
+    function render(container, pathName, color, scale, dx, dy, toCenter) {
         var g0, g, w = 0, h = 0;
         scale = scale || 1;
         var transparentColor = service.defaults.transparentColor;
@@ -1147,8 +1149,10 @@
         }
 
         if (g) {
-            g.attr('translate-container', '')
-                .attr('transform', String.format('translate(-{0},-{1})', w / 2, h / 2));            
+            g.attr('translate-container', '');
+            if (toCenter !== false) {
+                g.attr('transform', String.format('translate(-{0},-{1})', w / 2, h / 2));
+            }
         }
 
         var transform = [];

@@ -50,8 +50,8 @@
                                         dx: -25,
                                         toCenter: true
                                     },
-                                    title: d.title,
-                                            title2: d.males + d.females
+                                    title: d.title/*,
+                                            title2: d.males + d.females*/
                                 };
                                 return chartData;
                             });
@@ -64,7 +64,8 @@
 //                                maxValue: _.max([scope.totalMales, scope.totalFemales]) * 1.23, // to have space for the top icon and title
                                 title: {
                                     isVertical: true,
-                                    dy: -10
+                                    dy: -10,
+                                    dx: 6
                                 },
                                 topIcon: null,
                                 margin: {
@@ -72,7 +73,7 @@
                                     left: 12
                                 },
                                 colors: [
-                                    '#84c0ff', '#ff9ed3'
+                                    '#b02819', '#bbd6e4'
                                 ]
                             },
                             legend: {
@@ -85,7 +86,8 @@
                                     }
                                 },
                                 title: {
-                                    height: 30
+                                    height: 30,
+                                    dy: 10
                                 }
                             }
                         };

@@ -79,10 +79,10 @@
                             legend: {
                                 height: 100,
                                 icon: {
-                                    color: ChartsManager.defaults.secondaryBackColor,
+                                    color: ChartsManager.defaults.backColor,
                                     scale: {
-                                        width: 50,
-                                        height: 50
+                                        width: 45,
+                                        height: 45
                                     }
                                 },
                                 title: {

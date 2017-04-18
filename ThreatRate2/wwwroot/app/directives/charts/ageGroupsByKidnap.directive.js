@@ -33,13 +33,13 @@
                         if (it.name === '1-10') {
                             it.icon = {
                                 name: ChartsManager.paths.ageGroups.children,
-                                dy: 16
+                                dy: 12
                             }
                         } else if (it.name === '11-18') {
                             it.icon = {
                                 name: ChartsManager.paths.ageGroups.adults,
                                 scale: 1.6,
-                                dy: 17
+                                dy: 13
                             }
                         } else if (it.name === '66-up') {
                             it.icon = {

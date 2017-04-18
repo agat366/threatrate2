@@ -60,7 +60,7 @@
 
                         ChartsManager.renderImage(g,
                             'countries.' + data[i].name,
-                            ChartsManager.defaults.secondaryBackColor,
+                            ChartsManager.defaults.backColor,
                             { width: 100, height: 100, position: 0, dy: 95 }, true);
 
 //                        ChartsManager.renderImage(g,
@@ -77,7 +77,7 @@
                             .attr('class', 'value-title')
                             .attr('transform', 'translate(0, 200)')
                             .append('text')
-                            .text(data[i].value + ' days')
+                            .text(data[i].value)
                             .attr('fill', colors[i]);
                         if (opacity !== 1) {
                             valueTitle.style('opacity', opacity);

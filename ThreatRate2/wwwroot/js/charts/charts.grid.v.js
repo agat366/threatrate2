@@ -29,7 +29,7 @@ function chartGridVertical(settings) {
                     columns: {
                         border: {
                             width: 1,
-                            color: ChartsManager.defaults.secondaryBackColor,
+                            color: '#f3f3f3',
                             bottomPiece: {
                                 dy: 16,
                                 height: 12
@@ -42,7 +42,9 @@ function chartGridVertical(settings) {
                     dotRadius: 5.5,
                     dotColor: ChartsManager.defaults.frontColor,
                     dotOuterColor: ChartsManager.defaults.secondaryBackColor,
-
+                    graph: {
+                        dy: 0
+                    },
                     icon: null/*{
                         height: 100  
                     }*/,
@@ -154,6 +156,17 @@ function chartGridVertical(settings) {
                     'stroke-width': _opts.layout.rows.border.width
                 });
         }
+
+        self.__graph = horizonatlGrid.append('g')
+            .attr('transform', self.formatTranslate(_opts.bars.graph.dx || 0, _opts.bars.graph.dy || 0));
+
+        self.__graph.append('path')
+            .attr({
+                stroke: ChartsManager.defaults.secondaryBackColor,
+                'stroke-width': 2,
+                'stroke-dasharray': '6,6',
+                fill: 'none'
+            });
 
         var stuff = self._c.selectAll('g').data(self.data)
             .enter().append('g')
@@ -267,7 +280,7 @@ function chartGridVertical(settings) {
                         .attr('transform', self.formatTranslate(0, 0));
                     ChartsManager.renderImage(iconLegend,
                         d.icon.name,
-                        d.icon.color || ChartsManager.defaults.secondaryBackColor,
+                        d.icon.color || ChartsManager.defaults.backColor,
                         { height: _opts.bars.legend.icon.height, width: dx, dy: _opts.bars.legend.icon.dy || 0 },
                     true);
                 }
@@ -337,7 +350,7 @@ function chartGridVertical(settings) {
                 var g0 = d3.select(this);
                 var data = d.value;
                 var h = self.yScale(d.value);
-                
+
                 var barIn = g0.selectAll('[bar-body]');
                 self.translate(barIn, 0, -h);
 //                self.translate(barIn, -30, -h);
@@ -392,6 +405,29 @@ function chartGridVertical(settings) {
             .duration(barDuration * 2.3)
             .delay(barsDelay)
             .attr('r', _opts.bars.pointMaskRadius);
+
+        var dx = self.w / self.data.length;
+        var frame = { // copy
+            w: dx,
+            h: self.h - _opts.bars.legend.height
+        };
+
+        var valuesPath = _.map(self.data, function(d, i) {
+            var h = self.yScale(d.value);
+            return String.format('{0}{1},{2}', i === 0 ? 'M' : 'L', dx * (i + .5), frame.h - h);
+        }).join('');
+
+        self.__graph.selectAll('path')
+            .attr('d', valuesPath);
+
+        self.__graph.style('opacity', 0);
+        self.__graph.transition()
+            .remove();
+        self.__graph.transition()
+            .ease('linear')
+            .duration(barDuration * 7.5)
+            .delay(0)
+            .style('opacity', .75);
 
     }
 

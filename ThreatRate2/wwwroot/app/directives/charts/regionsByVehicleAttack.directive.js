@@ -150,7 +150,7 @@
                         _cont.append('div')
                             .attr('class', 'value-title')
                             .append('h3')
-                            .style('color', d.color)
+//                            .style('color', d.color)
                             .html(d.value);
 
                         // transitions

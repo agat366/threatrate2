@@ -46,7 +46,7 @@
                             name: 'countries.' + d.name,
                             scale: { width: 50, height: 50 }
                             };
-                        d.titleColor = d.color;
+//                        d.titleColor = d.color;
 
                     }
 //                    var maxValue = _.max(_.map(data, function (el) { return el.value; }));

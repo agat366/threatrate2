@@ -41,7 +41,7 @@
                         d.color = i < colors.length ? colors[i] : colors[0],
                         d.icon = {
                             name: 'countries.' + d.name,
-                            scale: { width: 50, height: 50 }
+                            scale: { width: 45, height: 45 }
                         };
 
                     }

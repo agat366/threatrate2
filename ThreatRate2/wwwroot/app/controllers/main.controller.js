@@ -48,6 +48,7 @@
             {
                 id: 'ageGroupsByKidnap',
                 title: '05 - Age Groups by Kidnapping',
+                default: false,
                 service: function () {
                     return dataService.ageGroupsByKidnap({from: null, to: null});
                 }
@@ -160,7 +161,7 @@
             {
                 id: 'countriesByKidnapByGender',
                 title: '21 - Countries most kidnapped at by gender// June 2010 - March 2017',
-                default: true,
+//                default: true,
                 service: function () {
                     return dataService.countriesByKidnapByGender({top: 11, from: null, to: null});
                 }
@@ -210,7 +211,7 @@
             {
                 id: 'regionsByKidnapDurationAndRansom',
                 title: '28 - REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION',
-                default: true,
+//                default: true,
                 service: function () {
                     return dataService.regionsByKidnapDuration({from: null, to: null});
                 }
@@ -224,6 +225,7 @@
             }*/,
             {
                 id: 'countriesByForeignersVsLocalsKidnapTop10',
+                default: true,
                 title: '30 - REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION FOR SINGLE AND MULTIPLE KIDNAPPING',
                 service: function () {
                     return dataService.countriesByForeignersVsLocalsKidnap({ top: 10, from: null, to: null});

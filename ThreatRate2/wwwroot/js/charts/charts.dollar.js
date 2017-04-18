@@ -220,8 +220,8 @@ function chartDollar(settings) {
                 title.append('text')
                     .text(d.valueTitle || d.value).attr({
                         'text-anchor': 'middle',
-                        'dominant-baseline': 'central',
-                        fill: ChartsManager.defaults.frontColor, 'dynamic-color': d.color
+                        'dominant-baseline': 'central'/*,
+                        fill: ChartsManager.defaults.frontColor, 'dynamic-color': d.color*/
                     });
 
                 if (d.valueTitle2) {

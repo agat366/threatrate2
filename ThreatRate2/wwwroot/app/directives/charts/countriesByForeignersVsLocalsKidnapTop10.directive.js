@@ -60,7 +60,7 @@
                                 d.value2Title = (Math.round(d.value / it.total * 1000) / 10) + '%';
                                 d.color = j < colors.length ? colors[j] : colors[colors.length - 1],
                                 d.icon = null;
-                                d.titleColor = d.color;
+//                                d.titleColor = d.color;
 
                                 d.value = i === 0 ? d.value : (maxValue - d.value);
 
@@ -80,9 +80,12 @@
                                     }
                                 },
                                 bars: {
+                                    graph: {
+                                        dy: i === 0 ? 0 : -65
+                                    },
                                     maxValue: maxValue,
                                     maxValueRangeMultiplier: 1.55,
-                                                                         icon: {
+                                    icon: {
                                         name: i === 0 ? 'signs.foreigner' : 'signs.local',
                                         height: 25,
                                         dx: 0,

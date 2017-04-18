@@ -215,36 +215,34 @@ function chart3DBarVertical(settings) {
 
 
                 // bar body
-                var barBody = bar.append('g');
+                var barBodyOut = bar.append('g');
+                self.translate(barBodyOut, 0, barFrame.inner.h);
+                var barBody = barBodyOut.append('g')
+                    .attr('chart-bar', '');
 //                self.translate(barBody, 0, barFrame.inner.h - h);
 
-                var path = String.format('M0,{0}', barFrame.inner.h - h);
-                path += String.format(' l{0},{1}', 0, h);
-                path += String.format(' A{0},20,0,0,0,{2},{3}', barFrame.inner.w / 2, 15, barFrame.inner.w, barFrame.inner.h);
-                path += String.format(' l{0},{1}', 0, -h);
-                path += String.format(' L{2},{3}', barFrame.inner.w / 2, 15, 0, barFrame.inner.h - h);
-                path += String.format('z');
+                var path = '';
                 barBody.append('path')
                     .attr('d', path)
                     .attr({
-                        width: barFrame.inner.w, height: barFrame.inner.h,
-                        fill: d.color || _opts.bars.backColor
+//                        width: barFrame.inner.w, height: barFrame.inner.h,
+                        fill: _opts.bars.backColor
                     });
                 barBody.append('ellipse')
                     .attr({
                         cx: barFrame.inner.w / 2,
-                        cy: barFrame.inner.h - h,
+                        cy: 0,
                         rx: barFrame.inner.w / 2,
                         ry: 20,
-                        fill: d.color || _opts.bars.backColor
+                        fill: _opts.bars.backColor
                     });
                 barBody.append('ellipse')
                     .attr({
                         cx: barFrame.inner.w / 2,
-                        cy: barFrame.inner.h - h,
+                        cy: 0,
                         rx: barFrame.inner.w / 2,
                         ry: 20,
-                        fill: 'rgba(0,0,0,.1)',
+                        fill: 'rgba(0,0,0,.1)'
 //                        stroke: 'rgba(0,0,0,.1)',
 //                        'stroke-width': .5
                     });
@@ -279,7 +277,9 @@ function chart3DBarVertical(settings) {
                 // value
                 var barValue = bar.append('g')
                     .attr('class', 'value-title');
-                barValue.append('text')
+                var barValueIn = barValue.append('g')
+                    .attr('chart-value', '');
+                barValueIn.append('text')
                     .text(d.valueTitle || d.value);
                 self.translate(barValue, barFrame.inner.w / 2, -45);
 
@@ -293,10 +293,10 @@ function chart3DBarVertical(settings) {
     }
 
     function animateChanges(callback) {
-        return;
-        var barsDelay = 25;
+
+        var barsDelay = 35 * 0;
         var barRowsDelay = 8;
-        var barDuration = 400;
+        var barDuration = 500;
 
         self._c.selectAll('g[data-eltype="bars"]').data(self.data);
         d3.selectAll(self._c[0][0].childNodes)//.filter('.f-bar-value')
@@ -307,29 +307,67 @@ function chart3DBarVertical(settings) {
                 var g0 = d3.select(this);
                 var data = d.value;
 
-                var dotsLine = g0.selectAll('.dots-container>g');
-                _.each(dotsLine[0], function (ln, i) {
-                    var g = d3.select(ln).selectAll('circle');
+                var h = self.yScale(d.value);
+                var dx = self.w / self.data.length - _opts.bars.margin.left - _opts.bars.margin.right;
+                var barWidth = dx;
 
-                    g.transition()
-                        .remove();
-                    g.transition()
-                        .ease('exp-out')
-                        .duration(barDuration)
-                        .delay(i * barRowsDelay + i0 * barsDelay)
-                        .attr('r', _opts.bars.dotRadius);
-                });
+                var valueCore = g0.selectAll('[chart-value]');
+                var barOut = g0.selectAll('[chart-bar]');
 
-                var valueCore = g0.selectAll('.value-core');
-                var dx = d3.transform(valueCore.attr('transform')).translate[0];
+                valueCore
+                    .attr('transform', self.formatTranslate(-25, 0))
+                    .style('opacity', 0);
+
                 valueCore.transition()
                     .remove();
                 valueCore.transition()
                     .ease('cubic-out')
                     .duration(barDuration * 1.2)
                     .delay(i0 * barsDelay)
-                    .attr('transform', self.formatTranslate(dx, 0))
+                    .attr('transform', self.formatTranslate(0, 0))
                     .style('opacity', 1);
+
+                /// bar
+
+                var bar = barOut.selectAll('path');
+                bar.attr('d', getPath(0, barWidth));
+
+                barOut.transition()
+                    .remove();
+                barOut.transition()
+                    .ease('cubic-out')
+                    .duration(barDuration * 1.2)
+                    .delay(i0 * barsDelay)
+                    .attr('transform', self.formatTranslate(0, -h));
+
+                bar.transition()
+                    .remove();
+                bar.transition()
+                    .ease('cubic-out')
+                    .duration(barDuration * 1.2)
+                    .delay(i0 * barsDelay)
+                    .attr('fill', d.color)
+                    .attr('d', getPath(h, barWidth));
+
+                var ellipse = d3.select(barOut.selectAll('ellipse')[0][0]);
+                ellipse.transition()
+                    .remove();
+                ellipse.transition()
+                    .ease('cubic-out')
+                    .duration(barDuration * 1.2)
+                    .delay(i0 * barsDelay)
+                    .attr('fill', d.color);
+
+                function getPath(height, width) {
+                    var path = String.format('M0,{0}', 0);
+                    path += String.format(' l{0},{1}', 0, height);
+                    path += String.format(' A{0},20,0,0,0,{2},{3}', width / 2, 15, width, height);
+                    path += String.format(' l{0},{1}', 0, -height);
+//                    path += String.format(' L{2},{3}', width / 2, 15, 0, -height);
+                    path += String.format('z');
+
+                    return path;
+                }
             });
     }
 

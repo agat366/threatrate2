@@ -53,8 +53,8 @@ function chartLevelsVertical(settings) {
                 bottom: 0
             }
 
-            d.bars.maxValue = 100;
-            d.bars.maxValueRangeMultiplier = 1.05;
+//            d.bars.maxValue = 100;
+            d.bars.maxValueRangeMultiplier = 1;
 
             return d;
         }
@@ -131,7 +131,7 @@ function chartLevelsVertical(settings) {
                         'transform': self.formatTranslate(dx / 2,
                             d.icon ? _opts.bars.legend.height - 30 : _opts.bars.legend.height / 2)
                     });
-                self.appendTextMultiline(legendGroup, d.title, {separator: '-'});
+                self.appendTextMultiline(legendGroup, d.title, dx - 4);
 
                 if (d.icon) {
                     var iconGroup = legend.append('g');
@@ -160,7 +160,7 @@ function chartLevelsVertical(settings) {
                             height: brickDy,
                             transform: self.formatTranslate(0, barHeight - brickDy * j * 2)
                         });
-                    var value = d.value;
+                    var value = d.value / self.maxRangeValue * 100;
                     var animatedValue;
                     var color;
                     var opacity = 0;

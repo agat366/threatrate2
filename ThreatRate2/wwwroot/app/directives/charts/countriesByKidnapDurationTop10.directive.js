@@ -151,7 +151,7 @@
                     });
 
                     // levels
-                        var maxValue2 = _.max(_.map(data, function (el) { return el.value; }));
+                        var maxValue2 = _.max(_.map(data, function (el) { return el.ransom; }));
 
                         var options = {
                             bars: {
@@ -177,7 +177,7 @@
                         var graphPrepared = _.map(data,
                             function (d, i) {
                                 var result = {
-                                    value: d.value,
+                                    value: d.ransom,
                                     color: i < colors.length ? colors[i] : colors[colors.length - 1],
                                     title: d.title,
                                     icon: {

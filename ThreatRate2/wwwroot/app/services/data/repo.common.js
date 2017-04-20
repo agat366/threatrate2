@@ -9,7 +9,7 @@
             function(dataContext, common) {
 
                 var context = dataContext.context({
-                    controller: 'v3'
+                    controller: 'v1'
                 });
 
                 var titles = [
@@ -862,6 +862,9 @@
                     params = params || {};
 
                     var def = $q.defer();
+
+                    params.id = '19900101';
+                    params.id2 = 20180101;
 
                     context.get('countriesByKidnap', params)
                         .then(function (result) {

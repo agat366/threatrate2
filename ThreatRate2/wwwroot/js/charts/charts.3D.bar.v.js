@@ -178,7 +178,7 @@ function chart3DBarVertical(settings) {
                     }
                 }
 
-                var legendTitle = self.translate(self.appendTextMultiline(legend.append('g'), d.title, null),
+                var legendTitle = self.translate(self.appendTextMultiline(legend.append('g'), d.title, dx - 4),
                     dx / 2, _opts.legend.height - _opts.legend.title.height);
 
 

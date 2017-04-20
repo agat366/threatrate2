@@ -176,6 +176,7 @@
             {
                 id: 'countriesByKidnapDurationTop10',
                 title: '23 - Countries by kidnap duration and ransom',
+                default: true,
                 service: function () {
                     return dataService.countriesByKidnapDuration({top: 11, from: null, to: null});
                 }
@@ -225,7 +226,6 @@
             }*/,
             {
                 id: 'countriesByForeignersVsLocalsKidnapTop10',
-                default: true,
                 title: '30 - REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION FOR SINGLE AND MULTIPLE KIDNAPPING',
                 service: function () {
                     return dataService.countriesByForeignersVsLocalsKidnap({ top: 10, from: null, to: null});

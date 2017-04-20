@@ -54,7 +54,7 @@
                             it.icon = {
                                 name: ChartsManager.paths.signs.person2,
                                 color: ChartsManager.defaults.secondaryBackColor,
-                                dy: 0
+                                dy: -3
                             }
                         });
 
@@ -68,6 +68,9 @@
                             width: 90,
                             margin: {
                                 left: 25
+                            },
+                            legend: {
+                                height: 110
                             }
                         },
                         layout: {

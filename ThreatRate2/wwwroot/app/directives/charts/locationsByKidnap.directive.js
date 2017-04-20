@@ -55,14 +55,14 @@
                                 }
                             },
                             legend: {
-                                height: 100,
+                                height: 135,
                                 title: {
-                                    height: 30,
+                                    height: 50,
                                     color: ChartsManager.defaults.darkColor
                                 },
                                 icon: {
                                     scale: 1.4,
-                                    dy: -5
+                                    dy: -7
                                 }
                             }
                         };

@@ -1,7 +1,7 @@
 ﻿.chart-top-bagels {
     border-bottom: 1px solid #ccc;
     padding-bottom: 15px;
-  
+
     h3 {
         font-size: 28px;
         text-align: center;
@@ -47,8 +47,13 @@
                 width: 50px;
                 margin: 60px auto 0px;
             }
-            span{
+
+            span {
                 font-size: 11px;
+                display: block;
+                width: 85px;
+                margin: 0 auto;
+                line-height: 14px;
             }
         }
     }

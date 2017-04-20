@@ -5,9 +5,9 @@
     var apiRootUrl = 'api';
     angular.module('tr').factory(serviceId,
     [
-        '$resource', 'common',
-    function ($resource, common) {
-        var resource = $resource(apiRootUrl + '/:controller/:action/:id',
+        '$resource', 'common', 'config',
+    function ($resource, common, config) {
+        var resource = $resource(apiRootUrl + '/:controller/:action/:id/:id2',
             { action: '@action', controller: '@controller' },
             { 'put': { method: 'PUT', headers: { 'Content-Type': 'application/json' } } },
             { 'get': { method: 'GET', headers: { 'Content-Type': 'application/json' } } },
@@ -40,13 +40,17 @@
 
             resourceMethod.apply(resource, params)
                 .$promise
-                .then(function(result) {
-                        def.resolve(result);
+                .then(function(response) {
+                        def.resolve(response.result);
                     },
-                    function(e) {
-                        processRequestError(e);
-                        def.reject(e);
+                    function(response) {
+                        processRequestError(response);
+                        def.reject(response);
                     });
+
+            if (config.liveData === false) {
+                def.reject({});
+            }
 
             return def.promise;
         }

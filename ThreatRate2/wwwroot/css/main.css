@@ -345,7 +345,7 @@ h1, h2, h3, h4, h5, h6 {
       text-align: center; }
   .chart-kidnap-by-location .chart-body {
     width: 900px;
-    height: 500px; }
+    height: 535px; }
 
 .chart-3d-bars .value-title text {
   font-size: 28px; }
@@ -392,7 +392,11 @@ h1, h2, h3, h4, h5, h6 {
         width: 50px;
         margin: 60px auto 0px; }
       .chart-top-bagels .top-item .item-core span {
-        font-size: 11px; }
+        font-size: 11px;
+        display: block;
+        width: 85px;
+        margin: 0 auto;
+        line-height: 14px; }
 
 .chart-levels {
   margin-top: 20px;

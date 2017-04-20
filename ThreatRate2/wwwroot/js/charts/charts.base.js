@@ -67,17 +67,58 @@ function chartBase(itemToInherit) {
         return element.attr('transform', self.formatTranslate(dx || 0, dy || 0));
     };
 
-    self.appendTextMultiline = function(container, text, params) {
-        params = params || {};
+    self.isNumeric = function (n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    };
+    
+    self.appendTextMultiline = function (container, text, paramsOrWidth) {
+
+        var params;
+        if (self.isNumeric(paramsOrWidth)) {
+            params = { width: paramsOrWidth };
+        } else {
+            params = paramsOrWidth || {};
+        }
         var anchor = params.anchor || 'middle';
-        var baseline = params.baselineShift || 'central';
+//        var baseline = params.baselineShift || 'central';
         var separator = params.separator || '\n';
         var addGroupWrapper = params.group !== false;
+        var width = params.width || 50;
 
         var group = addGroupWrapper ? container.append('g') : container;
 
         text = text || '';
-        var textGroups = (text + '').split(separator);
+        var textGroups;
+        if (params.separator) {
+            textGroups = (text + '').split(separator);
+        } else {
+            textGroups = [];
+            console.log(text);
+            var wordsBlocks = (text + '').match(/\S+\s*/g);
+            var currentOk = '';
+            _.each(wordsBlocks, function(block, i) {
+                var testText = currentOk + block;
+                var text = group.append('text').text(testText)
+                    .attr('fill', 'transparent').style('fill', 'transparent');
+                var box = text.node().getBBox();
+                text.remove();
+                if (box.width <= width) {
+                    currentOk = testText;
+                } else {
+                    if (currentOk) {
+                        textGroups.push(currentOk);
+                        currentOk = block;
+                    } else {
+                        textGroups.push(testText);
+                    }
+                }
+                if (i === wordsBlocks.length - 1) {
+                    if (currentOk) {
+                        textGroups.push(currentOk);
+                    }
+                }
+            });
+        }
         var total = textGroups.length;
 
         if (total === 0) {
@@ -86,7 +127,7 @@ function chartBase(itemToInherit) {
             group.append('text')
                 .text(text)
                 .attr('text-anchor', anchor)
-                .attr('dominant-baseline', baseline);
+//                .attr('dominant-baseline', baseline);
         } else {
             var dy = null;
             for (var i = 0; i < total; i++) {
@@ -100,7 +141,7 @@ function chartBase(itemToInherit) {
                 var y = dy * (Math.round(i + 1 - total / 2 - .5) - (1 - (total % 2)) * .5);
                 txt.attr('transform', self.formatTranslate(0, y))
                     .attr('text-anchor', anchor)
-                    .attr('dominant-baseline', baseline);
+//                    .attr('dominant-baseline', baseline);
             }
         }
 

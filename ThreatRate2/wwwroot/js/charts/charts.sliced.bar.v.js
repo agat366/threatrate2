@@ -161,7 +161,9 @@ function chartSlicedBarVertical(settings) {
                 if (d.icon) {
                     var icon = self.translate(legend.append('g'),
                         barFrame.w / 2 + (d.icon.dx || 0),
-                        (_opts.legend.height - _opts.legend.title.height) / 2 + (d.icon.dy || 0));
+                        (_opts.legend.height - _opts.legend.title.height) / 2 +
+                        (_opts.legend.icon.dy || 0) +
+                        (d.icon.dy || 0));
                     if (typeof d.icon === 'string') {
                         manager.renderImage(icon, d.icon, _opts.legend.icon.color);
                     } else {
@@ -174,12 +176,12 @@ function chartSlicedBarVertical(settings) {
                 } 
                 var legendTitle = legend.append('g')
                     .attr('class', 'legend-title');
-                var legendTitleText = self.translate(self.appendTextMultiline(legendTitle, d.title, null),
+                var legendTitleText = self.translate(self.appendTextMultiline(legendTitle, d.title, dx - 4 /*barFrame.inner.w*/),
                     dx/2, _opts.legend.height - _opts.legend.title.height + (_opts.legend.title.dy || 0));
 
                 var legendTitle2 = legend2.append('g')
                     .attr('class', 'legend2-title');
-                var legendTitle2Text = self.translate(self.appendTextMultiline(legendTitle2, d.title2, null),
+                var legendTitle2Text = self.translate(self.appendTextMultiline(legendTitle2, d.title2, dx - 4/*barFrame.inner.w*/),
                     dx/2, _opts.legend.height - 10);// _opts.legend.title.height);
 
                 // background

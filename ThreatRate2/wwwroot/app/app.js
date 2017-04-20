@@ -10,6 +10,7 @@
         ]);
 
     var config = {
+        liveData: false,
         routeUrl: '',
         chartDirectivesPath: '/app/directives/charts'
     };

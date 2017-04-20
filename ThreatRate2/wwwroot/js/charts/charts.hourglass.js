@@ -203,7 +203,8 @@ function chartHourglass(settings) {
 
                 // value bar
                 var valueBar = mask.append('g')
-                    .attr('transform', self.formatTranslate(0, initialHourglasHeight - 2 * scale));
+//                    .attr('transform', self.formatTranslate(0, initialHourglasHeight - 2 * scale));
+                    .attr('transform', self.formatTranslate(0, initialHourglasHeight / 1.039));
                 var valueBarIn = valueBar.append('g')
                     .attr('bar-body', '');
                 var valueRect = valueBarIn.append('rect')
@@ -216,7 +217,7 @@ function chartHourglass(settings) {
                 if (i === 0) {
                     self.yScale = d3.scale.linear()
                         .domain([0, self.maxRangeValue])
-                        .range([0, initialHourglasHeight / 2 - 2 * scale]);
+                        .range([0, initialHourglasHeight / 2 / (1 + .022 + .039)]);
                 }
                 // titles
                 var title = barIn.append('g')
@@ -267,8 +268,8 @@ function chartHourglass(settings) {
 
                 /// grid
                 if (i === 0) {
-                    var yUp = _opts.bars.margin.top + frame.inner.h / 2 + (1 * scale);
-                    var yBottom = yUp + frame.inner.h / 2 - (10 * scale);
+                    var yUp = _opts.bars.margin.top + frame.inner.h / 2 + (initialHourglasHeight * .022 * scale);
+                    var yBottom = yUp + (initialHourglasHeight / 2 * scale - initialHourglasHeight * (.022 + .039) * scale);
                     var dy = (yBottom - yUp) / _opts.layout.rows.count;
                     for (var j = 0; j <= _opts.layout.rows.count; j++) {
                         var y = yUp + j * dy;
@@ -311,7 +312,7 @@ function chartHourglass(settings) {
                     .ease('cubic-out')
                     .duration(barDuration * 1.2)
                     .delay(i0 * barsDelay)
-                    .attr('transform', self.formatTranslate(0, -h-2))
+                    .attr('transform', self.formatTranslate(0, -h))
                     .style('opacity', 1);
 
 

@@ -59,7 +59,10 @@
                                     right: 40
                                 },
                                 title: {
-//                                    dy: 0
+                                    dy: -10
+                                },
+                                title2: {
+                                    dy: -45
                                 },
                                 legend: {
                                     icon: {

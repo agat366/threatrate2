@@ -142,8 +142,8 @@ function chartGridVertical(settings) {
         var chartFrame = {
             w: self.w,
             h: self.h,
-            top: _opts.layout.padding.top,
-            left: _opts.layout.padding.left
+            top: 0,//_opts.layout.padding.top,
+            left: 0//_opts.layout.padding.left
         }
         var horizonatlGrid = self._gr.append('g');
         self.translate(horizonatlGrid, chartFrame.left, chartFrame.top + _opts.layout.rows.dy);
@@ -158,7 +158,8 @@ function chartGridVertical(settings) {
         }
 
         self.__graph = horizonatlGrid.append('g')
-            .attr('transform', self.formatTranslate(_opts.bars.graph.dx || 0, _opts.bars.graph.dy || 0));
+            .attr('transform', self.formatTranslate(_opts.bars.graph.dx || 0,
+                4 + (_opts.bars.graph.dy || 0)));
 
         self.__graph.append('path')
             .attr({

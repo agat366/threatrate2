@@ -221,7 +221,8 @@ function chartHourglass(settings) {
                 }
                 // titles
                 var title = barIn.append('g')
-                    .attr('transform', self.formatTranslate(0, 60 + _opts.bars.title.dy))
+                    .attr('transform', self.formatTranslate(0, initialHourglasHeight * .22 * scale
+                        + _opts.bars.title.dy))
                     .attr('class', 'value-title');
                 title.append('text')
                     .text(d.value).attr({
@@ -231,7 +232,8 @@ function chartHourglass(settings) {
                     });
 
                 var title2 = barIn.append('g')
-                    .attr('transform', self.formatTranslate(0, 95 + _opts.bars.title2.dy))
+                    .attr('transform', self.formatTranslate(0, initialHourglasHeight * .425 * scale
+                        + _opts.bars.title2.dy))
                     .attr('class', 'value-title2');
                 title2.append('text')
                     .text(d.valueTitle).attr({

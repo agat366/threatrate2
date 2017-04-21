@@ -38,8 +38,8 @@
                         testModeGeneral = 0;
                     }
 
-                    var testMode = testModeGeneral / 2 >= 1 ? 1 : 0;
-                    var testMode2 = testModeGeneral % 2;
+                    var testMode = 0;// testModeGeneral / 2 >= 1 ? 1 : 0;
+                    var testMode2 = 0;//testModeGeneral % 2;
 
                     data = _.sortBy(data, 'value').reverse().slice(0, 3);
                     _.each(data, function (d, i) {

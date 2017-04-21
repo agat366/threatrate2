@@ -90,8 +90,8 @@
                         testModeGeneral = 0;
                     }
 
-                    var testMode = testModeGeneral / 2 >= 1 ? 1 : 0;
-                    var testMode2 = testModeGeneral % 2;
+                    var testMode = 0;// testModeGeneral / 2 >= 1 ? 1 : 0;
+                    var testMode2 = 0;// testModeGeneral % 2;
 
                     data = _.sortBy(data, 'value').reverse().slice(0, 3);
                     _.each(data, function(d, i) {
@@ -318,6 +318,7 @@
 //                            ChartsManager.defaults.frontColor,
 //                            { width: 250, height: 250, position: 0 }, true);
 
+/*
                         var clock = g.append('g')
                             .attr('transform', 'translate(0, 30)');
 
@@ -331,6 +332,7 @@
                         ChartsManager.renderImage(clock,
                             ChartsManager.paths.signs.clock, '#fff',
                             { width: 40, height: 40, position: 0, dy: 0 }, true);
+*/
 
                         g.append('g')
                             .attr('class', 'value-title')

@@ -858,7 +858,7 @@
                     return countriesByKidnap(params);
                 }
 
-                function countriesByKidnap(params) {
+                function countriesByKidnap(params, liveData) {
                     params = params || {};
 
                     var def = $q.defer();
@@ -866,7 +866,7 @@
                     params.id = '19900101';
                     params.id2 = 20180101;
 
-                    context.get('countriesByKidnap', params)
+                    context.get(liveData ? 'countriesByKidnap' : 'prevent-loading-not-live', params)
                         .then(function (result) {
                             def.resolve(result);
                         }).catch(function () {

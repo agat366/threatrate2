@@ -12,9 +12,15 @@
     <Content Include="wwwroot\app\app.js" />
     <Content Include="wwwroot\app\controllers\main.controller.js" />
     <Content Include="wwwroot\app\directives\chartIcon.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop10 - Copy.directive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop5.html" />
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop5.scss" />
     <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop10.directive.js" />
     <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop10.html" />
     <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop10.scss" />
+    <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop5.directive.js" />
     <Content Include="wwwroot\app\directives\charts\kidnapResults.directive.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

@@ -9,7 +9,7 @@
             function ($q, repo, repoLocations, repoMonths, repoAgeGroups, repoProfessionalGroups, repoRegions, repoAttacks, repoKidnap) {
 
                 function countriesByKidnap(params) {
-                    return repo.countriesByKidnap(params);
+                    return repo.countriesByKidnap(params, true);
                 }
 
                 function countriesByKidnapDuration(params) {

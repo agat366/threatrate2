@@ -56,6 +56,7 @@
             {
                 id: 'professionalGroupsByKidnap',
                 title: '06 - Professional Groups by Kidnapping',
+                default: false,
                 service: function () {
                     return dataService.professionalGroupsByKidnap({from: null, to: null});
                 }
@@ -176,7 +177,7 @@
             {
                 id: 'countriesByKidnapDurationTop10',
                 title: '23 - Countries by kidnap duration and ransom',
-                default: true,
+                default: false,
                 service: function () {
                     return dataService.countriesByKidnapDuration({top: 11, from: null, to: null});
                 }
@@ -216,14 +217,15 @@
                 service: function () {
                     return dataService.regionsByKidnapDuration({from: null, to: null});
                 }
-            }/*,
+            },
             {
-                id: 'kidnapResults',
-                title: '29 - KIDNAP RESULTS - KILLED, RELEASED, ESCAPED, RESCUED',
+                default: true,
+                id: 'countriesByForeignersVsLocalsKidnapTop5',
+                title: '29 - TOP 5 COUNTRIES FOR FOREIGNERS KIDNAPPING VERSUS TOP 5 COUNTRIES FOR LOCALS KIDNAPPINGS',
                 service: function () {
-                    return dataService.kidnapResults({from: null, to: null});
+                    return dataService.countriesByForeignersVsLocalsKidnap({ top: 5, from: null, to: null });
                 }
-            }*/,
+            },
             {
                 id: 'countriesByForeignersVsLocalsKidnapTop10',
                 title: '30 - REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION FOR SINGLE AND MULTIPLE KIDNAPPING',

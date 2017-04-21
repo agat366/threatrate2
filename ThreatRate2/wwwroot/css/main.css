@@ -805,9 +805,15 @@ h1, h2, h3, h4, h5, h6 {
       font-size: 20px;
       font-weight: 700;
       color: #e1482c; }
+    .chart-countries-kidnap-duration-ransom .comparer .value-title text {
+      font-size: 36px; }
+    .chart-countries-kidnap-duration-ransom .comparer .value-title2 text {
+      font-size: 18px; }
   .chart-countries-kidnap-duration-ransom .others {
     width: 950px;
     float: left; }
+    .chart-countries-kidnap-duration-ransom .others .duration {
+      height: 200px; }
     .chart-countries-kidnap-duration-ransom .others .sep {
       margin-top: 10px;
       border-top: 2px dashed #f4f4f4; }
@@ -826,6 +832,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 14px; }
   .chart-countries-kidnap-duration-ransom .chart-titles text {
     font-size: 13px; }
+  .chart-countries-kidnap-duration-ransom .legend2-title text {
+    font-size: 24px; }
 
 .chart-countries-kidnap-duration-ransom-grid {
   padding-top: 15px; }
@@ -1131,6 +1139,70 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 20px; }
   .chart-countries-ransom-top-5 .legend-title text {
     font-size: 18px; }
+
+.chart-locals-foreigners-kidnap-5 {
+  padding-left: 150px; }
+  .chart-locals-foreigners-kidnap-5 > * {
+    height: 220px;
+    position: relative; }
+    .chart-locals-foreigners-kidnap-5 > * h3 {
+      position: absolute;
+      transform: rotateZ(-90deg);
+      text-transform: uppercase;
+      transform-origin: 62px 132px; }
+    .chart-locals-foreigners-kidnap-5 > *.period {
+      height: 1px;
+      border-top: 2px dashed #333;
+      clear: both; }
+      .chart-locals-foreigners-kidnap-5 > *.period > * {
+        display: block;
+        position: relative;
+        width: 85px;
+        left: -150px;
+        padding: 5px;
+        border: 2px solid #e1482c;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+        top: -16px; }
+    .chart-locals-foreigners-kidnap-5 > * .core {
+      height: 292px; }
+      .chart-locals-foreigners-kidnap-5 > * .core [chart-body] {
+        height: 255px;
+        overflow: hidden; }
+      .chart-locals-foreigners-kidnap-5 > * .core .list {
+        height: 37px; }
+        .chart-locals-foreigners-kidnap-5 > * .core .list > * {
+          color: #fff;
+          font-weight: normal;
+          height: 37px;
+          float: left;
+          line-height: 37px;
+          font-weight: 700;
+          font-weight: normal;
+          font-size: 14px;
+          text-align: center;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          width: 12%;
+          margin: 0 5%;
+          position: relative; }
+          .chart-locals-foreigners-kidnap-5 > * .core .list > *:first-child {
+            margin-left: 0; }
+          .chart-locals-foreigners-kidnap-5 > * .core .list > *:last-child {
+            margin-right: 0; }
+          .chart-locals-foreigners-kidnap-5 > * .core .list > * > * {
+            position: absolute;
+            left: -50px;
+            top: -17px;
+            height: 50px;
+            width: 40px; }
+  .chart-locals-foreigners-kidnap-5 .bottom .list > * > * {
+    top: 6px; }
+  .chart-locals-foreigners-kidnap-5 .value-title text {
+    font-size: 20px; }
+  .chart-locals-foreigners-kidnap-5 .value2-title text {
+    font-size: 16px; }
 
 body {
   font-family: "Exo", sans-serif;

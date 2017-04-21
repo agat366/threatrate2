@@ -49,7 +49,7 @@
                     });
 
             if (config.liveData === false) {
-                def.reject({});
+//                def.reject({});
             }
 
             return def.promise;

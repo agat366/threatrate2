@@ -1,0 +1,93 @@
+﻿.chart-locals-foreigners-kidnap-5 {
+    padding-left: 150px;
+
+    > * {
+        height: 220px;
+        position: relative;
+
+        h3 {
+            position: absolute;
+            transform: rotateZ(-90deg);
+            text-transform: uppercase;
+            transform-origin: 62px 132px;
+        }
+
+        &.period {
+            height: 1px;
+            border-top: 2px dashed $dark;
+            clear: both;
+
+            > * {
+                display: block;
+                position: relative;
+                width: 85px;
+                left: -150px;
+                padding: 5px;
+                border: 2px solid $red;
+                font-size: 16px;
+                font-weight: $font-bold;
+                text-align: center;
+                top: -16px;
+            }
+        }
+
+        .core {
+            height: 255px + 37px;
+
+            [chart-body] {
+                height: 255px;
+                overflow: hidden;
+            }
+
+            .list {
+                height: 37px;
+                // background: $gray-light;
+
+                > * {
+                    color: #fff;
+                    font-weight: normal;
+
+                    height: 37px;
+                    float: left;
+                    line-height: 37px;
+                    font-weight: $font-bold;
+                    font-weight: normal;
+                    font-size: 14px;
+                    text-align: center;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    //overflow: hidden;
+                    width: 12%;
+                    margin: 0 5%;
+                    &:first-child{
+                        margin-left: 0;
+                    }
+                    &:last-child{
+                        margin-right: 0;
+                    }
+
+                    position: relative;
+                    > *{
+                        position: absolute;
+                        left: -50px;
+                        top: -17px;
+                        height: 50px;
+                        width: 40px;
+                    }
+                }
+            }
+        }
+    }
+
+    .bottom .list >*>*{
+        top: 6px;
+    }
+
+    .value-title text {
+        font-size: 20px;
+    }
+
+    .value2-title text {
+        font-size: 16px;
+    }
+}

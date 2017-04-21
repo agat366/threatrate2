@@ -121,7 +121,7 @@
                             options: options
                     });
 
-                        var options = {
+                        var optionsTop = {
                             layout: {
                                 rows: {
                                     count: 4
@@ -134,10 +134,10 @@
                                     right: 10
                                 },
                                 title: {
-                                    dy: -8
+                                    dy: -25
                                 },
                                 title2: {
-                                    dy: -25
+                                    dy: -55
                                 },
                                 legend: {
                                     isVisible: false
@@ -147,7 +147,7 @@
                         var ch = new chartHourglass({
                             data: dataPreparedTop,
                             container: comparerContainer[0],
-                            options: options
+                            options: optionsTop
                     });
 
                     // levels
@@ -158,11 +158,21 @@
                                 maxValue: maxValue2,
                                 maxValueRangeMultiplier: 1,
                                 title: {
-                                    height: 30
+                                    height: 0
                                 },
-                                width: 90,
+                                legend: {
+                                    height: 130,
+                                    dy: -15
+                                },
+                                legend2: {
+                                    dy: 0
+                                },
+                                graph: {
+                                    color: ChartsManager.defaults.frontColor
+                                },
+                                width: 56,
                                 margin: {
-                                    left: 25
+//                                    left: 25
                                 }
                             },
                             layout: {
@@ -178,13 +188,15 @@
                             function (d, i) {
                                 var result = {
                                     value: d.ransom,
+                                    valueTitle: null,
+                                    legendTitle2: d.ransom,
                                     color: i < colors.length ? colors[i] : colors[colors.length - 1],
                                     title: d.title,
                                     icon: {
                                         name: 'countries.' + d.name,
                                         scale: { width: 40, height: 40 },
                                         position: 0,
-                                        dy: -20,
+                                        dy: -35,
                                         dx: -15,
                                         toCenter: true
 

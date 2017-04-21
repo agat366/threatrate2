@@ -65,9 +65,12 @@
                             title: {
                                 height: 30
                             },
-                            width: 90,
-                            margin: {
-                                left: 25
+                            width: 56,
+//                            margin: {
+//                                left: 25
+//                            },
+                            graph: {
+                                color: ChartsManager.defaults.frontColor
                             },
                             legend: {
                                 height: 110

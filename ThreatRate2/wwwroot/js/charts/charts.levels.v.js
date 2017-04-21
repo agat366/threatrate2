@@ -19,11 +19,15 @@ function chartLevelsVertical(settings) {
             var d = {
                 layout: {},
                 bars: {
-                    width: 80,
                     bar: {
                         colorUpper: '#eee',
                         colorLower: '#888'
 //                        heightDefault: 100
+                    },
+                    graph: {
+                        color: ChartsManager.defaults.secondaryBackColor,
+                        dx: 0,
+                        dy: 0
                     },
                     title: {
                         height: 40
@@ -37,10 +41,14 @@ function chartLevelsVertical(settings) {
                             dy: 1
                         }
                     },
+                    legend2: {
+                        height: 0
+                    },
+                    width: 80,
                     margin: {
                         top: 0,
-                        left: 9,
-                        right: 9,
+//                        left: 9,
+//                        right: 9,
                         bottom: 5
                     }
                 }
@@ -94,6 +102,23 @@ function chartLevelsVertical(settings) {
 
     function bindData() {
 
+        var graph = self._gr.append('g');
+
+        self.__graph = graph
+            .attr('transform', self.formatTranslate(_opts.bars.graph.dx || 0, 1.5 + (_opts.bars.graph.dy || 0)));
+
+        self.__graph.append('path')
+            .attr({
+                stroke: _opts.bars.graph.color,
+                'stroke-width': 2,
+                'stroke-dasharray': '6,6',
+                fill: 'none'
+            });
+
+        var barHeight = _opts.bars.bar.height ||
+            (self.h - _opts.bars.title.height - _opts.bars.legend.height);
+        barHeight -= _opts.bars.margin.top + _opts.bars.margin.bottom;
+
         var stuff = self._c.selectAll('g').data(self.data)
             .enter().append('g')
             .each(function(d, i) {
@@ -115,9 +140,6 @@ function chartLevelsVertical(settings) {
 //                            .style({ fill: '#e9e9e9' });
 
 
-                var barHeight = _opts.bars.bar.height ||
-                    (self.h - _opts.bars.title.height - _opts.bars.legend.height);
-                barHeight -= _opts.bars.margin.top + _opts.bars.margin.bottom;
 
                 // legend (titles within grey boxes) title
                 var legend = item.append('g')
@@ -129,7 +151,8 @@ function chartLevelsVertical(settings) {
                 var legendGroup = legend.append('g')
                     .attr({
                         'transform': self.formatTranslate(dx / 2,
-                            d.icon ? _opts.bars.legend.height - 30 : _opts.bars.legend.height / 2)
+                            (_opts.bars.legend.dy || 0) +
+                            (d.icon ? _opts.bars.legend.height - 30 : _opts.bars.legend.height / 2))
                     });
                 self.appendTextMultiline(legendGroup, d.title, dx - 4);
 
@@ -143,20 +166,37 @@ function chartLevelsVertical(settings) {
                         (_opts.bars.legend.height - 30) / 2 + (d.icon.dy || _opts.bars.legend.icon.dy));
                 }
 
+                if(d.legendTitle2 !== undefined) {
+                    var legend2 = item.append('g')
+                        .attr('class', 'legend2-title')
+                        .attr('transform', self.formatTranslate(0, barHeight
+                            + _opts.bars.title.height
+                            + _opts.bars.margin.top + _opts.bars.margin.bottom
+//                            + (d.icon ? _opts.bars.legend.height - 30 : _opts.bars.legend.height / 2)
+                            + _opts.bars.legend.height
+                            - _opts.bars.legend2.height
+                        ));
 
+                    var legend2Group = legend2.append('g')
+                        .attr({
+                            'transform': self.formatTranslate(dx / 2, _opts.bars.legend2.dy)
+                        });
+                    self.appendTextMultiline(legend2Group, d.legendTitle2, dx - 4);
+                    
+                }
                 // dots values
                 var brickDy = barHeight / 20;
 
                 var bricksContainer = item.append('g')
                     .attr('class', 'bricks-container')
-                    .attr('transform', self.formatTranslate(_opts.bars.margin.left, self.h - _opts.bars.legend.height
+                    .attr('transform', self.formatTranslate((dx - _opts.bars.width) / 2, self.h - _opts.bars.legend.height
                         - _opts.bars.margin.bottom - barHeight));
 
                 var bricksParts = 10;
                 for (var j = 0; j < bricksParts; j++) {
                     var brick = bricksContainer.append('rect')
                         .attr({
-                            width: _opts.bars.width - _opts.bars.margin.left - _opts.bars.margin.right,
+                            width: _opts.bars.width/* - _opts.bars.margin.left - _opts.bars.margin.right*/,
                             height: brickDy,
                             transform: self.formatTranslate(0, barHeight - brickDy * j * 2)
                         });
@@ -187,37 +227,39 @@ function chartLevelsVertical(settings) {
                 }
 
                 // value
-                var valueContainer = item.append('g')
-                    .attr('transform', self.formatTranslate(0,
-                        self.h - _opts.bars.legend.height - barHeight
-                        - _opts.bars.margin.top
-                        - _opts.bars.margin.bottom
-                        - _opts.bars.title.height));
+                if(d.valueTitle !== null){
+                    var valueContainer = item.append('g')
+                        .attr('transform', self.formatTranslate(0,
+                            self.h - _opts.bars.legend.height - barHeight
+                            - _opts.bars.margin.top
+                            - _opts.bars.margin.bottom
+                            - _opts.bars.title.height));
 
-                var valueContainerIn = valueContainer.append('g')
-                    .attr('class', 'value-core')
-                    .attr('transform', self.formatTranslate(dx / 2, 10))
-                    .style('opacity', 0);
+                    var valueContainerIn = valueContainer.append('g')
+                        .attr('class', 'value-core')
+                        .attr('transform', self.formatTranslate(dx / 2, 10))
+                        .style('opacity', 0);
 
-                valueContainerIn.append('g')
-                    .attr('class', 'value-title')
-                    .attr('transform', self.formatTranslate(0, 0))
+                    valueContainerIn.append('g')
+                        .attr('class', 'value-title')
+                        .attr('transform', self.formatTranslate(0, 0))
 
-                    .append('text')
-                    .text(d.valueTitle || (!d.valueTitle2 ? d.value : ''))
-                    .attr({
-                        'text-anchor': 'middle',
-                        'alignment-baseline': 'middle'
-                    });
-
-                valueContainerIn.append('text')
-                    .text(d.valueTitle2)
-                    .attr('class', 'value-title2')
-                    .attr('transform', self.formatTranslate(0, 25))
-                    .attr({
-                        'text-anchor': 'middle',
-                        'alignment-baseline': 'middle'
-                    });
+                        .append('text')
+                        .text(d.valueTitle || (!d.valueTitle2 ? d.value : ''))
+                        .attr({
+                            'text-anchor': 'middle',
+                            'alignment-baseline': 'middle'
+                        });
+                    
+                        valueContainerIn.append('text')
+                            .text(d.valueTitle2)
+                            .attr('class', 'value-title2')
+                            .attr('transform', self.formatTranslate(0, 25))
+                            .attr({
+                                'text-anchor': 'middle',
+                                'alignment-baseline': 'middle'
+                            });
+                }
         });
     }
 
@@ -233,6 +275,7 @@ function chartLevelsVertical(settings) {
         barHeight -= _opts.bars.margin.top + _opts.bars.margin.bottom;
 
         var brickDy = barHeight / 20;
+        var points = [];
 
         self._c.selectAll('g[data-eltype="bars"]').data(self.data);
         d3.selectAll(self._c[0][0].childNodes)//.filter('.f-bar-value')
@@ -243,6 +286,7 @@ function chartLevelsVertical(settings) {
                 var g0 = d3.select(this);
                 var data = d.value;
 
+                var dy = null;
                 var bricks = g0.selectAll('.bricks-container rect');
                 _.each(bricks[0], function(ln, i) {
                     var g = d3.select(ln);
@@ -284,7 +328,7 @@ function chartLevelsVertical(settings) {
                             di = 9.5;
                         }
                         var functionDelay = barDuration - easeOutExpoReverse((di) / 10) / 10;
-                        console.log(i, functionDelay);
+//                        console.log(i, functionDelay);
                         trans
                             .duration(barDuration / 10)
                             .delay(functionDelay + i0 * barsDelay)
@@ -292,26 +336,65 @@ function chartLevelsVertical(settings) {
                     } else {
                         var valueInt = parseInt(val);
                         var h = Math.round(valueInt / 10 - .5) - (valueInt % 10 === 0 ? 1 : 0);
+                        var y = barHeight - brickDy * h * 2;
+
                         trans
                             .duration(barDuration)
                             .delay(i * barRowsDelay + i0 * barsDelay)
                             .attr({
-                            transform: self.formatTranslate(0, barHeight - brickDy * h * 2)
-                        });
+                            transform: self.formatTranslate(0, y)
+                            });
+                        dy = y;
                     }
                 });
+                if (dy === null) {
+                    var h = Math.round(0 / 10 - .5) - (0 % 10 === 0 ? 1 : 0);
+                    var dy = barHeight - brickDy * h * 2;
+                    points.push(dy);
+                } else {
+                    points.push(dy);
+                }
 
                 var valueCore = g0.selectAll('.value-core');
-                var dx = d3.transform(valueCore.attr('transform')).translate[0];
-                valueCore.transition()
-                    .remove();
-                valueCore.transition()
-                    .ease('cubic-out')
-                    .duration(barDuration * 1.2)
-                    .delay(i0 * barsDelay)
-                    .attr('transform', self.formatTranslate(dx, 0))
-                    .style('opacity', 1);
+                if (valueCore[0].length) {
+                    var dx = d3.transform(valueCore.attr('transform')).translate[0];
+                    valueCore.transition()
+                        .remove();
+                    valueCore.transition()
+                        .ease('cubic-out')
+                        .duration(barDuration * 1.2)
+                        .delay(i0 * barsDelay)
+                        .attr('transform', self.formatTranslate(dx, 0))
+                        .style('opacity', 1);
+                }
             });
+
+        var dx = self.w / self.data.length;
+        var frame = { // copy
+            w: dx,
+            h: self.h - _opts.bars.legend.height
+        };
+
+        var baseY = _opts.bars.title.height;
+        var valuesPath = _.map(points, function (p, i) {
+            var x1 = dx * i + (dx - _opts.bars.width) / 2;
+            var x2 = x1 + _opts.bars.width;
+            var dy = isNaN(p) ? barHeight : p;
+            return String.format('{0}{1},{3} L{2},{3} ', i === 0 ? 'M' : 'L', x1, x2, baseY + dy);
+        }).join('');
+
+        self.__graph.selectAll('path')
+            .attr('d', valuesPath);
+
+        self.__graph.style('opacity', 0);
+        self.__graph.transition()
+            .remove();
+        self.__graph.transition()
+            .ease('linear')
+            .duration(barDuration * 7.5)
+            .delay(0)
+            .style('opacity', 1);
+
     }
 
     prepareContainer();

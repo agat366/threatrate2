@@ -1,0 +1,33 @@
+﻿<div class="chart">
+    <div  class="chart-common chart-locals-foreigners-kidnap-5">
+        <div class="top">
+            <h3>Foreigners</h3>
+            <div class="core">
+                <div chart-body></div>
+                <div class="list">
+                    <div style="background: {{c.color}}" ng-repeat="c in foreign">
+                        <div chart-icon icon-name="countries.{{c.name}}" icon-color="{{c.color}}"></div>
+                        {{c.title}}
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+        <div class="period">
+            <span>1 year</span>
+        </div>
+        <div class="bottom">
+            <h3>Locals</h3>
+            <div class="core">
+                <div class="list">
+                    <div style="background: {{c.color}}" ng-repeat="c in local">
+                        <div chart-icon icon-name="countries.{{c.name}}" icon-color="{{c.color}}"></div>
+                        {{c.title}}
+                    </div>
+                </div>
+                <div chart-body></div>
+            </div>
+        </div>
+    </div>
+</div>

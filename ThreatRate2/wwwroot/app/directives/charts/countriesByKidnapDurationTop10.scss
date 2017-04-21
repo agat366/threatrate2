@@ -6,25 +6,36 @@
         width: 175px;
         height: 550px;
         border-right: 2px dashed $gray-light;
+
         & > * {
             margin-top: 40px;
             width: 175px;
             height: 450px;
         }
-        [chart-body]{
+
+        [chart-body] {
             height: 300px;
         }
-        [chart-icon]{
+
+        [chart-icon] {
             margin: 0 auto;
             width: 80px;
             height: 80px;
         }
-        h4{
+
+        h4 {
             margin-top: 8px;
             text-align: center;
             font-size: 20px;
             font-weight: 700;
             color: $red;
+        }
+
+        .value-title text {
+            font-size: 36px;
+        }
+        .value-title2 text {
+            font-size: 18px;
         }
     }
 
@@ -32,9 +43,10 @@
         width: 950px;
         float: left;
 
-        .duration{
-
+        .duration {
+            height: 200px;
         }
+
         .sep {
             margin-top: 10px;
             border-top: 2px dashed $gray-light;
@@ -47,7 +59,8 @@
                 height: 70px;
                 line-height: 70px;
             }
-                height: 70px;
+
+            height: 70px;
         }
 
         .graphs {
@@ -58,10 +71,15 @@
     .value-title text {
         font-size: 24px;
     }
+
     .value-title2 text {
         font-size: 14px;
     }
+
     .chart-titles text {
         font-size: 13px;
+    }
+    .legend2-title text {
+        font-size: 24px;
     }
 }

@@ -45,14 +45,18 @@
                             color: d.color,
                             scale: { width: 50, height: 50 }
                         };
-
+                        var barDelay = 100;
                         var options = {
+                                meta: {
+                                    startDelay: barDelay * i  
+                                },
                                 layout: {
                                     rows: {
                                         count: 4
                                     }
                                 },
                                 bars: {
+                                    fullFill: true,
                                     maxValue: maxValue,
                                     margin: {
                                         left: 40,

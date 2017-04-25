@@ -21,7 +21,7 @@
                 id: 'countriesByKidnap',
                 title: '01 - Highest kidnap countries',
                 service: function() {
-                    return dataService.countriesByKidnap();
+                    return dataService.countriesByKidnap({ top: 186 });
                 }
             },
             {
@@ -33,6 +33,7 @@
             },
             {
                 id: 'locationsByKidnap',
+                default: false,
                 title: '03 - Kidnap activity by location // AUG 2015 - AUG 2016',
                 service: function () {
                     return dataService.locationsByKidnap({from: null, to: null});
@@ -169,6 +170,7 @@
             },
             {
                 id: 'locationsByKidnapByGender',
+                default: true,
                 title: '22 - IS THERE A DIFFERENCE WHERE WOMEN GET KIDNAPPED FROM VERSUS MAN',
                 service: function () {
                     return dataService.locationsByKidnapByGender({top: 11, from: null, to: null});
@@ -219,7 +221,6 @@
                 }
             },
             {
-                default: true,
                 id: 'countriesByForeignersVsLocalsKidnapTop5',
                 title: '29 - TOP 5 COUNTRIES FOR FOREIGNERS KIDNAPPING VERSUS TOP 5 COUNTRIES FOR LOCALS KIDNAPPINGS',
                 service: function () {
@@ -227,10 +228,20 @@
                 }
             },
             {
+//                default: true,
                 id: 'countriesByForeignersVsLocalsKidnapTop10',
                 title: '30 - REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION FOR SINGLE AND MULTIPLE KIDNAPPING',
                 service: function () {
                     return dataService.countriesByForeignersVsLocalsKidnap({ top: 10, from: null, to: null});
+                }
+            },
+            {
+//                default: true,
+                id: 'countriesTest',
+                title: '-- - Countries test',
+                service: function () {
+                    vm.isLoading = false;
+                    return { then: function () { } };
                 }
             }
         ];
@@ -259,6 +270,10 @@
                 vm.isLoading = false;
             }
         }
-    }]);
+
+            vm.processCountries = function() {
+
+            };
+        }]);
     
 }(angular));

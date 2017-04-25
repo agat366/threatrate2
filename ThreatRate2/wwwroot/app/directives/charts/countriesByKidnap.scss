@@ -13,6 +13,10 @@
             padding: 3.5px 0;
             line-height: 12px;
 
+            &.empty{
+                opacity: .4;
+            }
+
             &:nth-child(odd) {
                 background: $gray-light;
             }

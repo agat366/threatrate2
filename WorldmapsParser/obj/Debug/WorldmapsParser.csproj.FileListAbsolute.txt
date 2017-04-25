@@ -1,0 +1,9 @@
+c:\projectsw\ThreatRate2\WorldmapsParser\bin\Debug\WorldmapsParser.exe.config
+c:\projectsw\ThreatRate2\WorldmapsParser\bin\Debug\WorldmapsParser.exe
+c:\projectsw\ThreatRate2\WorldmapsParser\bin\Debug\WorldmapsParser.pdb
+c:\projectsw\ThreatRate2\WorldmapsParser\obj\Debug\WorldmapsParser.csprojResolveAssemblyReference.cache
+c:\projectsw\ThreatRate2\WorldmapsParser\obj\Debug\WorldmapsParser.Form1.resources
+c:\projectsw\ThreatRate2\WorldmapsParser\obj\Debug\WorldmapsParser.Properties.Resources.resources
+c:\projectsw\ThreatRate2\WorldmapsParser\obj\Debug\WorldmapsParser.csproj.GenerateResource.Cache
+c:\projectsw\ThreatRate2\WorldmapsParser\obj\Debug\WorldmapsParser.exe
+c:\projectsw\ThreatRate2\WorldmapsParser\obj\Debug\WorldmapsParser.pdb

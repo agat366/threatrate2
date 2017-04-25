@@ -9,7 +9,7 @@
             function(dataContext, common) {
 
                 var context = dataContext.context({
-                    controller: 'v3'
+                    controller: 'v1'
                 });
 
                 var $q = common.$q;

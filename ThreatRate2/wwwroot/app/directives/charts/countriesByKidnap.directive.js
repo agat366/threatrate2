@@ -4,8 +4,8 @@
 
     angular.module('tr').directive('chartCountriesByKidnap',
     [
-        'common', 'config', 'chartsHelper',
-        function (common, config, chartsHelper) {
+        'common', 'config', 'chartsHelper', 'repo.common',
+        function (common, config, chartsHelper, repo) {
 
             var defaults = {
                 columns: 6,
@@ -26,6 +26,26 @@
 
                     var maxValue = _.max(_.map(data, function (el) { return el.value; }));
 
+                    var allCountries = repo.allCountries();
+                    var notExistent = _.filter(allCountries, function(c) {
+                        return !_.find(data, function(d) {
+                            return d.name == c.name;
+                        });
+                    });
+                    var itemsCount = defaults.columns * defaults.rows;
+                    for (var l = 0; l < notExistent.length && l < itemsCount; l++) {
+                        var d = notExistent[l];
+                        var levels = [];
+                        for (var m = 0; m < defaults.levelPoints; m++) {
+                            levels.push({});
+                        }
+                        data.push({
+                            title: d.title,
+                            levels: levels,
+                            isEmpty: true
+                        });
+                    }
+                    
                     scope.columns = [];
                     for (var i = 0; i < defaults.columns; i++) {
                         var column = { items: [] };

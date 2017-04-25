@@ -37,6 +37,7 @@
                             var min = sortMonths[0];
                             var requiredMonth = year.data[scope.month];
                             return {
+                                year: year.year,
                                 title: year.year,
                                 data: [
                                     {
@@ -76,9 +77,9 @@
                             w: dx,
                             h: frameContainer.h - 50,
                             legend: {
-                                height: 50,
+                                height: 60,
                                 title: {
-                                    height: 25
+                                    height: 20
                                 }
                             },
                             icon: {
@@ -158,13 +159,32 @@
                                 .attr('transform', String.format('translate({0},{1})', dx / 2, frameContainer.h - frame.legend.height));
 
                             _.each(d.data,
-                                function(m, i) {
-                                    legend.append('g')
-                                        .attr('transform',
-                                        String.format('translate({0},{1})', frame.w / 3 * (i + .5) - frame.w / 2, (frame.legend.height - frame.legend.title.height) / 2 ))
-                                        .append('text')
-                                        .text(i == 0 ? '' : i == 1 ? 'min' : 'max');
+                                function (m, i) {
+                                    if (i === 0) {
+                                        // first column
+                                        return;
+                                    }
 
+                                    var legendContainer = legend.append('g')
+                                        .attr('class', 'value-hint')
+                                        .attr('transform', String.format('translate({0},{1})',
+                                            frame.w / 3 * (i + .5) - frame.w / 2,
+                                            (frame.legend.height - frame.legend.title.height) / 2 - 13));
+
+                                    legendContainer
+                                        .append('text')
+                                        .text((i == 0 ? '' : i == 1 ? 'Lowest' : 'Highest') + ' K&R')
+                                        .attr('transform', String.format('translate(0,-13)'));
+
+                                    legendContainer
+                                        .append('text')
+                                        .text('month for');
+
+                                    legendContainer
+                                        .append('text')
+                                        .text('the ' + d.year)
+                                        .attr('transform', String.format('translate(0,13)'));
+                                    // todo: year to pass from controller
                                 });
                             legend.append('g')
                                 .attr('class', 'legend2-title')
@@ -236,7 +256,8 @@
                 restrict: 'E',
                 replace: true,
                 scope: {
-                    data: '='
+                    data: '=',
+                    year: '='
                 },
                 templateUrl: config.routeUrl + config.chartDirectivesPath + '/monthsByYears5.html'
             };

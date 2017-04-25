@@ -3,7 +3,11 @@
 }
 <div ng-controller="MainController as vm">
     <select ng-options="option.title || option.label for option in vm.charts track by option.id"
-            ng-model="vm.currentChart"></select> <button ng-click="vm.reload()">Reload</button>
+            ng-model="vm.currentChart"></select> 
+    
+    <button ng-click="vm.reload()">Reload</button>
+    <button ng-click="vm.processCountries()">Process</button>
+    
     
     <h2 class="ng-cloak">{{vm.currentChart.title}}</h2>
 
@@ -41,6 +45,7 @@
             
             <chart-countries-by-foreigners-vs-locals-kidnap-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersVsLocalsKidnapTop5'"></chart-countries-by-foreigners-vs-locals-kidnap-top-5>
             <chart-countries-by-foreigners-vs-locals-kidnap-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersVsLocalsKidnapTop10'"></chart-countries-by-foreigners-vs-locals-kidnap-top-10>
+            <chart-countries-test data="vm.data" ng-if="vm.chartId == 'countriesTest'"></chart-countries-test>
 
 
             <div ng-if="!!vm.isLoading" class="loading">

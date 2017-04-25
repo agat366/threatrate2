@@ -91,6 +91,12 @@
                         var scaleY = frame.w / clipBox.height;
                         var scale = scaleY > scaleX ? scaleX : scaleY;
 
+                        if (d.name === 'africa') {
+                            scale /= 1.15;
+                        } else if (d.name === 'australia') {
+                            scale /= 1.25;
+                        }
+
                         _.each(mask,
                             function(m) {
                                 maskContainer.selectAll('path')
@@ -130,12 +136,15 @@
                                 fill: ChartsManager.defaults.darkColor
                             });
 
-                        var bar = fill.append('rect')
+                        var barOut = fill.append('g')
+                            .attr('transform', 'skewY(45)');
+
+                        var bar = barOut.append('rect')
                             .attr({
                                 x: 0,
                                 y: 0,
                                 width: frame.w,
-                                height: frame.h,
+                                height: frame.h * 2.5,
                                 fill: ChartsManager.defaults.frontColor
                             })
                             .attr('transform', String.format('translate({0}, {1})', 0, 0));
@@ -154,18 +163,18 @@
                             .html(d.value);
 
                         // transitions
-                        var barsDelay = 25 * 0;
+                        var barsDelay = 25 * 8;
                         var barRowsDelay = 8;
                         var barDuration = 1000;
 
-                        var h = d.value / maxValue * barHeight;
+                        var h = barHeight; //d.value / maxValue * barHeight;
                         bar.transition()
                             .remove();
                         bar.transition()
-                            .ease('cubic-out')
+                            .ease('linear')
                             .duration(barDuration * 2.5 + (data.length - i) * 240 * 0)
-                            .delay(i * barsDelay * 0)
-                            .attr('transform', String.format('translate({0}, {1})', 0, -h))
+                            .delay(i * barsDelay)
+                            .attr('transform', String.format('translate({0}, {1})', 0, -h * 2.5))
                             .attr('fill', d.color);
 
                         background.transition()

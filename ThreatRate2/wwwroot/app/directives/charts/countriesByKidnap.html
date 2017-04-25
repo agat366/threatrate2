@@ -1,7 +1,7 @@
 ﻿<div class="chart">
     <div chart-core class="chart-grid-ranked">
         <div ng-repeat="column in columns">
-            <div ng-repeat="item in column.items" class="clearfix">
+            <div ng-repeat="item in column.items" class="clearfix" ng-class="{'empty': item.isEmpty}">
                 <label>{{item.title || '-'}}</label>
                 <div class="level">
                     <span ng-repeat="level in item.levels">

@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreatRate2", "ThreatRate2\ThreatRate2.csproj", "{BFB0F2C4-1273-471D-9917-3F280106D173}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldmapsParser", "WorldmapsParser\WorldmapsParser.csproj", "{6F6C5A69-6757-43C0-A8D8-ACF25A632692}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgToJsParser", "..\..\Projects\self\SvgToJsParser\SvgToJsParser.csproj", "{32E1DBA4-A39D-4812-9657-20705ED1B9B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{BFB0F2C4-1273-471D-9917-3F280106D173}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFB0F2C4-1273-471D-9917-3F280106D173}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFB0F2C4-1273-471D-9917-3F280106D173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F6C5A69-6757-43C0-A8D8-ACF25A632692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F6C5A69-6757-43C0-A8D8-ACF25A632692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F6C5A69-6757-43C0-A8D8-ACF25A632692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F6C5A69-6757-43C0-A8D8-ACF25A632692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32E1DBA4-A39D-4812-9657-20705ED1B9B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32E1DBA4-A39D-4812-9657-20705ED1B9B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32E1DBA4-A39D-4812-9657-20705ED1B9B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32E1DBA4-A39D-4812-9657-20705ED1B9B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

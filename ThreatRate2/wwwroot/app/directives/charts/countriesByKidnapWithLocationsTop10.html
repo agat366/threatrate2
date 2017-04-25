@@ -3,8 +3,8 @@
         <div ng-repeat="column in columns">
             <div ng-repeat="item in column.items" class="clearfix country-group">
                 <div class="group-header clearfix">
-                    <div class="flag"><span class="flag-{{titleByName(item.name)}}"
-                                            style="background-image: url(/images/charts/flags/med/{{titleByName(item.name)}}.png)"></span>
+                    <div class="flag"><span class="flag-{{titleByName(item)}}"
+                                            style="background-image: url(/images/charts/flags/med/{{titleByName(item)}}.png)"></span>
                     </div>
                     <label>{{item.title}}</label>
                     <div class="level">

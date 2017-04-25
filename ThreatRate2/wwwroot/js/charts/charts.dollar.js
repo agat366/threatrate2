@@ -18,7 +18,8 @@ function chartDollar(settings) {
         self.getDefaults = function() {
             var d = {
                 meta: {
-                    maskId: 'charts-dollar-mask'
+                    maskId: 'charts-dollar-mask',
+                    startDelay: 0
                 },
                 layout: {
                     rows: {
@@ -30,6 +31,7 @@ function chartDollar(settings) {
                     }
                 },
                 bars: {
+                    fullFill: false,
                     title: {
                         dy: 0
                     },
@@ -202,9 +204,11 @@ function chartDollar(settings) {
                     .attr('bar-body', '');
                 var valueRect = valueBarIn.append('rect')
                     .attr({
-                        width: frame.w, height: initialHourglasHeight,
-                        fill: ChartsManager.defaults.frontColor, 'dynamic-color': d.color,
-                        transform: 'skewY(14) translate(0, -6.5)'
+                        width: frame.w,
+                        height: initialHourglasHeight * (_opts.bars.fullFill ? 2.5 : 1),
+                        fill: ChartsManager.defaults.frontColor,
+                        'dynamic-color': d.color,
+                        transform: 'translate(0, -6.5)' + (_opts.bars.fullFill ? ' skewY(55)' : ' skewY(14)')
                     });
 
                 // the first time
@@ -265,7 +269,7 @@ function chartDollar(settings) {
 
     function animateChanges(callback) {
 
-        var barsDelay = 25 * 1;
+        var barsDelay = 25 * 6;
         var barRowsDelay = 8;
         var barDuration = 900;
 
@@ -277,7 +281,7 @@ function chartDollar(settings) {
                 }
                 var g0 = d3.select(this);
                 var data = d.value;
-                var h = self.yScale(d.value);
+                var h = self.yScale((_opts.bars.fullFill ? self.maxRangeValue : d.value));
 
                 var barIn = g0.selectAll('[bar-body]');
                 self.translate(barIn, 0, 0);
@@ -286,10 +290,11 @@ function chartDollar(settings) {
                 barIn.transition()
                     .remove();
                 barIn.transition()
-                    .ease('cubic-out')
+                    .ease('quad-out')
                     .duration(barDuration * 1.2)
-                    .delay(i0 * barsDelay)
-                    .attr('transform', self.formatTranslate(0, -h-2))
+                    .delay(i0 * barsDelay + _opts.meta.startDelay)
+                    .attr('transform', self.formatTranslate(0, -h * (_opts.bars.fullFill ? 1.4 : 1) -2))
+//                    .attr('fill', d.color)
                     .style('opacity', 1);
 
 
@@ -301,7 +306,7 @@ function chartDollar(settings) {
                 legend.transition()
                     .ease('cubic-out')
                     .duration(barDuration * 1.2)
-                    .delay(i0 * barsDelay)
+                    .delay(i0 * barsDelay + _opts.meta.startDelay)
                     .style('opacity', 1);
 
 
@@ -310,9 +315,9 @@ function chartDollar(settings) {
                 dynamicColor.transition()
                     .remove();
                 dynamicColor.transition()
-                    .ease('cubic-out')
+                    .ease('linear')
                     .duration(barDuration * 1.2)
-                    .delay(i0 * barsDelay)
+                    .delay(i0 * barsDelay + _opts.meta.startDelay)
                     .attr('fill', dynamicColor.attr('dynamic-color'));
             });
     }

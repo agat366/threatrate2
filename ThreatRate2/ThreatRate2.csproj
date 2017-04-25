@@ -12,9 +12,6 @@
     <Content Include="wwwroot\app\app.js" />
     <Content Include="wwwroot\app\controllers\main.controller.js" />
     <Content Include="wwwroot\app\directives\chartIcon.directive.js" />
-    <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop10 - Copy.directive.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop5.html" />
     <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop5.scss" />
     <Content Include="wwwroot\app\directives\charts\countriesByForeignersVsLocalsKidnapTop10.directive.js" />
@@ -148,6 +145,9 @@
     <Content Include="wwwroot\app\directives\charts\regionsByKidnapSimpleVsMultiple.directive.js" />
     <Content Include="wwwroot\app\directives\charts\regionsByKidnapSimpleVsMultiple.html" />
     <Content Include="wwwroot\app\directives\charts\regionsByKidnapSimpleVsMultiple.scss" />
+    <Content Include="wwwroot\app\directives\charts\_countriesTest.directive.js" />
+    <Content Include="wwwroot\app\directives\charts\_countriesTest.html" />
+    <Content Include="wwwroot\app\directives\charts\_countriesTest.scss" />
     <Content Include="wwwroot\app\services\charts.helper.js" />
     <Content Include="wwwroot\app\services\data\data.js" />
     <Content Include="wwwroot\app\services\data\repo.kidnap.js">

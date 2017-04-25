@@ -157,7 +157,7 @@ function chart3DBarVertical(settings) {
                     h: self.h - _opts.legend.height
                 };
                 barFrame.inner = {
-                    w: barFrame.w - _opts.bars.margin.left - _opts.bars.margin.right,
+                    w: _opts.bars.width,// barFrame.w - _opts.bars.margin.left - _opts.bars.margin.right,
                     h: barFrame.h - _opts.bars.margin.top - _opts.bars.margin.bottom
                 };
 
@@ -184,7 +184,7 @@ function chart3DBarVertical(settings) {
 
                 // bar
                 var bar = item.append('g');
-                self.translate(bar, _opts.bars.margin.left, _opts.bars.margin.top);
+                self.translate(bar, (barFrame.w - barFrame.inner.w) / 2, _opts.bars.margin.top);
 
                 // shadow back side
                 var barShadow = bar.append('g');
@@ -308,8 +308,8 @@ function chart3DBarVertical(settings) {
                 var data = d.value;
 
                 var h = self.yScale(d.value);
-                var dx = self.w / self.data.length - _opts.bars.margin.left - _opts.bars.margin.right;
-                var barWidth = dx;
+                var dx = self.w / self.data.length; // - _opts.bars.margin.left - _opts.bars.margin.right;
+                var barWidth = _opts.bars.width;
 
                 var valueCore = g0.selectAll('[chart-value]');
                 var barOut = g0.selectAll('[chart-bar]');

@@ -9,7 +9,7 @@
             function(dataContext, common) {
 
                 var context = dataContext.context({
-                    controller: 'v3'
+                    controller: 'v1'
                 });
 
                 var $q = common.$q;
@@ -23,7 +23,7 @@
                     { name: 'vehicle', title: 'Vehicle' },
                     { name: 'education', title: 'Education Venue' },
                     { name: 'worship', title: 'House of Worship' },
-                    { name: 'office', title: 'Office/Business' },
+                    { name: 'office', title: 'Office / Business', alternateTitle: 'Office/Business' },
                     { name: 'other', title: 'Other' }
                 ];
                 function renderList(list, iterator) {
@@ -35,16 +35,36 @@
                 }
 
                 function locationsByKidnapByGender(params) {
+                    params = params || {};
+                    params.include = 'males,females';
+
                     return locationsByKidnap(params);
                 }
+
+                function mapItemId(item) {
+                    var sysItem = _.find(_locations, { title: item.title }) || _.find(_locations, { alternateTitle: item.title });
+                    if (sysItem) {
+                        item.title = sysItem.title;
+                        return sysItem.name;
+                    }
+                    return 'id' + item.id;
+                }
+
 
                 function locationsByKidnap(params) {
                     params = params || {};
 
                     var def = $q.defer();
 
+                    params.id = '19900101';
+                    params.id2 = '20180101';
+
                     context.get('locationsByKidnap', params)
                         .then(function (result) {
+                            _.each(result, function (r) {
+                                r.name = mapItemId(r);
+                            });
+
                             def.resolve(result);
                         }).catch(function () {
                             var result = renderList(_locations, function (n, loc) {

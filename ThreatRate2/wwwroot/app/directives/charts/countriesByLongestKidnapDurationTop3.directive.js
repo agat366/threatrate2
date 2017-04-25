@@ -103,7 +103,7 @@
 
                     var allCountries = repoCountries.allCountries();
                     var countriesRequested = _.map(allCountries, function(c) {
-                        return 'countries.' + c[0];
+                        return 'countries.' + c.name;
                     });
 
                     var globe = ChartsManager.renderImage(container[0],
@@ -142,6 +142,9 @@
                     var gBlock = svg.append('g');
                     for (var i = 0; i < data.length && i < 3; i++) {
                         var d = data[i];
+
+//                        d.name = i === 0 ? '99' : i === 1 ? '40' : '3';
+//                        d.title = i === 0 ? 'Japan' : i === 1 ? 'Mexico' : 'Afghanistan';
 
                         var dx = frame.width / 3 * (i + .5 + (i === 0 ? .1 : i === 2 ? -.1 : 0));
                         var dy = testMode === 0 ? frame.height / 4 : frame.height / 2;

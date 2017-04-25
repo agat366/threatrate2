@@ -51,8 +51,12 @@
 
                     var allCountries = repoCountries.allCountries();
                     var countriesRequested = _.map(allCountries, function (c) {
-                        return 'countries.' + c[0];
+                        return 'countries.' + c.name;
                     });
+//                    countriesRequested.push('countries.136.v2');
+//                    countriesRequested.push('countries.40.v2');
+//                    countriesRequested.push('countries.99.v2');
+//                    countriesRequested.push('countries.3.v2');
 
                     var globe = ChartsManager.renderImage(container[0],
                         countriesRequested,
@@ -90,6 +94,9 @@
                     var gBlock = svg.append('g');
                     for (var i = 0; i < data.length && i < 3; i++) {
                         var d = data[i];
+
+//                        d.name = i === 0 ? '99.v2' : i === 1 ? '40.v2' : '3.v2';
+//                        d.title = i === 0 ? 'Japan' : i === 1 ? 'Mexico' : 'Afghanistan';
 
                         var dx = frame.width / 3 * (i + .5 + (i === 0 ? .1 : i === 2 ? -.1 : 0));
                         var dy = testMode === 0 ? (frame.height / 4 + 25) : frame.height / 2;
@@ -269,7 +276,7 @@
                         if (true) {
                             g.append('g')
                                 .attr('class', 'value-title')
-                                .attr('transform', 'translate(0, -120)')
+                                .attr('transform', 'translate(0, -140)')
                                 .append('text')
                                 .text(d.value)
                                 .attr({
@@ -280,23 +287,25 @@
                         }                        //                            .attr({ stroke: ChartsManager.defaults.frontColor, 'stroke-width' : 8 });
                         g.append('g')
                             .attr('class', 'value-title')
-                            .attr('transform', 'translate(0, -120)')
+                            .attr('transform', 'translate(0, -140)')
                             .append('text')
                             .style('fill', testMode2 === 0 ? d.color : ChartsManager.defaults.darkColor)
                             .text(d.value);
 
                         g.append('g')
                             .attr('class', 'legend-title')
-                            .attr('transform', 'translate(0, 0)')
+                            .attr('transform', 'translate(0, -105)')
                             .append('text')
                             .text(d.title)
-                            .attr({ stroke: d.color, 'stroke-width': 6, 'stroke-linejoin': 'round' });
-                        //                            .attr({ stroke: ChartsManager.defaults.frontColor, 'stroke-width': 6 });
+                            .attr({ stroke: '#fff', 'stroke-width': 6, 'stroke-linejoin': 'round' });
+
                         g.append('g')
                             .attr('class', 'legend-title')
-                            .attr('transform', 'translate(0, 0)')
+                            .attr('transform', 'translate(0, -105)')
                             .append('text')
-                            .text(d.title);
+                            .text(d.title)
+                            .attr('fill', d.color)
+                            .style('fill', d.color);
                     }
 
                     globe.transition()

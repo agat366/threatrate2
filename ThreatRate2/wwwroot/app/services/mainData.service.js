@@ -174,8 +174,12 @@
 
                     terroristAttackTypes: terroristAttackTypes,
                     
-                    kidnapResults: kidnapResults
+                    kidnapResults: kidnapResults,
+
+
                 }
+
+
             }
         ]);
 }());

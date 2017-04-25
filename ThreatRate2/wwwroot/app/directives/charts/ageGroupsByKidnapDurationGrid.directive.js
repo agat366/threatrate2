@@ -74,15 +74,11 @@
                                 var options = {
                                     bars: {
                                         height: 250,
-                                        width: 120,
+                                        width: 60,
                                         maxValue: maxValue,
                                         //                            title: {
                                         //                                dy: -10
                                         //                            },
-                                        margin: {
-                                            right: 10,
-                                            left: 10
-                                        },
                                         title: {
                                             height: 1
                                         }
@@ -100,8 +96,8 @@
                                     },
                                     layout: {
                                         padding: {
-                                            left: 40,
-                                            right: 40,
+                                            left: 10,
+                                            right: 10,
                                             top: 45
                                         }
                                     }

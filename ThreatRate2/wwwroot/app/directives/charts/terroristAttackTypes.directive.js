@@ -42,7 +42,20 @@
                         function (memo, num) { return memo + num; }, 0);
 
                     var svg = ChartsManager.renderImage(chartsContainer, null);
-                    var frameContainer = { w: chartsContainer[0].offsetWidth, h: chartsContainer[0].offsetHeight };
+                    var frameContainer = {
+                        w: chartsContainer[0].offsetWidth,
+                        h: chartsContainer[0].offsetHeight,
+                        padding: {
+                            left: 10,
+                            right: 10
+                        }
+                    };
+                    frameContainer.inner = {
+                        w: frameContainer.w - frameContainer.padding.left - frameContainer.padding.right,
+                        h: frameContainer.h
+                    };
+                    var g0 = svg.append('g')
+                        .attr('transform', String.format('translate({0},{1})', frameContainer.padding.left, 0));
                     _.each(data, function (d, i) {
 
                         d.color = i < colors.length ? colors[i] : colors[colors.length - 1];
@@ -53,9 +66,9 @@
                         };
 
 
-                        var dx = frameContainer.w / data.length;
+                        var dx = frameContainer.inner.w / data.length;
 
-                        var g = svg.append('g').append('g')
+                        var g = g0.append('g')
                             .attr('transform', String.format('translate({0},{1})', dx * (i + .5), 0));
 
                         var frame = {
@@ -98,14 +111,14 @@
 
                         icon.append('circle')
                             .attr({
-                                cx: 0, cy: 0, r: 40, fill: '#fff',
+                                cx: 0, cy: 0, r: 35, fill: '#fff',
                                 stroke: ChartsManager.defaults.secondaryBackColor,
-                                'stroke-width': 1
+                                'stroke-width': 2
                             });
 
                         ChartsManager.renderImage(icon.append('g'), d.icon.name,
                             ChartsManager.defaults.secondaryBackColor,
-                            { width: frame.icon.height + 10, height: frame.icon.height + 10, position: 0 }, true);
+                            { width: frame.icon.height + 5, height: frame.icon.height + 5, position: 0 }, true);
 
                         var isOdd = i % 2 === 1;
                         // legend rendering
@@ -115,7 +128,8 @@
                                 y1: 0,
                                 x2: 0,
                                 y2: frame.legend.height - (isOdd ? 0 : frame.legend.diff),
-                                stroke: ChartsManager.defaults.secondaryBackColor
+                                stroke: ChartsManager.defaults.secondaryBackColor,
+                                'stroke-width': 2
                             });
                         legend.append('rect')
                             .attr({
@@ -126,7 +140,8 @@
                                 rx: frame.legend.title.radius,
                                 ry: frame.legend.title.radius,
                                 stroke: ChartsManager.defaults.secondaryBackColor,
-                                fill: '#fff'
+                                fill: '#fff',
+                                'stroke-width': 2
                             });
                         legend.append('g')
                             .attr('class', 'legend-title')
@@ -150,15 +165,16 @@
                         barIn.append('line')
                             .attr({
                                 x1: 0, y1: 0, x2: 0, y2: h + frame.bar.padding.bottom,
-                                stroke: ChartsManager.defaults.secondaryBackColor
+                                stroke: ChartsManager.defaults.secondaryBackColor,
+                                'stroke-width': 2
                             });
                         var barValue = barIn.append('g')
                             .attr('class', 'value-title')
                             .attr('transform', String.format('translate({0},{1})', 0, -frame.bar.padding.top));
                         barValue.append('rect')
                             .attr({
-                                x: -25, width: 50,
-                                y: 0, height: 50,
+                                x: -30, width: 60,
+                                y: -5, height: 60,
                                 rx: 8, ry: 8,
                                 fill: d.color
                             });

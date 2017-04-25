@@ -73,7 +73,7 @@
                                     left: 12
                                 },
                                 colors: [
-                                    '#b02819', '#bbd6e4'
+                                    '#bbd6e4', '#b02819'
                                 ]
                             },
                             legend: {

@@ -69,15 +69,11 @@
                     var options = {
                         bars: {
                             height: 400,
-                            width: 58,
+                            width: 100,
 //                            maxValue: _.max(_.map(data, function (el) { return el.value; })) * 1.23, // to have space for the top icon and title
 //                            title: {
 //                                dy: -10
 //                            },
-                            margin: {
-                                right: 36,
-                                left: 36
-                            }
                         },
                         legend: {
                             height: 120,

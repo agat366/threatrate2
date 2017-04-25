@@ -47,7 +47,7 @@
         }
 
         .data {
-            width: 160px;
+            width: 220px;
             text-align: center;
 
             h3 {
@@ -86,20 +86,20 @@
             }
 
             .legend {
-                display: none;
-
+                // display: none;
                 & > * {
                     display: inline-block;
                     width: 30px;
                     height: 30px;
+                    margin: 15px;
                 }
 
                 .male {
-                    background: #84c0ff
+                    background: #bbd6e4
                 }
 
                 .female {
-                    background: #ff9ed3
+                    background: #b02819
                 }
             }
 

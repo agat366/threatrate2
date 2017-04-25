@@ -19,13 +19,14 @@
 
                 countries = countriesRepo.allCountries();
 
-                scope.titleByName = function(name) {
+                scope.titleByName = function (item) {
+                    var name = item.name;
                     var country = _.find(countries,
                         function(c) {
-                            return c[0] == name;
+                            return c.name === name;
                         });
                     if (country) {
-                        return country[1];
+                        return country.title;
                     }
                 };
 

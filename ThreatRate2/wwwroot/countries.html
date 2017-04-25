@@ -8,6 +8,7 @@
 
 <script src="lib/jquery/dist/jquery.js"></script>
 <script src="js/charts/charts.manager.js"></script>
+<script src="js/charts/charts.manager.regions.js"></script>
 <script src="js/d3.js"></script>
 
 <script src="js/string.js">
@@ -20,7 +21,7 @@
 </style>
 <script>
     $(function() {
-        ChartsManager.renderImage($('div')[0], 'countries', null, 2);
+        ChartsManager.renderImage($('div')[0], 'countries.globe', null, 2);
 
         $('path').mouseover(function() {
             var el = $(this);

@@ -60,7 +60,7 @@
                             bars: {
 //                                height: 400,
                                 width: 58,
-                                maxValueRangeMultiplier: 1.22,
+                                maxValueRangeMultiplier: 1.26,
 //                                maxValue: _.max([scope.totalMales, scope.totalFemales]) * 1.23, // to have space for the top icon and title
                                 title: {
                                     isVertical: true,
@@ -73,7 +73,7 @@
                                     left: 12
                                 },
                                 colors: [
-                                    '#b02819', '#bbd6e4'
+                                    '#bbd6e4', '#b02819'
 //                                    '#84c0ff', '#ff9ed3'
                                 ]
                             },

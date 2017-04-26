@@ -21,12 +21,12 @@
 </style>
 <script>
     $(function() {
-        ChartsManager.renderImage($('div')[0], 'countries.globe', null, 2);
+        ChartsManager.renderImage($('div')[0], 'countries.globe2', null, 2);
 
         subscribe();
 
         $('button.go').click(generate);
-        $('button.subscribe').click(function () {
+        $('button.subscribe').click(function() {
             loadContent();
             subscribe();
         });
@@ -39,7 +39,6 @@
     function loadContent() {
         $($('svg path')[0].parentNode).html($('textarea').val());
     }
-
     function subscribe() {
         $('path').mouseover(function () {
             var el = $(this);
@@ -76,8 +75,8 @@
     
 </div>
     
-<button class="go">Generate</button><br/>
-<button class="subscribe">Subscribe</button><br/>
+    <button class="go">Generate</button><br />
+    <button class="subscribe">Subscribe</button><br />
 <textarea style="width: 85%; height: 400px; "></textarea>
 </body>
 

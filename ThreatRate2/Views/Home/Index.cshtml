@@ -46,7 +46,8 @@
             <chart-countries-by-foreigners-vs-locals-kidnap-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersVsLocalsKidnapTop5'"></chart-countries-by-foreigners-vs-locals-kidnap-top-5>
             <chart-countries-by-foreigners-vs-locals-kidnap-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersVsLocalsKidnapTop10'"></chart-countries-by-foreigners-vs-locals-kidnap-top-10>
             <chart-countries-test data="vm.data" ng-if="vm.chartId == 'countriesTest'"></chart-countries-test>
-
+            
+            <textarea ng-value="vm.scr"></textarea>
 
             <div ng-if="!!vm.isLoading" class="loading">
                 <div>

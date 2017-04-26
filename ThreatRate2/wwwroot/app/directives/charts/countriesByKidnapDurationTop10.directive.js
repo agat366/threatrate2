@@ -22,6 +22,16 @@
 
                 scope.$watch('data', bindData);
 
+                scope.formatRansom = function(value) {
+                    if (value > 100000) {
+                        return (Math.round(value / 100000) / 10) + 'M';
+                    } else if(value > 1000) {
+                        return Math.round(value / 100) / 10 + 'K';
+                    } else {
+                        return value;
+                    }
+                };
+
                 function bindData() {
                     var data = scope.data;
 
@@ -151,7 +161,7 @@
                     });
 
                     // levels
-                        var maxValue2 = _.max(_.map(data, function (el) { return el.ransom; }));
+                        var maxValue2 = _.max(_.map(data, function (el) { return el.value; }));
 
                         var options = {
                             bars: {
@@ -187,9 +197,9 @@
                         var graphPrepared = _.map(data,
                             function (d, i) {
                                 var result = {
-                                    value: d.ransom,
+                                    value: d.value,
                                     valueTitle: null,
-                                    legendTitle2: d.ransom,
+                                    legendTitle2: d.value,
                                     color: i < colors.length ? colors[i] : colors[colors.length - 1],
                                     title: d.title,
                                     icon: {

@@ -2,8 +2,8 @@
     'use strict';
 
     var controllerName = 'MainController';
-    angular.module('tr').controller(controllerName, ['mainDataService', '$scope',
-        function (dataService, $scope) {
+    angular.module('tr').controller(controllerName, ['mainDataService', '$scope', 'repo.common',
+        function (dataService, $scope, repo) {
         var vm = this;
 
         vm.isLoading = false;
@@ -43,7 +43,7 @@
                 id: 'monthsByKidnap',
                 title: '04 - Most dangerous months',
                 service: function () {
-                    return dataService.monthsByKidnap({from: null, to: null});
+                    return dataService.monthsByKidnap({from: '201601', to: '201612'});
                 }
             },
             {
@@ -87,14 +87,14 @@
                 id: 'countriesByChildKidnapTop5',
                 title: '10 - TOP 5 COUNTRIES WITH THE LARGEST NUMBER OF CHILD KIDNAPPINGS // Q1-Q2/2016',
                 service: function () {
-                    return dataService.countriesByChildKidnap({top: 5, from: null, to: null});
+                    return dataService.countriesByChildKidnap({top: 5, from: '201601', to: '201606'});
                 }
             },
             {
                 id: 'countriesByForeignersKidnapDurationTop5',
                 title: '11 - List of 5 countries where kidnapped foreigners where held the longest // jan - oct 2016',
                 service: function () {
-                    return dataService.countriesByForeignersKidnapDuration({top: 5, from: null, to: null});
+                    return dataService.countriesByForeignersKidnapDuration({top: 5, from: '201601', to: '201610'});
                 }
             },
             {
@@ -122,21 +122,21 @@
                 id: 'regionsByVehicleAttack',
                 title: '15 - VEHICLE ATTACKS ACTIVITY ACROSS REGIONS // 2015',
                 service: function () {
-                    return dataService.regionsByVehicleAttack({from: null, to: null});
+                    return dataService.regionsByVehicleAttack({from: '201501', to: '201512'});
                 }
             },
             {
                 id: 'countriesByForeignersKidnapTop10',
                 title: '16 - List of 10 countries with highest kidnapping of foreigners // jan-oct 2016',
                 service: function () {
-                    return dataService.countriesByForeignersKidnap({top: 10, from: null, to: null});
+                    return dataService.countriesByForeignersKidnap({top: 10, from: '201601', to: '201610'});
                 }
             },
             {
                 id: 'countriesByRansomTop5',
                 title: '17 - Top 5 Countries with highest average ransom amount // jan-oct 2016',
                 service: function () {
-                    return dataService.countriesByRansom({top: 5, from: null, to: null});
+                    return dataService.countriesByRansom({top: 5, from: '201601', to: '201610'});
                 }
             },
             {
@@ -150,14 +150,14 @@
                 id: 'countriesByKidnapWithLocationsTop10',
                 title: '19 - COUNTRIES MOST KIDNAPPED AT FURTHER ANALYZED BY GEO-LOCATION',
                 service: function () {
-                    return dataService.countriesByKidnapWithLocations({top: 10, from: null, to: null});
+                    return dataService.countriesByKidnapWithLocations({top: 10, from: '201601', to: '201610'});
                 }
             },
             {
                 id: 'monthsByYears5',
                 title: '20 - FIVE YEAR VIEW ON “NOVEMBER”',
                 service: function () {
-                    return dataService.monthsByYears({from: null, to: null});
+                    return dataService.monthsByYears({from: '201201', to: '201612'});
                 }
             },
             {
@@ -181,7 +181,7 @@
                 title: '23 - Countries by kidnap duration and ransom',
                 default: false,
                 service: function () {
-                    return dataService.countriesByKidnapDuration({top: 11, from: null, to: null});
+                    return dataService.countriesByKidnapDuration({top: 11, from: '201501', to: '201612'});
                 }
             },
             {
@@ -195,7 +195,7 @@
                 id: 'ageGroupsByKidnapDurationGrid',
                 title: '25 - KIDNAP DURATION AND RANSOM AMOUNT CORRELATION WITH AGE',
                 service: function () {
-                    return dataService.ageGroupsByKidnapDuration({from: null, to: null});
+                    return dataService.ageGroupsByKidnapDuration({from: '201501', to: '201612'});
                 }
             },
             {
@@ -224,7 +224,7 @@
                 id: 'countriesByForeignersVsLocalsKidnapTop5',
                 title: '29 - TOP 5 COUNTRIES FOR FOREIGNERS KIDNAPPING VERSUS TOP 5 COUNTRIES FOR LOCALS KIDNAPPINGS',
                 service: function () {
-                    return dataService.countriesByForeignersVsLocalsKidnap({ top: 5, from: null, to: null });
+                    return dataService.countriesByForeignersVsLocalsKidnap({ top: 5, from: '201501', to: '201612' });
                 }
             },
             {
@@ -232,7 +232,7 @@
                 id: 'countriesByForeignersVsLocalsKidnapTop10',
                 title: '30 - REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION FOR SINGLE AND MULTIPLE KIDNAPPING',
                 service: function () {
-                    return dataService.countriesByForeignersVsLocalsKidnap({ top: 10, from: null, to: null});
+                    return dataService.countriesByForeignersVsLocalsKidnap({ top: 10, from: '201501', to: '201612'});
                 }
             },
             {
@@ -272,8 +272,47 @@
         }
 
             vm.processCountries = function() {
+                var countries = [
+                    {
+                        id: '2',
+                        w: 1247,
+                        h: 800,
+                        path: 'M349.705,113.159c0.03-0.164-0.046-0.277-0.104-0.428c-0.102-0.266-0.08-0.529,0.075-0.776c0.17-0.271,0.397-0.327,0.676-0.429l0,0c0.03,0.16-0.023,0.349-0.023,0.513c0,0.31,0.361,0.428,0.423,0.725c0.057,0.263-0.159,0.371-0.159,0.602l0,0l-0.292-0.028c-0.067,0.005-0.139,0.014-0.206,0.024c-0.041,0.005-0.101,0.012-0.141,0C349.848,113.331,349.781,113.229,349.705,113.159L349.705,113.159L349.705,113.159z'
+                    },
 
+];
+
+                var sysCountries = repo.allCountries();
+                _.each(countries,
+                    function(c) {
+                        var sys = _.find(sysCountries,
+                            function(s) {
+                                return s.id == c.id;
+                            });
+                        if (sys) {
+                            c.name = sys.name;
+                            c.id = sys.id;
+
+                        } else {
+                            console.log('not found:', c)
+                        }
+                    });
+//                console.log(countries);
+
+                var out = '';
+                _.each(countries,
+                    function(c) {
+                        out += '        {\n';
+                        out += '            name: \'' + c.name + '\',\n';
+                        out += '            id: ' + c.id + ',\n';
+                        out += '            path: \'' + c.path + '\',\n';
+                        out += '            w: ' + c.w + ',\n';
+                        out += '            h: ' + c.h + '\n';
+                        out += '        },\n';
+                    });
+                vm.scr = out;
             };
+            vm.processCountries();
         }]);
     
 }(angular));

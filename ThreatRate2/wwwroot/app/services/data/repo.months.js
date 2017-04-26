@@ -39,6 +39,12 @@
                 function monthsByKidnap(params) {
                     params = params || {};
 
+                    params.id = params.from;
+                    params.id2 = params.to;
+
+                    params.from = null;
+                    params.to = null;
+
                     var def = $q.defer();
 
                     context.get('monthsByKidnap', params)

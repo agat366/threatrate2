@@ -22,6 +22,16 @@
 
                 scope.$watch('data', bindData);
 
+                scope.formatRansom = function (value) {
+                    if (value > 100000) {
+                        return (Math.round(value / 100000) / 10) + 'M';
+                    } else if (value > 1000) {
+                        return Math.round(value / 100) / 10 + 'K';
+                    } else {
+                        return value;
+                    }
+                };
+
                 function bindData() {
                     var data = scope.data;
 

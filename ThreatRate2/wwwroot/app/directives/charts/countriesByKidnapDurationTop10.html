@@ -2,7 +2,7 @@
     <div chart-body class="chart-common chart-common-grid chart-countries-kidnap-duration-ransom">
         <div class="comparer">
             <div class="">
-                <h2 style="color: {{top.color}}">${{top.duration}}M</h2>
+                <h2 style="color: {{top.color}}">${{formatRansom(top.ransom)}}</h2>
                 <div  chart-body="comparer"></div>
                 <div chart-icon icon-name="{{top.iconName}}" icon-color="{{top.iconColor}}"></div>
                 <h4>{{top.title}}</h4>
@@ -10,7 +10,7 @@
         </div>
         <div class="others">
             <div class="ransom">
-                <h3 ng-repeat="c in countries">${{c.ransom}}M</h3>
+                <h3 ng-repeat="c in countries">${{formatRansom(c.ransom)}}</h3>
             </div>
             
             <div chart-body="duration" class="duration"></div>

@@ -70,7 +70,7 @@
                 }
 
                 function regionsByVehicleAttack(params) {
-                    return repoRegions.regionsByVehicleAttack(params);
+                    return repoRegions.regionsByVehicleEvent(params);
                 }
 
                 function locationsByKidnap(params) {
@@ -88,11 +88,11 @@
                 function monthsByYears(params) {
 
                     var promises = [];
-                    promises.push(repoMonths.monthsByKidnap({year: 2016}));
-                    promises.push(repoMonths.monthsByKidnap({year: 2015}));
-                    promises.push(repoMonths.monthsByKidnap({year: 2014}));
-                    promises.push(repoMonths.monthsByKidnap({year: 2013}));
-                    promises.push(repoMonths.monthsByKidnap({year: 2012}));
+                    promises.push(repoMonths.monthsByKidnap({from: 201601, to: 201612}));
+                    promises.push(repoMonths.monthsByKidnap({from: 201501, to: 201512}));
+                    promises.push(repoMonths.monthsByKidnap({from: 201401, to: 201412}));
+                    promises.push(repoMonths.monthsByKidnap({from: 201301, to: 201312}));
+                    promises.push(repoMonths.monthsByKidnap({from: 201201, to: 201212}));
 
                     var def = $q.defer();
                     $q.all(promises).then(function(data) {
@@ -110,6 +110,8 @@
                 }
 
                 function ageGroupsByKidnap(params) {
+                    params.from = '201501';
+                    params.to = '201612';
                     return repoAgeGroups.ageGroupsByKidnap(params);
                 }
 

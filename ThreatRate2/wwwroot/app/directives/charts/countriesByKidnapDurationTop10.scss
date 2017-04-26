@@ -34,6 +34,7 @@
         .value-title text {
             font-size: 36px;
         }
+
         .value-title2 text {
             font-size: 18px;
         }
@@ -42,6 +43,10 @@
     .others {
         width: 950px;
         float: left;
+
+        h3 {
+            font-size: 28px;
+        }
 
         .duration {
             height: 200px;
@@ -79,6 +84,7 @@
     .chart-titles text {
         font-size: 13px;
     }
+
     .legend2-title text {
         font-size: 24px;
     }

@@ -22,6 +22,16 @@
 
                 scope.$watch('data', bindData);
 
+                scope.formatRansom = function (value) {
+                    if (value > 100000) {
+                        return (Math.round(value / 100000) / 10) + 'M';
+                    } else if (value > 1000) {
+                        return Math.round(value / 100) / 10 + 'K';
+                    } else {
+                        return value;
+                    }
+                };
+
                 function bindData() {
                     var data = scope.data;
 
@@ -37,7 +47,7 @@
                     var maxValue = _.max(_.map(data, function (el) { return el.ransom; }));
 
                     _.each(data, function (d, i) {
-                        d.valueTitle = '$' + d.ransom + ' M';
+                        d.valueTitle = '$' + scope.formatRansom(d.ransom);
                         d.value = d.ransom;
                         d.color = i < colors.length ? colors[i] : colors[0],
                         d.icon = {

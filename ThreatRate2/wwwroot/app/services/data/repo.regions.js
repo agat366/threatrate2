@@ -9,7 +9,7 @@
             function(dataContext, common) {
 
                 var context = dataContext.context({
-                    controller: 'v3'
+                    controller: 'v1'
                 });
 
                 var $q = common.$q;
@@ -48,10 +48,29 @@
                 function regionsByKidnap(params) {
                     params = params || {};
 
+                    params.id = params.from;
+                    params.id2 = params.to;
+
+                    params.from = null;
+                    params.to = null;
+
                     var def = $q.defer();
 
-                    context.get('monthsByKidnap', params)
+                    context.get('regions', params)
                         .then(function (result) {
+                            _.each(result, function(r) {
+                                var found = _.find(_items, function (sys) {
+                                    var name = sys.name;
+                                    if (name === 'australia') {
+                                        name = 'oceania';
+                                    }
+                                    return r.title == name || r.name == name;
+                                });
+                                if (found) {
+                                    r.name = found.name;
+                                    r.title = found.title;
+                                }
+                            });
                             def.resolve(result);
                         }).catch(function () {
                             var result = renderList(_items, function (n, it) {
@@ -100,7 +119,6 @@
                 this.regionsByVehicleEvent = regionsByVehicleEvent;
                 this.regionsByKidnapSimpleVsMultiple = regionsByKidnapSimpleVsMultiple;
                 this.regionsByKidnapDuration = regionsByKidnapDuration;
-                this.regionsByVehicleAttack = regionsByVehicleAttack;
             }
         ]);
 }());

@@ -12,6 +12,8 @@
 
             var colors = [
                 '#8fd5e3',
+                
+                '#8fd5e3',
                 '#45abb6',
                 '#296886',
                 '#c1c1c1',
@@ -22,6 +24,16 @@
             function link(scope, element, attributes) {
 
                 scope.$watch('data', bindData);
+
+                scope.formatRansom = function (value) {
+                    if (value > 100000) {
+                        return (Math.round(value / 100000) / 10) + 'M';
+                    } else if (value > 1000) {
+                        return Math.round(value / 100) / 10 + 'K';
+                    } else {
+                        return value;
+                    }
+                };
 
                 function bindData() {
                     var data = scope.data;

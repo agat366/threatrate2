@@ -85,7 +85,8 @@
                 }
 
                 function countriesByKidnapDuration(params) {
-                    return countriesByKidnap(params);
+                    params.include = 'duration,ransom';
+                    return countriesByKidnap(params, true);
                 }
 
                 function countriesByVehicleAttack(params) {
@@ -95,30 +96,35 @@
 
                 function countriesByChildKidnap(params) {
                     // todo: countries by custom filters
-                    return countriesByKidnap(params);
+                    params.filter = 'children';
+                    return countriesByKidnap(params, true);
                 }
 
                 function countriesByForeignersKidnapDuration(params) {
-                    // todo: countries by custom filters
-                    return countriesByKidnap(params);
+                    params.filter = 'foreigners';
+                    params.include = 'duration';
+
+                    return countriesByKidnap(params, true);
                 }
 
                 function countriesByForeignersKidnap(params) {
-                    // todo: countries by custom filters
-                    return countriesByKidnap(params);
+                    params.filter = 'foreigners';
+
+                    return countriesByKidnap(params, true);
                 }
                 function countriesByRansom(params) {
-                    // todo: countries by custom filters
-                    return countriesByKidnap(params);
+
+                    params.include = 'ransom';
+                    return countriesByKidnap(params, true);
                 }
                 function countriesByLocalsKidnap(params) {
-                    // todo: countries by custom filters
-                    return countriesByKidnap(params);
+                    params.filter = 'locals';
+                    return countriesByKidnap(params, true);
                 }
 
                 function countriesByKidnapWithLocations(params) {
-                    // todo: countries by custom filters
-                    return countriesByKidnap(params);
+                    params.include = 'locations';
+                    return countriesByKidnap(params, true);
                 }
 
                 function countriesByKidnapByGender(params) {
@@ -155,8 +161,11 @@
 
                     var def = $q.defer();
 
-                    params.id = '19900101';
-                    params.id2 = '20180101';
+                    params.id = params.from || '199001';
+                    params.id2 = params.to || '201801';
+
+                    params.from = null;
+                    params.to = null;
 
                     context.get(liveData ? 'countriesByKidnap' : 'prevent-loading-not-live', params)
                         .then(function (result) {

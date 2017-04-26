@@ -815,6 +815,8 @@ h1, h2, h3, h4, h5, h6 {
   .chart-countries-kidnap-duration-ransom .others {
     width: 950px;
     float: left; }
+    .chart-countries-kidnap-duration-ransom .others h3 {
+      font-size: 28px; }
     .chart-countries-kidnap-duration-ransom .others .duration {
       height: 200px; }
     .chart-countries-kidnap-duration-ransom .others .sep {
@@ -892,7 +894,7 @@ h1, h2, h3, h4, h5, h6 {
         height: 330px; }
     .chart-age-groups-kidnap-duration-ransom-grid > * > * {
       height: 80px;
-      width: 14.285%;
+      width: 12.5%;
       float: left;
       border-right: 2px dashed #dcdcdc;
       text-align: center; }

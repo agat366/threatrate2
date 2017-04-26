@@ -2,10 +2,11 @@
         <div ng-repeat="country in countries">
             <div class="title">
                 <label>{{country.title}}</label>
+                <div chart-icon icon-name="countries.{{country.name}}.v2" icon-color="#e5e5e5" class="small"></div>
                 <div chart-icon icon-name="countries.{{country.name}}" icon-color="#e5e5e5" class="small"></div>
             </div>
-            <div chart-icon icon-name="countries.{{country.name}}" icon-color="#e1482c" class="red"></div>
-            <div chart-icon icon-name="countries.{{country.name}}" icon-color="#e5e5e5" class="gray"></div>
+            <div chart-icon icon-name="countries.{{country.name}}.v2" icon-color="#e1482c" class="red"></div>
+            <div chart-icon icon-name="countries.{{country.name}}" icon-color="#e1482c" zicon-color="#e5e5e5" class="gray"></div>
         </div>
     </div>
 

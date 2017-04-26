@@ -3,7 +3,7 @@
         <div class="duration">
             <div class="icon funds"><div chart-icon icon-name="signs.funds" icon-color="#000"></div></div>
             <div ng-repeat="c in groups">
-                <h4>{{c.ransom_range.from}}K-{{c.ransom_range.to}}K USD</h4>
+                <h4>{{formatRansom(c.ransom_range.from)}}-{{formatRansom(c.ransom_range.to)}} USD</h4>
                 <p>Ransom Range</p>
             </div>
         </div>

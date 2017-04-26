@@ -9,7 +9,7 @@
             function(dataContext, common) {
 
                 var context = dataContext.context({
-                    controller: 'v3'
+                    controller: 'v1'
                 });
 
                 var $q = common.$q;
@@ -43,10 +43,19 @@
                 function professionalGroupsByKidnap(params) {
                     params = params || {};
 
+                    params.id = params.from || '201501';
+                    params.id2 = params.to || '201612';
+
                     var def = $q.defer();
 
-                    context.get('monthsByKidnap', params)
+                    context.get('profsByKidnap', params)
                         .then(function (result) {
+                            _.each(result, function (r) {
+                                r.name = r.name || r.title;
+                                r.title = r.title.replace('Government/Municipally', 'Government / Municipally');
+                                r.value = parseInt(r.value);
+                            });
+
                             def.resolve(result);
                         }).catch(function () {
                             var result = renderList(_items, function (n, it) {

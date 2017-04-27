@@ -21,7 +21,7 @@
                 </div>
                 <div class="data" ng-repeat="r in regionsSingle">
                     <div class="ransom">
-                        <span><strong>{{r.ransom_range.from}}K-{{r.ransom_range.to}}K USD</strong></span>
+                        <span><strong>{{formatRansom(r.ransom_range.from)}}-{{formatRansom(r.ransom_range.to)}} USD</strong></span>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="data" ng-repeat="r in regionsMulti">
                     <div class="ransom">
-                          <span><strong>{{r.ransom_range.from}}K-{{r.ransom_range.to}}K USD</strong> </span>
+                          <span><strong>{{formatRansom(r.ransom_range.from)}}-{{formatRansom(r.ransom_range.to)}} USD</strong> </span>
                     </div>
                 </div>
             </div>

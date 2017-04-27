@@ -14,6 +14,16 @@
 
                 scope.$watch('data', bindData);
 
+                scope.formatRansom = function (value) {
+                    if (value > 100000) {
+                        return (Math.round(value / 100000) / 10) + 'M';
+                    } else if (value > 1000) {
+                        return Math.round(value / 100) / 10 + 'K';
+                    } else {
+                        return value;
+                    }
+                };
+
                 function bindData() {
                     var data = scope.data;
 
@@ -35,20 +45,8 @@
 
                     _.each(data,
                         function(d) {
-                            single.push({
-                                name: d.name,
-                                title: d.title,
-                                value: d.duration,
-                                ransom_range: d.ransom_range,
-                                duration_range: d.duration_range
-                            });
-                            multi.push({
-                                name: d.name,
-                                title: d.title,
-                                value: d.multi_duration,
-                                ransom_range: d.multi_ransom_range,
-                                duration_range: d.multi_duration_range
-                            });
+                            single.push(d.single);
+                            multi.push(d.multiple);
                         });
 
                     scope.regionsSingle = single;

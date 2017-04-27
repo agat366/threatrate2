@@ -41,6 +41,7 @@
             },
             {
                 id: 'monthsByKidnap',
+                default: false,
                 title: '04 - Most dangerous months',
                 service: function () {
                     return dataService.monthsByKidnap({from: '201601', to: '201612'});
@@ -65,12 +66,14 @@
             {
                 id: 'regionsByKidnapSimpleVsMultiple',
                 title: '07 - SINGLE VERSUS MULTIPLE KIDNAPPING ACTIVITY // 2015',
+                default: false,
                 service: function () {
-                    return dataService.regionsByKidnapSimpleVsMultiple({from: null, to: null});
+                    return dataService.regionsByKidnapSimpleVsMultiple({from: '201501', to: '201512'});
                 }
             },
             {
                 id: 'countriesByLongestKidnapDurationTop3',
+                default: false,
                 title: '08 - TOP 3 COUNTRIES WHERE KIDNAPPING VICTIMS WERE HELD THE LONGEST // Q1-Q2/2016',
                 service: function () {
                     return dataService.countriesByKidnapDuration({top: 3, from: null, to: null});
@@ -80,7 +83,7 @@
                 id: 'countriesByVehicleAttackTop3',
                 title: '09 - TOP 3 COUNTRIES WITH THE HIGHEST NUMBER OF VEHICLE ATTACKS // Q1-Q2/2016',
                 service: function () {
-                    return dataService.countriesByVehicleAttack({top: 3, from: null, to: null});
+                    return dataService.countriesByVehicleAttack({top: 3, from: '201601', to: '201606'});
                 }
             },
             {
@@ -99,23 +102,25 @@
             },
             {
                 id: 'countriesByUnrestTop5',
+                default: true,
                 title: '12 - List of 5 countries registered the most civil unrest events // 2016',
                 service: function () {
-                    return dataService.countriesByUnrest({top: 5, from: null, to: null});
+                    return dataService.countriesByUnrest({top: 5, from: '201601', to: '201612'});
                 }
             },
             {
                 id: 'countriesBySuicideAttackTop5',
+                default: false,
                 title: '13 - TOP 5 COUTRSIES WITH THE LARGEST NUMBER OF SUICIDE BOMBING ATTACKS // Q2/2011-Q2/2016',
                 service: function () {
-                    return dataService.countriesBySuicideAttack({top: 5, from: null, to: null});
+                    return dataService.countriesBySuicideAttack({top: 5, from: '201104', to: '201606'});
                 }
             },
             {
                 id: 'countriesByKidnapKilledTop5',
                 title: '14 - TOP 5 COUNTRIES WITH THE LARGEST NUMBER OF KIDNAPPING VICTIMS KILLED // 2015',
                 service: function () {
-                    return dataService.countriesByKidnapKilled({top: 5, from: null, to: null});
+                    return dataService.countriesByKidnapKilled({top: 5, from: '201501', to: '201512'});
                 }
             },
             {
@@ -141,9 +146,10 @@
             },
             {
                 id: 'terroristAttackTypes',
+                default: true,
                 title: '18 - FREQUENCY OF TERRORIST ATTACK TYPES // 2016',
                 service: function () {
-                    return dataService.terroristAttackTypes({from: null, to: null});
+                    return dataService.terroristAttackTypes({from: '201601', to: '201612'});
                 }
             },
             {
@@ -202,14 +208,15 @@
                 id: 'kidnapResults',
                 title: '26 - KIDNAP RESULTS - KILLED, RELEASED, ESCAPED, RESCUED',
                 service: function () {
-                    return dataService.kidnapResults({from: null, to: null});
+                    return dataService.kidnapResults({from: '2012', to: 2016});
                 }
             },
             {
                 id: 'regionsByKidnapDurationSimpleVsMultiple',
+                default: true,
                 title: '27 - REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION FOR SINGLE AND MULTIPLE KIDNAPPING',
                 service: function () {
-                    return dataService.regionsByKidnapDurationSimpleVsMultiple({from: null, to: null});
+                    return dataService.regionsByKidnapDurationSimpleVsMultiple({from: '201501', to: '201612'});
                 }
             },
             {
@@ -217,7 +224,7 @@
                 title: '28 - REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION',
 //                default: true,
                 service: function () {
-                    return dataService.regionsByKidnapDuration({from: null, to: null});
+                    return dataService.regionsByKidnapDurationRange({from: '201501', to: '201612'});
                 }
             },
             {

@@ -9,7 +9,7 @@
             function(dataContext, common) {
 
                 var context = dataContext.context({
-                    controller: 'v3'
+                    controller: 'v1'
                 });
 
                 var $q = common.$q;
@@ -29,6 +29,12 @@
                 }
 
                 function kidnapResults(params) {
+
+                    params.id = params.from;
+                    params.id2 = params.to;
+
+                    return kidnapResultsPerYear(params);
+
                     var promises = [];
                     promises.push(kidnapResultsPerYear({ year: 2016 }));
                     promises.push(kidnapResultsPerYear({ year: 2015 }));
@@ -57,8 +63,12 @@
 
                     var def = $q.defer();
 
-                    context.get('terroristAttackTypes', params)
+                    context.get('yearsByKidnapResult', params)
                         .then(function (result) {
+
+                            _.each(result, function(r) {
+                                r.year = parseInt(r.title);
+                            });
                             def.resolve(result);
                         }).catch(function () {
                             var result = renderList(_items, function (n, it) {

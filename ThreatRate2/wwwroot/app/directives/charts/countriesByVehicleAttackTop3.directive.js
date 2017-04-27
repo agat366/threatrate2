@@ -264,7 +264,7 @@
                         g.transition()
                             .ease('cubic-out')
                             .duration(barDuration * 1.5)
-                            .delay(i * barsDelay + barDuration * 2.75)
+                            .delay(i * barsDelay * .95 + barDuration * 2.85)
                             .attr('transform', String.format('translate({0},{1})', dx, dy))
                             .style('opacity', 1);
 
@@ -294,14 +294,14 @@
 
                         g.append('g')
                             .attr('class', 'legend-title')
-                            .attr('transform', 'translate(0, -105)')
+                            .attr('transform', 'translate(0, -115)')
                             .append('text')
                             .text(d.title)
                             .attr({ stroke: '#fff', 'stroke-width': 6, 'stroke-linejoin': 'round' });
 
                         g.append('g')
                             .attr('class', 'legend-title')
-                            .attr('transform', 'translate(0, -105)')
+                            .attr('transform', 'translate(0, -115)')
                             .append('text')
                             .text(d.title)
                             .attr('fill', d.color)

@@ -41,7 +41,7 @@ namespace WorldmapsParser
             {
                 return "transparentColor || '#fff'";
             }
-            return $"color || '{color}'";
+            return $"c || null";
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -124,19 +124,21 @@ namespace WorldmapsParser
 
                             output.AppendLine($"");
                             output.AppendLine($"    // {data.title}");
-                            output.AppendLine($"    case 'countries.{data.isoA2.ToLower()}':");
-                            output.AppendLine($"        w = {w};");
-                            output.AppendLine($"        h = {h};");
-                            output.AppendLine($"");
-                            output.AppendLine($"        // placeholder");
-                            output.AppendLine($"");
+                            output.AppendLine($"    {{   name: '{data.isoA2.ToLower()}',");
+                            output.AppendLine($"        w: {w},");
+                            output.AppendLine($"        h: {h},");
+//                            output.AppendLine($"");
+//                            output.AppendLine($"        ");
+//                            output.AppendLine($"");
 
                             var fill = GetColorFill(path.Attributes?["fill"]?.Value);
-                            output.AppendLine("        g.append('path')");
-                            output.AppendLine($"            .attr('d', '{ d }')");
-                            output.AppendLine($"            .attr('fill', { fill });");
-
-                            output.AppendLine($"        break;");
+                            output.AppendLine($"        path: '{ d }'");
+                            output.AppendLine($"    }},");
+//                            output.AppendLine($"        f: function(g, c) {{");
+//                            output.AppendLine($"              g.append('path')");
+//                            output.AppendLine($"                  .attr('d', '{ d }')");
+//                            output.AppendLine($"                  .attr('fill', { fill });");
+//                            output.AppendLine($"        }},");
                         }
                         else
                         {

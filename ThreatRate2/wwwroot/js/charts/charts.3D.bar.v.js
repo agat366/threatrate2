@@ -322,7 +322,7 @@ function chart3DBarVertical(settings) {
                     .remove();
                 valueCore.transition()
                     .ease('cubic-out')
-                    .duration(barDuration * 1.2)
+                    .duration(barDuration * 1.85)
                     .delay(i0 * barsDelay)
                     .attr('transform', self.formatTranslate(0, 0))
                     .style('opacity', 1);

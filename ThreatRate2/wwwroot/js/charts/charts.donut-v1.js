@@ -164,7 +164,7 @@ function chartBoxDonutV1(settings) {
 
                 var lbl = null
                 if (d._data.percent >= .1) {
-                    lbl = g.append('text')
+                    lbl = self._t.append('g').append('text')
                         .attr('text-anchor', 'center')
                         .attr('fill', '#fff')
                         .attr('stroke', null)

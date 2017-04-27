@@ -35,16 +35,8 @@
 
                     _.each(data,
                         function(d) {
-                            single.push({
-                                name: d.name,
-                                title: d.title,
-                                value: d.single
-                            });
-                            multi.push({
-                                name: d.name,
-                                title: d.title,
-                                value: d.multi
-                            });
+                            single.push(d.single);
+                            multi.push(d.multiple);
                         });
                     single = _.sortBy(single, 'value');
                     multi = _.sortBy(multi, 'value');

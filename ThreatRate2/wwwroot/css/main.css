@@ -504,7 +504,7 @@ h1, h2, h3, h4, h5, h6 {
       .chart-countries-unrest-top-5 .categories label:first-child {
         margin-top: 0; }
   .chart-countries-unrest-top-5 [chart-body] {
-    height: 350px; }
+    height: 380px; }
   .chart-countries-unrest-top-5 .country {
     height: 80px;
     margin: 25px 0; }

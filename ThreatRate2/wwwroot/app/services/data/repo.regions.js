@@ -33,11 +33,23 @@
                 function regionsByVehicleEvent(params) {
                     return regionsByKidnap(params);
                 }
-                function regionsByKidnapSimpleVsMultiple(params) {
+                function regionsByKidnapSingle(params) {
+//                    params.filter = 'single';
+                    return regionsByKidnap(params);
+                }
+
+                function regionsByKidnapMultiple(params) {
+//                    params.filter = 'multi';
                     return regionsByKidnap(params);
                 }
 
                 function regionsByKidnapDuration(params) {
+                    params.include = 'duration,ransom';
+                    return regionsByKidnap(params);
+                }
+
+                function regionsByKidnapDurationRange(params) {
+                    params.include = 'duration_range,ransom_range';
                     return regionsByKidnap(params);
                 }
 
@@ -46,7 +58,7 @@
                 }
 
                 function regionsByKidnap(params) {
-                    params = params || {};
+                    params = angular.copy(params || {});
 
                     params.id = params.from;
                     params.id2 = params.to;
@@ -117,8 +129,10 @@
 
                 this.regionsByKidnap = regionsByKidnap;
                 this.regionsByVehicleEvent = regionsByVehicleEvent;
-                this.regionsByKidnapSimpleVsMultiple = regionsByKidnapSimpleVsMultiple;
+                this.regionsByKidnapSingle = regionsByKidnapSingle;
+                this.regionsByKidnapMultiple = regionsByKidnapMultiple;
                 this.regionsByKidnapDuration = regionsByKidnapDuration;
+                this.regionsByKidnapDurationRange = regionsByKidnapDurationRange;
             }
         ]);
 }());

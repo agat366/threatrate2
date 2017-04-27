@@ -34,10 +34,11 @@
                         return;
                     }
 
+                    data = data.slice(0, 5);
 
                     for (var l = 0; l < data.length; l++) {
                         var d = data[l];
-                        d.value = _(d.unrest_categories).reduce(function (m, x) { return m + x.value; }, 0);
+                        d.value = _(d.unrest_categories).reduce(function (m, x) { return m + (x.value || 0); }, 0);
 
                         d.icon = {
                             name: 'countries.' + d.name
@@ -47,7 +48,7 @@
 //                    var maxValue = _.max(_.map(data, function (el) { return el.value; }));
                     scope.columns = _.sortBy(data, 'value').reverse();
 
-                    scope.categories = !data.length ? [] : _.map(data[0].unrest_categories, function (u) { return u.title; });
+                    scope.categories = !data.length ? [] : _.map(data[0].unrest_categories, function (u) { return u; });
 
                     $timeout(processCharts, 0);
 
@@ -75,11 +76,11 @@
                             var unrestData0 = _.map(d.unrest_categories, function(u) {
                                 return {
                                     title: '',//u.value,
-                                    value: u.value,
+                                    value: u.value || 0,
                                     color: colors[i]
                                 }
                             });
-                            var unrestData = [{ title: '', value: d.value, color: colors[i] }];
+                            var unrestData = [{ title: '', value: d.value || 0, color: colors[i] }];
                             unrestData.push.apply(unrestData, unrestData0);
 
                             var chartContainer = it.find('[chart-body]');
@@ -88,6 +89,7 @@
                                 var options = {
                                     layout: {
                                         bars: {
+                                            maxValue: 1,
                                             title: {
                                                 width: 25
                                             },

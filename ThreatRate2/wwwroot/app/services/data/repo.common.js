@@ -59,16 +59,17 @@
                 }
 
                 var unrest = [
-                    { title: 'Terrorism' },
+                    { title: 'Terrorism' },//'Terrorism', 'Education', 'Environment', 'Rebel activity', 'Racially motivated', 'Politically motivated', 'Financially motivated', 'Ideological', 'Sectarian', 'Religious Tensions', 'Coup/Mutiny', 'Civil War', 'Other'
                     { title: 'Rebel activity' },
                     { title: 'Racially motivated' },
                     { title: 'Politically motivated' },
                     { title: 'Financially motivated' },
-                    { title: 'Ideologically motivated' },
+                    { title: 'Ideologically motivated', alternateTitle: 'Ideological' },
                     { title: 'Sectarian' },
-                    { title: 'Religious motivated' },
+                    { title: 'Religious motivated', alternateTitle: 'Religious Tensions' },
                     { title: 'Coup/Mutiny' },
-                    { title: 'Civil war' }
+                    { title: 'Civil war' },
+                    { title: 'Other' }
                 ];
                 var $q = common.$q;
 
@@ -90,8 +91,8 @@
                 }
 
                 function countriesByVehicleAttack(params) {
-                    // todo: countries by custom filters
-                    return countriesByKidnap(params);
+                    params.filter = 'vehicle';
+                    return countries(params);
                 }
 
                 function countriesByChildKidnap(params) {
@@ -134,18 +135,39 @@
                 }
 
                 function countriesByUnrest(params) {
-                    // todo: countries by custom filters
-                    return countriesByKidnap(params);
+                    params.filter = 'unrest';
+                    params.include = 'unrest_categories';
+                    return countries(params)
+                        .then(function (data) {
+                            return _.map(data, function(d) {
+                                var result = angular.copy(d);
+                                result.unrest_categories = _.map(unrest, function(u) {
+                                    var categories = d.unrest_categories || d.duration_range;
+                                    var found = _.find(categories, function (c) {
+                                        var title = (c.title || '').toLowerCase();
+                                        return title == u.title.toLowerCase() || (u.alternateTitle || '').toLowerCase();
+                                    });
+
+                                    var category = angular.copy(found || {});
+                                    category.title = u.title;
+                                    if (category.value) {
+                                        category.value = parseInt(category.value);
+                                    }
+                                    return category;
+                                });
+                                return result;
+                            });
+                        });
                 }
 
                 function countriesBySuicideAttack(params) {
-                    // todo: countries by custom filters
-                    return countriesByKidnap(params);
+                    params.filter = 'suicide';
+                    return countries(params);
                 }
 
                 function countriesByKidnapKilled(params) {
-                    // todo: countries by custom filters
-                    return countriesByKidnap(params);
+                    params.filter = 'kidnap_victims_killed';
+                    return countries(params);
                 }
 
                 function mapItemId(country) {
@@ -219,6 +241,32 @@
                                 }
                             });
                             def.resolve(result);
+                        });
+
+                    return def.promise;
+                }
+
+                function countries(params) {
+                    params = params || {};
+
+                    var def = $q.defer();
+
+                    params.id = params.from || '199001';
+                    params.id2 = params.to || '201801';
+
+                    params.from = null;
+                    params.to = null;
+
+                    context.get('countries', params)
+                        .then(function (result) {
+                            _.each(result, function(r) {
+                                r.name = mapItemId(r);
+                            });
+                            def.resolve(result);
+                        }).catch(function () {
+                            countriesByKidnap(params).then(function(result) {
+                                def.resolve(result);
+                            });
                         });
 
                     return def.promise;

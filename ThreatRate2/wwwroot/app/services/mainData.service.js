@@ -124,15 +124,67 @@
                 }
 
                 function regionsByKidnapSimpleVsMultiple(params) {
-                    return repoRegions.regionsByKidnapSimpleVsMultiple(params);
-                }
+                    var promises = [];
+
+                    promises.push(repoRegions.regionsByKidnapSingle(params));
+                    promises.push(repoRegions.regionsByKidnapMultiple(params));
+
+                    var def = $q.defer();
+                    $q.all(promises).then(function (data) {
+                        var result = [];
+
+                        _.each(data[0], function (r1) {
+                            var r2 = _.find(data[1], { name: r1.name });
+
+                            var r = {
+                                name: r1.name,
+                                value: r1.value + r2.value,
+                                single: r1,
+                                multiple: r2
+                            };
+                            result.push(r);
+                        });
+
+                        def.resolve(result);
+                    });
+
+                    return def.promise;                }
 
                 function regionsByKidnapDuration(params) {
                     return repoRegions.regionsByKidnapDuration(params);
                 }
 
+                function regionsByKidnapDurationRange(params) {
+                    return repoRegions.regionsByKidnapDurationRange(params);
+                }
+
                 function regionsByKidnapDurationSimpleVsMultiple(params) {
-                    return repoRegions.regionsByKidnapSimpleVsMultiple(params);
+
+                    var promises = [];
+                    params.include = 'duration_range,ransom_range';
+                    promises.push(repoRegions.regionsByKidnapSingle(params));
+                    promises.push(repoRegions.regionsByKidnapMultiple(params));
+
+                    var def = $q.defer();
+                    $q.all(promises).then(function (data) {
+                        var result = [];
+
+                        _.each(data[0], function(r1) {
+                            var r2 = _.find(data[1], { name: r1.name });
+
+                            var r = {
+                                name: r1.name,
+                                value: r1.value + r2.value,
+                                single: r1,
+                                multiple: r2
+                            };
+                            result.push(r);
+                        });
+
+                        def.resolve(result);
+                    });
+
+                    return def.promise;
                 }
 
                 function terroristAttackTypes(params) {
@@ -161,6 +213,7 @@
                     regionsByVehicleAttack: regionsByVehicleAttack,
                     regionsByKidnapSimpleVsMultiple: regionsByKidnapSimpleVsMultiple,
                     regionsByKidnapDuration: regionsByKidnapDuration,
+                    regionsByKidnapDurationRange: regionsByKidnapDurationRange,
                     regionsByKidnapDurationSimpleVsMultiple: regionsByKidnapDurationSimpleVsMultiple,
 
                     locationsByKidnap: locationsByKidnap,

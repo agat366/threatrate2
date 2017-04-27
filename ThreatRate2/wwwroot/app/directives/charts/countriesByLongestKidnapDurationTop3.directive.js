@@ -312,7 +312,7 @@
                         g.transition()
                             .ease('cubic-out')
                             .duration(barDuration * 1.5)
-                            .delay(i * barsDelay + barDuration * 4)
+                            .delay(i * barsDelay * .95 + barDuration * 2.85)
                             .attr('transform', String.format('translate({0},{1})', dx, dy))
                             .style('opacity', 1);
 
@@ -339,27 +339,27 @@
 
                         g.append('g')
                             .attr('class', 'value-title')
-                            .attr('transform', 'translate(0, -30)')
+                            .attr('transform', 'translate(0, -13)')
                             .append('text')
                             .text(d.value + ' days')
                             .attr({ stroke: d.color, 'stroke-width': 8, 'stroke-linejoin': 'round' });
 //                            .attr({ stroke: ChartsManager.defaults.frontColor, 'stroke-width' : 8 });
                         g.append('g')
                             .attr('class', 'value-title')
-                            .attr('transform', 'translate(0, -30)')
+                            .attr('transform', 'translate(0, -13)')
                             .append('text')
                             .text(d.value + ' days');
                             
                         g.append('g')
                             .attr('class', 'legend-title')
-                            .attr('transform', 'translate(0, 0)')
+                            .attr('transform', 'translate(0, 12)')
                             .append('text')
                             .text(d.title)
                             .attr({ stroke: d.color, 'stroke-width': 6, 'stroke-linejoin': 'round'});
 //                            .attr({ stroke: ChartsManager.defaults.frontColor, 'stroke-width': 6 });
                         g.append('g')
                             .attr('class', 'legend-title')
-                            .attr('transform', 'translate(0, 0)')
+                            .attr('transform', 'translate(0, 12)')
                             .append('text')
                             .text(d.title);
                     }

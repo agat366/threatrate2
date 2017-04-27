@@ -62,7 +62,7 @@ function chartBubbledLines(settings) {
                 bottom: 0
             }
 
-            d.bars.maxValue = 100;
+            d.bars.maxValue = 1;
             d.bars.maxValueRangeMultiplier = 1.05;
 
             return d;
@@ -301,9 +301,12 @@ function chartBubbledLines(settings) {
                 var valueContainer = item.append('g')
                     .attr('transform', self.formatTranslate(0, barHeight - barHeightActual));
 
-                var valueContainerIn = valueContainer.append('g')
+                var valueContainerIn0 = valueContainer.append('g')
+                    .attr('transform', self.formatTranslate(0,-5));
+
+                var valueContainerIn = valueContainerIn0.append('g')
                     .attr('class', 'value-core')
-                    .attr('transform', self.formatTranslate(dx / 2, 100 * d.value / 100))
+                    .attr('transform', self.formatTranslate(dx / 2, /*100 * d.value / 100*/0))
                     .style('opacity', 0);
 
                 valueContainerIn
@@ -381,6 +384,7 @@ function chartBubbledLines(settings) {
 
                 var valueCore = g0.selectAll('.value-core');
                 var dx = d3.transform(valueCore.attr('transform')).translate[0];
+                valueCore.attr('transform', self.formatTranslate(dx, -15));
                 valueCore.transition()
                     .remove();
                 valueCore.transition()

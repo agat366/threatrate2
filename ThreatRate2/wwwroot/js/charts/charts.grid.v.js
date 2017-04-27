@@ -80,7 +80,7 @@ function chartGridVertical(settings) {
                 bottom: 0
             }
 
-            d.bars.maxValue = 100;
+            d.bars.maxValue = 1;
             d.bars.maxValueRangeMultiplier = 1.05;
 
             return d;

@@ -32,6 +32,16 @@
 
                 scope.$watch('data', bindData);
 
+                scope.formatRansom = function (value) {
+                    if (value > 100000) {
+                        return (Math.round(value / 100000) / 10) + 'M';
+                    } else if (value > 1000) {
+                        return Math.round(value / 100) / 10 + 'K';
+                    } else {
+                        return value;
+                    }
+                };
+
                 function bindData() {
                     var data = scope.data;
 
@@ -189,7 +199,7 @@
                                 .attr('class', 'legend-title')
                                 .attr('transform', String.format('translate({0},{1})', 0, 1))
                                 .append('text')
-                                .text(d.ransom_range.from + '-' + d.ransom_range.to);
+                                .text(scope.formatRansom(d.ransom_range.from) + '-' + scope.formatRansom(d.ransom_range.to));
 
                             legendTitle2.append('g')
                                 .attr('class', 'legend-title2')

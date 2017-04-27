@@ -31,7 +31,7 @@
                         return;
                     }
 
-                    data = _.sortBy(data, 'value').slice(data.length - 10).reverse();
+                    data = _.sortBy(data, 'value')./*slice(data.length - 10).*/reverse();
 
                     var chartsContainer = element.find('[chart-body]');
                     chartsContainer.html('');

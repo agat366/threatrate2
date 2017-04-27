@@ -36,7 +36,7 @@
                 default: false,
                 title: '03 - Kidnap activity by location // AUG 2015 - AUG 2016',
                 service: function () {
-                    return dataService.locationsByKidnap({from: null, to: null});
+                    return dataService.locationsByKidnap({from: '201601', to: '201606'});
                 }
             },
             {
@@ -102,7 +102,7 @@
             },
             {
                 id: 'countriesByUnrestTop5',
-                default: true,
+                default: false,
                 title: '12 - List of 5 countries registered the most civil unrest events // 2016',
                 service: function () {
                     return dataService.countriesByUnrest({top: 5, from: '201601', to: '201612'});
@@ -146,7 +146,7 @@
             },
             {
                 id: 'terroristAttackTypes',
-                default: true,
+//                default: true,
                 title: '18 - FREQUENCY OF TERRORIST ATTACK TYPES // 2016',
                 service: function () {
                     return dataService.terroristAttackTypes({from: '201601', to: '201612'});
@@ -169,7 +169,7 @@
             {
                 id: 'countriesByKidnapByGender',
                 title: '21 - Countries most kidnapped at by gender// June 2010 - March 2017',
-//                default: true,
+                default: true,
                 service: function () {
                     return dataService.countriesByKidnapByGender({top: 11, from: null, to: null});
                 }

@@ -124,13 +124,18 @@
                 }
 
                 function countriesByKidnapWithLocations(params) {
-                    params.include = 'locations';
-                    return countriesByKidnap(params, true);
+                    params.include = 'geolocations';
+                    return countriesByKidnap(params, true)
+                        .then(function (data) {
+                            _.each(data, function(c) {
+                                c.locations = c.geolocations;
+                            });
+                            return data;
+                        });
                 }
 
-                function countriesByKidnapByGender(params) {
-                    params.include = 'males,females';
-                    // todo: countries by custom filters
+                function countriesByKidnapByGender(params, isMales) {
+                    params.filter = isMales ? 'males' : 'females';
                     return countriesByKidnap(params, true);
                 }
 

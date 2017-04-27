@@ -24,7 +24,8 @@
                     { name: 'education', title: 'Education Venue' },
                     { name: 'worship', title: 'House of Worship' },
                     { name: 'office', title: 'Office / Business', alternateTitle: 'Office/Business' },
-                    { name: 'other', title: 'Other' }
+                    { name: 'other', title: 'Other' },
+                    { name: 'unknown', title: 'Unknown' }
                 ];
                 function renderList(list, iterator) {
                     var result = [];
@@ -36,9 +37,32 @@
 
                 function locationsByKidnapByGender(params) {
                     params = params || {};
-                    params.include = 'males,females';
 
-                    return locationsByKidnap(params);
+                    var males = angular.copy(params);
+                    males.filter = 'males';
+
+                    var females = angular.copy(params);
+                    females.filter = 'females';
+
+                    return $q.all([
+                        locationsByKidnap(males),
+                        locationsByKidnap(females)
+                    ])
+                        .then(function (result) {
+                            var data = result[0];
+                            var data2 = result[1];
+                            _.each(data, function (d) {
+                                var d2 = _.find(data2, { name: d.name });
+                                var d2Value = 0;
+                                if (d2) {
+                                    d2Value = d2.value;
+                                }
+                                d.males = d.value;
+                                d.females = d2Value;
+                                d.value = d.males + d2Value;
+                            });
+                            return data;
+                        });
                 }
 
                 function mapItemId(item) {
@@ -56,16 +80,30 @@
 
                     var def = $q.defer();
 
-                    params.id = '19900101';
-                    params.id2 = '20180101';
+                    params.id = params.from || '19900101';
+                    params.id2 = params.to || '20180101';
+
+                    params.from = null;
+                    params.to = null;
 
                     context.get('locationsByKidnap', params)
-                        .then(function (result) {
-                            _.each(result, function (r) {
-                                r.name = mapItemId(r);
+                        .then(function (response) {
+                            var locations = angular.copy(_locations);
+                            var result = _.map(locations, function(l) {
+                                var it = _.find(response, function(r) {
+                                    return l.title == r.title || l.alternateTitle == r.title;
+                                });
+                                if (it) {
+                                    it.name = l.name;
+                                    return it;
+                                } else {
+                                    l.value = 0;
+                                    l.percentage = 0;
+                                    return l;
+                                }
                             });
 
-                            def.resolve(result);
+                            def.resolve(response);
                         }).catch(function () {
                             var result = renderList(_locations, function (n, loc) {
                                 var rnd = Math.random();

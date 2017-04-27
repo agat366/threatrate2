@@ -62,7 +62,25 @@
                 }
 
                 function countriesByKidnapByGender(params) {
-                    return repo.countriesByKidnapByGender(params);
+                    return $q.all([
+                        repo.countriesByKidnapByGender(params, true),
+                        repo.countriesByKidnapByGender(params, false)
+                    ])
+                        .then(function (result) {
+                            var data = result[0];
+                            var data2 = result[1];
+                            _.each(data, function(d) {
+                                var d2 = _.find(data2, { id: d.id });
+                                var d2Value = 0;
+                                if (d2) {
+                                    d2Value = d2.value;
+                                }
+                                d.males = d.value;
+                                d.females = d2Value;
+                                d.value = d.males + d2Value;
+                            });
+                            return data;
+                    });
                 }
 
                 function countriesByKidnapKilled(params) {

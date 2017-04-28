@@ -1159,11 +1159,13 @@
         if (!dx || !dy) {
             transform.push(String.format('translate({0},{1})', dx || 0, dy || 0));
         }
-        if ((scale || 1) !== 1 && scale !== -1) {
-            transform.push(String.format('scale({0},{0})', scale || 1));
+        if (angular.isNumber(scale) && ((scale || 1) !== 1 && scale !== -1)) {
+//            console.log(scale);
+            transform.push(String.format('scale({0},{0})',  scale || 1));
         }
         if (transform.length) {
             g0.attr('transform-origin', 'center');
+//            console.log('transform', transform);
             g0.attr('transform', transform.join(','));
         }
 

@@ -196,16 +196,30 @@ h1, h2, h3, h4, h5, h6 {
       .chart-grid-ranked > div > div .level > span {
         margin: 0 1.5px;
         vertical-align: middle;
-        line-height: 12px; }
+        line-height: 12px;
+        background: #dcdcdc;
+        overflow: hidden; }
+        .chart-grid-ranked > div > div .level > span > span {
+          border-radius: 0;
+          vertical-align: top;
+          transition: left .5s ease-out;
+          left: -8px;
+          position: relative; }
+          .chart-grid-ranked > div > div .level > span > span.halfActive {
+            width: 4px;
+            overflow: hidden;
+            margin-right: 4px; }
+          .chart-grid-ranked > div > div .level > span > span > span {
+            vertical-align: top;
+            background: #e1482c; }
       .chart-grid-ranked > div > div .level span {
         width: 8px;
         height: 8px;
         border-radius: 8px;
-        display: inline-block;
-        background: #dcdcdc; }
-        .chart-grid-ranked > div > div .level span.active {
-          background: #e1482c;
-          vertical-align: top; }
+        display: inline-block; }
+
+.chart-grid-ranked .is-loaded span.active {
+  left: 0; }
 
 .chart-grid-ranked-30 > div {
   float: left;

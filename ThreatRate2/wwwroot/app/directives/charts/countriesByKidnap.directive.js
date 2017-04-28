@@ -4,8 +4,8 @@
 
     angular.module('tr').directive('chartCountriesByKidnap',
     [
-        'common', 'config', 'chartsHelper', 'repo.common',
-        function (common, config, chartsHelper, repo) {
+        'common', 'config', 'chartsHelper', 'repo.common', '$timeout',
+        function (common, config, chartsHelper, repo, $timeout) {
 
             var defaults = {
                 columns: 6,
@@ -15,14 +15,19 @@
 
             function link(scope, element, attributes) {
 
-                scope.$watch('data', bindData);
+                scope.$watch('data', function() {
+                    scope.isLoaded = false;
+                    $timeout(bindData, 50);
+                });
 
                 function bindData() {
 
                     var data = _.sortBy(scope.data, 'value').reverse();
-                    if (!data) {
+                    if (!data || !data.length) {
                         return;
                     }
+
+                    scope.columns = null;
 
                     var maxValue = _.max(_.map(data, function (el) { return el.value; }));
 
@@ -61,14 +66,28 @@
                             }
 
                             d.levels = [];
-                            var level = d.value / maxValue * defaults.levelPoints;
+                            var level = d.value / maxValue;
                             for (var k = 0; k < defaults.levelPoints; k++) {
-                                d.levels.push({ active: k <= level });
+                                var position = k / defaults.levelPoints;
+                                var state = {
+                                    active: position <= level,
+                                };
+                                console.log(d.value / maxValue)
+                                var nextIsActive = k + 1 < defaults.levelPoints
+                                    && (k + 1) / defaults.levelPoints <= level;
+                                state.halfActive = state.active
+                                    && (position + (1 / defaults.levelPoints / 2) > level)
+                                    && !nextIsActive;
+
+                                d.levels.push(state);
                             }
 
                             column.items.push(d);
                         }
                     }
+                    $timeout(function() {
+                        scope.isLoaded = true;
+                    }, 100);
                 }
             }
 

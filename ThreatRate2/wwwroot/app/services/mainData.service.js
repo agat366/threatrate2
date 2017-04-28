@@ -62,8 +62,8 @@
                 }
 
                 function countriesByKidnapByGender(params) {
+                    return repo.countriesByKidnapByGender(params);
                     return $q.all([
-                        repo.countriesByKidnapByGender(params, true),
                         repo.countriesByKidnapByGender(params, false)
                     ])
                         .then(function (result) {
@@ -106,20 +106,26 @@
                 function monthsByYears(params) {
 
                     var promises = [];
-                    promises.push(repoMonths.monthsByKidnap({from: 201601, to: 201612}));
-                    promises.push(repoMonths.monthsByKidnap({from: 201501, to: 201512}));
-                    promises.push(repoMonths.monthsByKidnap({from: 201401, to: 201412}));
-                    promises.push(repoMonths.monthsByKidnap({from: 201301, to: 201312}));
-                    promises.push(repoMonths.monthsByKidnap({from: 201201, to: 201212}));
+                    var to = 2016;
+                    if (params.to) {
+                        to = params.to;
+                        if (to > 4) {
+                            to = params.to.substr(0, 4);
+                        }
+                        to = parseInt(to);
+                    }
+                    for (var i = 0; i < 5; i++) {
+                        promises.push(repoMonths.monthsByKidnap({ from: '' + (to - i) + '01', to: '' + (to - i) + '12'}));
+                    }
 
                     var def = $q.defer();
                     $q.all(promises).then(function(data) {
                         var result = [];
-                        result.push({ year: 2016, data: data[0] });
-                        result.push({ year: 2015, data: data[1] });
-                        result.push({ year: 2014, data: data[2] });
-                        result.push({ year: 2013, data: data[3] });
-                        result.push({ year: 2012, data: data[4] });
+                        result.push({ year: to - 0, data: data[0] });
+                        result.push({ year: to - 1, data: data[1] });
+                        result.push({ year: to - 2, data: data[2] });
+                        result.push({ year: to - 3, data: data[3] });
+                        result.push({ year: to - 4, data: data[4] });
 
                         def.resolve(result);
                     });
@@ -128,8 +134,6 @@
                 }
 
                 function ageGroupsByKidnap(params) {
-                    params.from = '201501';
-                    params.to = '201612';
                     return repoAgeGroups.ageGroupsByKidnap(params);
                 }
 

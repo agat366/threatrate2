@@ -20,7 +20,8 @@
                     { name: '19-25', title: '19-25 years' },
                     { name: '26-35', title: '26-35 years' },
                     { name: '36-65', title: '36-65 years' },
-                    { name: '66 up', title: '66 up' }
+                    { name: '66 up', title: '66 up' },
+                    { name: 'N/A', title: 'N/A' }
                 ];
                 function renderList(list, iterator) {
                     var result = [];
@@ -34,31 +35,39 @@
                     return ageGroupsByKidnap(params, 'duration_range,ransom_range');
                 }
 
-                function ageGroupsByKidnap(p, include) {
-                    var params = {
-                        id: p.from,
-                        id2: p.to
-                    };
+                function ageGroupsByKidnap(params, include) {
+                    params = params || {};
+
+                    params.id = params.from || '199001';
+                    params.id2 = params.to || '201801';
+
+                    params.from = null;
+                    params.to = null;
+
 //                    if (include) {
                     params.include = include;
 //                    }
 
+
                     var def = $q.defer();
 
                     context.get('ageGroupsByKidnap', params)
-                        .then(function (result) {
-                            _.each(result, function(r) {
-                                var found = _.find(_items, { name: r.title });
-                                if (found) {
+                        .then(function (data) {
+                            var result = _.map(_items, function(it) {
+                                var r = _.find(data, { name: it.name });
+                                if (r) {
                                     r.name = r.title;
-                                    r.title = found.title;
+                                    r.title = r.title;
+                                } else {
+                                    r = angular.copy(it);
                                 };
 
-                                if (r.duration_range) {
-                                    if (r.duration_range.from < 0) {
-                                        r.duration_range.from = 0;
-                                    }
-                                }
+//                                if (r.duration_range) {
+//                                    if (r.duration_range.from < 0) {
+//                                        r.duration_range.from = 0;
+//                                    }
+//                                }
+                                return r;
                             });
                             def.resolve(result);
                         }).catch(function () {

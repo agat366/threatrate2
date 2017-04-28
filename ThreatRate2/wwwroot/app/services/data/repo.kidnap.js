@@ -30,8 +30,9 @@
 
                 function kidnapResults(params) {
 
-                    params.id = params.from;
-                    params.id2 = params.to;
+                    var to = parseInt((params.to || '').substr(0, 4));
+                    params.id = (to - 4);
+                    params.id2 = to;
 
                     return kidnapResultsPerYear(params);
 

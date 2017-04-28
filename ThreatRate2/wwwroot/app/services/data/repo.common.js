@@ -135,7 +135,7 @@
                 }
 
                 function countriesByKidnapByGender(params, isMales) {
-                    params.filter = isMales ? 'males' : 'females';
+                    params.include = 'males,females';
                     return countriesByKidnap(params, true);
                 }
 
@@ -262,7 +262,7 @@
                     params.from = null;
                     params.to = null;
 
-                    context.get('countries', params)
+                    context.get('countriesByEventType', params)
                         .then(function (result) {
                             _.each(result, function(r) {
                                 r.name = mapItemId(r);

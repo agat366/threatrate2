@@ -1,12 +1,31 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
+<style>
+    [ng-disabled][disabled] {
+        opacity: .4;
+    }
+</style>
 <div ng-controller="MainController as vm">
     <select ng-options="option.title || option.label for option in vm.charts track by option.id"
             ng-model="vm.currentChart"></select> 
+    /
+    <select ng-disabled="vm.currentChart.hasFrom === false" ng-options="option.title for option in vm.months track by option.id"
+            ng-model="vm.filter.monthFrom"></select> 
+    <select ng-disabled="vm.currentChart.hasFrom === false" ng-options="option.id for option in vm.years track by option.id"
+            ng-model="vm.filter.yearFrom"></select> 
+    -
+    <select ng-options="option.title for option in vm.months track by option.id"
+            ng-model="vm.filter.monthTo"></select> 
+    <select ng-options="option.id for option in vm.years track by option.id"
+            ng-model="vm.filter.yearTo"></select> 
+     /
+    <select ng-disabled="vm.isRegionDisabled()" ng-options="option.title for option in vm.regions track by option.name"
+            ng-model="vm.filter.region"></select> 
     
     <button ng-click="vm.reload()">Reload</button>
-    <button ng-click="vm.processCountries()">Process</button>
+@*    <button ng-click="vm.processCountries()">Process</button>*@
     
     
     <h2 class="ng-cloak">{{vm.currentChart.title}}</h2>

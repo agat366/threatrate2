@@ -30,16 +30,21 @@
                     return result;
                 }
 
+                function allRegions() {
+                    return angular.copy(_items);
+                }
+
                 function regionsByVehicleEvent(params) {
-                    return regionsByKidnap(params);
+                    params.filter = 'vehicle';
+                    return regions(params);
                 }
                 function regionsByKidnapSingle(params) {
-//                    params.filter = 'single';
+                    params.filter = 'single';
                     return regionsByKidnap(params);
                 }
 
                 function regionsByKidnapMultiple(params) {
-//                    params.filter = 'multi';
+                    params.filter = 'multi';
                     return regionsByKidnap(params);
                 }
 
@@ -57,6 +62,74 @@
                     return regionsByKidnap(params);
                 }
 
+                function regions(params) {
+                    params = angular.copy(params || {});
+
+                    params.id = params.from;
+                    params.id2 = params.to;
+
+                    params.from = null;
+                    params.to = null;
+
+                    var def = $q.defer();
+
+                    context.get('regionsByEventType', params)
+                        .then(function (data) {
+                            var result = _.map(_items, function (sys) {
+                                var found = _.find(data, function (r0) {
+                                    var name = sys.name;
+                                    if (name === 'australia') {
+                                        name = 'oceania';
+                                    }
+                                    return r0.title == name || r0.name == name;
+                                });
+                                if (found) {
+                                    found.name = sys.name;
+                                    found.title = sys.title;
+                                } else {
+                                    found = angular.copy(sys);
+                                    found.value = 0;
+                                }
+                                return found;
+                            });
+                            def.resolve(result);
+                        }).catch(function () {
+                            var result = renderList(_items, function (n, it) {
+                                var rnd = Math.random();
+                                return {
+                                    value: Math.round(rnd * 200),
+                                    id: it.id,
+                                    name: it.name,
+                                    title: it.title, // to move into directive
+                                    single: Math.round(Math.random() * 150),
+                                    multi: Math.round(Math.random() * 50),
+                                    duration: Math.round(Math.random() * 50),
+                                    duration_range: {
+                                        from: Math.round(Math.random() * 10),
+                                        to: Math.round(Math.random() * 50)
+                                    }, // to move into directive
+                                    ransom_range: {
+                                        from: Math.round(Math.random() * 2),
+                                        to: Math.round(Math.random() * 15)
+                                    },
+
+                                    multi_duration: Math.round(Math.random() * 50),
+                                    multi_duration_range: {
+                                        from: Math.round(Math.random() * 10),
+                                        to: Math.round(Math.random() * 50)
+                                    }, // to move into directive
+                                    multi_ransom_range: {
+                                        from: Math.round(Math.random() * 2),
+                                        to: Math.round(Math.random() * 15)
+                                    }
+
+                                }
+                            });
+                            def.resolve(result);
+                        });
+
+                    return def.promise;
+                }
                 function regionsByKidnap(params) {
                     params = angular.copy(params || {});
 
@@ -68,20 +141,24 @@
 
                     var def = $q.defer();
 
-                    context.get('regions', params)
-                        .then(function (result) {
-                            _.each(result, function(r) {
-                                var found = _.find(_items, function (sys) {
+                    context.get('regionsByKidnap', params)
+                        .then(function (data) {
+                            var result = _.map(_items, function(sys) {
+                                var found = _.find(data, function (r0) {
                                     var name = sys.name;
                                     if (name === 'australia') {
                                         name = 'oceania';
                                     }
-                                    return r.title == name || r.name == name;
+                                    return r0.title == name || r0.name == name;
                                 });
                                 if (found) {
-                                    r.name = found.name;
-                                    r.title = found.title;
+                                    found.name = sys.name;
+                                    found.title = sys.title;
+                                } else {
+                                    found = angular.copy(sys);
+                                    found.value = 0;
                                 }
+                                return found;
                             });
                             def.resolve(result);
                         }).catch(function () {
@@ -127,6 +204,7 @@
 //                    return def.promise;
 
 
+                this.allRegions = allRegions;
                 this.regionsByKidnap = regionsByKidnap;
                 this.regionsByVehicleEvent = regionsByVehicleEvent;
                 this.regionsByKidnapSingle = regionsByKidnapSingle;

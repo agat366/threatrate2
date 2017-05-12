@@ -8,21 +8,24 @@
     }
 </style>
 <div ng-controller="MainController as vm">
-    <select ng-options="option.title || option.label for option in vm.charts track by option.id"
+    <select ng-options="option.title2 || option.label for (idx, option) in vm.charts track by option.id"
             ng-model="vm.currentChart"></select> 
     /
-    <select ng-disabled="vm.currentChart.hasFrom === false" ng-options="option.title for option in vm.months track by option.id"
+    <select ng-disabled="vm.currentChart.hasFrom === false || vm.currentChart.hasFromMonth === false" ng-options="option.title for option in vm.months track by option.id"
             ng-model="vm.filter.monthFrom"></select> 
     <select ng-disabled="vm.currentChart.hasFrom === false" ng-options="option.id for option in vm.years track by option.id"
             ng-model="vm.filter.yearFrom"></select> 
     -
-    <select ng-options="option.title for option in vm.months track by option.id"
+    <select ng-disabled="vm.currentChart.hasTo === false || vm.currentChart.hasToMonth === false" ng-options="option.title for option in vm.months track by option.id"
             ng-model="vm.filter.monthTo"></select> 
     <select ng-options="option.id for option in vm.years track by option.id"
             ng-model="vm.filter.yearTo"></select> 
      /
     <select ng-disabled="vm.isRegionDisabled()" ng-options="option.title for option in vm.regions track by option.name"
             ng-model="vm.filter.region"></select> 
+     /
+    <select ng-if="vm.isCountriesVisible()" ng-options="option.title for option in vm.countries track by option.id"
+            ng-model="vm.filter.country"></select> 
     
     <button ng-click="vm.reload()">Reload</button>
 @*    <button ng-click="vm.processCountries()">Process</button>*@
@@ -55,7 +58,7 @@
             <chart-months-by-years-5 data="vm.data" ng-if="vm.chartId == 'monthsByYears5'"></chart-months-by-years-5>
             <chart-countries-by-kidnap-by-gender data="vm.data" ng-if="vm.chartId == 'countriesByKidnapByGender'"></chart-countries-by-kidnap-by-gender>
             <chart-locations-by-kidnap-by-gender data="vm.data" ng-if="vm.chartId == 'locationsByKidnapByGender'"></chart-locations-by-kidnap-by-gender>
-            <chart-countries-by-kidnap-duration-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByKidnapDurationTop10'"></chart-countries-by-kidnap-duration-top-10>
+            <chart-countries-by-kidnap-duration-top-10 data="vm.data" comparer="vm.comparer" ng-if="vm.chartId == 'countriesByKidnapDurationTop10'"></chart-countries-by-kidnap-duration-top-10>
             <chart-countries-by-kidnap-duration-grid-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByKidnapDurationGridTop10'"></chart-countries-by-kidnap-duration-grid-top-10>
             <chart-age-groups-by-kidnap-duration-grid data="vm.data" ng-if="vm.chartId == 'ageGroupsByKidnapDurationGrid'"></chart-age-groups-by-kidnap-duration-grid>
             <chart-kidnap-results data="vm.data" ng-if="vm.chartId == 'kidnapResults'"></chart-kidnap-results>

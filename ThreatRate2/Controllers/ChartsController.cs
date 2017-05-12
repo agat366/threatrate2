@@ -25,15 +25,18 @@ namespace MyGlenigan.Web.Controllers
         {
             using (var webClient = new HttpClient())
             {
-//                var method = "GET";
-                var username = "sasha.nike@gmail.com";
-                var password = "sasha666";
-                var authorization = "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(username + ":" + password));
+                //                var method = "GET";
+                //                var username = "sasha.nike@gmail.com";
+                //                var password = "sasha666";
+                //                var authorization = "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(username + ":" + password));
+                var authorization = "Token token=\"7oTPPfWQK07DRH+ugRK32p+8e6nLWs/fLUfjPrjGomoxvLMOhh/ETUuLjsB3Qul81c1dYnlfc/6T0a0aZHfTDA==\", email=\"notifications@github.com\"";
                 webClient.DefaultRequestHeaders.Add("Authorization", authorization);
 
                 var address = hueApi + url + Request.QueryString;
                 var response = webClient.GetAsync(address).Result;
                 var data = response.Content.ReadAsStringAsync().Result;
+
+                Response.StatusCode = (int)response.StatusCode;
 
                 var obj = JsonConvert.DeserializeObject<object>(data);
 

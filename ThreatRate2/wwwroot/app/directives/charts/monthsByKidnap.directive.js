@@ -5,7 +5,8 @@
     angular.module('tr').directive('chartMonthsByKidnap',
     [
         'common', 'config', 'chartsHelper',
-        function (common, config, chartsHelper) {
+        'colorsService',
+        function (common, config, chartsHelper, colors) {
 
             var defaults = {
             };
@@ -31,11 +32,11 @@
                     var threeHighest = _.map(sortedData, function (m) { return m.name; }).reverse().slice(0, 3);
                     for (var i = 0; i < data.length; i++) {
                         var it = data[i];
-                        if (_.find(threeHighest, function(v) { return v === it.name })) {
-                            it.color = ChartsManager.defaults.frontColor;
+                        if (_.find(threeHighest, function (v) { return v === it.name })) {
+                            it.color = colors.getColor(colors.schemas.high);
                             it.__marked = true;
                         } else {
-                            it.color = ChartsManager.defaults.secondaryBackColor;
+                            it.color = colors.getColor(colors.schemas.additionalMedium);
                         }
                     }
                     var options = {

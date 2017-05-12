@@ -33,7 +33,7 @@
     }
 
     h3 {
-        margin: 20px auto 15px;
+        margin: 20px auto 0;
         text-align: center;
 
         label {
@@ -52,12 +52,12 @@
         height: 290px;
 
         [chart-body="data"] {
-            height: 240px;
+            height: 200px;
             width: 220px;
             margin: 0 auto;
             position: absolute;
             right: 0;
-            top: 48px;
+            top: 70px;
 
         }
         &.multi{
@@ -104,6 +104,14 @@
             border-bottom-color: $dark;
             height: 42px;
 
+            &.header-min{
+                height: 24px;
+                line-height: 24px;
+                border-bottom: none;
+                >*{
+                    height: 24px;
+                }
+            }
             >*{
                 height: 42px;
             }
@@ -130,7 +138,7 @@
     [chart-body="map"] {
         height: 210px;
         width: 80%;
-        margin: 10px auto;
+        margin: 10px auto 0;
     }
 
 

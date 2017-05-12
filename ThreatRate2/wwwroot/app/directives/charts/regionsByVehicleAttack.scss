@@ -1,12 +1,12 @@
-﻿.chart-countries-by-suicide-attack {
+﻿.chart-countries-by-vehicle-attack {
     & > * {
         width: 16.66%;
         float: left;
         height: 200px;
 
-        @for $i from 2 through 6 {
+        @for $i from 1 through 6 {
             &:nth-child(#{$i}) {
-                margin-top: 45px * $i;
+                margin-top: 55px * ($i - 1);
             }
         }
 

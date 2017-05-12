@@ -4,20 +4,13 @@
 
     angular.module('tr').directive('chartKidnapResults',
     [
-        'common', 'config', 'chartsHelper', '$timeout',
-        function (common, config, chartsHelper, $timeout) {
+        'common', 'config', 'chartsHelper', '$timeout', 'colorsService',
+        function (common, config, chartsHelper, $timeout, colorsService) {
 
             var defaults = {
             };
 
-            var colors = [
-                '#8fd5e3',
-                '#45abb6',
-                '#296886',
-                '#c1c1c1',
-                '#e1482c',
-                '#bc3d28'
-            ].reverse();
+            var colors = colorsService.getSchema(colorsService.schemas.fixed4).reverse();
 
             function link(scope, element, attributes) {
 

@@ -26,7 +26,7 @@
                             return c.name === name;
                         });
                     if (country) {
-                        return country.title;
+                        return country.title.replace(/\s/gi, '-');
                     }
                 };
 
@@ -65,9 +65,18 @@
                             }
 
                             d.levels = [];
-                            var level = d.value / maxValue * defaults.levelPoints;
+                            var level = d.value / maxValue;
                             for (var k = 0; k < defaults.levelPoints; k++) {
-                                d.levels.push({ active: k <= level });
+                                var position = k / defaults.levelPoints;
+                                var state = { active: position <= level };
+                                //                                console.log(d.value / maxValue)
+                                var nextIsActive = k + 1 < defaults.levelPoints
+                                    && (k + 1) / defaults.levelPoints <= level;
+                                state.halfActive = state.active
+                                    && (position + (1 / defaults.levelPoints / 2) > level)
+                                    && !nextIsActive;
+
+                                d.levels.push(state);
                             }
 
                             column.items.push(d);

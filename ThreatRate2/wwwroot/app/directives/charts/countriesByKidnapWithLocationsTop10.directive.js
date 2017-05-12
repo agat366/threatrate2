@@ -4,23 +4,14 @@
 
     angular.module('tr').directive('chartCountriesByKidnapWithLocationsTop10',
     [
-        'common', 'config', 'chartsHelper', '$timeout', 'repo.common',
-        function (common, config, chartsHelper, $timeout, countriesRepo) {
+        'common', 'config', 'chartsHelper', '$timeout', 'repo.common', 'colorsService',
+        function (common, config, chartsHelper, $timeout, countriesRepo, colorsService) {
 
             var defaults = {
                 columns: 2,
                 rows: 5,
                 levelPoints: 12
             };
-
-            var colors = [
-                '#8fd5e3',
-                '#45abb6',
-                '#296886',
-                '#c1c1c1',
-                '#e1482c',
-                '#bc3d28'
-            ].reverse();
 
             var countries;
 
@@ -79,7 +70,9 @@
                                 d.levels.push({ active: k <= level });
                             }
 
-                            d.color = n < colors.length ? colors[n] : colors[colors.length - 1];
+                            var color = colorsService.getColor(colorsService.schemas.levels6, d.value, maxValue);
+
+                            d.color = color;
                             column.items.push(d);
                         }
                     }

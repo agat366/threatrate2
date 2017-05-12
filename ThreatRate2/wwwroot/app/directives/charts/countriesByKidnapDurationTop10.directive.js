@@ -4,19 +4,11 @@
 
     angular.module('tr').directive('chartCountriesByKidnapDurationTop10',
     [
-        'common', 'config', 'chartsHelper',
-        function (common, config, chartsHelper) {
+        'common', 'config', 'chartsHelper', 'colorsService',
+        function (common, config, chartsHelper, colorsService) {
 
             var defaults = {
             };
-
-            var colors = [
-                '#6c1a12',
-                '#8a281c',
-                ChartsManager.defaults.frontColor,
-                '#ee8879',
-                '#ffcac2'
-            ];
 
             function link(scope, element, attributes) {
 
@@ -39,9 +31,10 @@
                         return;
                     }
 
-                    var sorted = _.sortBy(data, 'duration');
-                    var top = sorted[sorted.length - 1];
-                    data = sorted.slice(sorted.length - 11, 10).reverse();
+                    var top = angular.copy(scope.comparer);
+
+                    var sorted = _.sortBy(data, 'duration').reverse();
+                    data = sorted;
 
                     var durationContainer = element.find('[chart-body="duration"]');
                     durationContainer.html('');
@@ -50,14 +43,20 @@
                     var comparerContainer = element.find('[chart-body="comparer"]');
                     comparerContainer.html('');
 
+                    var allDurations = _.map(data, function (el) { return el.duration; });
+                    allDurations.push(scope.comparer.duration);
+
+                    var maxDurationValue = _.max(allDurations);
 
                     var dataPrepared = _.map(data,
-                        function(d, i) {
+                        function (d, i) {
+                            var color = colorsService.getColor(colorsService.schemas.levels4, d.duration, maxDurationValue);
+
                             var result = {
                                 ransom: d.ransom,
                                 value: d.duration,
                                 valueTitle: 'days',
-                                color: i < colors.length ? colors[i] : colors[colors.length - 1] //,
+                                color: color //,
                                 //                        d.icon = {
                                 //                            name: 'countries.' + d.name,
                                 //                            scale: { width: 40, height: 40 }
@@ -68,14 +67,18 @@
                             return result;
                         });
                     var dataPreparedTop = _.map([top],
-                        function(d, i) {
+                        function (d, i) {
+                            var color = /*d.duration === 0
+                                ? colorsService.getColor(colorsService.schemas.empty)
+                                : */colorsService.getColor(colorsService.schemas.levels4, d.duration, maxDurationValue);
+
                             var result = {
                                 name: d.name,
                                 title: d.title,
                                 ransom: d.ransom,
                                 value: d.duration,
                                 valueTitle: 'days',
-                                color: i < colors.length ? colors[i] : colors[colors.length - 1] //,
+                                color: color //,
                                 //                        d.icon = {
                                 //                            name: 'countries.' + d.name,
                                 //                            scale: { width: 40, height: 40 }
@@ -85,7 +88,7 @@
 
                             return result;
                         });
-                    scope.top = dataPreparedTop[0];
+                    scope.top = top;
                     scope.top.iconName = 'countries.' + scope.top.name;
                     scope.top.iconColor = ChartsManager.defaults.backColor;
                     scope.top.duration = top.duration;
@@ -100,8 +103,6 @@
 
                     scope.countries = dataPrepared;
 
-                    var maxValue = _.max(_.map(data, function (el) { return el.duration; }));
-
                     var options = {
                             layout: {
                                 rows: {
@@ -109,7 +110,7 @@
                                 }
                             },
                             bars: {
-                                maxValue: maxValue,
+                                maxValue: maxDurationValue,
                                 margin: {
                                     left: 10,
                                     right: 10
@@ -138,7 +139,7 @@
                                 }
                             },
                             bars: {
-                                maxValue: maxValue,
+                                maxValue: maxDurationValue,
                                 margin: {
                                     left: 10,
                                     right: 10
@@ -161,11 +162,11 @@
                     });
 
                     // levels
-                        var maxValue2 = _.max(_.map(data, function (el) { return el.value; }));
+                        var maxValue = _.max(_.map(data, function (el) { return el.value; }));
 
                         var options = {
                             bars: {
-                                maxValue: maxValue2,
+                                maxValue: maxValue,
                                 maxValueRangeMultiplier: 1,
                                 title: {
                                     height: 0
@@ -196,11 +197,13 @@
                         }
                         var graphPrepared = _.map(data,
                             function (d, i) {
+                                var color = colorsService.getColor(colorsService.schemas.levels4, d.value, maxValue);
+
                                 var result = {
                                     value: d.value,
                                     valueTitle: null,
                                     legendTitle2: d.value,
-                                    color: i < colors.length ? colors[i] : colors[colors.length - 1],
+                                    color: color,
                                     title: d.title,
                                     icon: {
                                         name: 'countries.' + d.name,
@@ -229,7 +232,8 @@
                 restrict: 'E',
                 replace: true,
                 scope: {
-                    data: '='
+                    data: '=',
+                    comparer: '='
                 },
                 templateUrl: config.routeUrl + config.chartDirectivesPath + '/countriesByKidnapDurationTop10.html'
             };

@@ -4,19 +4,11 @@
 
     angular.module('tr').directive('chartCountriesByKidnapKilledTop5',
     [
-        'common', 'config', 'chartsHelper',
-        function (common, config, chartsHelper) {
+        'common', 'config', 'chartsHelper', 'colorsService',
+        function (common, config, chartsHelper, colorsService) {
 
             var defaults = {
             };
-
-            var colors = [
-                '#6c1a12',
-                '#8a281c',
-                ChartsManager.defaults.frontColor,
-                '#ee8879',
-                '#ffcac2'
-            ];
 
             function link(scope, element, attributes) {
 
@@ -37,8 +29,9 @@
                     
                     var maxValue = _.max(_.map(data, function (el) { return el.value; }));
                     _.each (data, function(d, i) {
+                        var color = colorsService.getColor(colorsService.schemas.levels4, d.value, maxValue);
 
-                        d.color = i < colors.length ? colors[i] : colors[0],
+                        d.color = color,
                         d.icon = {
                             name: 'countries.' + d.name,
                             color: d.color

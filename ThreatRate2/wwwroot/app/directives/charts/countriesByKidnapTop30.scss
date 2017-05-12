@@ -74,14 +74,30 @@
                 width: 53%;
                 text-align: center;
 
-                & > span {
+                > span {
                     margin: 0 4.5px;
                     vertical-align: middle;
                     line-height: 12px;
+                    background: $gray;
+                    overflow: hidden;
 
-                    @for $i from 0 through 12 {
-                        &:nth-child(#{$i}) .active {
-                            transition-delay: .01s * $i;
+                    > span {
+                        border-radius: 0;
+                        vertical-align: top;
+
+                        &.halfActive {
+                            width: 5px;
+                            overflow: hidden;
+                            margin-right: 5px;
+                        }
+
+                        transition: left .5s ease-out;
+                        left: -10px;
+                        position: relative;
+
+                        > span {
+                            vertical-align: top;
+                            background: $colorHigh;
                         }
                     }
                 }
@@ -91,31 +107,16 @@
                     height: 10px;
                     border-radius: 8px;
                     display: inline-block;
-                    background: $gray;
-                    overflow: hidden;
 
                     &.active {
-                        background: $red;
-                        vertical-align: top;
-                        transition: all .3s cubic-bezier(0, .75, .25, 1);
-                        position: relative;
-                        left: 0;
-
-
-                        &.ng-enter {
-                            left: -35px;
-                        }
-
-                        &.ng-enter-active {
-                            left: 0;
-                        }
-
-                        &.ng-leave {
-                            transition: none !important;
-                        }
+                        //left: 0;
                     }
                 }
             }
         }
+    }
+
+    .is-loaded span.active {
+        left: 0;
     }
 }

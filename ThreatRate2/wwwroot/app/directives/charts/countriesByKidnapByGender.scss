@@ -61,14 +61,14 @@
 
                 .sep {
                     display: inline-block;
-                    width: 3px;
+                    width: 4px;
                     border-radius: 2px;
-                    height: 31px;
+                    height: 36px;
                     vertical-align: top;
                     background: #dcdcdc;
-                    margin: 0 4px;
+                    margin: 0 6px -5px;
                     position: relative;
-                    top: -5px;
+                    top: -7px;
                 }
             }
 
@@ -78,11 +78,11 @@
             }
 
             .male {
-                color: $dark;
+                color: #bbd6e4;
             }
 
             .female {
-                color: $dark;
+                color: #b02819;
             }
 
             .legend {

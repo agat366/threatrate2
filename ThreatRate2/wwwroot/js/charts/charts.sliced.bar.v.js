@@ -33,11 +33,11 @@ function chartSlicedBarVertical(settings) {
                         dx: 10,
                         dy: 0
                     },
+                    color: manager.defaults.frontColor,
                     colors: [
                         manager.defaults.backColor, manager.defaults.frontColor
                     ],
                     backColor: manager.defaults.backColor,
-                    color: manager.defaults.frontColor,
                     backLinesGap: 1,
                     topIcon: {
                         name: manager.paths.signs.person,

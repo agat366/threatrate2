@@ -17,10 +17,12 @@
             font-weight: 700;
             display: block;
             border: 2px solid #ececec;
+            border: 2px solid transparent;
             padding: 3px 4px;
             margin: 9.8px 3px;
             text-align: right;
             border-radius: 10px;
+            color: #fff;
             &:first-child{
                 margin-top: 0;
             }

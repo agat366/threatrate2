@@ -4,19 +4,11 @@
 
     angular.module('tr').directive('chartCountriesByForeignersVsLocalsKidnapTop10',
     [
-        'common', 'config', 'chartsHelper',
-        function (common, config, chartsHelper) {
+        'common', 'config', 'chartsHelper', 'colorsService',
+        function (common, config, chartsHelper, colorsService) {
 
             var defaults = {
             };
-
-            var colors = [
-                '#6c1a12',
-                '#8a281c',
-                ChartsManager.defaults.frontColor,
-                '#ee8879',
-                '#ffcac2'
-            ];
 
             function link(scope, element, attributes) {
 
@@ -56,9 +48,12 @@
                         function(it, i) {
                             for (var j = 0; j < it.data.length; j++) {
                                 var d = it.data[j];
+
+                                var color = colorsService.getColor(colorsService.schemas.levels4, d.value, maxValue);
+
                                 d.valueTitle = d.value;
                                 d.value2Title = (Math.round(d.value / it.total * 1000) / 10) + '%';
-                                d.color = j < colors.length ? colors[j] : colors[colors.length - 1],
+                                d.color = color,
                                 d.icon = null;
 //                                d.titleColor = d.color;
 

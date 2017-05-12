@@ -79,27 +79,29 @@ function chart3DBarVertical(settings) {
 
         var grFront = defs.append('linearGradient')
             .attr('id', self.frontGradientName);
-        grFront.append('stop').attr({ offset: '0%', 'stop-color': 'rgba(0,0,0,0.1)' });
-        grFront.append('stop').attr({ offset: '6%', 'stop-color': 'rgba(255,255,255,0.05)' });
-        grFront.append('stop').attr({ offset: '11%', 'stop-color': 'rgba(255,255,255,0.15)' });
-        grFront.append('stop').attr({ offset: '23%', 'stop-color': 'rgba(255,255,255,0.25)' });
-        grFront.append('stop').attr({ offset: '29%', 'stop-color': 'rgba(255,255,255,0.25)' });
-        grFront.append('stop').attr({ offset: '40%', 'stop-color': 'rgba(255,255,255,0.1)' });
+        grFront.append('stop').attr({ offset: '0%', 'stop-color': 'rgba(0,0,0,1)', 'stop-opacity': .1 });
+        grFront.append('stop').attr({ offset: '6%', 'stop-color': 'rgba(255,255,255,1)', 'stop-opacity': .05 });
+        grFront.append('stop').attr({ offset: '11%', 'stop-color': 'rgba(255,255,255,1)', 'stop-opacity': .15 });
+        grFront.append('stop').attr({ offset: '23%', 'stop-color': 'rgba(255,255,255,1)', 'stop-opacity': .25 });
+        grFront.append('stop').attr({ offset: '29%', 'stop-color': 'rgba(255,255,255,1)', 'stop-opacity': .25 });
+        grFront.append('stop').attr({ offset: '40%', 'stop-color': 'rgba(255,255,255,1)', 'stop-opacity': .1 });
 //        grFront.append('stop').attr({ offset: '40%', 'stop-color': 'rgba(0,0,0,0)' });
-        grFront.append('stop').attr({ offset: '55%', 'stop-color': 'rgba(0,0,0,0.1)' });
-        grFront.append('stop').attr({ offset: '60%', 'stop-color': 'rgba(0,0,0,0.15)' });
-        grFront.append('stop').attr({ offset: '77%', 'stop-color': 'rgba(0,0,0,0.22)' });
-        grFront.append('stop').attr({ offset: '86%', 'stop-color': 'rgba(0,0,0,0.25)' });
-        grFront.append('stop').attr({ offset: '100%', 'stop-color': 'rgba(0,0,0,0.3)' })
+        grFront.append('stop').attr({ offset: '55%', 'stop-color': 'rgba(0,0,0,1)', 'stop-opacity': .1 });
+        grFront.append('stop').attr({ offset: '60%', 'stop-color': 'rgba(0,0,0,1)', 'stop-opacity': .15 });
+        grFront.append('stop').attr({ offset: '77%', 'stop-color': 'rgba(0,0,0,1)', 'stop-opacity': .22 });
+        grFront.append('stop').attr({ offset: '86%', 'stop-color': 'rgba(0,0,0,1)', 'stop-opacity': .25 });
+        grFront.append('stop').attr({ offset: '100%', 'stop-color': 'rgba(0,0,0,1)', 'stop-opacity': .3 })
             ;
 
         self._c = self._layout.append('g');//.attr('transform', 'translate(' + _opts.axis.y.text.width + ', ' + 0 + ')');
 
+/*
         self._c.append('pattern')
             .attr({ id: 'diagonalHatch', patternUnits: 'userSpaceOnUse', width: '4', height: '4' })
             .append('path')
             .attr('d', 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2')
             .style({ 'stroke': _opts.bars.backColor, 'stroke-width': 1.15 });
+*/
 
 
         //        self._f = self._layout.append('g'); // lines
@@ -187,6 +189,7 @@ function chart3DBarVertical(settings) {
                 self.translate(bar, (barFrame.w - barFrame.inner.w) / 2, _opts.bars.margin.top);
 
                 // shadow back side
+/*
                 var barShadow = bar.append('g');
                 barShadow.append('rect')
                     .attr({
@@ -194,8 +197,9 @@ function chart3DBarVertical(settings) {
                         y: barFrame.inner.h - 140,
                         width: barFrame.inner.w + 120,
                         height: 140,
-                        fill: String.format('url(#{0})', self.backGradientName) // _opts.bars.backColor
+                        fill: String.format('url(#{0})', self.frontGradientName) // _opts.bars.backColor
                     });
+*/
 
                 // background back side
                 var barBackground0 = bar.append('g');

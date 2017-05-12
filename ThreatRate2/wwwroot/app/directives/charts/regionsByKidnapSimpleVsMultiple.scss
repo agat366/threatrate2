@@ -42,9 +42,13 @@
         width: 90%;
         margin: 10px auto;
     }
+    [chart-body="data"] .bar-title text{
+        font-size: 1.1em;
+    }
+
     [chart-body="data"]{
         height: 235px;
-        width: 300px;
+        width: 350px;
         margin: 0 auto;
     }
 

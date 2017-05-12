@@ -2,24 +2,28 @@
 <!DOCTYPE html>
 <html ng-app="tr">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    @{
+        var rnd = new Random().Next();
+    }
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - ThreatRate2</title>
 
     <link href="https://fonts.googleapis.com/css?family=Exo:400,600" rel="stylesheet">
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" href="~/css/site.css"/>
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"/>
     </environment>
-    <link href="~/lib/reset-css/reset.css" rel="stylesheet" />
-    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/lib/reset-css/reset.css" rel="stylesheet"/>
+    <link href="~/css/main.css?r=@(rnd)" rel="stylesheet"/>
 
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
@@ -55,7 +59,7 @@
         <script src="~/lib/angular-resource/angular-resource.js"></script>
         <script src="~/lib/angular-extend-promises/angular-extend-promises-without-lodash.js"></script>
         <script src="~/lib/angular-animate/angular-animate.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/site.js?r=@(rnd)" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
         @*        <script src="~/lib/underscore/underscore-min.js"></script>*@
@@ -66,78 +70,79 @@
         <script src="~/lib/angular-resource/angular-resource.js"></script>
         <script src="~/lib/angular-extend-promises/angular-extend-promises-without-lodash.js"></script>
         <script src="~/lib/angular-animate/angular-animate.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/site.js?r=@(rnd)" asp-append-version="true"></script>
     </environment>
-    <script src="~/app/app.js"></script>
-    <script src="~/app/services/mainData.service.js"></script>
-    <script src="~/app/services/data/data.js"></script>
-    <script src="~/app/services/data/repo.common.js"></script>
-    <script src="~/app/services/data/repo.locations.js"></script>
-    <script src="~/app/services/data/repo.months.js"></script>
-    <script src="~/app/services/common.js"></script>
-    <script src="~/app/services/mainData.service.js"></script>
-    <script src="~/app/services/charts.helper.js"></script>
-    <script src="~/app/services/data/repo.ageGroups.js"></script>
-    <script src="~/app/services/data/repo.professionalGroups.js"></script>
-    <script src="~/app/services/data/repo.regions.js"></script>
-    <script src="~/app/services/data/repo.attacks.js"></script>
-    <script src="~/app/services/data/repo.kidnap.js"></script>
-    <script src="~/app/controllers/main.controller.js"></script>
+    <script src="~/app/app.js?r=@(rnd)"></script>
+    <script src="~/app/services/data/data.js?r=@(rnd)"></script>
+    <script src="~/app/services/data/repo.common.js?r=@(rnd)"></script>
+    <script src="~/app/services/data/repo.locations.js?r=@(rnd)"></script>
+    <script src="~/app/services/data/repo.sessions.js"></script>
+    <script src="~/app/services/data/repo.months.js?r=@(rnd)"></script>
+    <script src="~/app/services/common.js?r=@(rnd)"></script>
+    <script src="~/app/services/mainData.service.js?r=@(rnd)"></script>
+    <script src="~/app/services/colors.service.js"></script>
+    <script src="~/app/services/charts.helper.js?r=@(rnd)"></script>
+    <script src="~/app/services/data/repo.ageGroups.js?r=@(rnd)"></script>
+    <script src="~/app/services/data/repo.professionalGroups.js?r=@(rnd)"></script>
+    <script src="~/app/services/data/repo.regions.js?r=@(rnd)"></script>
+    <script src="~/app/services/data/repo.attacks.js?r=@(rnd)"></script>
+    <script src="~/app/services/data/repo.kidnap.js?r=@(rnd)"></script>
+    <script src="~/app/controllers/main.controller.js?r=@(rnd)"></script>
 
 
-    <script src="~/js/charts/charts.manager.js"></script> 
-    <script src="~/js/charts/charts.manager.regions.js"></script>
-    <script src="~/js/charts/charts.base.js"></script>
-    <script src="~/js/charts/charts.sliced.bar.v.js"></script>
-    <script src="~/js/charts/charts.bubbledLines.js"></script>
-    <script src="~/js/charts/charts.3D.bar.v.js"></script>
-    <script src="~/js/charts/charts.bagel.js"></script>
-    <script src="~/js/charts/charts.levels.v.js"></script>
-    <script src="~/js/charts/charts.linear.v.js"></script>
-    <script src="~/js/charts/charts.linear.h.js"></script>
-    <script src="~/js/charts/charts.grid.v.js"></script>
-    <script src="~/js/charts/charts.hourglass.js"></script>
-    <script src="~/js/charts/charts.dollar.js"></script>
-    <script src="~/js/charts/charts.donut.js"></script>
-    <script src="~/js/charts/charts.donut-v1.js"></script>
+    <script src="~/js/charts/charts.manager.js?r=@(rnd)"></script> 
+    <script src="~/js/charts/charts.manager.regions.js?r=@(rnd)"></script>
+    <script src="~/js/charts/charts.base.js?r=@(rnd)"></script>
+    <script src="~/js/charts/charts.sliced.bar.v.js?r=@(rnd)"></script>
+    <script src="~/js/charts/charts.bubbledLines.js?r=@(rnd)"></script>
+    <script src="~/js/charts/charts.3D.bar.v.js?r=@(rnd)"></script>
+    <script src="~/js/charts/charts.bagel.js?r=@(rnd)"></script>
+    <script src="~/js/charts/charts.levels.v.js?r=@(rnd)"></script>
+    <script src="~/js/charts/charts.linear.v.js?r=@(rnd)"></script>
+    <script src="~/js/charts/charts.linear.h.js?r=@(rnd)"></script>
+    <script src="~/js/charts/charts.grid.v.js?r=@(rnd)"></script>
+    <script src="~/js/charts/charts.hourglass.js?r=@(rnd)"></script>
+    <script src="~/js/charts/charts.dollar.js?r=@(rnd)"></script>
+    <script src="~/js/charts/charts.donut.js?r=@(rnd)"></script>
+    <script src="~/js/charts/charts.donut-v1.js?r=@(rnd)"></script>
 
-    <script src="~/app/directives/chartIcon.directive.js"></script>
+    <script src="~/app/directives/chartIcon.directive.js?r=@(rnd)"></script>
 
-    <script src="~/app/directives/charts/countriesByKidnap.directive.js"></script>
-    <script src="~/app/directives/charts/countriesByKidnapTop30.directive.js"></script>
-    <script src="~/app/directives/charts/locationsByKidnap.directive.js"></script>
-    <script src="~/app/directives/charts/monthsByKidnap.directive.js"></script>
-    <script src="~/app/directives/charts/ageGroupsByKidnap.directive.js"></script>
-    <script src="~/app/directives/charts/professionalGroupsByKidnap.directive.js"></script>
-    <script src="~/app/directives/charts/regionsByKidnapSimpleVsMultiple.directive.js"></script>
-    <script src="~/app/directives/charts/countriesByLongestKidnapDurationTop3.directive.js"></script>
-    <script src="~/app/directives/charts/countriesByVehicleAttackTop3.directive.js"></script>
-    <script src="~/app/directives/charts/countriesBySuicideAttackTop5.directive.js"></script>
-    <script src="~/app/directives/charts/countriesByChildKidnapTop5.directive.js"></script>
-<script src="~/app/directives/charts/countriesByForeignersKidnapDurationTop5.directive.js"></script>
-<script src="~/app/directives/charts/countriesByUnrestTop5.directive.js"></script>
-<script src="~/app/directives/charts/regionsByVehicleAttack.directive.js"></script>
-    <script src="~/app/directives/charts/countriesByKidnapKilledTop5.directive.js"></script>
-<script src="~/app/directives/charts/countriesByForeignersKidnapTop10.directive.js"></script>
-    <script src="~/app/directives/charts/terroristAttackTypes.directive.js"></script>
-    <script src="~/app/directives/charts/countriesByKidnapWithLocationsTop10.directive.js"></script>
+    <script src="~/app/directives/charts/countriesByKidnap.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByKidnapTop30.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/locationsByKidnap.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/monthsByKidnap.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/ageGroupsByKidnap.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/professionalGroupsByKidnap.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/regionsByKidnapSimpleVsMultiple.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByLongestKidnapDurationTop3.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByVehicleAttackTop3.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesBySuicideAttackTop5.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByChildKidnapTop5.directive.js?r=@(rnd)"></script>
+<script src="~/app/directives/charts/countriesByForeignersKidnapDurationTop5.directive.js?r=@(rnd)"></script>
+<script src="~/app/directives/charts/countriesByUnrestTop5.directive.js?r=@(rnd)"></script>
+<script src="~/app/directives/charts/regionsByVehicleAttack.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByKidnapKilledTop5.directive.js?r=@(rnd)"></script>
+<script src="~/app/directives/charts/countriesByForeignersKidnapTop10.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/terroristAttackTypes.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByKidnapWithLocationsTop10.directive.js?r=@(rnd)"></script>
 
-    <script src="~/app/directives/charts/monthsByYears5.directive.js"></script>
-    <script src="~/app/directives/charts/countriesByKidnapByGender.directive.js"></script>
-    <script src="~/app/directives/charts/locationsByKidnapByGender.directive.js"></script>
-    <script src="~/app/directives/charts/countriesByKidnapDurationTop10.directive.js"></script>
+    <script src="~/app/directives/charts/monthsByYears5.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByKidnapByGender.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/locationsByKidnapByGender.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByKidnapDurationTop10.directive.js?r=@(rnd)"></script>
 
-    <script src="~/app/directives/charts/countriesByKidnapDurationGridTop10.directive.js"></script>
-    <script src="~/app/directives/charts/ageGroupsByKidnapDurationGrid.directive.js"></script>
+    <script src="~/app/directives/charts/countriesByKidnapDurationGridTop10.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/ageGroupsByKidnapDurationGrid.directive.js?r=@(rnd)"></script>
 
-    <script src="~/app/directives/charts/kidnapResults.directive.js"></script>
-    <script src="~/app/directives/charts/regionsByKidnapDurationSimpleVsMultiple.directive.js"></script>
-<script src="~/app/directives/charts/countriesByForeignersVsLocalsKidnapTop10.directive.js"></script>
-    <script src="~/app/directives/charts/regionsByKidnapDurationAndRansom.directive.js"></script>
-    <script src="~/app/directives/charts/countriesByRansomTop5.directive.js"></script>
-    <script src="~/app/directives/charts/countriesByForeignersVsLocalsKidnapTop5.directive.js"></script>
+    <script src="~/app/directives/charts/kidnapResults.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/regionsByKidnapDurationSimpleVsMultiple.directive.js?r=@(rnd)"></script>
+<script src="~/app/directives/charts/countriesByForeignersVsLocalsKidnapTop10.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/regionsByKidnapDurationAndRansom.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByRansomTop5.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByForeignersVsLocalsKidnapTop5.directive.js?r=@(rnd)"></script>
     
-    <script src="~/app/directives/charts/_countriesTest.directive.js"></script>
+    <script src="~/app/directives/charts/_countriesTest.directive.js?r=@(rnd)"></script>
 @RenderSection("Scripts", required: false)
 </body>
 </html>

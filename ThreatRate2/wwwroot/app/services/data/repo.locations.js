@@ -94,6 +94,7 @@
                                     return l.title == r.title || l.alternateTitle == r.title;
                                 });
                                 if (it) {
+                                    it.title = l.title;
                                     it.name = l.name;
                                     return it;
                                 } else {

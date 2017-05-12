@@ -4,19 +4,11 @@
 
     angular.module('tr').directive('chartCountriesByRansomTop5',
     [
-        'common', 'config', 'chartsHelper',
-        function (common, config, chartsHelper) {
+        'common', 'config', 'chartsHelper', 'colorsService',
+        function (common, config, chartsHelper, colorsService) {
 
             var defaults = {
             };
-
-            var colors = [
-                '#6c1a12',
-                '#8a281c',
-                ChartsManager.defaults.frontColor,
-                '#ee8879',
-                '#ffcac2'
-            ];
 
             function link(scope, element, attributes) {
 
@@ -49,7 +41,10 @@
                     _.each(data, function (d, i) {
                         d.valueTitle = '$' + scope.formatRansom(d.ransom);
                         d.value = d.ransom;
-                        d.color = i < colors.length ? colors[i] : colors[0],
+
+                        var color = colorsService.getColor(colorsService.schemas.levels4, d.value, maxValue);
+
+                        d.color = color,
                         d.icon = {
                             name: 'countries.' + d.name,
                             color: d.color,

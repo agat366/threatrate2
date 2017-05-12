@@ -69,10 +69,8 @@
                             var level = d.value / maxValue;
                             for (var k = 0; k < defaults.levelPoints; k++) {
                                 var position = k / defaults.levelPoints;
-                                var state = {
-                                    active: position <= level,
-                                };
-                                console.log(d.value / maxValue)
+                                var state = { active: position <= level };
+//                                console.log(d.value / maxValue)
                                 var nextIsActive = k + 1 < defaults.levelPoints
                                     && (k + 1) / defaults.levelPoints <= level;
                                 state.halfActive = state.active

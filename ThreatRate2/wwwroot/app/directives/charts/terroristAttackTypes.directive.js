@@ -4,21 +4,11 @@
 
     angular.module('tr').directive('chartTerroristAttackTypes',
     [
-        'common', 'config', 'chartsHelper',
-        function (common, config, chartsHelper) {
+        'common', 'config', 'chartsHelper', 'colorsService',
+        function (common, config, chartsHelper, colorsService) {
 
             var defaults = {
             };
-
-            var colors = [
-                '#8fd5e3',
-                '#45abb6',
-                '#296886',
-                '#c1c1c1',
-                '#e1482c',
-                '#bc3d28'
-            ].reverse();
-
 
             function link(scope, element, attributes) {
 
@@ -56,9 +46,12 @@
                     };
                     var g0 = svg.append('g')
                         .attr('transform', String.format('translate({0},{1})', frameContainer.padding.left, 0));
+
                     _.each(data, function (d, i) {
 
-                        d.color = i < colors.length ? colors[i] : colors[colors.length - 1];
+                        var color = colorsService.getColor(colorsService.schemas.levels6, d.value, maxValue);
+
+                        d.color = color;
                         d.icon = {
 //                            name: 'attacks.' + d.name,
                             name: 'threattypes.' + d.name,
@@ -78,7 +71,7 @@
                                 height: 150,
                                 diff: 45,
                                 title: {
-                                    width: 130,
+                                    width: 116,
                                     height: 25,
                                     radius: 15
                                 }
@@ -107,18 +100,18 @@
                         // icon rendering
                         var icon = g.append('g')
                             .attr('transform', String.format('translate({0},{1})', 0,
-                                frame.bar.height + frame.icon.height / 2));
+                                frame.bar.height + frame.icon.height / 2 + 10));
 
                         icon.append('circle')
                             .attr({
-                                cx: 0, cy: 0, r: 35, fill: '#fff',
+                                cx: 0, cy: 0, r: 30, fill: '#fff',
                                 stroke: ChartsManager.defaults.secondaryBackColor,
                                 'stroke-width': 2
                             });
 
                         ChartsManager.renderImage(icon.append('g'), d.icon.name,
                             ChartsManager.defaults.secondaryBackColor,
-                            { width: frame.icon.height + 5, height: frame.icon.height + 5, position: 0 }, true);
+                            { width: frame.icon.height, height: frame.icon.height, position: 0 }, true);
 
                         var isOdd = i % 2 === 1;
                         // legend rendering

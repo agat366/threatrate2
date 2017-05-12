@@ -183,6 +183,7 @@ h1, h2, h3, h4, h5, h6 {
       display: block;
       text-align: right;
       float: left;
+      padding-left: 2px;
       padding-right: 3px;
       font-size: 11px;
       font-weight: 700;
@@ -211,7 +212,7 @@ h1, h2, h3, h4, h5, h6 {
             margin-right: 4px; }
           .chart-grid-ranked > div > div .level > span > span > span {
             vertical-align: top;
-            background: #e1482c; }
+            background: #f13e2b; }
       .chart-grid-ranked > div > div .level span {
         width: 8px;
         height: 8px;
@@ -275,52 +276,30 @@ h1, h2, h3, h4, h5, h6 {
       .chart-grid-ranked-30 > div > div .level > span {
         margin: 0 4.5px;
         vertical-align: middle;
-        line-height: 12px; }
-        .chart-grid-ranked-30 > div > div .level > span:nth-child(0) .active {
-          transition-delay: 0s; }
-        .chart-grid-ranked-30 > div > div .level > span:nth-child(1) .active {
-          transition-delay: 0.01s; }
-        .chart-grid-ranked-30 > div > div .level > span:nth-child(2) .active {
-          transition-delay: 0.02s; }
-        .chart-grid-ranked-30 > div > div .level > span:nth-child(3) .active {
-          transition-delay: 0.03s; }
-        .chart-grid-ranked-30 > div > div .level > span:nth-child(4) .active {
-          transition-delay: 0.04s; }
-        .chart-grid-ranked-30 > div > div .level > span:nth-child(5) .active {
-          transition-delay: 0.05s; }
-        .chart-grid-ranked-30 > div > div .level > span:nth-child(6) .active {
-          transition-delay: 0.06s; }
-        .chart-grid-ranked-30 > div > div .level > span:nth-child(7) .active {
-          transition-delay: 0.07s; }
-        .chart-grid-ranked-30 > div > div .level > span:nth-child(8) .active {
-          transition-delay: 0.08s; }
-        .chart-grid-ranked-30 > div > div .level > span:nth-child(9) .active {
-          transition-delay: 0.09s; }
-        .chart-grid-ranked-30 > div > div .level > span:nth-child(10) .active {
-          transition-delay: 0.1s; }
-        .chart-grid-ranked-30 > div > div .level > span:nth-child(11) .active {
-          transition-delay: 0.11s; }
-        .chart-grid-ranked-30 > div > div .level > span:nth-child(12) .active {
-          transition-delay: 0.12s; }
+        line-height: 12px;
+        background: #dcdcdc;
+        overflow: hidden; }
+        .chart-grid-ranked-30 > div > div .level > span > span {
+          border-radius: 0;
+          vertical-align: top;
+          transition: left .5s ease-out;
+          left: -10px;
+          position: relative; }
+          .chart-grid-ranked-30 > div > div .level > span > span.halfActive {
+            width: 5px;
+            overflow: hidden;
+            margin-right: 5px; }
+          .chart-grid-ranked-30 > div > div .level > span > span > span {
+            vertical-align: top;
+            background: #f13e2b; }
       .chart-grid-ranked-30 > div > div .level span {
         width: 10px;
         height: 10px;
         border-radius: 8px;
-        display: inline-block;
-        background: #dcdcdc;
-        overflow: hidden; }
-        .chart-grid-ranked-30 > div > div .level span.active {
-          background: #e1482c;
-          vertical-align: top;
-          transition: all 0.3s cubic-bezier(0, 0.75, 0.25, 1);
-          position: relative;
-          left: 0; }
-          .chart-grid-ranked-30 > div > div .level span.active.ng-enter {
-            left: -35px; }
-          .chart-grid-ranked-30 > div > div .level span.active.ng-enter-active {
-            left: 0; }
-          .chart-grid-ranked-30 > div > div .level span.active.ng-leave {
-            transition: none !important; }
+        display: inline-block; }
+
+.chart-grid-ranked-30 .is-loaded span.active {
+  left: 0; }
 
 .chart-kidnap-by-location {
   height: 550px; }
@@ -453,9 +432,12 @@ h1, h2, h3, h4, h5, h6 {
   width: 90%;
   margin: 10px auto; }
 
+.chart-region-kidnapping-single-multiple [chart-body="data"] .bar-title text {
+  font-size: 1.1em; }
+
 .chart-region-kidnapping-single-multiple [chart-body="data"] {
   height: 235px;
-  width: 300px;
+  width: 350px;
   margin: 0 auto; }
 
 .chart-region-kidnapping-single-multiple .value-title text {
@@ -478,7 +460,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .chart-countries-by-suicide-attack .value-title text {
   fill: #e1482c;
-  font-size: 18px; }
+  font-size: 28px; }
 
 .chart-countries-by-suicide-attack .legend-title text {
   fill: #333;
@@ -511,10 +493,12 @@ h1, h2, h3, h4, h5, h6 {
       font-weight: 700;
       display: block;
       border: 2px solid #ececec;
+      border: 2px solid transparent;
       padding: 3px 4px;
       margin: 9.8px 3px;
       text-align: right;
-      border-radius: 10px; }
+      border-radius: 10px;
+      color: #fff; }
       .chart-countries-unrest-top-5 .categories label:first-child {
         margin-top: 0; }
   .chart-countries-unrest-top-5 [chart-body] {
@@ -543,27 +527,29 @@ h1, h2, h3, h4, h5, h6 {
   .chart-kidnap-victims-top-5 .legend-title text {
     font-size: 20px; }
 
-.chart-countries-by-suicide-attack > * {
+.chart-countries-by-vehicle-attack > * {
   width: 16.66%;
   float: left;
   height: 200px; }
-  .chart-countries-by-suicide-attack > *:nth-child(2) {
-    margin-top: 90px; }
-  .chart-countries-by-suicide-attack > *:nth-child(3) {
-    margin-top: 135px; }
-  .chart-countries-by-suicide-attack > *:nth-child(4) {
-    margin-top: 180px; }
-  .chart-countries-by-suicide-attack > *:nth-child(5) {
-    margin-top: 225px; }
-  .chart-countries-by-suicide-attack > *:nth-child(6) {
-    margin-top: 270px; }
+  .chart-countries-by-vehicle-attack > *:nth-child(1) {
+    margin-top: 0px; }
+  .chart-countries-by-vehicle-attack > *:nth-child(2) {
+    margin-top: 55px; }
+  .chart-countries-by-vehicle-attack > *:nth-child(3) {
+    margin-top: 110px; }
+  .chart-countries-by-vehicle-attack > *:nth-child(4) {
+    margin-top: 165px; }
+  .chart-countries-by-vehicle-attack > *:nth-child(5) {
+    margin-top: 220px; }
+  .chart-countries-by-vehicle-attack > *:nth-child(6) {
+    margin-top: 275px; }
 
-.chart-countries-by-suicide-attack .value-title {
+.chart-countries-by-vehicle-attack .value-title {
   fill: #e1482c;
   font-size: 18px;
   margin-top: 10px; }
 
-.chart-countries-by-suicide-attack .legend-title {
+.chart-countries-by-vehicle-attack .legend-title {
   fill: #333;
   font-weight: normal;
   font-size: 18px;
@@ -576,7 +562,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .chart-threat-types .legend-title text {
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
   text-transform: capitalize; }
 
 .chart-grid-grouped-10 > div {
@@ -762,21 +748,21 @@ h1, h2, h3, h4, h5, h6 {
       white-space: nowrap; }
       .chart-countries-by-kidnap-by-gender .right-side .data h3 .sep {
         display: inline-block;
-        width: 3px;
+        width: 4px;
         border-radius: 2px;
-        height: 31px;
+        height: 36px;
         vertical-align: top;
         background: #dcdcdc;
-        margin: 0 4px;
+        margin: 0 6px -5px;
         position: relative;
-        top: -5px; }
+        top: -7px; }
     .chart-countries-by-kidnap-by-gender .right-side .data h4 {
       font-size: 36px;
       text-transform: uppercase; }
     .chart-countries-by-kidnap-by-gender .right-side .data .male {
-      color: #333; }
+      color: #bbd6e4; }
     .chart-countries-by-kidnap-by-gender .right-side .data .female {
-      color: #333; }
+      color: #b02819; }
     .chart-countries-by-kidnap-by-gender .right-side .data .legend > * {
       display: inline-block;
       width: 30px;
@@ -1006,7 +992,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-right: 0; }
 
 .chart-region-duration-single-multiple h3 {
-  margin: 20px auto 15px;
+  margin: 20px auto 0;
   text-align: center; }
   .chart-region-duration-single-multiple h3 label {
     vertical-align: top;
@@ -1021,12 +1007,12 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   height: 290px; }
   .chart-region-duration-single-multiple .grid [chart-body="data"] {
-    height: 240px;
+    height: 200px;
     width: 220px;
     margin: 0 auto;
     position: absolute;
     right: 0;
-    top: 48px; }
+    top: 70px; }
   .chart-region-duration-single-multiple .grid.multi [chart-body="data"] {
     right: auto;
     left: 0; }
@@ -1053,6 +1039,12 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     border-bottom-color: #333;
     height: 42px; }
+    .chart-region-duration-single-multiple .column .header.header-min {
+      height: 24px;
+      line-height: 24px;
+      border-bottom: none; }
+      .chart-region-duration-single-multiple .column .header.header-min > * {
+        height: 24px; }
     .chart-region-duration-single-multiple .column .header > * {
       height: 42px; }
     .chart-region-duration-single-multiple .column .header [chart-icon] {
@@ -1069,7 +1061,7 @@ h1, h2, h3, h4, h5, h6 {
 .chart-region-duration-single-multiple [chart-body="map"] {
   height: 210px;
   width: 80%;
-  margin: 10px auto; }
+  margin: 10px auto 0; }
 
 .chart-region-duration-single-multiple svg .bar-title {
   text-anchor: end; }

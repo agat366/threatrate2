@@ -4,8 +4,8 @@
 
     angular.module('tr').directive('chartMonthsByYears5',
     [
-        'common', 'config', 'chartsHelper',
-        function (common, config, chartsHelper) {
+        'common', 'config', 'chartsHelper', 'colorsService',
+        function (common, config, chartsHelper, colorsService) {
 
             var defaults = {
             };
@@ -42,19 +42,19 @@
                                 data: [
                                     {
                                         value: requiredMonth.value,
-                                        color: ChartsManager.defaults.secondaryBackColor,
+                                        color: colorsService.getColor(colorsService.schemas.medium),
                                         legendColor: ChartsManager.defaults.secondaryBackColor,
                                         title: requiredMonth.title
                                     },
                                     {
                                         value: min.value,
-                                        color: ChartsManager.defaults.blueColor,
+                                        color: colorsService.getColor(colorsService.schemas.veryLow),
                                         legendColor: ChartsManager.defaults.blueColor,
                                         title: min.title
                                     },
                                     {
                                         value: max.value,
-                                        color: ChartsManager.defaults.frontColor,
+                                        color: colorsService.getColor(colorsService.schemas.high),
                                         legendColor: ChartsManager.defaults.frontColor,
                                         textColor: '#fff',
                                         title: max.title

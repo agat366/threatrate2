@@ -171,12 +171,14 @@ function chartBoxLinearVertical(settings) {
                 dy += st.bars.separator.height;
 
                 // value 2
-                g0.append('text')
+                g0.append('g')
+                    .attr('class', 'bar-title')
+                    .attr('transform', self.formatTranslate(st.bars.bar.width / 2, dy + st.bars.value2.height / 2))
+                    .append('text')
                     .attr('text-anchor', 'middle')
 //                    .attr('w', st.bars.value2.width)
                     .attr('dominant-baseline', 'central')
-                    .attr('transform', self.formatTranslate(st.bars.bar.width / 2, dy + st.bars.value2.height / 2))
-                    .style({'font-size': '.92em'})
+//                    .style({'font-size': '.92em'})
                     .text(d.value2 || d.title);
 
                 dy += st.bars.value2.height;

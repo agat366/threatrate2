@@ -4,8 +4,8 @@
 
     angular.module('tr').directive('chartRegionsByVehicleAttack',
     [
-        'common', 'config', 'chartsHelper', '$timeout',
-        function (common, config, chartsHelper, $timeout) {
+        'common', 'config', 'chartsHelper', '$timeout', 'colorsService',
+        function (common, config, chartsHelper, $timeout, colorsService) {
 
             var defaults = {
             };
@@ -21,14 +21,7 @@
                         return;
                     }
 
-                    var colors = [
-                        '#6c1a12',
-                        '#8a281c',
-                        ChartsManager.defaults.frontColor,
-                        '#ee8879',
-                        '#ffcac2',
-                        '#fcedeb'
-                    ];
+                    var colors = colorsService.getSchema(colorsService.schemas.fixed6v2).reverse();
 
 
                     data = _.sortBy(data, 'value').slice(data.length - 6).reverse();
@@ -40,7 +33,7 @@
                     var maxValue = _.max(_.map(data, function (el) { return el.value; }));
                     _.each(data, function (d, i) {
 
-                        d.color = i < colors.length ? colors[i] : colors[0],
+                        d.color = i < colors.length ? colors[i] : colors[colors.length - 1];
                             d.icon = {
                                 name: 'regions.' + d.name,
                                 color: d.color
@@ -92,9 +85,11 @@
                         var scale = scaleY > scaleX ? scaleX : scaleY;
 
                         if (d.name === 'africa') {
-                            scale /= 1.15;
-                        } else if (d.name === 'australia') {
                             scale /= 1.25;
+                        } else if (d.name === 'samerica') {
+                            scale /= 1.2;
+                        } else if (d.name === 'australia') {
+                            scale /= 1.35;
                         }
 
                         _.each(mask,

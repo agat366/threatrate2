@@ -4,8 +4,8 @@
 
     angular.module('tr').directive('chartRegionsByKidnapDurationSimpleVsMultiple',
     [
-        'common', 'config', 'chartsHelper', '$timeout',
-        function (common, config, chartsHelper, $timeout) {
+        'common', 'config', 'chartsHelper', '$timeout', 'colorsService',
+        function (common, config, chartsHelper, $timeout, colorsService) {
 
             var defaults = {
             };
@@ -31,14 +31,7 @@
                         return;
                     }
 
-                    var colors = [
-                        '#8fd5e3',
-                        '#45abb6',
-                        '#296886',
-                        '#c1c1c1',
-                        '#e1482c',
-                        '#bc3d28'
-                    ];
+                    var colors = colorsService.getSchema(colorsService.schemas.fixed6v2);
 
                     var single = [];
                     var multi = [];

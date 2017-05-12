@@ -5,17 +5,11 @@
 
     angular.module('tr').directive('chartCountriesByVehicleAttackTop3',
     [
-        'common', 'config', 'chartsHelper', '$timeout', 'repo.common',
-        function (common, config, chartsHelper, $timeout, repoCountries) {
+        'common', 'config', 'chartsHelper', '$timeout', 'repo.common', 'colorsService',
+        function (common, config, chartsHelper, $timeout, repoCountries, colorsService) {
 
             var defaults = {
             };
-
-            var colors = [
-                '#6c1a12',
-                '#8a281c',
-                ChartsManager.defaults.frontColor
-            ];
 
             var barsDelay = 125;
             var barRowsDelay = 8;
@@ -42,8 +36,11 @@
                     var testMode2 = 0;//testModeGeneral % 2;
 
                     data = _.sortBy(data, 'value').reverse().slice(0, 3);
+                    var maxValue = _.max(_.map(data, function (el) { return el.value; }));
+
                     _.each(data, function (d, i) {
-                        d.color = colors[i];
+                        var color = colorsService.getColor(colorsService.schemas.levels3, d.value, maxValue);
+                        d.color = color;
                     });
 
                     var container = element.find('[chart-body]');

@@ -84,6 +84,7 @@ function chartBase(itemToInherit) {
         var separator = params.separator || '\n';
         var addGroupWrapper = params.group !== false;
         var width = params.width || 50;
+        var vertical = params.VERTICAL || 'top';
 
         var group = addGroupWrapper ? container.append('g') : container;
 
@@ -138,7 +139,8 @@ function chartBase(itemToInherit) {
                     dy = box.height;
                 }
 
-                var y = dy * (Math.round(i + 1 - total / 2 - .5) - (1 - (total % 2)) * .5);
+                var y = dy * (vertical === 'top' ? i :
+                    (Math.round(i + 1 - total / 2 - .5) - (1 - (total % 2)) * .5));
                 txt.attr('transform', self.formatTranslate(0, y))
                     .attr('text-anchor', anchor)
 //                    .attr('dominant-baseline', baseline);

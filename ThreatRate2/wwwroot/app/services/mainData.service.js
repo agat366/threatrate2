@@ -5,15 +5,39 @@
         .module('tr')
         .service(serviceId,
         [
-            '$q', 'repo.common', 'repo.locations', 'repo.months', 'repo.ageGroups', 'repo.professionalGroups', 'repo.regions', 'repo.attacks', 'repo.kidnap',
-            function ($q, repo, repoLocations, repoMonths, repoAgeGroups, repoProfessionalGroups, repoRegions, repoAttacks, repoKidnap) {
+            '$q', 'repo.common', 'repo.locations', 'repo.months', 'repo.ageGroups', 'repo.professionalGroups', 'repo.regions', 'repo.attacks', 'repo.kidnap', 'repo.sessions',
+            function ($q, repo, repoLocations, repoMonths, repoAgeGroups, repoProfessionalGroups, repoRegions, repoAttacks, repoKidnap, repoSessions) {
 
                 function countriesByKidnap(params) {
                     return repo.countriesByKidnap(params, true);
                 }
 
                 function countriesByKidnapDuration(params) {
+                    params.orderBy = 'duration';
                     return repo.countriesByKidnapDuration(params);
+                }
+
+                function countriesByKidnapDurationWithComparer(params) {
+                    var paramsComparer = angular.copy(params);
+
+                    params = angular.copy(params);
+                    delete params.country;
+                    params.orderBy = 'duration';
+
+//                    var top = (params.top || 10) + 1;
+//                    params.top = top;
+
+                    delete paramsComparer.top;
+
+                    return $q.all([
+                        repo.countriesByKidnapDuration(paramsComparer),
+                        repo.countriesByKidnapDuration(params)
+                    ]).then(function(responses) {
+                        return {
+                            data: responses[1],
+                            comparer: responses[0][0]
+                        };
+                    });
                 }
 
                 function countriesByVehicleAttack(params) {
@@ -100,7 +124,27 @@
                 }
 
                 function monthsByKidnap(params) {
-                    return repoMonths.monthsByKidnap(params);
+                    return repoMonths.monthsByKidnap(params)
+                        .then(function(data) {
+                            var result = [];
+
+                            _.each(data, function(d) {
+                                var f = _.find(result, { name: d.name });
+                                if (!f) {
+                                    f = angular.copy(d);
+                                    result.push(f);
+                                    f.__total = 0;
+                                    f.__count = 0;
+                                }
+                                f.__total += d.value;
+                                f.__count++;
+                            });
+
+                            _.each(result, function(d) {
+                                d.value = Math.round(d.__total / d.__count);
+                            });
+                            return result;
+                        });
                 }
 
                 function monthsByYears(params) {
@@ -217,9 +261,14 @@
                     return repoKidnap.kidnapResults(params);
                 }
 
+                function getToken(user, password) {
+                    return repoSessions.getToken(user, password);
+                }
+
                 return {
                     countriesByKidnap: countriesByKidnap,
                     countriesByKidnapDuration: countriesByKidnapDuration,
+                    countriesByKidnapDurationWithComparer: countriesByKidnapDurationWithComparer,
                     countriesByVehicleAttack: countriesByVehicleAttack,
                     countriesByChildKidnap: countriesByChildKidnap,
                     countriesByForeignersKidnapDuration: countriesByForeignersKidnapDuration,
@@ -252,6 +301,8 @@
                     terroristAttackTypes: terroristAttackTypes,
                     
                     kidnapResults: kidnapResults,
+
+                    getToken: getToken,
 
 
                 }

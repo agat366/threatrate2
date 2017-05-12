@@ -149,7 +149,9 @@
     <Content Include="wwwroot\app\directives\charts\_countriesTest.html" />
     <Content Include="wwwroot\app\directives\charts\_countriesTest.scss" />
     <Content Include="wwwroot\app\services\charts.helper.js" />
+    <Content Include="wwwroot\app\services\colors.service.js" />
     <Content Include="wwwroot\app\services\data\data.js" />
+    <Content Include="wwwroot\app\services\data\repo.sessions.js" />
     <Content Include="wwwroot\app\services\data\repo.kidnap.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

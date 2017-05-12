@@ -5,7 +5,8 @@
     angular.module('tr').directive('chartLocationsByKidnap',
     [
         'common', 'config', 'chartsHelper',
-        function (common, config, chartsHelper) {
+        'colorsService',
+        function (common, config, chartsHelper, colors) {
 
             var defaults = {
             };
@@ -37,40 +38,46 @@
                         };
 
                     }
-                        var options = {
-                            bars: {
+
+                    var barColor = colors.getColor(colors.schemas.veryHigh);
+                    var options = {
+                        bars: {
+                            color: barColor,
 //                                height: 400,
-                                width: 58,
-                                maxValue: _.max(_.map(data, function (el) { return el.value; })) * 1.23, // to have space for the top icon and title
-                                title: {
-                                    dy: -10,
-                                    dx: 0
-                                },
-                                topIcon: {
-                                    dy: -50
-                                },
-                                margin: {
-                                    right: 16,
-                                    left: 16
-                                }
+                            width: 58,
+                            maxValue: _.max(_
+                                    .map(data, function(el) { return el.value; })) *
+                                1.23, // to have space for the top icon and title
+                            title: {
+                                dy: -10,
+                                dx: 0
                             },
-                            legend: {
-                                height: 135,
-                                title: {
-                                    height: 50,
-                                    color: ChartsManager.defaults.darkColor
-                                },
-                                icon: {
-                                    scale: 1.4,
-                                    dy: -7
-                                }
+                            topIcon: {
+                                dy: -50
+                            },
+                            margin: {
+                                right: 16,
+                                left: 16
                             }
-                        };
-                        var ch = new chartSlicedBarVertical({
-                            data: data,
-                            container: chartsContainer[0],
-                            options: options
-                        });
+                        },
+                        legend: {
+                            height: 135,
+                            title: {
+                                height: 50,
+                                color: ChartsManager.defaults.darkColor
+                            },
+                            icon: {
+                                scale: 1.4,
+                                dy: -7
+                            }
+                        }
+                    };
+
+                    var ch = new chartSlicedBarVertical({
+                        data: data,
+                        container: chartsContainer[0],
+                        options: options
+                    });
                 }
             }
             

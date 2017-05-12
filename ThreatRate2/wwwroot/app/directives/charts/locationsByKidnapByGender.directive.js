@@ -4,8 +4,8 @@
 
     angular.module('tr').directive('chartLocationsByKidnapByGender',
     [
-        'common', 'config', 'chartsHelper',
-        function (common, config, chartsHelper) {
+        'common', 'config', 'chartsHelper', 'colorsService',
+        function (common, config, chartsHelper, colorsService) {
 
             var defaults = {
             };
@@ -73,9 +73,9 @@
                                     left: 12
                                 },
                                 colors: [
-                                    '#bbd6e4', '#b02819'
-//                                    '#84c0ff', '#ff9ed3'
-                                ]
+                                    colorsService.getColor(colorsService.schemas.male),
+                                    colorsService.getColor(colorsService.schemas.female)
+                                 ]
                             },
                             legend: {
                                 height: 100,

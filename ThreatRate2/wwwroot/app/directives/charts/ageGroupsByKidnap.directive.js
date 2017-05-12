@@ -4,8 +4,8 @@
 
     angular.module('tr').directive('chartAgeGroupsByKidnap',
     [
-        'common', 'config', 'chartsHelper',
-        function (common, config, chartsHelper) {
+        'common', 'config', 'chartsHelper', 'colorsService',
+        function (common, config, chartsHelper, colorsService) {
 
             var defaults = {
             };
@@ -52,21 +52,25 @@
                         }
                     }
 
-                    var colors = [
-                        '#8fd5e3',
+                    var colors = colorsService.getSchema(colorsService.schemas.fixed6);
 
-                        '#8fd5e3',
-                        '#45abb6',
-                        '#296886',
-                        '#c1c1c1',
-                        '#e1482c',
-                        '#bc3d28'
-                    ];
                     var orderedGroups = _.sortBy(data, 'value');
-                    _.each(orderedGroups,
-                        function(c, i) {
-                            c.color = colors[i];
+                    var groupsWithoutNA = _.filter(orderedGroups, function (f) { return f.name != 'N/A'; });
+                    var naGroup = _.find(orderedGroups, { name: 'N/A' });
+                    var closestToNaValue = null;
+                    _.each(groupsWithoutNA,
+                        function (c, i) {
+                            c.color = i < colors.length ? colors[i] : colors[colors.length - 1];
+                            if (naGroup) {
+                                var dv = Math.abs(c.value - naGroup.value);
+                                if (!closestToNaValue || dv < Math.abs(naGroup.value - closestToNaValue.value)) {
+                                    closestToNaValue = c;
+                                }
+                            }
                         });
+                    if (closestToNaValue) {
+                        naGroup.color = closestToNaValue.color;
+                    }
 
                     var options = {
                         bars: {

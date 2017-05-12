@@ -4,22 +4,13 @@
 
     angular.module('tr').directive('chartAgeGroupsByKidnapDurationGrid',
     [
-        'common', 'config', 'chartsHelper', '$timeout',
-        function (common, config, chartsHelper, $timeout) {
+        'common', 'config', 'chartsHelper', '$timeout', 'colorsService',
+        function (common, config, chartsHelper, $timeout, colorsService) {
 
             var defaults = {
             };
 
-            var colors = [
-                '#8fd5e3',
-                
-                '#8fd5e3',
-                '#45abb6',
-                '#296886',
-                '#c1c1c1',
-                '#e1482c',
-                '#bc3d28'
-            ];
+            var colors = colorsService.getSchema(colorsService.schemas.fixed6);
 
             function link(scope, element, attributes) {
 
@@ -46,11 +37,26 @@
 
                     var maxValue = _.max(_.map(data, function(el) { return el.value; })); // to have space for the top icon and title
 
-                    _.each(_.sortBy(data, 'value'),
-                        function(d, i) {
-                            d.color = colors[i];
+                    var orderedGroups = _.sortBy(data, 'value');
+                    var groupsWithoutNA = _.filter(orderedGroups, function (f) { return f.name != 'N/A'; });
+                    var naGroup = _.find(orderedGroups, { name: 'N/A' });
+                    var closestToNaValue = null;
+
+                    _.each(groupsWithoutNA,
+                        function(c, i) {
+                            c.color = i < colors.length ? colors[i] : colors[colors.length - 1];
+                            if (naGroup) {
+                                var dv = Math.abs(c.value - naGroup.value);
+                                if (!closestToNaValue || dv < Math.abs(naGroup.value - closestToNaValue.value)) {
+                                    closestToNaValue = c;
+                                }
+                            }
                         });
-                    $timeout(function() {
+                    if (closestToNaValue) {
+                        naGroup.color = closestToNaValue.color;
+                    }
+
+                    $timeout(function () {
 
                         var containers = element.find('[chart-body="age-group"]');
 

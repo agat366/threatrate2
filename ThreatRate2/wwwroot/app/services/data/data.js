@@ -6,13 +6,15 @@
     angular.module('tr').factory(serviceId,
     [
         '$resource', 'common', 'config',
-    function ($resource, common, config) {
+        function ($resource, common, config) {
+            var authHeader = 'Token token="7oTPPfWQK07DRH+ugRK32p+8e6nLWs/fLUfjPrjGomoxvLMOhh/ETUuLjsB3Qul81c1dYnlfc/6T0a0aZHfTDA==", email="notifications@github.com"';
+
         var resource = $resource(apiRootUrl + '/:controller/:action/:id/:id2',
             { action: '@action', controller: '@controller' },
-            { 'put': { method: 'PUT', headers: { 'Content-Type': 'application/json' } } },
-            { 'get': { method: 'GET', headers: { 'Content-Type': 'application/json' } } },
-            { 'post': { method: 'POST', headers: { 'Content-Type': 'application/json' } } },
-            { 'delete': { method: 'DELETE', headers: { 'Content-Type': 'application/json' } } }
+            { 'put': { method: 'PUT', headers: { 'Content-Type': 'application/json', Authorization: authHeader } } },
+            { 'get': { method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: authHeader } } },
+            { 'post': { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: authHeader } } },
+            { 'delete': { method: 'DELETE', headers: { 'Content-Type': 'application/json', Authorization: authHeader } } }
             );
 
         var $q = common.$q;

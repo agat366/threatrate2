@@ -4,8 +4,8 @@
 
     angular.module('tr').directive('chartCountriesByUnrestTop5',
     [
-        'common', 'config', 'chartsHelper', '$timeout',
-        function (common, config, chartsHelper, $timeout) {
+        'common', 'config', 'chartsHelper', '$timeout', 'colorsService',
+        function (common, config, chartsHelper, $timeout, colorsService) {
 
             var defaults = {
                 columns: 6,
@@ -13,21 +13,18 @@
                 levelPoints: 5
             };
 
-            var colors = [
-                '#8fd5e3',
-                '#45abb6',
-                '#296886',
-                '#c1c1c1',
-                '#e1482c',
-                '#bc3d28'
-            ].reverse();
-
-
             function link(scope, element, attributes) {
 
                 scope.$watch('data', bindData);
 
                 function bindData() {
+
+                    var colors = colorsService.getSchema(colorsService.schemas.levels10)
+                        .reverse();
+
+                    scope.getColor = function(i) {
+                        return i < colors.length ? colors[i] : colors[colors.length - 1];
+                    };
 
                     var data = _.sortBy(scope.data, 'value').reverse();
                     if (!data) {
@@ -73,14 +70,22 @@
                                 true);
 
                             // chart
-                            var unrestData0 = _.map(d.unrest_categories, function(u) {
+
+                            var unrestData0 = _.map(d.unrest_categories, function (u, i) {
+                                var value = u.value || 0;
+                                var color = i < colors.length ? colors[i] : colors[colors.length - 1];
+//                                var color = colorsService.getColor(colorsService.schemas.levels10, value, d.value);
                                 return {
                                     title: '',//u.value,
-                                    value: u.value || 0,
-                                    color: colors[i]
+                                    value: value,
+                                    color: color
                                 }
                             });
-                            var unrestData = [{ title: '', value: d.value || 0, color: colors[i] }];
+                            var unrestData = [{
+                                title: '', value: d.value || 0, color:
+                                    colors[0]
+//                                    colorsService.getColor(colorsService.schemas.levels10, d.value, d.value)
+                            }];
                             unrestData.push.apply(unrestData, unrestData0);
 
                             var chartContainer = it.find('[chart-body]');

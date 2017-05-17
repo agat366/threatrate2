@@ -31,7 +31,14 @@
 @*    <button ng-click="vm.processCountries()">Process</button>*@
     
     
-    <h2 class="ng-cloak">{{vm.currentChart.title}}</h2>
+    <h2 class="ng-cloak">
+        {{vm.currentChart.title}}
+        //
+        <span class="dates">
+            {{vm.renderedFrom ? vm.renderedFrom + ' -' : '' }}
+            {{vm.renderedTo}}
+        </span>
+    </h2>
 
     <section class="content">
         <div>

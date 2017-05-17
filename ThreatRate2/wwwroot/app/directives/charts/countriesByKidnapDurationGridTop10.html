@@ -19,7 +19,7 @@
             <div ng-repeat="c in countries">
                 <div class="country" chart-icon icon-name="countries.{{c.name}}" icon-color="#eee"></div>
                 <h5>{{c.title}}</h5>
-                <div class="flag" style="background-image: url(/images/charts/flags/med/{{c.title}}.png)"></div>
+                <div class="flag" style="background-image: url(/images/charts/flags/med/{{titleByName(c.title)}}.png)"></div>
             </div>
         </div>
     </div>

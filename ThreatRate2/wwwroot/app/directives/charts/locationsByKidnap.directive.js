@@ -32,8 +32,12 @@
                         var chartData = data[i];
                         chartData.valueTitle = chartData.value;
                         chartData.icon = {
-                            name: 'locations.' + (chartData.name === 'other' ? 'common' : chartData.name),
-                            scale: 1.45,
+                            name: chartData.name === 'unknown' || !chartData.name ? 'signs.unknown' : 
+                                ('locations.' + (chartData.name === 'other' ? 'common' : chartData.name)),
+                            scale: { width: 40, height: 40 },
+//                            position: 0,
+                            toCenter: true,
+                            dx: -20, dy: -20,
                             color: ChartsManager.defaults.darkColor
                         };
 

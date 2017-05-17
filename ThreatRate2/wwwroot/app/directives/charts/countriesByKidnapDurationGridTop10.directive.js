@@ -32,6 +32,17 @@
                     }
                 };
 
+                scope.titleByName = function (item) {
+                    var name = item.name;
+                    var country = _.find(countries,
+                        function (c) {
+                            return c.name === name;
+                        });
+                    if (country) {
+                        return country.title.replace(/\s/gi, '-');
+                    }
+                };
+
                 function bindData() {
                     var data = scope.data;
 

@@ -43,11 +43,11 @@
                                         }
                                     ],
                                     icon: {
-                                        name: 'locations.' + (d.name === 'other' ? 'common' : d.name),
-                                        scale: { width: 50, height: 50 },
-                                        position: 0,
-                                        dy: -20,
-                                        dx: -20,
+                                        name: d.name === 'unknown' || !d.name ? 'signs.unknown' :
+                                            ('locations.' + (d.name === 'other' ? 'common' : d.name)),
+                                        scale: { width: 40, height: 40 },
+                                        //                            position: 0,
+                                        dx: -20, dy: -20,
                                         toCenter: true
                                     },
                                     title: d.title/*,

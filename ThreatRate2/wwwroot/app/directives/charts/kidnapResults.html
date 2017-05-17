@@ -16,7 +16,7 @@
     <div ng-if="!!data" style="clear: both;" class="chart-period">
         <div class="progress-line"></div>
         <label></label>
-        <span class="value">5 years</span>
+        <span class="value">{{$parent.$parent.vm.renderedYears | years}}</span>
         <label></label>
     </div>
 </div>

@@ -341,13 +341,13 @@
             {
 //                default: true,
                 id: 'countriesByForeignersVsLocalsKidnapTop10',
-                title: 'TOP 10 COUNTRIES FOR FOREIGNERS KIDNAPPING  VS. TOP 5 COUNTRIES FOR LOCALS KIDNAPPING',
+                title: 'TOP 10 COUNTRIES FOR FOREIGNERS KIDNAPPING  VS. TOP 10 COUNTRIES FOR LOCALS KIDNAPPING',
 //                title: '30 - REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION FOR SINGLE AND MULTIPLE KIDNAPPING',
                 service: function (params) {
                     params.top = 10;
                     return dataService.countriesByForeignersVsLocalsKidnap(params);
                 }
-            },
+            }/*,
             {
 //                default: true,
                 id: 'countriesTest',
@@ -356,11 +356,12 @@
                     vm.isLoading = false;
                     return { then: function () { } };
                 }
-            }
+            }*/
         ];
 
-            _.each(vm.charts, function(ch, i) {
-                ch.title2 = (i + 1) + ' - ' + ch.title;
+        _.each(vm.charts, function(ch, i) {
+            ch.order = i + 1;
+            ch.title2 = ch.order + ' - ' + ch.title;
         });
 
         vm.currentChart = _.find(vm.charts, { default: true }) || vm.charts[0];
@@ -416,6 +417,7 @@
                     params.country = vm.filter.country.title;
                 }
 
+                renderDate();
 
                 vm.comparer = null;
                 vm.currentChart.service(params)
@@ -427,6 +429,49 @@
                 vm.isLoading = false;
             }
         }
+
+        function renderDate() {
+
+            var includeMonth = true;
+            var sameYear = false;
+            var monthFrom = parseInt(vm.filter.monthFrom.id);
+            var monthTo = parseInt(vm.filter.monthTo.id);
+            var yearFrom = parseInt(vm.filter.yearFrom.id);
+            var yearTo = parseInt(vm.filter.yearTo.id);
+
+            var monthsAsQuarters = monthFrom % 3 === 1 && monthTo % 3 === 0
+                && (monthTo + yearTo * 12) - (monthFrom + yearFrom * 12) > 3;
+
+            if (monthFrom === 1 && monthTo === 12) {
+                includeMonth = false;
+            }
+
+            if (yearFrom === yearTo) {
+                sameYear = true;
+            }
+
+            vm.renderedFrom = null;
+            vm.renderedTo = null;
+
+            if (vm.currentChart.order === 20 || vm.currentChart.order === 26) {
+                vm.renderedYears = 5;
+            } else {
+                vm.renderedYears = Math.round(((yearTo * 12 + monthTo) - (yearFrom * 12 + monthFrom)) / 12 + .5);
+            }
+
+            vm.renderedFrom = sameYear && !includeMonth ? null :
+                ((includeMonth ? renderQuarter(monthFrom, monthsAsQuarters) + '/' : '') + yearFrom);
+            vm.renderedTo = (includeMonth ? renderQuarter(monthTo, monthsAsQuarters, true) + '/' : '') + yearTo;
+
+            function renderQuarter(month, asQuarter, isTo) {
+                if (asQuarter) {
+                    return 'Q' + (Math.round(month / 3 - .5) + (isTo ? 0 : 1));
+                } else {
+                    return month;
+                }
+            }
+        }
+
 
             vm.processCountries = function() {
                 var countries = [

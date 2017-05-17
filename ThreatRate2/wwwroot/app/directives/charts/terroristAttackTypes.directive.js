@@ -36,8 +36,8 @@
                         w: chartsContainer[0].offsetWidth,
                         h: chartsContainer[0].offsetHeight,
                         padding: {
-                            left: 10,
-                            right: 10
+                            left: 30,
+                            right: 30
                         }
                     };
                     frameContainer.inner = {
@@ -54,15 +54,18 @@
                         d.color = color;
                         d.icon = {
 //                            name: 'attacks.' + d.name,
-                            name: 'threattypes.' + d.name,
+                            name: d.name === 'other' ? 'signs.unknown' :
+                                ('threattypes.' + d.name),
                             color: d.color
                         };
 
 
                         var dx = frameContainer.inner.w / data.length;
 
-                        var g = g0.append('g')
+                        var gOut = g0.append('g')
                             .attr('transform', String.format('translate({0},{1})', dx * (i + .5), 0));
+
+                        var g = gOut.append('g');
 
                         var frame = {
                             w: dx,
@@ -77,7 +80,7 @@
                                 }
                             },
                             icon: {
-                                height: 40
+                                height: 35
                             },
                             bar: {
                                 height: 0,
@@ -93,9 +96,10 @@
                             .attr('transform', String.format('translate({0},{1})', 0,
                                 frame.bar.height + frame.icon.height));
 
-                        var bar = g.append('g')
+                        var barOut = g.append('g')
                             .attr('transform', String.format('translate({0},{1})', 0,
                                 frame.bar.height - frame.bar.padding.bottom));
+                        var bar = barOut.append('g');
 
                         // icon rendering
                         var icon = g.append('g')
@@ -104,7 +108,7 @@
 
                         icon.append('circle')
                             .attr({
-                                cx: 0, cy: 0, r: 30, fill: '#fff',
+                                cx: 0, cy: 0, r: 26, fill: '#fff',
                                 stroke: ChartsManager.defaults.secondaryBackColor,
                                 'stroke-width': 2
                             });
@@ -174,6 +178,23 @@
                         barValue.append('text')
                             .text(Math.round(d.value / total * 1000) / 10 + '%')
                             .attr('transform', String.format('translate({0},{1})', 0, 30));
+
+
+                        var barsDelay = 25;
+                        var barRowsDelay = 8;
+                        var barDuration = 400;
+
+                        g.attr('transform', 'translate(-30, 0)')
+                            .style('opacity', 0);
+
+                        g.transition()
+                            .remove();
+                        g.transition()
+                            .ease('cubic-out')
+                            .duration(barDuration * .75)
+                            .delay(i * barsDelay * .5)
+                            .style('opacity', 1)
+                            .attr('transform', 'translate(0,0)');
                     });
                 }
             }

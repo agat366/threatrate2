@@ -63,7 +63,7 @@
 
                     var def = $q.defer();
 
-                    context.get('attacksTypes', params)
+                    context.get('attackTypes', params)
                         .then(function (result) {
 
                             _.each(result, function (r) {

@@ -28,5 +28,13 @@
             function($rootScope) {
                 
             }
-        ]);
+    ]);
+
+    app.filter('years', function() {
+        'use strict';
+
+        return function(input) {
+            return input <= 1 ? '1 year' : (input + ' years');
+        };
+    });
 }(angular));

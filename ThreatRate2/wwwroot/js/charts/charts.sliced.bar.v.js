@@ -170,7 +170,7 @@ function chartSlicedBarVertical(settings) {
                         manager.renderImage(icon,
                             d.icon,
                             _opts.legend.icon.color,
-                            _opts.legend.icon.scale,
+                            d.icon.scale || _opts.legend.icon.scale,
                             d.icon.toCenter);
                     }
                 } 

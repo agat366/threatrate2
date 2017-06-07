@@ -62,7 +62,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/countriesByKidnapDurationGridTop10.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'countriesByKidnapDurationGridTop10.html'
             };
 
             return directive;

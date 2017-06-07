@@ -42,12 +42,14 @@
     }
 
     .right-side {
+        width: 18%;
+
         & > * {
             float: left;
         }
 
         .data {
-            width: 220px;
+            width: 100%;
             text-align: center;
 
             h3 {
@@ -118,7 +120,7 @@
     }
 
     .chart-body {
-        width: 900px;
+        width: 82%;
         height: 500px;
         border-right: 3px dashed #eee;
     }

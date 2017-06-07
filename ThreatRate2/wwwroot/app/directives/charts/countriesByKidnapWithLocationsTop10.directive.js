@@ -90,7 +90,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/countriesByKidnapWithLocationsTop10.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'countriesByKidnapWithLocationsTop10.html'
             };
 
             return directive;

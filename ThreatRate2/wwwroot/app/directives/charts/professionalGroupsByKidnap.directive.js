@@ -138,7 +138,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/professionalGroupsByKidnap.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'professionalGroupsByKidnap.html'
             };
 
             return directive;

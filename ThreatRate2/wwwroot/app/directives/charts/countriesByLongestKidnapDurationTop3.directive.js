@@ -144,7 +144,7 @@
 //                        d.title = i === 0 ? 'Japan' : i === 1 ? 'Mexico' : 'Afghanistan';
 
                         var dx = frame.width / 3 * (i + .5 + (i === 0 ? .1 : i === 2 ? -.1 : 0));
-                        var dy = testMode === 0 ? frame.height / 4 : frame.height / 2;
+                        var dy = testMode === 0 ? (frame.height / 4 + 25) : frame.height / 2;
                         // find existent country object
                         var country0 = globe.selectAll(String.format('[svg-icon="countries.{0}"]', d.name));
                         if (country0.node()) {
@@ -336,29 +336,33 @@
 
                         g.append('g')
                             .attr('class', 'value-title')
-                            .attr('transform', 'translate(0, -13)')
+                            .attr('transform', 'translate(0, -140)')
                             .append('text')
                             .text(d.value + ' days')
-                            .attr({ stroke: d.color, 'stroke-width': 8, 'stroke-linejoin': 'round' });
+//                            .attr({ stroke: d.color, 'stroke-width': 8, 'stroke-linejoin': 'round' });
 //                            .attr({ stroke: ChartsManager.defaults.frontColor, 'stroke-width' : 8 });
+
                         g.append('g')
                             .attr('class', 'value-title')
-                            .attr('transform', 'translate(0, -13)')
+                            .attr('transform', 'translate(0, -140)')
                             .append('text')
+                            .style('fill', testMode2 === 0 ? d.color : ChartsManager.defaults.darkColor)
                             .text(d.value + ' days');
                             
                         g.append('g')
                             .attr('class', 'legend-title')
-                            .attr('transform', 'translate(0, 12)')
+                            .attr('transform', 'translate(0, -115)')
                             .append('text')
                             .text(d.title)
-                            .attr({ stroke: d.color, 'stroke-width': 6, 'stroke-linejoin': 'round'});
+//                            .attr({ stroke: d.color, 'stroke-width': 6, 'stroke-linejoin': 'round'});
 //                            .attr({ stroke: ChartsManager.defaults.frontColor, 'stroke-width': 6 });
                         g.append('g')
                             .attr('class', 'legend-title')
-                            .attr('transform', 'translate(0, 12)')
+                            .attr('transform', 'translate(0, -115)')
                             .append('text')
-                            .text(d.title);
+                            .text(d.title)
+                            .attr('fill', d.color)
+                            .style('fill', d.color);
                     }
 
                     globe.transition()
@@ -385,7 +389,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/countriesByLongestKidnapDurationTop3.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'countriesByLongestKidnapDurationTop3.html'
             };
 
             return directive;

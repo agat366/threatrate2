@@ -1,0 +1,21 @@
+.search-menu {
+    text-align: center;
+    margin: 30px auto 20px;
+    font-size: 1.25em;
+    line-height: 1.5em;
+
+    >*{
+        vertical-align: top;
+        margin-bottom: 5px;
+    }
+    .chart-types {
+        max-width: 40%;
+    }
+
+    label {
+        font-size: 1.5em;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-right: 15px;
+    }
+}

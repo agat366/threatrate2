@@ -259,7 +259,7 @@
                     data: '=',
                     year: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/monthsByYears5.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'monthsByYears5.html'
             };
 
             return directive;

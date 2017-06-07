@@ -2,9 +2,9 @@
 
     & > div {
         float: left;
-        width: 470px;
-        margin-left: 40px;
-        margin-right: 40px;
+        width: 46%;
+        margin-left: 2%;
+        margin-right: 2%;
         margin-top: 0;
 
         &:last-child {
@@ -124,7 +124,8 @@
 
         .group-header {
             border-bottom: 2px solid #dcdcdc;
-            .value{
+
+            .value {
                 font-weight: $font-bold;
                 font-size: 20px;
             }

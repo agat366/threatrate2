@@ -176,7 +176,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/countriesByUnrestTop5.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'countriesByUnrestTop5.html'
             };
 
             return directive;

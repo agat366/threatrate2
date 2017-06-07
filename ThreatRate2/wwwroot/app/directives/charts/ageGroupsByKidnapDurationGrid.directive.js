@@ -138,7 +138,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/ageGroupsByKidnapDurationGrid.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'ageGroupsByKidnapDurationGrid.html'
             };
 
             return directive;

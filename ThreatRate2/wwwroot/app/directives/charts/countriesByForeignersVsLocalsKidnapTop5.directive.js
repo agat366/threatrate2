@@ -126,7 +126,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/countriesByForeignersVsLocalsKidnapTop5.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'countriesByForeignersVsLocalsKidnapTop5.html'
             };
 
             return directive;

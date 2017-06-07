@@ -1,12 +1,12 @@
 [
   {
-    "outputFile": "wwwroot/css/definitions.css",
-    "inputFile": "wwwroot/css/definitions.scss",
+    "outputFile": "wwwroot/css/main.css",
+    "inputFile": "wwwroot/css/main.scss",
     "sourceMap": false
   },
   {
-    "outputFile": "wwwroot/css/main.css",
-    "inputFile": "wwwroot/css/main.scss",
+    "outputFile": "wwwroot/css/charts-v2.css",
+    "inputFile": "wwwroot/css/charts-v2.scss",
     "sourceMap": false
   }
 ]

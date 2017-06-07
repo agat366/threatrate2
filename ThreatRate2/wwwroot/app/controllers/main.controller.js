@@ -2,8 +2,8 @@
     'use strict';
 
     var controllerName = 'MainController';
-    angular.module('tr').controller(controllerName, ['mainDataService', '$scope', 'repo.common', 'repo.regions',
-        function (dataService, $scope, repo, repoRegions) {
+    angular.module('tr').controller(controllerName, ['mainDataService', '$scope', 'repo.common', 'repo.regions', '$interpolate',
+        function (dataService, $scope, repo, repoRegions, $interpolate) {
 
 
             var token = null;
@@ -16,18 +16,18 @@
         vm.isLoading = false;
 
             vm.months = [
-                { id: 1, title: 'Jan' },
-                { id: 2, title: 'Feb' },
-                { id: 3, title: 'Mar' },
-                { id: 4, title: 'Apr' },
-                { id: 5, title: 'May' },
-                { id: 6, title: 'Jun' },
-                { id: 7, title: 'Jul' },
-                { id: 8, title: 'Aug' },
-                { id: 9, title: 'Sep' },
-                { id: 10, title: 'Oct' },
-                { id: 11, title: 'Nov' },
-                { id: 12, title: 'Dec' }
+                { id: 1, title: 'Jan', title2: 'January' },
+                { id: 2, title: 'Feb' , title2: 'February' },
+                { id: 3, title: 'Mar' , title2: 'March' },
+                { id: 4, title: 'Apr' , title2: 'April' },
+                { id: 5, title: 'May' , title2: 'May' },
+                { id: 6, title: 'Jun' , title2: 'June' },
+                { id: 7, title: 'Jul' , title2: 'July' },
+                { id: 8, title: 'Aug' , title2: 'August' },
+                { id: 9, title: 'Sep' , title2: 'September' },
+                { id: 10, title: 'Oct', title2: 'October' },
+                { id: 11, title: 'Nov', title2: 'November' },
+                { id: 12, title: 'Dec', title2: 'December' }
         ];
 
         vm.years = _.map(_.range(1990, 2017), function(y) {
@@ -240,7 +240,8 @@
             {
                 id: 'monthsByYears5',
                 hasFrom: false,
-                title: 'FIVE YEAR ANALYSIS OF KIDNAP ACTIVITY IN NOVEMBER (to be changed)', // todo: change the month to check
+                title: 'FIVE YEAR ANALYSIS OF KIDNAP ACTIVITY PER MONTH', // todo: change the month to check
+                titleHeader: 'FIVE YEAR ANALYSIS OF KIDNAP ACTIVITY IN {{vm.filter.monthTo.title2}}', // todo: change the month to check
 //                title: '20 - FIVE YEAR VIEW ON “NOVEMBER”',
                 service: function (params) {
                     return dataService.monthsByYears(params);
@@ -273,8 +274,9 @@
 //                default: true,
                 hasCountries: true,
                 service: function (params) {
-                    params.top = 10;
+                    
                     var country = vm.filter.country;
+                    params.top = 10;
                     return dataService.countriesByKidnapDurationWithComparer(params)
                         .then(function (data) {
                             vm.comparer = data.comparer || { id: country.id, title: country.title, ransom: 0, duration: 0, value: 0 };
@@ -303,7 +305,8 @@
             {
                 id: 'kidnapResults',
                 hasFrom: false,
-                title: 'FIVE YEAR ANALYSIS OF KIDNAP RESULTS',
+                title: 'FIVE YEAR ANALYSIS OF KIDNAP RESULTS BY REGION',
+                titleHeader: 'FIVE YEAR ANALYSIS OF KIDNAP RESULTS in {{!vm.filter.region.name ? \'the world\' : vm.filter.region.title}}',
 //                title: '26 - KIDNAP RESULTS - KILLED, RELEASED, ESCAPED, RESCUED',
                 service: function (params) {
                     return dataService.kidnapResults(params);
@@ -376,6 +379,10 @@
         function loadData() {
             vm.isLoading = true;
             if (vm.currentChart) {
+                var title = vm.currentChart.titleHeader || vm.currentChart.title;
+                var exp = $interpolate(title);
+                vm.currentTitle = exp($scope);
+
                 vm.data = null;
                 vm.chartId = vm.currentChart.id;
 
@@ -414,7 +421,7 @@
                 }
 
                 if (vm.currentChart.hasCountries === true) {
-                    params.country = vm.filter.country.title;
+                    params.country = vm.filter.country.id;
                 }
 
                 renderDate();
@@ -426,6 +433,7 @@
                         vm.isLoading = false;
                     });
             } else {
+                vm.currentTitle = '';
                 vm.isLoading = false;
             }
         }

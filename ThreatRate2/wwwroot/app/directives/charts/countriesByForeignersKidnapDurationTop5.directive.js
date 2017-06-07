@@ -49,8 +49,8 @@
                             },
                             bars: {
                                 margin: {
-                                    left: 40,
-                                    right: 40
+                                    left: 25,
+                                    right: 25
                                 },
                                 title: {
                                     dy: -10
@@ -84,7 +84,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/countriesByForeignersKidnapDurationTop5.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'countriesByForeignersKidnapDurationTop5.html'
             };
 
             return directive;

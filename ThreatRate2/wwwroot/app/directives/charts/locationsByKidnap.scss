@@ -15,7 +15,7 @@
     }
 
     .left-bracket {
-        width: 20px;
+        width: 100%;
         border: 4px solid $gray;
         border-right: none;
         height: 400px;
@@ -28,13 +28,22 @@
         height: 400px;
     }
 
+    .left-side{
+        width: 2%;
+    }
     .right-side {
+        width: 18%;
+
+        .left-bracket,
+        .right-bracket{
+            width: 10%;
+        }
         & > * {
             float: left;
         }
 
         .data {
-            width: 160px;
+            width: 80%;
 
             h3 {
                 margin-top: 25px;
@@ -62,7 +71,7 @@
     }
 
     .chart-body {
-        width: 900px;
+        width: 80%;
         height: 535px;
     }
 }

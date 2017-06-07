@@ -1,8 +1,9 @@
-﻿$content-size-multiplier: 1.5;
+$content-size-multiplier: 1.28;
+$parent-container-width: 960px;
 $content-width: 750px * $content-size-multiplier;
-$content-height: 420px * $content-size-multiplier;
+$content-height: 420px * $content-size-multiplier * 1.172;
 
-$font-family-default: 'Exo', sans-serif;
+$font-family-default: 'Exo', exoregular, sans-serif;
 $font-bold: 700;
 $font-size: 12px;
 

@@ -5,9 +5,15 @@
     var apiRootUrl = 'api';
     angular.module('tr').factory(serviceId,
     [
-        '$resource', 'common', 'config',
-        function ($resource, common, config) {
-            var authHeader = 'Token token="7oTPPfWQK07DRH+ugRK32p+8e6nLWs/fLUfjPrjGomoxvLMOhh/ETUuLjsB3Qul81c1dYnlfc/6T0a0aZHfTDA==", email="notifications@github.com"';
+        '$resource', 'common', 'config', '$http', 'apiToken',
+        function ($resource, common, config, $http, apiToken) {
+            var authHeader = String.format('Token token="{0}", email="{1}"', apiToken.token, apiToken.email);
+
+            $http.defaults.headers.common['Authorization'] = authHeader;
+
+            if (config.apiRootUrl !== undefined) {
+                apiRootUrl = config.apiRootUrl;
+            }
 
         var resource = $resource(apiRootUrl + '/:controller/:action/:id/:id2',
             { action: '@action', controller: '@controller' },
@@ -38,7 +44,6 @@
             params.push(action);
             if(data)
                 params.push(data);
-
 
             resourceMethod.apply(resource, params)
                 .$promise

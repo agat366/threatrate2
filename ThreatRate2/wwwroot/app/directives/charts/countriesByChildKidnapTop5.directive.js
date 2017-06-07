@@ -94,7 +94,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/countriesByChildKidnapTop5.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'countriesByChildKidnapTop5.html'
             };
 
             return directive;

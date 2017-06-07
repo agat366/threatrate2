@@ -124,7 +124,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/countriesBySuicideAttackTop5.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'countriesBySuicideAttackTop5.html'
             };
 
             return directive;

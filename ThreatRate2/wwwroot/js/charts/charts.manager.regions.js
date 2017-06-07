@@ -102,6 +102,7 @@
                 break;
 
             case 'regions.australia':
+            case 'regions.oceania':
                 w = 271.074;
                 h = 125.486;
 

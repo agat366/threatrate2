@@ -1,6 +1,6 @@
 ﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
 <!DOCTYPE html>
-<html ng-app="tr">
+<html>
 <head>
     
     @{
@@ -14,16 +14,16 @@
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
-        <link rel="stylesheet" href="~/css/site.css"/>
+@*        <link rel="stylesheet" href="~/css/site.css"/>*@
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"/>
+@*        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"/>*@
     </environment>
     <link href="~/lib/reset-css/reset.css" rel="stylesheet"/>
-    <link href="~/css/main.css?r=@(rnd)" rel="stylesheet"/>
+    <link href="~/css/charts-v2.css?r=@(rnd)" rel="stylesheet"/>
 
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
@@ -31,27 +31,13 @@
     
 @*    @Html.Partial("Header")*@
 
-<div class="container body-content">
-    <div class="core">@RenderBody()</div>
+@RenderBody()
 
-    <footer>
-        <div> <a class="logo"></a>
-            <p>
-                ThreatRate is a global risk intelligence company, dedicated to providing the most comprehensive and always updated securi&#173;ty database and analytics. Our clients’ rely on our world class data and cutting edge industry insights to manage the safe deployment of a global workforce, evaluate various security risks, develop a preventive risk strategy and so forth.<br/>
-                Visit us at <a href="http://www.threatrate.com">www.threatrate.com</a>
-            </p>
-            <p class="copy">
-                &copy; ThreatRate, Inc. 2017
-            </p>
-        </div> 
-    </footer>
-</div>
-
-    <script src="~/js/d3.js"></script>
+<script src="~/js/d3.js"></script>
     <script src="~/js/string.js"></script> 
 
     <environment names="Development">
-@*        <script src="~/lib/underscore/underscore-min.js"></script>*@
+
         <script src="~/lib/lodash/dist/lodash.js"></script>
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -62,7 +48,6 @@
         <script src="~/js/site.js?r=@(rnd)" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
-        @*        <script src="~/lib/underscore/underscore-min.js"></script>*@
         <script src="~/lib/lodash/dist/lodash.js"></script>
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -119,11 +104,11 @@
     <script src="~/app/directives/charts/countriesByVehicleAttackTop3.directive.js?r=@(rnd)"></script>
     <script src="~/app/directives/charts/countriesBySuicideAttackTop5.directive.js?r=@(rnd)"></script>
     <script src="~/app/directives/charts/countriesByChildKidnapTop5.directive.js?r=@(rnd)"></script>
-<script src="~/app/directives/charts/countriesByForeignersKidnapDurationTop5.directive.js?r=@(rnd)"></script>
-<script src="~/app/directives/charts/countriesByUnrestTop5.directive.js?r=@(rnd)"></script>
-<script src="~/app/directives/charts/regionsByVehicleAttack.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByForeignersKidnapDurationTop5.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByUnrestTop5.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/regionsByVehicleAttack.directive.js?r=@(rnd)"></script>
     <script src="~/app/directives/charts/countriesByKidnapKilledTop5.directive.js?r=@(rnd)"></script>
-<script src="~/app/directives/charts/countriesByForeignersKidnapTop10.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByForeignersKidnapTop10.directive.js?r=@(rnd)"></script>
     <script src="~/app/directives/charts/terroristAttackTypes.directive.js?r=@(rnd)"></script>
     <script src="~/app/directives/charts/countriesByKidnapWithLocationsTop10.directive.js?r=@(rnd)"></script>
 
@@ -137,7 +122,7 @@
 
     <script src="~/app/directives/charts/kidnapResults.directive.js?r=@(rnd)"></script>
     <script src="~/app/directives/charts/regionsByKidnapDurationSimpleVsMultiple.directive.js?r=@(rnd)"></script>
-<script src="~/app/directives/charts/countriesByForeignersVsLocalsKidnapTop10.directive.js?r=@(rnd)"></script>
+    <script src="~/app/directives/charts/countriesByForeignersVsLocalsKidnapTop10.directive.js?r=@(rnd)"></script>
     <script src="~/app/directives/charts/regionsByKidnapDurationAndRansom.directive.js?r=@(rnd)"></script>
     <script src="~/app/directives/charts/countriesByRansomTop5.directive.js?r=@(rnd)"></script>
     <script src="~/app/directives/charts/countriesByForeignersVsLocalsKidnapTop5.directive.js?r=@(rnd)"></script>

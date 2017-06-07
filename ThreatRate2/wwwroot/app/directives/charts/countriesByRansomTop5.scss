@@ -3,14 +3,14 @@
 
     > div {
         width: 20%;
-        padding: 0 25px;
+        padding: 0 15px;
         height: 600px;
         float: left;
 
         > div {
             background: url(../images/charts/lib/background.dollar.svg) no-repeat;
-            background-size: 125px 189px;
-            background-position: 40px 100.5px;
+            background-size: $content-width * .122 189px;
+            background-position: 40px 107.5px;
             height: 600px;
         }
     }

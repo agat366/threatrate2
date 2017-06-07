@@ -33,7 +33,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/_countriesTest.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + '_countriesTest.html'
             };
 
             return directive;

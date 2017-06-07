@@ -81,47 +81,50 @@
                                     x: 0,
                                     y: 0
                                 },
-                                width: layout.width / 3 - 50,
+                                width: layout.width / 3 - 30,
                                 height: 50
                             };
-                            frame.daysWidth = frame.width / 2.5;
+                            frame.daysWidth = frame.width / 2.175;
                             frame.ransomWidth = frame.width - frame.daysWidth;
+
+                            var horizontalCorrection = .87;
 
                             switch (d.name) {
                                 case 'europe':
                                     frame.x = layout.width / 2 - frame.width / 2;
                                     frame.y = 0;
-                                    frame.point.x = 520;
+                                    frame.point.x = 520 * horizontalCorrection * 1;
                                     frame.point.y = 130;
                                     break;
                                 case 'namerica':
                                     frame.x = 0;
                                     frame.y = 0;
-                                    frame.point.x = 245;
+                                    frame.point.x = 245 * horizontalCorrection * .8;
                                     frame.point.y = 145;
                                     break;
                                 case 'samerica':
                                     frame.x = 0;
                                     frame.y = layout.height - frame.height;
-                                    frame.point.x = 335;
+                                    frame.point.x = 335 * horizontalCorrection * .9;
                                     frame.point.y = 345;
                                     break;
                                 case 'asia':
                                     frame.x = layout.width - frame.width;
                                     frame.y = 0;
-                                    frame.point.x = 760;
+                                    frame.point.x = 760 * horizontalCorrection * 1.01;
                                     frame.point.y = 120;
                                     break;
                                 case 'africa':
                                     frame.x = layout.width / 2 - frame.width / 2;
                                     frame.y = layout.height - frame.height;
-                                    frame.point.x = 560;
+                                    frame.point.x = 560 * horizontalCorrection * 1;
                                     frame.point.y = 290;
                                     break;
                                 case 'australia':
+                                case 'oceania':
                                     frame.x = layout.width - frame.width;
                                     frame.y = layout.height - frame.height;
-                                    frame.point.x = 860;
+                                    frame.point.x = 860 * horizontalCorrection * 1.04;
                                     frame.point.y = 350;
                                     break;
                                 
@@ -352,7 +355,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/regionsByKidnapDurationAndRansom.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'regionsByKidnapDurationAndRansom.html'
             };
 
             return directive;

@@ -112,14 +112,14 @@
                             bars: {
                                 maxValue: maxDurationValue,
                                 margin: {
-                                    left: 10,
-                                    right: 10
+                                    left: 5,
+                                    right: 5
                                 },
                                 title: {
-                                    dy: -8
+                                    dy: -2
                                 },
                                 title2: {
-                                    dy: -25
+                                    dy: -17
                                 },
                                 legend: {
                                     isVisible: false
@@ -141,8 +141,8 @@
                             bars: {
                                 maxValue: maxDurationValue,
                                 margin: {
-                                    left: 10,
-                                    right: 10
+                                    left: 5,
+                                    right: 5
                                 },
                                 title: {
                                     dy: -25
@@ -235,7 +235,7 @@
                     data: '=',
                     comparer: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/countriesByKidnapDurationTop10.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'countriesByKidnapDurationTop10.html'
             };
 
             return directive;

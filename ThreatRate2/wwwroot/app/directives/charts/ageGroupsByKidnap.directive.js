@@ -115,7 +115,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/ageGroupsByKidnap.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'ageGroupsByKidnap.html'
             };
 
             return directive;

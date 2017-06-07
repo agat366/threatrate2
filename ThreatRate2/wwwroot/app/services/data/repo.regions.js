@@ -20,7 +20,7 @@
                     { id: 3, name: 'namerica', title: 'America' },
                     { id: 4, name: 'samerica', title: 'LATAM' },
                     { id: 5, name: 'africa', title: 'Africa' },
-                    { id: 6, name: 'australia', title: 'Oceania' }
+                    { id: 6, name: 'oceania', title: 'Oceania' }
                 ];
                 function renderList(list, iterator) {
                     var result = [];

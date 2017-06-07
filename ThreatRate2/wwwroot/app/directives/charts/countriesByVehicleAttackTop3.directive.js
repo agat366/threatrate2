@@ -329,7 +329,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/countriesByVehicleAttackTop3.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'countriesByVehicleAttackTop3.html'
             };
 
             return directive;

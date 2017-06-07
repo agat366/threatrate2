@@ -183,7 +183,6 @@
     <Content Include="wwwroot\css\definitions.scss">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="wwwroot\css\main.scss" />
     <Content Include="wwwroot\js\charts\charts.donut.js" />
     <Content Include="wwwroot\js\charts\charts.hourglass.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

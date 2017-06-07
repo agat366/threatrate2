@@ -2,7 +2,7 @@
     padding-top: 15px;
 
     .main {
-        width: 330px;
+        width: 31.25%;
         float: left;
         height: 500px;
         border-right: 2px dashed $gray;
@@ -36,13 +36,13 @@
         }
     }
     .secondary {
-        width: 790px;
+        width: 68.75%;
         float: left;
         height: 550px;
 
         [chart-body]{
             height: 170px;
-            width: 80%;
+            width: 90%;
             margin: 0 auto;
         }
 

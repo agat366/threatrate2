@@ -69,8 +69,8 @@
                                 },
                                 topIcon: null,
                                 margin: {
-                                    right: 12,
-                                    left: 12
+                                    right: 8,
+                                    left: 8
                                 },
                                 colors: [
                                     colorsService.getColor(colorsService.schemas.male),
@@ -107,7 +107,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/countriesByKidnapByGender.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'countriesByKidnapByGender.html'
             };
 
             return directive;

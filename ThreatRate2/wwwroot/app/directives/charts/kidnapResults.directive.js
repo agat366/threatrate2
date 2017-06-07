@@ -88,7 +88,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/kidnapResults.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'kidnapResults.html'
             };
 
             return directive;

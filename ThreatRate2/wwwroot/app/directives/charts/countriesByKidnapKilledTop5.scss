@@ -4,16 +4,16 @@
 
     & > * {
         float: left;
-        width: 190px;
-        margin: 40px 20px;
+        width: 18%;
+        margin: 40px 1%;
         height: 400px;
 
         &:first-child {
-            margin-left: 3px;
+            margin-left: 1%;
         }
 
         &:last-child {
-            margin-right: 3px;
+            margin-right: 1%;
         }
     }
 

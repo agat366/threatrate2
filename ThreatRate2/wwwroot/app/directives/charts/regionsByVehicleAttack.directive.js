@@ -196,7 +196,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/regionsByVehicleAttack.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'regionsByVehicleAttack.html'
             };
 
             return directive;

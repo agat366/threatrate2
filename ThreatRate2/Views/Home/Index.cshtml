@@ -2,92 +2,123 @@
     ViewData["Title"] = "Home Page";
 }
 
-<style>
-    [ng-disabled][disabled] {
-        opacity: .4;
-    }
-</style>
-<div ng-controller="MainController as vm">
-    <select ng-options="option.title2 || option.label for (idx, option) in vm.charts track by option.id"
-            ng-model="vm.currentChart"></select> 
-    /
-    <select ng-disabled="vm.currentChart.hasFrom === false || vm.currentChart.hasFromMonth === false" ng-options="option.title for option in vm.months track by option.id"
-            ng-model="vm.filter.monthFrom"></select> 
-    <select ng-disabled="vm.currentChart.hasFrom === false" ng-options="option.id for option in vm.years track by option.id"
-            ng-model="vm.filter.yearFrom"></select> 
-    -
-    <select ng-disabled="vm.currentChart.hasTo === false || vm.currentChart.hasToMonth === false" ng-options="option.title for option in vm.months track by option.id"
-            ng-model="vm.filter.monthTo"></select> 
-    <select ng-options="option.id for option in vm.years track by option.id"
-            ng-model="vm.filter.yearTo"></select> 
-     /
-    <select ng-disabled="vm.isRegionDisabled()" ng-options="option.title for option in vm.regions track by option.name"
-            ng-model="vm.filter.region"></select> 
-     /
-    <select ng-if="vm.isCountriesVisible()" ng-options="option.title for option in vm.countries track by option.id"
-            ng-model="vm.filter.country"></select> 
-    
-    <button ng-click="vm.reload()">Reload</button>
-@*    <button ng-click="vm.processCountries()">Process</button>*@
-    
-    
-    <h2 class="ng-cloak">
-        {{vm.currentChart.title}}
-        //
-        <span class="dates">
-            {{vm.renderedFrom ? vm.renderedFrom + ' -' : '' }}
-            {{vm.renderedTo}}
-        </span>
-    </h2>
+@section scripts {
+    <script>
+        var app = angular.module('tr');
+        app.constant('apiToken',
+            {
+                token: '7oTPPfWQK07DRH+ugRK32p+8e6nLWs/fLUfjPrjGomoxvLMOhh/ETUuLjsB3Qul81c1dYnlfc/6T0a0aZHfTDA==',
+                email: 'notifications@github.com'
+            });
 
-    <section class="content">
-        <div>
-            <chart-countries-by-kidnap data="vm.data" ng-if="vm.chartId == 'countriesByKidnap'"></chart-countries-by-kidnap>
-            <chart-countries-by-kidnap-top-30 data="vm.data" ng-if="vm.chartId == 'countriesByKidnapTop30'"></chart-countries-by-kidnap-top-30>
-            <chart-locations-by-kidnap data="vm.data" ng-if="vm.chartId == 'locationsByKidnap'"></chart-locations-by-kidnap>
-            <chart-months-by-kidnap data="vm.data" ng-if="vm.chartId == 'monthsByKidnap'"></chart-months-by-kidnap>
-            <chart-age-groups-by-kidnap data="vm.data" ng-if="vm.chartId == 'ageGroupsByKidnap'"></chart-age-groups-by-kidnap>
-            <chart-professional-groups-by-kidnap data="vm.data" ng-if="vm.chartId == 'professionalGroupsByKidnap'"></chart-professional-groups-by-kidnap>
-            <chart-regions-by-kidnap-simple-vs-multiple data="vm.data" ng-if="vm.chartId == 'regionsByKidnapSimpleVsMultiple'"></chart-regions-by-kidnap-simple-vs-multiple>
-            <chart-countries-by-longest-kidnap-duration-top-3 data="vm.data" ng-if="vm.chartId == 'countriesByLongestKidnapDurationTop3'"></chart-countries-by-longest-kidnap-duration-top-3>
-            <chart-countries-by-vehicle-attack-top-3 data="vm.data" ng-if="vm.chartId == 'countriesByVehicleAttackTop3'"></chart-countries-by-vehicle-attack-top-3>
-            <chart-countries-by-child-kidnap-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByChildKidnapTop5'"></chart-countries-by-child-kidnap-top-5>
-            <chart-countries-by-foreigners-kidnap-duration-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersKidnapDurationTop5'"></chart-countries-by-foreigners-kidnap-duration-top-5>
-            <chart-countries-by-unrest-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByUnrestTop5'"></chart-countries-by-unrest-top-5>
-            <chart-countries-by-kidnap-killed-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByKidnapKilledTop5'"></chart-countries-by-kidnap-killed-top-5>
-            <chart-countries-by-suicide-attack-top-5 data="vm.data" ng-if="vm.chartId == 'countriesBySuicideAttackTop5'"></chart-countries-by-suicide-attack-top-5>
-            <chart-regions-by-vehicle-attack data="vm.data" ng-if="vm.chartId == 'regionsByVehicleAttack'"></chart-regions-by-vehicle-attack>
-            <chart-countries-by-foreigners-kidnap-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersKidnapTop10'"></chart-countries-by-foreigners-kidnap-top-10>
-            <chart-countries-by-ransom-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByRansomTop5'"></chart-countries-by-ransom-top-5>
-            
-            <chart-terrorist-attack-types data="vm.data" ng-if="vm.chartId == 'terroristAttackTypes'"></chart-terrorist-attack-types>
-            <chart-countries-by-kidnap-with-locations-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByKidnapWithLocationsTop10'"></chart-countries-by-kidnap-with-locations-top-10>
-            <chart-months-by-years-5 data="vm.data" ng-if="vm.chartId == 'monthsByYears5'"></chart-months-by-years-5>
-            <chart-countries-by-kidnap-by-gender data="vm.data" ng-if="vm.chartId == 'countriesByKidnapByGender'"></chart-countries-by-kidnap-by-gender>
-            <chart-locations-by-kidnap-by-gender data="vm.data" ng-if="vm.chartId == 'locationsByKidnapByGender'"></chart-locations-by-kidnap-by-gender>
-            <chart-countries-by-kidnap-duration-top-10 data="vm.data" comparer="vm.comparer" ng-if="vm.chartId == 'countriesByKidnapDurationTop10'"></chart-countries-by-kidnap-duration-top-10>
-            <chart-countries-by-kidnap-duration-grid-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByKidnapDurationGridTop10'"></chart-countries-by-kidnap-duration-grid-top-10>
-            <chart-age-groups-by-kidnap-duration-grid data="vm.data" ng-if="vm.chartId == 'ageGroupsByKidnapDurationGrid'"></chart-age-groups-by-kidnap-duration-grid>
-            <chart-kidnap-results data="vm.data" ng-if="vm.chartId == 'kidnapResults'"></chart-kidnap-results>
-            <chart-regions-by-kidnap-duration-simple-vs-multiple data="vm.data" ng-if="vm.chartId == 'regionsByKidnapDurationSimpleVsMultiple'"></chart-regions-by-kidnap-duration-simple-vs-multiple>
-            <chart-regions-by-kidnap-duration-and-ransom data="vm.data" ng-if="vm.chartId == 'regionsByKidnapDurationAndRansom'"></chart-regions-by-kidnap-duration-and-ransom>
-            
-            <chart-countries-by-foreigners-vs-locals-kidnap-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersVsLocalsKidnapTop5'"></chart-countries-by-foreigners-vs-locals-kidnap-top-5>
-            <chart-countries-by-foreigners-vs-locals-kidnap-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersVsLocalsKidnapTop10'"></chart-countries-by-foreigners-vs-locals-kidnap-top-10>
-            <chart-countries-test data="vm.data" ng-if="vm.chartId == 'countriesTest'"></chart-countries-test>
-            
-@*            <textarea ng-value="vm.scr"></textarea>*@
+    </script>
+}
 
-            <div ng-if="!!vm.isLoading" class="loading">
-                <div>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+<div class="charts-v2-container">
+    <div class="body-content">
+        <div class="core">
+            
+
+
+            <div ng-app="tr">
+                <div ng-controller="MainController as vm">
+                    <div class="search-menu ng-cloak">
+                        <label>Search</label>
+                        <select class="chart-types" ng-options="option.title2 || option.label for (idx, option) in vm.charts track by option.id"
+                                ng-model="vm.currentChart"></select>
+                        /
+                        <select ng-disabled="vm.currentChart.hasFrom === false || vm.currentChart.hasFromMonth === false" ng-options="option.title for option in vm.months track by option.id"
+                                ng-model="vm.filter.monthFrom"></select>
+                        <select ng-disabled="vm.currentChart.hasFrom === false" ng-options="option.id for option in vm.years track by option.id"
+                                ng-model="vm.filter.yearFrom"></select>
+                        -
+                        <select ng-disabled="vm.currentChart.hasTo === false || vm.currentChart.hasToMonth === false" ng-options="option.title for option in vm.months track by option.id"
+                                ng-model="vm.filter.monthTo"></select>
+                        <select ng-options="option.id for option in vm.years track by option.id"
+                                ng-model="vm.filter.yearTo"></select>
+                        /
+                        <select ng-disabled="vm.isRegionDisabled()" ng-options="option.title for option in vm.regions track by option.name"
+                                ng-model="vm.filter.region"></select>
+                        /
+                        <select ng-if="vm.isCountriesVisible()" ng-options="option.title for option in vm.countries track by option.id"
+                                ng-model="vm.filter.country"></select>
+
+                        <button ng-click="vm.reload()">Reload</button>
+                    </div>
+
+                    <h2 class="ng-cloak">
+                        {{vm.currentTitle}}
+                        //
+                        <span class="dates">
+                            {{vm.renderedFrom ? vm.renderedFrom + ' -' : '' }}
+                            {{vm.renderedTo}}
+                        </span>
+                    </h2>
+
+                    <section class="content">
+                        <div>
+                            <chart-countries-by-kidnap data="vm.data" ng-if="vm.chartId == 'countriesByKidnap'"></chart-countries-by-kidnap>
+                            <chart-countries-by-kidnap-top-30 data="vm.data" ng-if="vm.chartId == 'countriesByKidnapTop30'"></chart-countries-by-kidnap-top-30>
+                            <chart-locations-by-kidnap data="vm.data" ng-if="vm.chartId == 'locationsByKidnap'"></chart-locations-by-kidnap>
+                            <chart-months-by-kidnap data="vm.data" ng-if="vm.chartId == 'monthsByKidnap'"></chart-months-by-kidnap>
+                            <chart-age-groups-by-kidnap data="vm.data" ng-if="vm.chartId == 'ageGroupsByKidnap'"></chart-age-groups-by-kidnap>
+                            <chart-professional-groups-by-kidnap data="vm.data" ng-if="vm.chartId == 'professionalGroupsByKidnap'"></chart-professional-groups-by-kidnap>
+                            <chart-regions-by-kidnap-simple-vs-multiple data="vm.data" ng-if="vm.chartId == 'regionsByKidnapSimpleVsMultiple'"></chart-regions-by-kidnap-simple-vs-multiple>
+                            <chart-countries-by-longest-kidnap-duration-top-3 data="vm.data" ng-if="vm.chartId == 'countriesByLongestKidnapDurationTop3'"></chart-countries-by-longest-kidnap-duration-top-3>
+                            <chart-countries-by-vehicle-attack-top-3 data="vm.data" ng-if="vm.chartId == 'countriesByVehicleAttackTop3'"></chart-countries-by-vehicle-attack-top-3>
+                            <chart-countries-by-child-kidnap-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByChildKidnapTop5'"></chart-countries-by-child-kidnap-top-5>
+                            <chart-countries-by-foreigners-kidnap-duration-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersKidnapDurationTop5'"></chart-countries-by-foreigners-kidnap-duration-top-5>
+                            <chart-countries-by-unrest-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByUnrestTop5'"></chart-countries-by-unrest-top-5>
+                            <chart-countries-by-kidnap-killed-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByKidnapKilledTop5'"></chart-countries-by-kidnap-killed-top-5>
+                            <chart-countries-by-suicide-attack-top-5 data="vm.data" ng-if="vm.chartId == 'countriesBySuicideAttackTop5'"></chart-countries-by-suicide-attack-top-5>
+                            <chart-regions-by-vehicle-attack data="vm.data" ng-if="vm.chartId == 'regionsByVehicleAttack'"></chart-regions-by-vehicle-attack>
+                            <chart-countries-by-foreigners-kidnap-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersKidnapTop10'"></chart-countries-by-foreigners-kidnap-top-10>
+                            <chart-countries-by-ransom-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByRansomTop5'"></chart-countries-by-ransom-top-5>
+
+                            <chart-terrorist-attack-types data="vm.data" ng-if="vm.chartId == 'terroristAttackTypes'"></chart-terrorist-attack-types>
+                            <chart-countries-by-kidnap-with-locations-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByKidnapWithLocationsTop10'"></chart-countries-by-kidnap-with-locations-top-10>
+                            <chart-months-by-years-5 data="vm.data" ng-if="vm.chartId == 'monthsByYears5'"></chart-months-by-years-5>
+                            <chart-countries-by-kidnap-by-gender data="vm.data" ng-if="vm.chartId == 'countriesByKidnapByGender'"></chart-countries-by-kidnap-by-gender>
+                            <chart-locations-by-kidnap-by-gender data="vm.data" ng-if="vm.chartId == 'locationsByKidnapByGender'"></chart-locations-by-kidnap-by-gender>
+                            <chart-countries-by-kidnap-duration-top-10 data="vm.data" comparer="vm.comparer" ng-if="vm.chartId == 'countriesByKidnapDurationTop10'"></chart-countries-by-kidnap-duration-top-10>
+                            <chart-countries-by-kidnap-duration-grid-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByKidnapDurationGridTop10'"></chart-countries-by-kidnap-duration-grid-top-10>
+                            <chart-age-groups-by-kidnap-duration-grid data="vm.data" ng-if="vm.chartId == 'ageGroupsByKidnapDurationGrid'"></chart-age-groups-by-kidnap-duration-grid>
+                            <chart-kidnap-results data="vm.data" ng-if="vm.chartId == 'kidnapResults'"></chart-kidnap-results>
+                            <chart-regions-by-kidnap-duration-simple-vs-multiple data="vm.data" ng-if="vm.chartId == 'regionsByKidnapDurationSimpleVsMultiple'"></chart-regions-by-kidnap-duration-simple-vs-multiple>
+                            <chart-regions-by-kidnap-duration-and-ransom data="vm.data" ng-if="vm.chartId == 'regionsByKidnapDurationAndRansom'"></chart-regions-by-kidnap-duration-and-ransom>
+
+                            <chart-countries-by-foreigners-vs-locals-kidnap-top-5 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersVsLocalsKidnapTop5'"></chart-countries-by-foreigners-vs-locals-kidnap-top-5>
+                            <chart-countries-by-foreigners-vs-locals-kidnap-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByForeignersVsLocalsKidnapTop10'"></chart-countries-by-foreigners-vs-locals-kidnap-top-10>
+                            <chart-countries-test data="vm.data" ng-if="vm.chartId == 'countriesTest'"></chart-countries-test>
+
+                            <div ng-if="!!vm.isLoading" class="loading">
+                                <div>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
-        </div>
-    </section>
 
+            
+
+        </div>
+        <footer>
+            <div>
+                <a class="logo"></a>
+                <p>
+                    ThreatRate is a global risk intelligence company, dedicated to providing the most comprehensive and always updated securi&#173;ty database and analytics. Our clients’ rely on our world class data and cutting edge industry insights to manage the safe deployment of a global workforce, evaluate various security risks, develop a preventive risk strategy and so forth.<br />
+                    Visit us at <a href="http://www.threatrate.com">www.threatrate.com</a>
+                </p>
+                <p class="copy">
+                    &copy; ThreatRate, Inc. 2017
+                </p>
+            </div>
+        </footer>
+    </div>
 </div>

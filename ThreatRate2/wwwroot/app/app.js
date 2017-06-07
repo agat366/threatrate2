@@ -1,19 +1,34 @@
 ﻿(function(angular) {
     'use strict';
 
+    var app;
+    var config = {
+        routeUrl: '',
+        chartDirectivesPath: '/app/directives/charts/'
+    };
 
-    var app = angular.module('tr',
+    var ruby = window.rubyEngine;
+    if (ruby) {
+        app = angular.module('tr',
+        [
+            'ngResource',
+            'ngAnimate',
+            'angular-extend-promises',
+            'templates'
+        ]);
+
+        if (ruby.config) {
+            config.chartDirectivesPath = ruby.config.directivesPath;
+            config.apiRootUrl = ruby.config.apiRootUrl;
+        }
+    } else {
+        app = angular.module('tr',
         [
             'ngResource',
             'ngAnimate',
             'angular-extend-promises'
         ]);
-
-    var config = {
-        liveData: false,
-        routeUrl: '',
-        chartDirectivesPath: '/app/directives/charts'
-    };
+    }
 
     app.value('config', config);
 

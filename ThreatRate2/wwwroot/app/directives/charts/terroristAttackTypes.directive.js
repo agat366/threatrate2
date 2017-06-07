@@ -74,7 +74,7 @@
                                 height: 150,
                                 diff: 45,
                                 title: {
-                                    width: 116,
+                                    width: 108,
                                     height: 25,
                                     radius: 15
                                 }
@@ -170,8 +170,8 @@
                             .attr('transform', String.format('translate({0},{1})', 0, -frame.bar.padding.top));
                         barValue.append('rect')
                             .attr({
-                                x: -30, width: 60,
-                                y: -5, height: 60,
+                                x: -27, width: 54,
+                                y: -5, height: 54,
                                 rx: 8, ry: 8,
                                 fill: d.color
                             });
@@ -206,7 +206,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/terroristAttackTypes.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'terroristAttackTypes.html'
             };
 
             return directive;

@@ -60,8 +60,8 @@
                                 dy: -50
                             },
                             margin: {
-                                right: 16,
-                                left: 16
+                                right: 10,
+                                left: 10
                             }
                         },
                         legend: {
@@ -92,7 +92,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/locationsByKidnap.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'locationsByKidnap.html'
             };
 
             return directive;

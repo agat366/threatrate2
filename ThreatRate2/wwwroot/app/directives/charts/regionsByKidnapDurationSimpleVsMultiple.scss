@@ -74,7 +74,7 @@
 
     .column {
         float: left;
-        width: 73%;
+        width: 80%;
         font-size: 16px;
 
         &:first-child {
@@ -82,14 +82,14 @@
         }
 
         &.duration {
-            width: 27%;
+            width: 20%;
             text-align: center;
         }
 
         .ransom {
             > * {
                 display: block;
-                width: 175px;
+                width: 130px;
                 white-space: nowrap;
                 text-align: center;
             }

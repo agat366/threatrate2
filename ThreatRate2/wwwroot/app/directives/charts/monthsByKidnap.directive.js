@@ -92,7 +92,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/monthsByKidnap.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'monthsByKidnap.html'
             };
 
             return directive;

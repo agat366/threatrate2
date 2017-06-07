@@ -161,7 +161,7 @@
                 scope: {
                     data: '='
                 },
-                templateUrl: config.routeUrl + config.chartDirectivesPath + '/regionsByKidnapSimpleVsMultiple.html'
+                templateUrl: config.routeUrl + config.chartDirectivesPath + 'regionsByKidnapSimpleVsMultiple.html'
             };
 
             return directive;

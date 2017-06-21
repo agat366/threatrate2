@@ -103,6 +103,7 @@
             text-align: center;
             border-bottom-color: $dark;
             height: 42px;
+            background: none;
 
             &.header-min{
                 height: 24px;
@@ -119,6 +120,9 @@
                 display: inline-block;
                 width: 40px;
                 height: 36px;
+                position: relative;
+                top: -3px;
+
                 &.funds{
                     height: 40px;
                 }

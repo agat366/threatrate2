@@ -58,8 +58,8 @@
       .charts-v2-container .chart-period label:before {
         content: ' ';
         display: block;
-        height: 20px;
-        width: 20px;
+        height: 16px;
+        width: 16px;
         border: 2px solid #fff;
         border-radius: 20px;
         background: #e1482c; }
@@ -270,8 +270,8 @@ svg .legend-title text {
       .charts-v2-container .chart-period label:before {
         content: ' ';
         display: block;
-        height: 20px;
-        width: 20px;
+        height: 16px;
+        width: 16px;
         border: 2px solid #fff;
         border-radius: 20px;
         background: #e1482c; }
@@ -693,7 +693,7 @@ svg .legend-title text {
 
 .chart-region-kidnapping-single-multiple [chart-body="data"] {
   height: 235px;
-  width: 350px;
+  width: 325px;
   margin: 0 auto; }
 
 .chart-region-kidnapping-single-multiple .value-title text {
@@ -702,20 +702,22 @@ svg .legend-title text {
 .chart-countries-by-kidnap-duration .value-title text {
   fill: #333;
   font-size: 30px;
-  font-weight: bold; }
+  font-weight: normal; }
 
 .chart-countries-by-kidnap-duration .legend-title text {
   font-weight: 700;
-  font-size: 22px; }
+  font-size: 22px;
+  font-weight: normal; }
 
 .chart-countries-by-vehicle-attack .value-title text {
   fill: #333;
   font-size: 30px;
-  font-weight: bold; }
+  font-weight: normal; }
 
 .chart-countries-by-vehicle-attack .legend-title text {
   font-weight: 700;
-  font-size: 22px; }
+  font-size: 22px;
+  font-weight: normal; }
 
 .chart-countries-by-suicide-attack .value-title text {
   fill: #e1482c;
@@ -1003,7 +1005,7 @@ svg .legend-title text {
       .chart-countries-by-kidnap-by-gender .right-side .data h3 {
         margin-top: 85px;
         text-transform: uppercase;
-        font-size: 38px;
+        font-size: 36px;
         font-weight: 700;
         line-height: 24px;
         text-align: center;
@@ -1300,7 +1302,8 @@ svg .legend-title text {
   .chart-region-duration-single-multiple .column .header {
     text-align: center;
     border-bottom-color: #333;
-    height: 42px; }
+    height: 42px;
+    background: none; }
     .chart-region-duration-single-multiple .column .header.header-min {
       height: 24px;
       line-height: 24px;
@@ -1312,7 +1315,9 @@ svg .legend-title text {
     .chart-region-duration-single-multiple .column .header [chart-icon] {
       display: inline-block;
       width: 40px;
-      height: 36px; }
+      height: 36px;
+      position: relative;
+      top: -3px; }
       .chart-region-duration-single-multiple .column .header [chart-icon].funds {
         height: 40px; }
   .chart-region-duration-single-multiple .column > * {

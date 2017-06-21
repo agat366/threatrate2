@@ -44,6 +44,9 @@
 
         var regions = [{ name: '', title: 'Whole world' }];
         regions.push.apply(regions, repoRegions.allRegions());
+        var regionsForTop5 = _.filter(regions, function (r) {
+            return r.name !== 'namerica' && r.name !== 'oceania';
+        });
         vm.regions = regions;
 
         vm.countries = repo.allCountries();
@@ -62,6 +65,7 @@
                 id: 'countriesByKidnap',
 //                default: true,
 //                title: '01 - Highest kidnap countries',
+                hasRegion: false,
                 title: 'KIDNAP RATE ACROSS WORLD COUNTRIES',
                 service: function (params) {
                     params.top = 186;
@@ -70,6 +74,7 @@
             },
             {
                 id: 'countriesByKidnapTop30',
+                hasRegion: false,
                 title: 'TOP 30 COUNTRIES WITH THE HIGHEST KIDNAP RATE',
 //                title: '02 - Top 30 highest kidnap countries',
                 service: function (params) {
@@ -80,6 +85,7 @@
             {
                 id: 'locationsByKidnap',
                 default: false,
+                hasRegion: false,
                 title: 'GLOBAL  KIDNAP ACTIVITY BY LOCATION',
 //                title: '03 - Kidnap activity by location // AUG 2015 - AUG 2016',
                 service: function (params) {
@@ -99,6 +105,7 @@
             },
             {
                 id: 'ageGroupsByKidnap',
+                hasRegion: false,
                 title: 'GLOBAL  KIDNAP ACTIVITY ACROSS AGE GROUPS',
 //                title: '05 - Age Groups by Kidnapping',
 //                default: true,
@@ -109,6 +116,7 @@
             {
                 id: 'professionalGroupsByKidnap',
                 title: 'GLOBAL  KIDNAP ACTIVITY ACROSS PROFESSIONAL GROUPS',
+                titleHeader: '{{vm.filter.region.name ? "" : "GLOBAL"}}  KIDNAP ACTIVITY {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}} ACROSS PROFESSIONAL GROUPS {{vm.filter.monthTo.title2}}', // todo: change the month to check
 //                title: '06 - Professional Groups by Kidnapping',
                 default: false,
                 service: function (params) {
@@ -148,7 +156,9 @@
             {
                 id: 'countriesByChildKidnapTop5',
 //                default: true,
+                isTop5: true,
                 title: 'TOP 5 COUNTRIES WITH THE HIGHEST RATE OF CHILD KIDNAPPING',
+                titleHeader: 'TOP 5 COUNTRIES {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}} WITH THE HIGHEST RATE OF CHILD KIDNAPPING',
 //                title: '10 - TOP 5 COUNTRIES WITH THE LARGEST NUMBER OF CHILD KIDNAPPINGS // Q1-Q2/2016',
                 service: function (params) {
                     params.top = 5;
@@ -157,7 +167,9 @@
             },
             {
                 id: 'countriesByForeignersKidnapDurationTop5',
+                isTop5: true,
                 title: 'TOP 5 COUNTRIES WHERE KIDNAPPED FOREIGNERS WHERE HELD THE LONGEST',
+                titleHeader: 'TOP 5 COUNTRIES  {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}} WHERE KIDNAPPED FOREIGNERS WHERE HELD THE LONGEST',
 //                title: '11 - List of 5 countries where kidnapped foreigners where held the longest // jan - oct 2016',
                 service: function (params) {
                     params.top = 5;
@@ -167,6 +179,7 @@
             {
                 id: 'countriesByUnrestTop5',
 //                default: true,
+                isTop5: true,
                 title: 'TOP 5 COUNTRIES WITH THE HIGHEST CIVIL UNREST ACTIVITY',
 //                title: '12 - List of 5 countries registered the most civil unrest events // 2016',
                 service: function (params) {
@@ -177,7 +190,9 @@
             {
                 id: 'countriesBySuicideAttackTop5',
 //                default: true,
+                isTop5: true,
                 title: 'TOP 5 COUNTRIES WITH THE LARGEST NUMBER OF SUICIDE BOMBING ATTACKS',
+                titleHeader: 'TOP 5 COUNTRIES {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}} WITH THE LARGEST NUMBER OF SUICIDE BOMBING ATTACKS',
 //                title: '13 - TOP 5 COUTRSIES WITH THE LARGEST NUMBER OF SUICIDE BOMBING ATTACKS // Q2/2011-Q2/2016',
                 service: function (params) {
                     params.top = 5;
@@ -186,6 +201,7 @@
             },
             {
                 id: 'countriesByKidnapKilledTop5',
+                isTop5: true,
                 title: 'TOP 5 COUNTRIES WITH THE LARGEST NUMBER OF KIDNAPPING VICTIMS KILLED',
 //                title: '14 - TOP 5 COUNTRIES WITH THE LARGEST NUMBER OF KIDNAPPING VICTIMS KILLED // 2015',
                 service: function (params) {
@@ -204,6 +220,7 @@
             },
             {
                 id: 'countriesByForeignersKidnapTop10',
+                hasRegion: false,
                 title: 'TOP 10 COUNTRIES WITH HIGHEST KIDNAPPING OF FOREIGNERS',
 //                title: '16 - List of 10 countries with highest kidnapping of foreigners // jan-oct 2016',
                 service: function (params) {
@@ -212,6 +229,7 @@
             },
             {
                 id: 'countriesByRansomTop5',
+                isTop5: true,
                 title: 'TOP 5 COUNTRIES WITH THE HIGHEST AVERAGE RANSOM AMOUNT PAID',
 //                title: '17 - Top 5 Countries with highest average ransom amount // jan-oct 2016',
                 service: function (params) {
@@ -250,6 +268,7 @@
             {
                 id: 'countriesByKidnapByGender',
                 title: 'GENDER ANALYSIS FOR COUNTRIES WITH HIGHEST KIDNAPPING RATE',
+                titleHeader: 'GENDER ANALYSIS FOR COUNTRIES  {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}} WITH HIGHEST KIDNAPPING RATE',
 //                title: '21 - Countries most kidnapped at by gender// June 2010 - March 2017',
 //                default: true,
                 service: function (params) {
@@ -261,6 +280,7 @@
                 id: 'locationsByKidnapByGender',
 //                default: true,
                 title: 'GENDER ANALYSIS FOR  KIDNAPPING BY LOCATION',
+                titleHeader: 'GENDER ANALYSIS FOR  KIDNAPPING BY LOCATION {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}}',
 //                title: '22 - IS THERE A DIFFERENCE WHERE WOMEN GET KIDNAPPED FROM VERSUS MAN',
                 service: function (params) {
 //                    params.top = 3;
@@ -287,6 +307,7 @@
             {
                 id: 'countriesByKidnapDurationGridTop10',
                 title: 'TOP 10 COUNTRIES  WITH HIGHEST KIDNAP DURATION AND RANSOM PAID',
+                hasRegion: false,
 //                title: '24 - KIDNAP DURATION AND RANSOM FOR THE TOP 10 COUNTRIES',
                 service: function (params) {
                     params.top = 10;
@@ -297,6 +318,7 @@
                 id: 'ageGroupsByKidnapDurationGrid',
 //                default: true,
                 title: 'GLOBAL VIEW OF KIDNAP DURATION AND RANSOM PAID ACROSS AGE GROUPS',
+                titleHeader: 'GLOBAL VIEW OF KIDNAP DURATION AND RANSOM PAID ACROSS AGE GROUPS {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}}',
 //                title: '25 - KIDNAP DURATION AND RANSOM AMOUNT CORRELATION WITH AGE',
                 service: function (params) {
                     return dataService.ageGroupsByKidnapDuration(params);
@@ -317,6 +339,7 @@
 //                default: true,
                 hasRegion: false,
                 title: 'REGIONAL VIEW OF KIDNAP DURATION AND RANSOM PAID FOR SINGLE VS. MULTIPLE VICTIMS',
+                titleHeader: 'REGIONAL VIEW OF KIDNAP DURATION AND RANSOM PAID FOR SINGLE VS. MULTIPLE VICTIMS {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}}',
 //                title: '27 - REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION FOR SINGLE AND MULTIPLE KIDNAPPING',
                 service: function (params) {
                     return dataService.regionsByKidnapDurationSimpleVsMultiple(params);
@@ -334,6 +357,8 @@
             {
                 id: 'countriesByForeignersVsLocalsKidnapTop5',
 //                default: true,
+//                isTop5: true,
+                hasRegion: false,
                 title: 'TOP 5 COUNTRIES FOR FOREIGNERS KIDNAPPING  VS. TOP 5 COUNTRIES FOR LOCALS KIDNAPPING',
 //                title: '29 - TOP 5 COUNTRIES FOR FOREIGNERS KIDNAPPING VERSUS TOP 5 COUNTRIES FOR LOCALS KIDNAPPINGS',
                 service: function (params) {
@@ -344,6 +369,7 @@
             {
 //                default: true,
                 id: 'countriesByForeignersVsLocalsKidnapTop10',
+                hasRegion: false,
                 title: 'TOP 10 COUNTRIES FOR FOREIGNERS KIDNAPPING  VS. TOP 10 COUNTRIES FOR LOCALS KIDNAPPING',
 //                title: '30 - REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION FOR SINGLE AND MULTIPLE KIDNAPPING',
                 service: function (params) {
@@ -386,6 +412,16 @@
                 vm.data = null;
                 vm.chartId = vm.currentChart.id;
 
+                vm.regions = vm.currentChart.isTop5 ? regionsForTop5 : regions;
+                if (!_.find(vm.regions, { name: vm.filter.region.name })) {
+                    vm.filter.region = regions[0];
+                }
+                // setup filter values
+
+                if (vm.currentChart.hasRegion === false) {
+                    vm.filter.region = regions[0];
+                }
+
                 if (vm.currentChart.hasFrom !== false && vm.filter.yearFrom.id > vm.filter.yearTo.id) {
                     vm.filter.yearTo = vm.filter.yearFrom;
                 }
@@ -400,6 +436,7 @@
                     vm.filter.monthFrom = vm.months[0];
                 }
 
+                // setup params
                 var from = '' +
                     vm.filter.yearFrom.id +
                     (vm.filter.monthFrom.id < 10 ? '0' : '') +

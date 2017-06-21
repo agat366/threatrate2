@@ -129,8 +129,8 @@
                                             width: 25,
                                             height: 160,
                                             margin: {
-                                                left: 12,
-                                                right: 12
+                                                left: 14,
+                                                right: 14
                                             },
                                             background: ChartsManager.defaults.backColor
 

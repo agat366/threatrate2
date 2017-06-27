@@ -26,7 +26,7 @@
                             return c.name === name;
                         });
                     if (country) {
-                        return country.title;
+                        return country.title.replace(/\s/gi, '-');
                     }
                 };
 

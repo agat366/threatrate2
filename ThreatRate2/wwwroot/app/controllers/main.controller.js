@@ -30,7 +30,9 @@
                 { id: 12, title: 'Dec', title2: 'December' }
         ];
 
-        vm.years = _.map(_.range(1990, 2017), function(y) {
+            var yearsStart = 1990;
+
+            vm.years = _.map(_.range(yearsStart, 2017), function (y) {
             return { id: y };
         });
 
@@ -97,7 +99,8 @@
                 default: false,
                 hasFromMonth: false,
                 hasToMonth: false,
-                title: '3 MOST DANGEROUS MONTHS WITH HIGHEST GLOBAL KIDNAP ACTIVITY',
+                title: '3 MOST DANGEROUS MONTHS WITH HIGHEST KIDNAP ACTIVITY',
+                titleHeader: '3 MOST DANGEROUS MONTHS {{vm.filter.region.name ? "in " + vm.filter.region.title : ""}} WITH HIGHEST {{vm.filter.region.name ? "" : "GLOBAL"}} KIDNAP ACTIVITY',
 //                title: '04 - Most dangerous months',
                 service: function (params) {
                     return dataService.monthsByKidnap(params);
@@ -115,8 +118,8 @@
             },
             {
                 id: 'professionalGroupsByKidnap',
-                title: 'GLOBAL  KIDNAP ACTIVITY ACROSS PROFESSIONAL GROUPS',
-                titleHeader: '{{vm.filter.region.name ? "" : "GLOBAL"}}  KIDNAP ACTIVITY {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}} ACROSS PROFESSIONAL GROUPS {{vm.filter.monthTo.title2}}', // todo: change the month to check
+                title: 'KIDNAP ACTIVITY ACROSS PROFESSIONAL GROUPS',
+                titleHeader: '{{vm.filter.region.name ? "" : "GLOBAL"}}  KIDNAP ACTIVITY {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}} ACROSS PROFESSIONAL GROUPS', // todo: change the month to check
 //                title: '06 - Professional Groups by Kidnapping',
                 default: false,
                 service: function (params) {
@@ -137,6 +140,7 @@
                 id: 'countriesByLongestKidnapDurationTop3',
 //                default: true,
                 title: 'TOP 3 COUNTRIES WHERE KIDNAPED VICTIMS WERE HELD THE LONGEST',
+                titleHeader: '{{vm.filter.region.name == "namerica" ? "How long were kidnap victims held in America " : "TOP 3 COUNTRIES " + (vm.filter.region.name ? "IN " + vm.filter.region.title : "") + " WHERE KIDNAPED VICTIMS WERE HELD THE LONGEST"}} ',
 //                title: '08 - TOP 3 COUNTRIES WHERE KIDNAPPING VICTIMS WERE HELD THE LONGEST // Q1-Q2/2016',
                 service: function (params) {
                     params.top = 3;
@@ -147,6 +151,7 @@
                 id: 'countriesByVehicleAttackTop3',
 //                default: true,
                 title: 'TOP 3 COUNTRIES WITH THE HIGHEST NUMBER OF VEHICLE ATTACKS',
+                titleHeader: 'TOP 3 COUNTRIES WITH THE HIGHEST NUMBER OF VEHICLE ATTACKS {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}}',
 //                title: '09 - TOP 3 COUNTRIES WITH THE HIGHEST NUMBER OF VEHICLE ATTACKS // Q1-Q2/2016',
                 service: function (params) {
                     params.top = 3;
@@ -181,6 +186,7 @@
 //                default: true,
                 isTop5: true,
                 title: 'TOP 5 COUNTRIES WITH THE HIGHEST CIVIL UNREST ACTIVITY',
+                titleHeader: 'TOP 5 COUNTRIES {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}} WITH THE HIGHEST CIVIL UNREST ACTIVITY',
 //                title: '12 - List of 5 countries registered the most civil unrest events // 2016',
                 service: function (params) {
                     params.top = 5;
@@ -203,6 +209,7 @@
                 id: 'countriesByKidnapKilledTop5',
                 isTop5: true,
                 title: 'TOP 5 COUNTRIES WITH THE LARGEST NUMBER OF KIDNAPPING VICTIMS KILLED',
+                titleHeader: 'TOP 5 COUNTRIES {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}} WITH THE LARGEST NUMBER OF KIDNAPPING VICTIMS KILLED',
 //                title: '14 - TOP 5 COUNTRIES WITH THE LARGEST NUMBER OF KIDNAPPING VICTIMS KILLED // 2015',
                 service: function (params) {
                     params.top = 5;
@@ -240,7 +247,8 @@
             {
                 id: 'terroristAttackTypes',
 //                default: true,
-                title: 'FREQUENCY OF TERRORIST ATTACK TYPES GLOBALLY',
+                title: 'FREQUENCY OF TERRORIST ATTACK TYPES ',
+                titleHeader: 'FREQUENCY OF TERRORIST ATTACK TYPES {{vm.filter.region.name ? "IN " + vm.filter.region.title : "GLOBALLY"}} ',
 //                title: '18 - FREQUENCY OF TERRORIST ATTACK TYPES // 2016',
                 service: function (params) {
                     return dataService.terroristAttackTypes(params);
@@ -249,6 +257,7 @@
             {
                 id: 'countriesByKidnapWithLocationsTop10',
                 title: 'GEO-LOCATION ANALYSIS FOR TOP 10 COUNTRIES WITH HIGHEST KIDNAP RATE',
+                titleHeader: 'GEO-LOCATION ANALYSIS FOR TOP 10 COUNTRIES {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}} WITH HIGHEST KIDNAP RATE',
 //                title: '19 - COUNTRIES MOST KIDNAPPED AT FURTHER ANALYZED BY GEO-LOCATION',
                 service: function (params) {
                     params.top = 10;
@@ -258,8 +267,9 @@
             {
                 id: 'monthsByYears5',
                 hasFrom: false,
-                title: 'FIVE YEAR ANALYSIS OF KIDNAP ACTIVITY PER MONTH', // todo: change the month to check
-                titleHeader: 'FIVE YEAR ANALYSIS OF KIDNAP ACTIVITY IN {{vm.filter.monthTo.title2}}', // todo: change the month to check
+                yearsOnly: true,
+                title: 'FIVE YEAR ANALYSIS OF KIDNAP ACTIVITY PER MONTH',
+                titleHeader: 'FIVE YEAR ANALYSIS OF KIDNAP ACTIVITY  {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}} DURING {{vm.filter.monthTo.title2}}', // todo: change the month to check
 //                title: '20 - FIVE YEAR VIEW ON “NOVEMBER”',
                 service: function (params) {
                     return dataService.monthsByYears(params);
@@ -317,8 +327,8 @@
             {
                 id: 'ageGroupsByKidnapDurationGrid',
 //                default: true,
-                title: 'GLOBAL VIEW OF KIDNAP DURATION AND RANSOM PAID ACROSS AGE GROUPS',
-                titleHeader: 'GLOBAL VIEW OF KIDNAP DURATION AND RANSOM PAID ACROSS AGE GROUPS {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}}',
+                title: 'KIDNAP DURATION AND RANSOM PAID ACROSS AGE GROUPS',
+                titleHeader: '{{vm.filter.region.name ? "" : "GLOBAL VIEW "}} OF KIDNAP DURATION AND RANSOM PAID ACROSS AGE GROUPS {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}}',
 //                title: '25 - KIDNAP DURATION AND RANSOM AMOUNT CORRELATION WITH AGE',
                 service: function (params) {
                     return dataService.ageGroupsByKidnapDuration(params);
@@ -347,6 +357,7 @@
             },
             {
                 id: 'regionsByKidnapDurationAndRansom',
+                hasRegion: false,
                 title: 'REGIONAL VIEW OF KIDNAP DURATION AND RANSOM PAID',
 //                title: '28 - REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION',
 //                default: true,
@@ -360,6 +371,7 @@
 //                isTop5: true,
                 hasRegion: false,
                 title: 'TOP 5 COUNTRIES FOR FOREIGNERS KIDNAPPING  VS. TOP 5 COUNTRIES FOR LOCALS KIDNAPPING',
+                titleHeader: 'TOP 5 COUNTRIES FOR FOREIGNERS KIDNAPPING  VS. TOP 5 COUNTRIES FOR LOCALS KIDNAPPING {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}}',
 //                title: '29 - TOP 5 COUNTRIES FOR FOREIGNERS KIDNAPPING VERSUS TOP 5 COUNTRIES FOR LOCALS KIDNAPPINGS',
                 service: function (params) {
                     params.top = 5;
@@ -371,6 +383,7 @@
                 id: 'countriesByForeignersVsLocalsKidnapTop10',
                 hasRegion: false,
                 title: 'TOP 10 COUNTRIES FOR FOREIGNERS KIDNAPPING  VS. TOP 10 COUNTRIES FOR LOCALS KIDNAPPING',
+                titleHeader: 'TOP 10 COUNTRIES FOR FOREIGNERS KIDNAPPING  VS. TOP 10 COUNTRIES FOR LOCALS KIDNAPPING {{vm.filter.region.name ? "IN " + vm.filter.region.title : ""}}',
 //                title: '30 - REGIONAL VIEW FOR KIDNAP DURATION AND RANSOM AMOUNT CORRELATION FOR SINGLE AND MULTIPLE KIDNAPPING',
                 service: function (params) {
                     params.top = 10;
@@ -418,6 +431,17 @@
                 }
                 // setup filter values
 
+                if (vm.currentChart.id === 'monthsByYears5') {
+                    var yearTo = vm.filter.yearTo;
+                    if (yearTo.id - 4 < yearsStart) {
+                        vm.filter.yearFrom = _.find(vm.years, { id: yearsStart });
+                        vm.filter.yearTo = _.find(vm.years, { id: yearsStart + 4 });
+                    } else {
+                        vm.filter.yearFrom = _.find(vm.years, { id: yearTo.id - 4 });
+                    }
+//                    vm.filter.monthFrom = _.find(vm.months, { id: 1 });
+//                    vm.filter.monthTo = _.find(vm.months, { id: 12 });
+                }
                 if (vm.currentChart.hasRegion === false) {
                     vm.filter.region = regions[0];
                 }
@@ -477,7 +501,7 @@
 
         function renderDate() {
 
-            var includeMonth = true;
+            var includeMonth = vm.currentChart.yearsOnly !== true;
             var sameYear = false;
             var monthFrom = parseInt(vm.filter.monthFrom.id);
             var monthTo = parseInt(vm.filter.monthTo.id);

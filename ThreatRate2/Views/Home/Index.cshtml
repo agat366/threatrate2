@@ -3,7 +3,7 @@
         var app = angular.module('tr');
         app.constant('apiToken',
             {
-                token: '7oTPPfWQK07DRH+ugRK32p+8e6nLWs/fLUfjPrjGomoxvLMOhh/ETUuLjsB3Qul81c1dYnlfc/6T0a0aZHfTDA==',
+                token: 'b07y4wOeCo0N6qCqSy1EOkFvQGGlnED2msd8cubXIDruW0mDCScYmaT6R5NWIahOlBCpN8IQd1WrhLB9WymHHg==',
                 email: 'notifications@github.com'
             });
 
@@ -73,7 +73,7 @@
 
                             <chart-terrorist-attack-types data="vm.data" ng-if="vm.chartId == 'terroristAttackTypes'"></chart-terrorist-attack-types>
                             <chart-countries-by-kidnap-with-locations-top-10 data="vm.data" ng-if="vm.chartId == 'countriesByKidnapWithLocationsTop10'"></chart-countries-by-kidnap-with-locations-top-10>
-                            <chart-months-by-years-5 data="vm.data" ng-if="vm.chartId == 'monthsByYears5'"></chart-months-by-years-5>
+                            <chart-months-by-years-5 data="vm.data" month-id="vm.filter.monthTo.id - 1" ng-if="vm.chartId == 'monthsByYears5'"></chart-months-by-years-5>
                             <chart-countries-by-kidnap-by-gender data="vm.data" ng-if="vm.chartId == 'countriesByKidnapByGender'"></chart-countries-by-kidnap-by-gender>
                             <chart-locations-by-kidnap-by-gender data="vm.data" ng-if="vm.chartId == 'locationsByKidnapByGender'"></chart-locations-by-kidnap-by-gender>
                             <chart-countries-by-kidnap-duration-top-10 data="vm.data" comparer="vm.comparer" ng-if="vm.chartId == 'countriesByKidnapDurationTop10'"></chart-countries-by-kidnap-duration-top-10>

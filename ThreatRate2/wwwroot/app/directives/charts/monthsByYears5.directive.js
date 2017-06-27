@@ -13,7 +13,6 @@
             function link(scope, element, attributes) {
 
                 scope.$watch('data', bindData);
-                scope.month = 11;
 
                 function bindData() {
                     var data = scope.data;
@@ -25,6 +24,8 @@
 //                    scope.total = _.reduce(_.map(data, function (el) { return el.value; }),
 //                        function (memo, num) { return memo + num; }, 0);
 
+                    var monthId = scope.monthId() || 1;
+
                     var chartsContainer = element.find('[chart-body]');
                     chartsContainer.html('');
 
@@ -35,7 +36,7 @@
                             var sortMonths = _.sortBy(year.data, 'value');
                             var max = sortMonths[sortMonths.length - 1];
                             var min = sortMonths[0];
-                            var requiredMonth = year.data[scope.month];
+                            var requiredMonth = year.data[monthId];
                             return {
                                 year: year.year,
                                 title: year.year,
@@ -257,7 +258,8 @@
                 replace: true,
                 scope: {
                     data: '=',
-                    year: '='
+                    year: '=',
+                    monthId: '&'
                 },
                 templateUrl: config.routeUrl + config.chartDirectivesPath + 'monthsByYears5.html'
             };

@@ -693,7 +693,7 @@ svg .legend-title text {
 
 .chart-region-kidnapping-single-multiple [chart-body="data"] {
   height: 235px;
-  width: 325px;
+  width: 310px;
   margin: 0 auto; }
 
 .chart-region-kidnapping-single-multiple .value-title text {
@@ -1080,7 +1080,7 @@ svg .legend-title text {
     width: 83.33%;
     float: left; }
     .chart-countries-kidnap-duration-ransom .others h3 {
-      font-size: 28px; }
+      font-size: 22px; }
     .chart-countries-kidnap-duration-ransom .others .duration {
       height: 200px; }
     .chart-countries-kidnap-duration-ransom .others .sep {

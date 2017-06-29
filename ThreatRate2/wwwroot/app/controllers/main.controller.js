@@ -401,7 +401,7 @@
                 }
             }*/
         ];
-            debugger;
+
         var prevSettings = storageService.getValue(storageKey);
             if (prevSettings) {
                 var defaultChart = _.find(vm.charts, { id: prevSettings.defaultChartId });

@@ -5,8 +5,8 @@
     var apiRootUrl = 'api';
     angular.module('tr').factory(serviceId,
     [
-        '$resource', 'common', 'config', '$http', 'apiToken',
-        function ($resource, common, config, $http, apiToken) {
+        '$resource', 'common', 'config', '$http', 'apiToken', '$window',
+        function ($resource, common, config, $http, apiToken, $window) {
             var authHeader = String.format('Token token="{0}", email="{1}"', apiToken.token, apiToken.email);
 
             $http.defaults.headers.common['Authorization'] = authHeader;
@@ -51,7 +51,9 @@
                         def.resolve(response.result);
                     },
                     function(response) {
-                        processRequestError(response);
+                        if (processRequestError(response) === false) {
+                            return;
+                        }
                         def.reject(response);
                     });
 
@@ -63,6 +65,13 @@
         }
 
         function processRequestError(error) {
+            if (error.status === 401) { // unathorized
+                config.redirectOnUnathorized = '/sessions/new';
+                if (config.redirectOnUnathorized) {
+                    $window.location.href = config.redirectOnUnathorized;
+                    return false;
+                }
+            }
             console.log(error);
         }
 

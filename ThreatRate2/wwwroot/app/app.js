@@ -20,6 +20,7 @@
         if (ruby.config) {
             config.chartDirectivesPath = ruby.config.directivesPath;
             config.apiRootUrl = ruby.config.apiRootUrl;
+            config.redirectOnUnathorized = ruby.config.redirectOnUnathorized;
         }
     } else {
         app = angular.module('tr',

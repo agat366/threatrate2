@@ -17,7 +17,7 @@
     <div chart-body="levels" class="chart-levels">
 
     </div>
-    <div ng-if="!!data" class="chart-hint">
-        <p>***Note: Additional 310 Unknown</p>
+    <div ng-if="!!unknownData && unknownData.value" class="chart-hint">
+        <p>***Note: Additional {{unknownData.value}} Unknown</p>
     </div>
 </div>

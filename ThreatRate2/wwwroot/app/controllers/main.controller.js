@@ -2,9 +2,10 @@
     'use strict';
 
     var controllerName = 'MainController';
-    angular.module('tr').controller(controllerName, ['mainDataService', '$scope', 'repo.common', 'repo.regions', '$interpolate',
-        function (dataService, $scope, repo, repoRegions, $interpolate) {
+    angular.module('tr').controller(controllerName, ['mainDataService', '$scope', 'repo.common', 'repo.regions', '$interpolate', 'storageService',
+        function (dataService, $scope, repo, repoRegions, $interpolate, storageService) {
 
+            var storageKey = 'infographics.v2';
 
             var token = null;
 //            dataService.getToken(username, password).then(function(result) {
@@ -400,6 +401,17 @@
                 }
             }*/
         ];
+            debugger;
+        var prevSettings = storageService.getValue(storageKey);
+            if (prevSettings) {
+                var defaultChart = _.find(vm.charts, { id: prevSettings.defaultChartId });
+                if (defaultChart) {
+                    _.each(vm.charts, function(ch) {
+                        ch.default = false;
+                    });
+                    defaultChart.default = true;
+                }
+            }
 
         _.each(vm.charts, function(ch, i) {
             ch.order = i + 1;
@@ -418,6 +430,9 @@
         function loadData() {
             vm.isLoading = true;
             if (vm.currentChart) {
+
+                storageService.setValue(storageKey, vm.currentChart.id, 'defaultChartId');
+
                 var title = vm.currentChart.titleHeader || vm.currentChart.title;
                 var exp = $interpolate(title);
                 vm.currentTitle = exp($scope);

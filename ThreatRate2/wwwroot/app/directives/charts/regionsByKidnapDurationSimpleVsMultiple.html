@@ -27,7 +27,7 @@
                 </div>
                 <div class="data" ng-repeat="r in regionsSingle">
                     <div class="ransom">
-                        <span><strong>{{formatRansom(r.ransom_range.from)}}-{{formatRansom(r.ransom_range.to)}} USD</strong></span>
+                        <span><strong>{{formatRansom(r.ransom_range ? r.ransom_range.from : 0)}}-{{formatRansom(r.ransom_range ? r.ransom_range.to : 0)}} USD</strong></span>
                     </div>
                 </div>
             </div>

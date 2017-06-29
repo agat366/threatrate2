@@ -24,6 +24,12 @@
 //                    scope.total = _.reduce(_.map(data, function (el) { return el.value; }),
 //                        function (memo, num) { return memo + num; }, 0);
 
+                    var unknownData = _.find(data, { name: 'unknown' });
+                    if (unknownData) {
+                        data = _.without(data, unknownData);
+                    }
+                    scope.unknownData = unknownData;
+
                     var colors = colorsService.getSchema(colorsService.schemas.fixed5).reverse();
                     var orderedGroups = _.sortBy(data, 'value').reverse();
                     _.each(colors,
